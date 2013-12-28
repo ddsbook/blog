@@ -5,10 +5,6 @@ Tags: book, blog
 Slug: first-page
 Author: Bob Rudis (@hrbrmstr)
 
-# Pollicita latet ab mea Aurora eductum nec
-
-## Nititur est liquido proque miseratus at lumina
-
 Lorem markdownum subterque nais funera deprensa, frequentant solisque pressa
 *morsus conde vidi* cervice. Perque hunc artus cecidit Lycaoniae: plures
 fratribus tellus obstipuere turbine parte traherent aprica per muris? Et perque
@@ -18,7 +14,7 @@ alter quas hoc ceperit; per agros, nec.
 - Sinuatoque flumina hoc alter relinquit foramine dare
 - Aeolia si visaque tecta aduncae et frondes
 
-## Unda lupum cedere certaminis dux spectabilis sed
+### Unda lupum cedere certaminis dux spectabilis sed
 
 Et creatis, aer meritis in credo si semifer omnes eligit non, ab tuas miseram
 terris, voce. Fores esse [mediam aevo](http://www.wedrinkwater.com/) errore
@@ -30,7 +26,7 @@ credula Noctem in non veteres moveri humanaeve. Hectora somniferis erat, iam
 2. Dedit nostris
 3. Aberat vis sed nudabant penates
 
-## Virgine in gentis
+### Virgine in gentis
 
 Iaculum negandum relinquit *genu* quam secundo. Tecto ostia: aeolis [ut
 secuti](http://www.wtfpl.net/) auctor et adsiduae ut anima causa Tmolo verba

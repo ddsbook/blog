@@ -5,10 +5,6 @@ Tags: book, blog
 Slug: first-post
 Author: Bob Rudis (@hrbrmstr)
 
-# Nempe putri cuique vestros
-
-## Arcas alios nec cetera aeratae materiamque enim
-
 Lorem markdownum tremens. Illa cum, pia que poposcit; dea inserere et addere et
 quae cepisse repugnat in parat venis exigui
 [Iove](http://reddit.com/r/thathappened).
@@ -27,7 +23,7 @@ quae cepisse repugnat in parat venis exigui
         contextual.mebibyte = key;
     }
 
-## Rege fulmina mihi terra lege est arenti
+### Rege fulmina mihi terra lege est arenti
 
 Ut collemque minus time hi fontis **sensi**? *Lumen dicit* subsedit sanguine
 inustus oppositoque saepe chordas aequoris sine: qui solvit populos lucentis.
@@ -41,7 +37,7 @@ thalamos, a, fuga ex bene velavit.
 5. Sole incerta amictus natusque
 6. Sed quae hunc pronusque aut ducit credetis
 
-## Ubi in decipit
+### Ubi in decipit
 
 Venus una Iole parvis Troiam audit. Tenebras ab ingens, opposuitque? Procul sub;
 mihi Medusae Parrhasis postquam cervice tamquam fulmineos extenuant nomen ponit.

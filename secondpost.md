@@ -5,10 +5,6 @@ Tags: book, blog
 Slug: second-post
 Author: Bob Rudis (@hrbrmstr)
 
-# Dicit honorant dixit illa tot omnemque inquit
-
-## Sic iam tuus bacchaeque temptamina corruit
-
 Lorem markdownum neque. [Celsoque](http://www.reddit.com/r/haskell) et habebat
 pascua armo quoque. Regna erat me mediis coluit, est verba forsitan Rhodopeius
 ille, nequiquam mecum oculosque faventum: [est](http://jaspervdj.be/).
@@ -27,7 +23,7 @@ petis pennas, culpa lacertis terris: si!
 - Est dedit signatum
 - Hoc Idan forti pervenit auras
 
-## Tu tecti contento
+### Tu tecti contento
 
 Celsoque exstinguere **Clytien** facto; atra aquas faces primordia indigno
 inexpleto Ausoniis rursusque filia populos vidit Ampycides molimine Tenedon vix.

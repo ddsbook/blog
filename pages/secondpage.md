@@ -5,10 +5,6 @@ Tags: book, blog
 Slug: second-page
 Author: Bob Rudis (@hrbrmstr)
 
-# Dixit haec domum pontum esse tamen iam
-
-## Quem et primaque
-
 Lorem markdownum radiis inficere inprovisoque, et, lacerta succeditis sedare et
 deprensi. Paravi leviore **aevum memorabile** ignis subit urbi digitoque fessos.
 Ira altis femina opusque; invictumque damno, aut dixit ad
@@ -19,7 +15,7 @@ Ira altis femina opusque; invictumque damno, aut dixit ad
 > [admovet](http://www.uselessaccount.com/)? Facit tribusque, aura consuetissima
 > parvos, ibat inter Haemoniosque taedia, illi.
 
-## Spargit est sideraque crevit aliquid
+### Spargit est sideraque crevit aliquid
 
 Nubila Iuppiter: virus quam sum ista avarae animalia quinos. Omnes parvo suos,
 obstrusaque quoque ab quisquis reservant, fuerat!
@@ -32,7 +28,7 @@ obstrusaque quoque ab quisquis reservant, fuerat!
 > Tuum numen sunto futurus in **in induit de** patrio de mihi, quacumque gravem
 > exsangue populis Crantoris veniet.
 
-## De velle
+### De velle
 
 Iter gigantas salutat, pro est potuere utque *icto antris nymphe* videt gradus
 constitit reliquit. Reminiscor Atrides incidit submisit quem, *mole* nostro
