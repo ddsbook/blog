@@ -102,55 +102,55 @@ doc.df[is.na(doc.df$county),c(1:4)]
 # i only really want the data, but maps are spiffy. let's build our
 # own (i.e. not-google-y) map, keeping the "dots"
 
-	:::SLexer
-	library(ggplot2)
+		:::SLexer
+		library(ggplot2)
 
-	ff = fortify(counties, region = "NAME")
+		ff = fortify(counties, region = "NAME")
 
-	missing <- doc.df[is.na(doc.df$county),]
+		missing <- doc.df[is.na(doc.df$county),]
 
-	gg <- ggplot(ff, aes(x = long, y = lat))
-	gg <- gg + geom_path(aes(group = group), size=0.15, fill="black")
-	gg <- gg + geom_point(data=missing, aes(x=lng, y=lat), 
-	                      color="#feb24c", size=3)
-	gg <- gg + coord_map(xlim=extendrange(range(missing$lng)), ylim=extendrange(range(missing$lat)))
-	gg <- gg + theme_bw()
-	gg <- gg + labs(x="", y="")
-	gg <- gg + theme(plot.background = element_rect(fill = "transparent",colour = NA),
-	                 panel.border = element_blank(),
-	                 panel.background =element_rect(fill = "transparent",colour = NA),
-	                 panel.grid = element_blank(),
-	                 axis.text = element_blank(),
-	                 axis.ticks = element_blank(),
-	                 legend.position="right",
-	                 legend.title=element_blank())
-	gg
+		gg <- ggplot(ff, aes(x = long, y = lat))
+		gg <- gg + geom_path(aes(group = group), size=0.15, fill="black")
+		gg <- gg + geom_point(data=missing, aes(x=lng, y=lat), 
+		                      color="#feb24c", size=3)
+		gg <- gg + coord_map(xlim=extendrange(range(missing$lng)), ylim=extendrange(range(missing$lat)))
+		gg <- gg + theme_bw()
+		gg <- gg + labs(x="", y="")
+		gg <- gg + theme(plot.background = element_rect(fill = "transparent",colour = NA),
+		                 panel.border = element_blank(),
+		                 panel.background =element_rect(fill = "transparent",colour = NA),
+		                 panel.grid = element_blank(),
+		                 axis.text = element_blank(),
+		                 axis.ticks = element_blank(),
+		                 legend.position="right",
+		                 legend.title=element_blank())
+		gg
 
-	range(missing$lng)
-	range(missing$lat)
+		range(missing$lng)
+		range(missing$lat)
 
-	extendrange(range(missing$lng))
-	extendrange(range(missing$lat))
+		extendrange(range(missing$lng))
+		extendrange(range(missing$lat))
 
-	gg <- ggplot(ff, aes(x = long, y = lat))
-	gg <- gg + geom_polygon(aes(group = group), size=0.15, fill="black", color="#7f7f7f")
-	gg <- gg + geom_point(data=doc.df, shape=21, aes(x=lng, y=lat, size=outages), 
-	                      fill="#feb24c", color="yellow")
-	gg <- gg + coord_map(xlim=extendrange(range(doc.df$lng)), ylim=extendrange(range(doc.df$lat)))
-	# gg <- gg + coord_map(xlim=c(-71.5,-66.75), ylim=c(43,47.5))
-	gg <- gg + theme_bw()
-	gg <- gg + labs(x="", y="")
-	gg <- gg + theme(plot.background = element_rect(fill = "transparent",colour = NA),
-	                 panel.border = element_blank(),
-	                 panel.background =element_rect(fill = "transparent",colour = NA),
-	                 panel.grid = element_blank(),
-	                 axis.text = element_blank(),
-	                 axis.ticks = element_blank(),
-	                 legend.position="right",
-	                 legend.title=element_blank())
-	gg
+		gg <- ggplot(ff, aes(x = long, y = lat))
+		gg <- gg + geom_polygon(aes(group = group), size=0.15, fill="black", color="#7f7f7f")
+		gg <- gg + geom_point(data=doc.df, shape=21, aes(x=lng, y=lat, size=outages), 
+		                      fill="#feb24c", color="yellow")
+		gg <- gg + coord_map(xlim=extendrange(range(doc.df$lng)), ylim=extendrange(range(doc.df$lat)))
+		# gg <- gg + coord_map(xlim=c(-71.5,-66.75), ylim=c(43,47.5))
+		gg <- gg + theme_bw()
+		gg <- gg + labs(x="", y="")
+		gg <- gg + theme(plot.background = element_rect(fill = "transparent",colour = NA),
+		                 panel.border = element_blank(),
+		                 panel.background =element_rect(fill = "transparent",colour = NA),
+		                 panel.grid = element_blank(),
+		                 axis.text = element_blank(),
+		                 axis.ticks = element_blank(),
+		                 legend.position="right",
+		                 legend.title=element_blank())
+		gg
 
-	ggsave("~/Desktop/map.svg", gg)
+		ggsave("~/Desktop/map.svg", gg)
 
 
 
