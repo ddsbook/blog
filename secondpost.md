@@ -102,7 +102,7 @@ frondere.
 	# i only really want the data, but maps are spiffy. let's build our
 	# own (i.e. not-google-y) map, keeping the "dots"
 
-![alt text](/blog/images/map.svg "map")
+<img src="/blog/images/map.svg" title="map" width="655" height="555"/>
 
 	:::SLexer
 	library(ggplot2)
@@ -134,7 +134,7 @@ frondere.
 	extendrange(range(missing$lng))
 	extendrange(range(missing$lat))
 
-![alt text](/blog/images/map.svg "map")
+<img src="/blog/images/map.svg" title="map" width="655" height="555"/>
 
 	:::SLexer
 	gg <- ggplot(ff, aes(x = long, y = lat))
