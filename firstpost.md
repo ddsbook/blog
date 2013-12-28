@@ -1,6 +1,6 @@
 Title: First Post!
 Date: 2013-12-07 15:23:00
-Category: blogspam
+Category: News
 Tags: book, blog
 Slug: first-post
 Author: Bob Rudis (@hrbrmstr)
