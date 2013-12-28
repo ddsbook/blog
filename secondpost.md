@@ -102,6 +102,9 @@ frondere.
 	# i only really want the data, but maps are spiffy. let's build our
 	# own (i.e. not-google-y) map, keeping the "dots"
 
+![alt text](/blog/images/map.svg "map")
+
+	:::SLexer
 	library(ggplot2)
 
 	ff = fortify(counties, region = "NAME")
@@ -131,6 +134,9 @@ frondere.
 	extendrange(range(missing$lng))
 	extendrange(range(missing$lat))
 
+![alt text](/blog/images/map.svg "map")
+
+	:::SLexer
 	gg <- ggplot(ff, aes(x = long, y = lat))
 	gg <- gg + geom_polygon(aes(group = group), size=0.15, fill="black", color="#7f7f7f")
 	gg <- gg + geom_point(data=doc.df, shape=21, aes(x=lng, y=lat, size=outages), 
