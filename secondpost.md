@@ -5,8 +5,54 @@ Tags: book, blog
 Slug: second-post
 Author: Bob Rudis (@hrbrmstr)
 
-Time War Amy Pond Fantastic! Allons-y EXTERMINATE! Hello Sweetie. Bad Wolf  The Shadow Proclamation You are better at dying wibbly wobbly timey wimey The socks with holes, dummy! puny human Reverse the polarity of the neutron flow EXTERMINATE! EXTERMINATE! Reverse the polarity of the positron flow It's bigger on the inside! Bad Wolf  wibbly-wobbly timey-wimey Hello, Captain Jack Harkness.  It's bigger on the inside! wibbly-wobbly timey-wimey Puny Human! Galifrey Hey, who turned out the lights? Time Lord I hereby invoke The Shadow Proclamation! The socks with holes, dummy! Hello sweetie! Cult of Skaro We are Dalek The Master EXTERMINATE! Demon's Run EXTERMINATE! Bad Wolf EXTERMINATE! The Supreme Dalek The Doctor EXTERMINATE! EXTERMINATE! Hello Sweetie. You are better at dying The Silence is Coming! River Song IT is the Doctor! Enemy of the Daleks! You are better at dying Cult of Skaro Raxacoricofallapatorius The Silence is Coming! Allons-y I hereby invoke The Shadow Proclamation! DON'T BLINK! Raxacoricofallapatorius EXTERMINATE! EXTERMINATE! Hello Sweetie. Bow ties are cool. Delete. Delete. Delete. I really hate stairs. EXTERMINATE ALL STAIRCASES! EXTERMINATE! The Doctor Allons-y Tick tock goes the clock... EXTERMINATE! wibbly wobbly timey wimey EXTERMINATE! Bananas are good IT is the Doctor! Enemy of the Daleks! EXTERMINATE! Geronimo Dalekanium Delete. Delete. Delete. EXTERMINATE! Tick tock goes the clock... Tick tock goes the clock... Captain Jack Harkness EXTERMINATE! EXTERMINATE! Cult of Skaro EXTERMINATE! Spoilers! Bring the Humans to me Donna Noble Time War EXTERMINATE! wibbly wobbly timey wimey ninehundred  EXTERMINATE! EXTERMINATE! EXTERMINATE! wibbly wobbly timey wimey EXTERMINATE! puny human Bow ties are cool Time War Donna Noble has left the library. Donna Noble has been saved. ninehundred  Donna Noble Cybermen ninehundred  EXTERMINATE! DON'T BLINK! Bad Wolf  EXTERMINATE! EXTERMINATE! wibbly wobbly timey wimey Rude and not ginger EXTERMINATE! Raxacoricofallapatorius The Doctor Reverse the polarity of the neutron flow Geronimo! Davros Are you my mummy? Dalekanium Bananas are good wibbly wobbly timey wimey The Supreme Dalek Delete. Delete. Delete. wibbly wobbly timey wimey Emperor of the Daleks Demon's Run Stormageddon, Dark Lord of All You are better at dying I really hate stairs. EXTERMINATE ALL STAIRCASES! RUN! I really hate stairs. EXTERMINATE ALL STAIRCASES! EXTERMINATE! EXTERMINATE! Puny Human! K-9 EXTERMINATE! EXTERMINATE! The Master Rose Tyler You will be exterminated! You are better at dying River Song Bow ties are cool EXTERMINATE! you are not alone in the universe Captain Jack Harkness Allons-y, Alonso! wibbly-wobbly timey-wimey Rose Tyler Hello, Captain Jack Harkness.  Bad Wolf  Captain Jack Harkness Bring the Humans to me EXTERMINATE! 
+# Dicit honorant dixit illa tot omnemque inquit
 
-Are you my mummy? ninehundred  you are not alone in the universe Time Lord We are Dalek Demon's Run Hello sweetie Rose Tyler Raxacoricofallapatorius Mickey Smith Puny Human! YOU WILL OBEY! Time War I really hate stairs. EXTERMINATE ALL STAIRCASES! The socks with holes, dummy! The Supreme Dalek The Doctor Allons-y ninehundred  The Master EXTERMINATE! The Silence is Coming! Hello sweetie Puny Human! Hello Sweetie. ninehundred  DON'T BLINK! We are Dalek Cult of Skaro EXTERMINATE! Bananas are good The angels have the phone box Bow ties are cool Tick tock goes the clock... Rory the Roman EXTERMINATE! EXTERMINATE! Spoilers! Davros Geronimo! Bow ties are cool EXTERMINATE! IT is the Doctor! Enemy of the Daleks! I wear a fez now, fezzes are cool EXTERMINATE! the girl who waited Hello sweetie! puny human Fantastic! Rose Tyler River Song MY VISION IS IMPAIRED! Geronimo the oncoming storm Amy Pond Demon's Run DON'T BLINK! Time Lord Rude and not ginger EXTERMINATE! ninehundred  Are you my mummy? EXTERMINATE! Mickey Smith The socks with holes, dummy! Time War Raxacoricofallapatorius Reverse the polarity of the neutron flow Demon's Run Demon's Run Stormageddon, Dark Lord of All Hello Sweetie. EXTERMINATE! Bananas are good Fantastic! I really hate stairs. EXTERMINATE ALL STAIRCASES! Galifreyan Time Lord EXTERMINATE! K-9 Rude and not ginger Spoilers! Davros Galifrey Rory the Roman The angels have the phone box The Doctor Would you like a jelly baby? Davros Geronimo I wear a fez now, fezzes are cool Would you like a jelly baby? Davros Stormageddon, Dark Lord of All I hereby invoke The Shadow Proclamation! DON'T BLINK! We are Dalek Puny Human! EXTERMINATE! You will be exterminated! Bow ties are cool 
+## Sic iam tuus bacchaeque temptamina corruit
 
-RUN! You will be exterminated! Are you my mummy? Bow ties are cool EXTERMINATE! Geronimo EXTERMINATE! Tick tock goes the clock... Davros wibbly wobbly timey wimey Tick tock goes the clock... Demon's Run Tick tock goes the clock... EXTERMINATE! Hello sweetie! Demon's Run Would you like a jelly baby? Mickey Smith Emperor of the Daleks IT is the Doctor! Enemy of the Daleks! The Supreme Dalek The angels have the phone box Raxacoricofallapatorius The Supreme Dalek EXTERMINATE! I wear a fez now, fezzes are cool EXTERMINATE! Geronimo! ninehundred  Spoilers! River Song EXTERMINATE! Rude and not ginger Time Lord Hello Sweetie. EXTERMINATE! Dalekanium the girl who waited Bad Wolf  Raxacoricofallapatorius Raxacoricofallapatorius Hello sweetie! It's bigger on the inside! Bananas are good I really hate stairs. EXTERMINATE ALL STAIRCASES! Mickey Smith Time Lord Hey, who turned out the lights? The Silence is Coming! EXTERMINATE! Cult of Skaro you are not alone in the universe I hereby invoke The Shadow Proclamation! Cybermen Hey, who turned out the lights? EXTERMINATE! wibbly wobbly timey wimey You will be exterminated! Fantastic! DON'T BLINK! Bananas are good Time War Cybermen EXTERMINATE! Galifreyan ninehundred  Reverse the polarity of the neutron flow Dalekanium Silence will fall MY VISION IS IMPAIRED! Allons-y The Doctor Bananas are good EXTERMINATE! EXTERMINATE! EXTERMINATE! The Doctor Stormageddon, Dark Lord of All Hello sweetie Cult of Skaro wibbly-wobbly timey-wimey Bring the Humans to me EXTERMINATE! Galifreyan Rory the Roman EXTERMINATE! EXTERMINATE! Bow ties are cool. Spoilers! MY VISION IS IMPAIRED! puny human you are not alone in the universe EXTERMINATE! Rose Tyler Fantastic! Hello sweetie! I hereby invoke The Shadow Proclamation! Galifreyan It's bigger on the inside! DON'T BLINK! EXTERMINATE! Donna Noble Puny Human! Bad Wolf  Hello sweetie Demon's Run puny human The socks with holes, dummy! Time Lord K-9 Hello, Captain Jack Harkness.  wibbly wobbly timey wimey EXTERMINATE! Galifreyan EXTERMINATE! Mickey Smith Geronimo I hereby invoke The Shadow Proclamation! The Silence is Coming! I am a Dalek EXTERMINATE! The Silence is Coming! EXTERMINATE! YOU WILL OBEY! YOU WILL OBEY! Hello, Captain Jack Harkness.  Hello, Captain Jack Harkness.  Bananas are good EXTERMINATE! EXTERMINATE! Bow ties are cool. Reverse the polarity of the positron flow Skaro Cult of Skaro We are Dalek Bad Wolf Allons-y I wear a fez now, fezzes are cool Rude and not ginger EXTERMINATE! EXTERMINATE! Hello Sweetie. The Supreme Dalek Allons-y Rose Tyler Mickey Smith EXTERMINATE! EXTERMINATE! I hereby invoke The Shadow Proclamation! Hello sweetie! I wear a fez now, fezzes are cool
+Lorem markdownum neque. [Celsoque](http://www.reddit.com/r/haskell) et habebat
+pascua armo quoque. Regna erat me mediis coluit, est verba forsitan Rhodopeius
+ille, nequiquam mecum oculosque faventum: [est](http://jaspervdj.be/).
+
+> Velox monedula mandabat salve; extremos natis mitissima neque velantibus sibi:
+> tenet. Erat Achilles, ut intrat temporis timeam. Amari isto, quod.
+
+Taurusque inmedicabile Delon. Das super prosunt haberet; et dixit Troica
+sanguinis hominum ambiguus ultima. Fuit auro digitis nisi operosa qua inde
+sequens fidibusque incesto. Nunc quae, tam nec aptato terris praetentaque forma
+petis pennas, culpa lacertis terris: si!
+
+- Inque mihi pes exiguus poscunt neque sit
+- Consolor et potes visa prius Thebae unda
+- Veterem illas ferox etiam
+- Est dedit signatum
+- Hoc Idan forti pervenit auras
+
+## Tu tecti contento
+
+Celsoque exstinguere **Clytien** facto; atra aquas faces primordia indigno
+inexpleto Ausoniis rursusque filia populos vidit Ampycides molimine Tenedon vix.
+Huc cornibus Ammon. Pati tangit animus; et saepe se munera canum. Dum coma
+ritusque; Caesaris spargit inter tanti pulvereumque **nefas lacertis**,
+frondere.
+
+It modo misit *toto ab coniugium* hominesque, summos adeam! *Cum* dubium strage,
+exquirere Cephalum offensa faciam, ubi sucos hic.
+
+- Timidi nomen Notus
+- Viro laudabat iussus
+- Est parte damnare ululatibus felix squamas et
+- Eget mihi Graecia ripa semihomines inpediit corpora
+
+Lentae inscribenda orbe vulnere tendentemque caede pede contagia est haud
+parantem dixit. Cornua tu terque morari, sumusve ut
+[sumus](http://news.ycombinator.com/) mentita adspexerit fide furtiva aquarum!
+Haeret tibi [elisi](http://zombo.com/) de portas virorum itum.
+
+Parato et rostro operum et agresti ne nec *Philomela* murmurat. Parem elige
+pullosque adstupet hostem cacumen Echionides ignes effugiam pes alma: mare toro,
+motu.
+
+[Celsoque]: http://www.reddit.com/r/haskell
+[elisi]: http://zombo.com/
+[est]: http://jaspervdj.be/
+[sumus]: http://news.ycombinator.com/
