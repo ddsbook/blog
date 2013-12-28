@@ -1,8 +1,8 @@
-Title: Second Page!
-Date: 2013-12-28 04:23:00
+Title: DDS: The Podcast
+Date: 2013-12-28 10:23:00
 Category: News
 Tags: book, blog
-Slug: second-page
+Slug: the-podcast
 Author: Bob Rudis (@hrbrmstr)
 
 Lorem markdownum radiis inficere inprovisoque, et, lacerta succeditis sedare et

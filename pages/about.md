@@ -1,8 +1,8 @@
-Title: First Page!
-Date: 2013-12-28 04:23:00
+Title: About
+Date: 2013-12-28 10:10:00
 Category: News
 Tags: book, blog
-Slug: first-page
+Slug: about
 Author: Bob Rudis (@hrbrmstr)
 
 Lorem markdownum subterque nais funera deprensa, frequentant solisque pressa
