@@ -1,8 +1,8 @@
-Title: About
+Title: About DDS
 Date: 2013-12-28 10:10:00
 Category: News
 Tags: book, blog
-Slug: about
+Slug: about-dds
 Author: Bob Rudis (@hrbrmstr)
 
 Lorem markdownum subterque nais funera deprensa, frequentant solisque pressa
