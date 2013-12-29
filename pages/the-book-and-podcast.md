@@ -1,5 +1,5 @@
 Title: DDS: The Book & Podcast
-Date: 2013-12-28 10:23:00
+Date: 2013-12-28 10:00:00
 Category: News
 Tags: book, blog
 Slug: the-book-and-podcast
