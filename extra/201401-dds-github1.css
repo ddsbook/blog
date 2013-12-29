@@ -1,0 +1,17 @@
+rect.bordered {
+    stroke: #F6F6F6;
+    stroke-width:1px;   
+}
+text.mono {
+    font-size: 9pt;
+    font-family: sans-serif;
+    fill: #aaa;
+}
+
+text.axis-workweek {
+    fill: #000;
+}
+
+text.axis-worktime {
+    fill: #000;
+}
