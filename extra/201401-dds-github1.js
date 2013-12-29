@@ -11,19 +11,12 @@ d3.csv("/blog/data/201401-dds-github1.csv", function(error, csv) {
 function genVis() {
     var margin = { top: 50, right: 0, bottom: 0, left: 30 },
         width = 660 - margin.left - margin.right,
-        alltext = [ [ 160, 0, "All", "steelblue" ], [ 220, 0, "Bob", "black" ], [ 160, 0, "Jay", "black" ] ],
         height = 330 - margin.top - margin.bottom,
         gridSize = Math.floor(width / 24),
         days = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
         times = ["12p", "1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p"];
     var colorScale = d3.scale.linear()
         .domain([0, 2, d3.max(dataset, function(d) { return +d.all; }) ])
-        .range(["#FFFFFF", "#B0C4DE", "purple"]);
-    var bobScale = d3.scale.linear()
-        .domain([0, 2, d3.max(dataset, function(d) { return +d.bob; }) ])
-        .range(["#FFFFFF", "#B0C4DE", "purple"]);
-    var jayScale = d3.scale.linear()
-        .domain([0, 2, d3.max(dataset, function(d) { return +d.jay; }) ])
         .range(["#FFFFFF", "#B0C4DE", "purple"]);
     var svg = d3.select("#chart").append("svg")
         .attr("width", width + margin.left + margin.right)
@@ -32,7 +25,7 @@ function genVis() {
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     svg.append("text")
         .text("Show commits for:")
-        .attr("x", 640)
+        .attr("x", width - 300)
         .attr("y", 0)
         .attr("transform", "translate(-6,-20)")
         .attr("font-family", "sans-serif")
@@ -40,7 +33,7 @@ function genVis() {
         .attr("fill", "black");
     var alltoggle = svg.append("text")
         .text("Both")
-        .attr("x", 780)
+        .attr("x", width - 140)
         .attr("y", 0)
         .attr("transform", "translate(-6,-20)")
         .attr("font-family", "sans-serif")
@@ -60,7 +53,7 @@ function genVis() {
         });
     var bobtoggle = svg.append("text")
         .text("Bob")
-        .attr("x", 830)
+        .attr("x", width - 100)
         .attr("y", 0)
         .attr("transform", "translate(-6,-20)")
         .attr("font-family", "sans-serif")
@@ -80,7 +73,7 @@ function genVis() {
         });
     var jaytoggle = svg.append("text")
         .text("Jay")
-        .attr("x", 880)
+        .attr("x", width - 60)
         .attr("y", 0)
         .attr("transform", "translate(-6,-20)")
         .attr("font-family", "sans-serif")
