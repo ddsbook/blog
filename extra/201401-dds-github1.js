@@ -25,7 +25,7 @@ function genVis() {
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     svg.append("text")
         .text("Show commits for:")
-        .attr("x", width - 300)
+        .attr("x", width - 240)
         .attr("y", 0)
         .attr("transform", "translate(-6,-20)")
         .attr("font-family", "sans-serif")
@@ -33,7 +33,7 @@ function genVis() {
         .attr("fill", "black");
     var alltoggle = svg.append("text")
         .text("Both")
-        .attr("x", width - 140)
+        .attr("x", width - 120)
         .attr("y", 0)
         .attr("transform", "translate(-6,-20)")
         .attr("font-family", "sans-serif")
@@ -53,7 +53,7 @@ function genVis() {
         });
     var bobtoggle = svg.append("text")
         .text("Bob")
-        .attr("x", width - 100)
+        .attr("x", width - 80)
         .attr("y", 0)
         .attr("transform", "translate(-6,-20)")
         .attr("font-family", "sans-serif")
@@ -73,7 +73,7 @@ function genVis() {
         });
     var jaytoggle = svg.append("text")
         .text("Jay")
-        .attr("x", width - 60)
+        .attr("x", width - 40)
         .attr("y", 0)
         .attr("transform", "translate(-6,-20)")
         .attr("font-family", "sans-serif")
