@@ -25,7 +25,7 @@ function genVis() {
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
     svg.append("text")
         .text("Show commits for:")
-        .attr("x", width - 240)
+        .attr("x", width - 270)
         .attr("y", 0)
         .attr("transform", "translate(-6,-20)")
         .attr("font-family", "sans-serif")
