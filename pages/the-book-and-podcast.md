@@ -1,8 +1,8 @@
-Title: DDS: The Podcast
+Title: DDS: The Book & Podcast
 Date: 2013-12-28 10:23:00
 Category: News
 Tags: book, blog
-Slug: the-podcast
+Slug: the-book-and-podcast
 Author: Bob Rudis (@hrbrmstr)
 
 Lorem markdownum radiis inficere inprovisoque, et, lacerta succeditis sedare et
