@@ -14,6 +14,9 @@ Since we used github to manage our material, we have all the data github stores 
 thing we want to look at is the days and times of our checkins.  Take a look...
 
 <div id="chart"></div>
+
+And this is text after the d3 fancy stuff.
+
 <script type="text/javascript" src="/blog/extra/201401-dds-github1.js"></script>
 
 
