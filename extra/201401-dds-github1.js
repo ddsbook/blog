@@ -10,9 +10,9 @@ d3.csv("/blog/data/201401-dds-github1.csv", function(error, csv) {
   });
 function genVis() {
     var margin = { top: 50, right: 0, bottom: 0, left: 30 },
-        width = 960 - margin.left - margin.right,
+        width = 660 - margin.left - margin.right,
         alltext = [ [ 160, 0, "All", "steelblue" ], [ 220, 0, "Bob", "black" ], [ 160, 0, "Jay", "black" ] ],
-        height = 430 - margin.top - margin.bottom,
+        height = 330 - margin.top - margin.bottom,
         gridSize = Math.floor(width / 24),
         days = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"],
         times = ["12p", "1a", "2a", "3a", "4a", "5a", "6a", "7a", "8a", "9a", "10a", "11a", "12a", "1p", "2p", "3p", "4p", "5p", "6p", "7p", "8p", "9p", "10p", "11p"];
