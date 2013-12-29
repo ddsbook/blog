@@ -1,6 +1,6 @@
 var dataset; // a global
 var values = [];
-d3.csv("data/201401-dds-github1.csv", function(error, csv) {
+d3.csv("/blog/data/201401-dds-github1.csv", function(error, csv) {
         if (error) return console.warn(error);
         dataset = csv;
         for(var i=0;i<dataset.length;i++){
