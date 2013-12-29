@@ -4,7 +4,7 @@ Category: dataviz
 Status: draft
 Tags: book, blog
 Slug: 201401-dds-github
-Author: Bob Rudis (@hrbrmstr), Jay Jacobs (@jayjacobs)
+Author: Bob Rudis (@hrbrmstr) and Jay Jacobs (@jayjacobs)
 
 <link rel="stylesheet" type="text/css" href="/blog/extra/201401-dds-github1.css">
 
