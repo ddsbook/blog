@@ -15,7 +15,7 @@ thing we want to look at is the days and times of our checkins.  Take a look...
 
 <div id="chart"></div>
 
-And this is text after the d3 fancy stuff.  Going to change this again.
+Seeing if bob can add to it
 
 <script type="text/javascript" src="/blog/extra/201401-dds-github1.js"></script>
 
