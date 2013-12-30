@@ -3,7 +3,7 @@ Date: 2013-12-28 08:23:00
 Category: News
 Tags: book, blog
 Slug: second-post
-Author: Bob Rudis (@hrbrmstr)
+Author: Jay Jacobs (@jayjacobs)
 
 Lorem markdownum neque. [Celsoque](http://www.reddit.com/r/haskell) et habebat
 pascua armo quoque. Regna erat me mediis coluit, est verba forsitan Rhodopeius
