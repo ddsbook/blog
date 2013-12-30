@@ -109,7 +109,8 @@ function genVis() {
         .attr("y", 0)
         .style("text-anchor", "middle")
         .attr("transform", "translate(" + gridSize / 2 + ", -6)")
-        .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+        .attr("class", "timeLabel mono axis axis-worktime");
+        // .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
     var tooltip = d3.select("body")
         .append("div")
         .style("background-color", "white")
