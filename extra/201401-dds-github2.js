@@ -14,7 +14,7 @@ function bookGitCommits() {
 					    .append("g")
 					    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 	
-	d3.csv("commits.csv", function(d) {
+	d3.csv("/blog/data/201401-dds-github2.csv", function(d) {
 	  return {
 	    Day: format.parse(d.Day),
 	    Chapter: d.Chapter,
