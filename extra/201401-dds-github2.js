@@ -115,7 +115,7 @@ function bookGitCommits() {
 				 });
 				 
 				 $("#info").css("color", col(d));
-				 $("#info").text(d + " had " + chCommits + " commits across " + chDays + " days")  
+				 $("#info").text(d + " had " + chCommits + " file changes across " + chDays + " days")  
 				 					 
 			 })
 			 .on("mouseout", function(d) {
