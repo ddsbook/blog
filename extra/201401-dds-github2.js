@@ -39,17 +39,23 @@ function bookGitCommits() {
     var xAxis = d3.svg.axis().scale(X).ticks(6).tickFormat(month_format);
     var yAxis = d3.svg.axis().scale(Y).ticks(6).orient("left");
 
-		 commits.append("g")
+		var ax = commits.append("g")
 		      .attr("class", "y axis")
 		      .attr("transform", "translate(5,0)")
 		      .call(yAxis);
 
-		 commits.append("g")
+		commits.append("g")
 		      .attr("class", "x axis")
 		      .attr("transform", "translate(0," + (height+margin.top) + ")")
 		      .call(xAxis);
 												
-		
+		ax.append("text")
+		    .attr("class", "x label")
+		    .attr("text-anchor", "start")
+		    .attr("x", -20)
+		    .attr("y", 20)
+		    .text("# Files");
+							
 		 var col = d3.scale.category20().domain(d3.set(rows.map(function(d) { return(d.Chapter);})).values())
 
 	 	 var g = commits.append("g")
