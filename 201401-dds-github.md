@@ -16,7 +16,12 @@ thing we want to look at is the days and times of our checkins.  Take a look...
 
 <div id="chart"></div>
 
-Seeing if bob can add to it:
+Sadly, both of us were remiss in the verbosity of our commit comments, so any type of textual analysis or visualization 
+on those would be woefully disappointing. However we thought it would be interesting to also show folks git commits per
+chapter by day across the lifespan of the book's creation. 
+
+Hover over the legend labels to isolate each chapter in the scatterplot and get a summary of commit
+activity. 
 
 <center>
 <div style="width:630px;padding:0;margin:0">
