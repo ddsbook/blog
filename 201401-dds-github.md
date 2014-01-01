@@ -25,7 +25,7 @@ activity.
 
 <center>
 <div style="width:630px;padding:0;margin:0">
-	<div style="margin:auto; height:20px; font-weight:400; font-family:'Lato','Helvetica-Neue','Helvetica','Arial','sans-serif'" id="info"></div>
+	<div style="margin:auto; height:20px; font-weight:400; padding-bottom:10px; font-family:'Lato','Helvetica-Neue','Helvetica','Arial','sans-serif'" id="info"></div>
 	<div style="width:630px;padding:0;margin:0" id="commits" class="commits"></div>
 		<ul id="ch">
 		</ul>
