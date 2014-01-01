@@ -1,5 +1,5 @@
 Title: The Logs From Writing a Book
-Date: 2014-01-01 08:23:00
+Date: 2014-01-01 12:00:00
 Category: dataviz
 Status: draft
 Tags: book, blog
