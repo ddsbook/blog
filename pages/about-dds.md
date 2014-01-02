@@ -5,47 +5,6 @@ Tags: book, blog
 Slug: about-dds
 Author: Bob Rudis (@hrbrmstr)
 
-Lorem markdownum subterque nais funera deprensa, frequentant solisque pressa
-*morsus conde vidi* cervice. Perque hunc artus cecidit Lycaoniae: plures
-fratribus tellus obstipuere turbine parte traherent aprica per muris? Et perque
-alter quas hoc ceperit; per agros, nec.
+Data Driven <b>Security</b> is a collaboration between Jay Jacobs &amp; Bob Rudis. Through their book, blog posts and podcasts Bob &amp; Jay hope to help security domain practicioners embrace and engage all elements of security data science to help defend their organizations.
 
-- Es flores postquam
-- Sinuatoque flumina hoc alter relinquit foramine dare
-- Aeolia si visaque tecta aduncae et frondes
-
-### Unda lupum cedere certaminis dux spectabilis sed
-
-Et creatis, aer meritis in credo si semifer omnes eligit non, ab tuas miseram
-terris, voce. Fores esse [mediam aevo](http://www.wedrinkwater.com/) errore
-credula Noctem in non veteres moveri humanaeve. Hectora somniferis erat, iam
-**laetissimus olivae** convicia, in corpore fingit sanguine viderit Mavortia
-**favilla**.
-
-1. Tumidus a amoris flamine premeret
-2. Dedit nostris
-3. Aberat vis sed nudabant penates
-
-### Virgine in gentis
-
-Iaculum negandum relinquit *genu* quam secundo. Tecto ostia: aeolis [ut
-secuti](http://www.wtfpl.net/) auctor et adsiduae ut anima causa Tmolo verba
-[hausit](http://eelslap.com/).
-
-    right -= 1 + linkBlacklist + ssd_graphic(tagTerminalBacklink, non);
-    if (1) {
-        pptp(primary_gis, access);
-        propertyBlob(hypermediaSystem);
-        power = server + bankruptcy_pc;
-    }
-    cifs_dpi_down = hubUserRw;
-
-Venit poma **dum septem**, negant precatur subiere **fidem** mortale et me
-profugum frustraque, puer prima. Ferventibus in quas, gemitumque sidera, est pes
-nosterque precibus. Se delata pericula Hector, fuit edidit terram spolieris
-prolem, dixerunt! Formatus non **emicuit**, gramina! Invasit nomen; quae lenius
-qua partem quibus; eat ipsa fratrem habenas accipit tamen, retardat est?
-
-[hausit]: http://eelslap.com/
-[mediam aevo]: http://www.wedrinkwater.com/
-[ut secuti]: http://www.wtfpl.net/
+Whether you're just starting out or are a "data veteran", Data Driven <b>Security</b> has something for everyone.
