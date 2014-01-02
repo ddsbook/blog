@@ -31,8 +31,8 @@ Author: Bob Rudis (@hrbrmstr)
 Intro text:
 
     :::LassoXmlLexer
-	<marker name="&lt;div class='marker'&gt;&lt;img border=0 src=&quot;../images/flags/RO.PNG&quot;&gt; &lt;/a&gt; Romania " 
-	        address="(encoded HTLM for the Google Maps push-pin popup)" 
+	<marker name="(encoded HTML for the Google Maps push-pin popup) " 
+	        address="(encoded HTML for the Google Maps push-pin popup)" 
 					lat="44.4333" 
 					lng="26.1" 
 					type="bot" />
