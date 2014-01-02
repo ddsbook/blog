@@ -34,7 +34,7 @@ Original abuse.ch zeus tracker google map:
 
 R generated SVG:
 
-<img src="/blog/images/2014/01/r-zeus.svg" width="630" height="394"/>
+<img src="/blog/images/2014/01/r-zeus.svg" width="630" height="400"/>
 
 D3 bot map:
 
