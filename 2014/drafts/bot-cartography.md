@@ -32,10 +32,10 @@ Intro text:
 
     :::LassoXmlLexer
 	<marker name="(encoded HTML for the Google Maps push-pin popup) " 
-	        address="(encoded HTML for the Google Maps push-pin popup)" 
-					lat="44.4333" 
-					lng="26.1" 
-					type="bot" />
+    address="(encoded HTML for the Google Maps push-pin popup)" 
+		lat="44.4333" 
+		lng="26.1" 
+		type="bot" />
 	</markers>
 
 
