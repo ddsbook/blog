@@ -1,5 +1,5 @@
 Title: Resources
-Date: 2013-12-28 09:00:00
+Date: 2014-01-01 09:00:00
 Category: News
 Tags: book, blog
 Slug: resources
