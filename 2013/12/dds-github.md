@@ -36,5 +36,3 @@ activity.
 
 <script type="text/javascript" src="/blog/extra/201401-dds-github1.js"></script>
 <script type="text/javascript" src="/blog/extra/201401-dds-github2.js"></script>
-
-
