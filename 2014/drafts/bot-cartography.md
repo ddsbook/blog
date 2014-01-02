@@ -75,7 +75,7 @@ makeBots = function() {
 
   // build the world from the topojson data
 
-	d3.json("world-50m.json", function(error, world) {
+	d3.json("/blog/data/maps/world-50m.json", function(error, world) {
 
 		// make the ocean
 	
