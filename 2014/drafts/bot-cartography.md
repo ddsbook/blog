@@ -28,8 +28,17 @@ Author: Bob Rudis (@hrbrmstr)
 
 <script src="/blog/extra/d3.geo.projection.v0.min.js"></script>
 <script src="/blog/exgtra/topojson.v1.min.js"></script>
+Original abuse.ch zeus tracker google map:
+
+<img src="/blog/images/2014/01/abuse-gmap.png" width="630" height="394"/>
+
+R generated SVG:
+
+<img src="/blog/images/2014/01/r-zeus.svg" width="630" height="394"/>
 
 D3 bot map:
+
+https://zeustracker.abuse.ch/
 
 <center>
 <div id="d3botmap" style="width:630px;padding:0;margin:0">
