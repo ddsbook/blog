@@ -75,7 +75,7 @@ Original abuse.ch zeus tracker google map:
   
 	# make the world!
 	# start with a shapefile from http://www.naturalearthdata.com/downloads/
-	world <- readOGR(dsn="/Users/bob/Dropbox/R/ne_110m_admin_0_countries/", 
+	world <- readOGR(dsn="/path/to/ne_110m_admin_0_countries/", 
 	                 layer="ne_110m_admin_0_countries")
   
 	# and bend the data to the will of our fav projection
