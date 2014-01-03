@@ -1,4 +1,4 @@
-Title: Subscribe
+Title: Subscribe (Newsletter)
 Date: 2014-01-03 11:00:00
 Category: News
 Tags: book, blog, podcast
