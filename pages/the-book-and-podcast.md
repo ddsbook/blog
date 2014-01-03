@@ -1,4 +1,4 @@
-Title: DDS: The Book & Podcast
+Title: DDS: The Book and Podcast
 Date: 2014-01-01 10:00:00
 Category: News
 Tags: book, blog

@@ -6,18 +6,15 @@ Tags: book, blog, maps, R, d3
 Slug: basics-of-bot-cartography
 Author: Bob Rudis (@hrbrmstr)
 
-
 <style>
 .wland {
   fill: #222;
 }
-
 .wboundary {
   fill: none;
   stroke: #7f7f7f;
   stroke-width: .15px;
 }
-
 .wbot {
 	fill-opacity:0.2;
 	stroke:#ffffcc;
@@ -28,37 +25,27 @@ Author: Bob Rudis (@hrbrmstr)
 
 <smaller><i>(This post expands on a topic presented in Chapter 5 of [Data Driven Security : The Book](http://amzn.to/ddsbook))</i></smaller>
 
-Cartographers (map makers) and infosec folk both have the unenviable task of figuring out the best way to communite complexity to a diverse audience. 
-Maps hold an unwarranted place of privilege in the minds of viewers and they seem to have taken an equally unwarranted place of 
-status when it comes to infosec folk wanting to show where "badness" comes from. More often than not, these malicious locations are displayed 
-on a Google Map using Google's [maps API](https://developers.google.com/maps/). Now, Google Maps is great for directions and managing 
-specific physical waypoints, but they imply a pecision that is just not there when attributing IP address malfeasnace. Plus, 
-when you use Google Maps, you're embedding a great deal of third-party code, user tracking and URL calls that just aren't necessary when 
-there are plenty of other ways to get the same points on a map; plsu, you're limited to a very "meh" projection.
+Cartographers (map makers) and infosec folk both have the unenviable task of figuring out the best way to communite complexity to a diverse audience. Maps hold an unwarranted place of privilege in the minds of viewers and they seem to have taken an equally unwarranted place of status when it comes to infosec folk wanting to show where "badness" comes from. More often than not, these malicious locations are displayed on a Google Map using Google's [maps API](https://developers.google.com/maps/). Now, Google Maps is great for directions and managing specific physical waypoints, but they imply a pecision that is just not there when attributing IP address malfeasnace. Plus, when you use Google Maps, you're embedding a great deal of third-party code, user tracking and URL calls that just aren't necessary when there are plenty of other ways to get the same points on a map; plus, you're limited to a very <i>meh</i> projection.
 
-This post will show you how to place points on a map in both R &amp; D3, and in a slightly more accurate way than you can with Google Maps. 
-It will also demonstrate the use of a much saner projection than the ubiquitous Mercator projection most folks are familiar with. The data we'll 
-use is from the [@abuse_ch](https://twitter.com/abuse_ch) [ZeuS Tracker](https://zeustracker.abuse.ch/) data set. If you already know these mechanics, 
-you can jump to the end of the post. Both the resultant R and D3 maps will be SVG images vs static bitmaps you may be used to generating, and the D3 map 
-can be extended to enable panning and zooming similar to Google Maps.
+This post will show you how to place points on a map in both R &amp; D3, and in a slightly more accurate way than you can with Google Maps. It will also demonstrate the use of a much saner projection than the ubiquitous Mercator projection most folks are familiar with. The data we'll use is from the [@abuse_ch](https://twitter.com/abuse_ch) [ZeuS Tracker](https://zeustracker.abuse.ch/) data set. If you already know these mechanics, you can jump to the end of the post. Both the resultant R and D3 maps will be SVG images vs static bitmaps you may be used to generating, and the D3 map can be extended to enable panning and zooming similar to Google Maps.
 
-The R code is embedded in the post can also be found on [our github repo](https://github.com/ddsbook/blog/blob/master/extra/src/R/zeusmap.R),
-and the D3 code is inhenently available via <code>view-source:</code> in your browser.
+The R code is embedded in the post can also be found on [our github repo](https://github.com/ddsbook/blog/blob/master/extra/src/R/zeusmap.R), and the D3 code is inhenently available via <code>view-source:</code> in your browser.
 
 ###The Making of a Map
+
+Maps have three primary distinct attributes: _scale_, _projection_, and _symbolic representation_.  Any (all, really) of those elements distort reality in some way. _Scale_ distorts size and hides (or overemphasizes) detail. _Projections_ take our very 3D world and mathematically flatten it onto a 2D canvas, requiring numerous tradeoffs between accuracy and readability. _Symbols_ describe and distinguish geographic features and locations and guide viewers into knowing what bits are/aren't relevant.
 
 <script src="/blog/extra/d3.geo.projection.v0.min.js"></script>
 <script src="/blog/exgtra/topojson.v1.min.js"></script>
 
 
     :::LassoXmlLexer
-	<marker name="(encoded HTML for the Google Maps push-pin popup) " 
+    <marker name="(encoded HTML for the Google Maps push-pin popup) " 
     address="(encoded HTML for the Google Maps push-pin popup)" 
-		lat="44.4333" 
-		lng="26.1" 
-		type="bot" />
-	</markers>
-
+        lat="44.4333" 
+        lng="26.1" 
+        type="bot" />
+    </markers>
 
 Original abuse.ch zeus tracker google map:
 
@@ -77,7 +64,7 @@ Original abuse.ch zeus tracker google map:
 	# https://zeustracker.abuse.ch/images/googlemaps/googledb.php
   
 	# read in the XML file
-	zeus <- xmlTreeParse("~/Dropbox/R/zeus.xml", useInternalNodes=TRUE)
+	zeus <- xmlTreeParse("/path/to/zeus.xml", useInternalNodes=TRUE)
   
 	# convert the XML data to an R data frame
 	zeus.ls <- xmlToList(zeus)
@@ -138,10 +125,7 @@ D3 bot map:
 
 https://zeustracker.abuse.ch/
 
-<center>
-<div id="d3botmap" style="width:630px;padding:0;margin:0">
-</div>
-</center>	
+<center><div id="d3botmap" style="width:630px;padding:0;margin:0"></div></center>	
 
 <script>
 
