@@ -26,7 +26,7 @@ Author: Bob Rudis (@hrbrmstr)
 
 **Data Analytics & Visualization : JavaScript Tools**
 
-- [D3.js](http://d3js.org/) : Enables the creation of Òdata driven documents" and provides templates and examples for creating almost every type of modern static and interactive visualization.
+- [D3.js](http://d3js.org/) : Enables the creation of "data driven documents" and provides templates and examples for creating almost every type of modern static and interactive visualization. Test out your vis ideas in the [D3 Playground](http://phrogz.net/js/d3-playground/#BlankDefault)
 - [JavaScript InfoVis Toolkit](http://philogb.github.io/jit/) : Similar to D3, but may be more accessible to those new to JavaScript
 - [Highcharts JS](http://www.highcharts.com/) : Provides robust charting and graphing funtions, especially well-suited for dashboards.
 
