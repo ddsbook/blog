@@ -1,3 +1,5 @@
+![DDS Blog Logo](http://datadrivensecurity.info/blog/images/dds-header-image.png)
+
 This is the public source repository for the [Data Driven Security Blog](http://datadrivensecurity.info/blog).
 
 If you'd like to contribute to the blog, follow the steps [outlined on the blog's about page](http://datadrivensecurity.info/blog/pages/about-dds.html).
