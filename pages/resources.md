@@ -10,7 +10,7 @@ Author: Bob Rudis (@hrbrmstr)
 
 - [OpenRefine](http://openrefine.org/) : an open source, locally-installed, cross-platform toolkit that makes it extremely easy to import, explore, clean, transform, and enrich messy data into something usable for analysis.
 - [DataWrangler](http://vis.stanford.edu/wrangler/) : An browser-based, JavaScript tool created by Stanford University's Visualization Group that lets you explore and transform small data sets in-browser, then export a custom Python or JavaScript source file, suitable for running locally on both small and large data sets.
-- [WebPlotDigitizer](http://arohatgi.info/WebPlotDigitizer/app/) : This online tool makes it possible to quickly Òreverse engineerÓ charts and graphs that have no associated open data files. 
+- [WebPlotDigitizer](http://arohatgi.info/WebPlotDigitizer/app/) : This online tool makes it possible to quickly "reverse engineer" charts and graphs that have no associated open data files. 
 - [Google CRUSH Tools](https://code.google.com/p/crush-tools/) : A command-line processing engine and data transformation tool that makes it possible to work efficiently with large data sets from a shell prompt.
 - [csvkit](https://github.com/onyxfish/csvkit) : A suite of open source Python utilities that are similar to the CRUSH tools, but usable from both the command line and within Python scripts.
 - [Data Cleaner](http://datacleaner.org/) : This product is similar to OpenRefine but with both commercial and open source offerings.
@@ -26,7 +26,7 @@ Author: Bob Rudis (@hrbrmstr)
 
 **Data Analytics & Visualization : JavaScript Tools**
 
-- [D3.js](http://d3js.org/) : Enables the creation of Òdata driven documentsÓ and provides templates and examples for creating almost every type of modern static and interactive visualization.
+- [D3.js](http://d3js.org/) : Enables the creation of Òdata driven documents" and provides templates and examples for creating almost every type of modern static and interactive visualization.
 - [JavaScript InfoVis Toolkit](http://philogb.github.io/jit/) : Similar to D3, but may be more accessible to those new to JavaScript
 - [Highcharts JS](http://www.highcharts.com/) : Provides robust charting and graphing funtions, especially well-suited for dashboards.
 
@@ -49,7 +49,7 @@ Author: Bob Rudis (@hrbrmstr)
 - [JunkCharts](http://junkcharts.typepad.com/) : Learn from the visualization mistakes of others.	
 - [FlowingData](http://flowingdata.com/) : Resources, news and tutorials that will improve the way you think and design visualizations. 
 - [DataVisualization.ch](http://selection.datavisualization.ch/) : Aggregation and index of the most popular and useful visualization tools currently available. 
-- [Data Analysis &amp Visualization Bit.ly Bundle](http://bitly.com/bundles/hrbrmstr/1) : An aggregation of links maintained by the authors along with David Severski. 
+- [Data Analysis &amp; Visualization Bit.ly Bundle](http://bitly.com/bundles/hrbrmstr/1) : An aggregation of links maintained by the authors along with David Severski. 
 
 **Color**
 
