@@ -26,23 +26,24 @@ Author: Bob Rudis (@hrbrmstr)
 }
 </style>
 
-(This post expands on a topic presented in Chapter 5 of [Data Driven Security : The Book](http://amzn.to/ddsbook))
+<smaller><i>(This post expands on a topic presented in Chapter 5 of [Data Driven Security : The Book](http://amzn.to/ddsbook))</i></smaller>
 
-Cartographers (map makers) and infosec folk both have the unenviable task of figuring out the best way to communite complexity. 
+Cartographers (map makers) and infosec folk both have the unenviable task of figuring out the best way to communite complexity to a diverse audience. 
 Maps hold an unwarranted place of privilege in the minds of viewers and they seem to have taken an equally unwarranted place of 
-status when it comes to infosec folk wanting to show where "badness" comes from. More often than not, these locations are displayed 
-on a Google Map using the [maps API](https://developers.google.com/maps/). Google Maps is great for directions and managing 
-specific physical waypoints but, they imply a pecision that is just not there when attributing IP address malfeasnace. Plus, 
-when you use Google Maps, you're embedding a great deal of third-party code, tracking and URL calls that just aren't necessary when 
-there are plenty of other ways to get points on a map and you're limited to a very "meh" projection.
+status when it comes to infosec folk wanting to show where "badness" comes from. More often than not, these malicious locations are displayed 
+on a Google Map using Google's [maps API](https://developers.google.com/maps/). Now, Google Maps is great for directions and managing 
+specific physical waypoints, but they imply a pecision that is just not there when attributing IP address malfeasnace. Plus, 
+when you use Google Maps, you're embedding a great deal of third-party code, user tracking and URL calls that just aren't necessary when 
+there are plenty of other ways to get the same points on a map; plsu, you're limited to a very "meh" projection.
 
-This post will show you how to place points on a map in both R &amp; D3 in a slightly more accurate way than you can with Google Maps
-and using a saner projection than the ubiquitous Mercator projection. The data we'll use is from the [@abuse_ch](https://zeustracker.abuse.ch/) [ZeuS Tracker](https://zeustracker.abuse.ch/). If you already know these mechanics, you can jump to the end 
-of the post. Both the resultant R and D3 maps will be SVG images vs static bitmaps you may be used to generating and the D3 map 
+This post will show you how to place points on a map in both R &amp; D3, and in a slightly more accurate way than you can with Google Maps. 
+It will also demonstrate the use of a much saner projection than the ubiquitous Mercator projection most folks are familiar with. The data we'll 
+use is from the [@abuse_ch](https://twitter.com/abuse_ch) [ZeuS Tracker](https://zeustracker.abuse.ch/) data set. If you already know these mechanics, 
+you can jump to the end of the post. Both the resultant R and D3 maps will be SVG images vs static bitmaps you may be used to generating, and the D3 map 
 can be extended to enable panning and zooming similar to Google Maps.
 
 The R code is embedded in the post can also be found on [our github repo](https://github.com/ddsbook/blog/blob/master/extra/src/R/zeusmap.R),
-and the D3 code is inhenently available via <code>view-source</code> in your browser.
+and the D3 code is inhenently available via <code>view-source:</code> in your browser.
 
 ###The Making of a Map
 
