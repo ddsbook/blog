@@ -483,6 +483,7 @@ I should have spent more time on breaks and colors, but it shows how to produce 
 	gg <- gg + geom_tile(aes(fill=value), color="#7f7f7f")
 	gg <- gg + scale_fill_gradient(limits=range(top20.cor.df$value,na.rm=TRUE),
 	                               low="#EDF8FB",high="#005824",na.value="white")
+	gg <- gg + labs(x="", y="")
 	gg <- gg + theme_bw()
 	gg <- gg + theme(axis.text.x=element_text(angle = 90, vjust = 0.5, hjust=1))
 	gg 
