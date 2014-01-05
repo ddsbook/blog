@@ -197,6 +197,7 @@ I haven't found an R that has the equivalent functionality of the [`tldextract`]
 	            quote=FALSE,
 	            col.names=FALSE,
 	            row.names=FALSE)
+	# grab tlds.py from https://gist.github.com/hrbrmstr/8275775
 	system("tlds.py", ignore.stdout=TRUE)
 	mdl.df$domain <- factor(scan(file="/tmp/outdomains.txt", 
 	                             what=character(), 
