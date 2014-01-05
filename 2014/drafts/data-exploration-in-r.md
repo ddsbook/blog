@@ -6,15 +6,15 @@ Tags: book, blog, R, python, ipython, pandas
 Slug: data-exploration-in-r
 Author: Bob Rudis (@hrbrmstr)
 
-ClickSecurity has been doing a #spiffy job spreading the security data science love with there [data hacking series](http://www.clicksecurity.com/blog/engaging-the-security-community-with-data-hacking-project/). They're using the [Python data science stack](http://datacommunitydc.org/blog/2013/07/python-for-data-analysis-the-landscape-of-tutorials/) and using [iPython notebooks](http://ipython.org/notebook.html) for their work and I felt compelled to reproduce at least one of their examples in [R](http://www.r-project.org/). So, what follows is an R version of ClickSecurity's [Data Exploration of a publicly available dataset](http://nbviewer.ipython.org/github/ClickSecurity/data_hacking/blob/master/mdl_exploration/MDL_Data_Exploration.ipynb). You'll need to have that handy to follow along with the rest of this post. If at all possible, I strongly suggest working through their post **before** following along with our example.
+[ClickSecurity](http://www.clicksecurity.com) has been doing a #spiffy job spreading the security data science love with there [data hacking series](http://www.clicksecurity.com/blog/engaging-the-security-community-with-data-hacking-project/). They're using the [Python data science stack](http://datacommunitydc.org/blog/2013/07/python-for-data-analysis-the-landscape-of-tutorials/) and using [iPython notebooks](http://ipython.org/notebook.html) for their work and I felt compelled to reproduce at least one of their examples in [R](http://www.r-project.org/). So, what follows is an R version of ClickSecurity's [Data Exploration of a publicly available dataset](http://nbviewer.ipython.org/github/ClickSecurity/data_hacking/blob/master/mdl_exploration/MDL_Data_Exploration.ipynb). You'll need to have that handy to follow along with the rest of this post. If at all possible, I strongly suggest working through their post **before** following along with our example.
 
-####It all beings with data
+###It all beings with data
 
-I have to agree with the ClickSecurity (*CS* from now on) folk in that most data sets available on the internet are rubbish. It takes quite a bit of work to massage data into a format you can work with. Even when you get a workable data set, it may be like the [Malware Domain List](http://www.malwaredomainlist.com/) where it's _kinda_ good, but still has some warts.
+I have to agree with the ClickSecurity (*CS* from now on) folk in that many data sets available on the internet are rubbish. It takes quite a bit of work to massage data into a format you can work with. Even when you get a workable data set, it may be like the [Malware Domain List](http://www.malwaredomainlist.com/) where it's _kinda_ good, but&mdash;as we'll see&mdash;still has some warts.
 
-As the original post states, this exercise is mostly for us to understand what kind of data we have and then run some simple stats on the fields/values in the data. <strike>Pandas</strike> R will be great for that.
+As the original post states, this exercise mostly exists to show how to understand what kind of data we have and then run some simple stats on the fields/values in the data. <strike>Pandas</strike> **R** will be great for that.
 
-First, we're going to need some help from some R libraries. These will all be used throughout the code for this example. The `stringr` and `plyr` libraries give us some enhanced data manipulation ability. The `MASS` library helps us with some stats. The `data.table` and `reshape2` libraries help us work with data in different ways than `stringr` and `plyr` and `ggplot2` give us some #spiffy graphics tools.
+First, we're going to need some help from some R libraries. These will all be used throughout the code for this example. The `stringr` and `plyr` libraries give us some enhanced data munging/manipulation ability. The `MASS` library helps us with some stats work. The `data.table` library optimizes work with large data frames and the `reshape2` library help us transform the shape of our data. Finally, `ggplot2` gives us some `#spiffy` graphics tools.
 
 	:::SLexer
 	library(stringr)
@@ -26,24 +26,26 @@ First, we're going to need some help from some R libraries. These will all be us
 
 I grabbed the Malware Domain List from the same source the CS folks did, namely at [http://www.malwaredomainlist.com/mdlcsv.php](http://www.malwaredomainlist.com/mdlcsv.php). Since the CS folks suggested the data was in a gnarly format, I took a look at it in `bash`:
 
+	:::BashLexe
 	$ file mdl-export.csv
 	mdl-export.csv: ISO-8859 text, with CRLF line terminators
 
-Well, it is truly gnarily encoded, but it's easy enough to convert with `iconv`:
+Well, that's not *too* gnarily encoded (pretty much Latin-1), but it's easy enough to convert to something modern with [`iconv`](http://www.gnu.org/software/libiconv/):
 
-	$ iconv -t UTF-8 -f ISO-8859-15 mdl-export.csv > mdl.csv
+	:::BashLexer
+	$ iconv --to-code UTF-8 --from-code ISO-8859-15 mdl-export.csv > mdl.csv
 
-Now that R can read it, let's read the data in and start exploring. 
+**Note that R could have read it in the original format**. You can try it yourself by just substituting the data files used in the `read.csv()` call. I'm just following along with the crutches Python seems to need. Now, let's hoover up the data and start exploring. 
 
 	:::SLexer
-	mdl.df <- read.csv(file="~/Desktop/mdl.csv", 
+	mdl.df <- read.csv(file="mdl.csv", 
 	                   col.names=c('date', 'domain', 'ip', 'reverse',
 	                               'description', 'registrant', 'asn',
 	                               'inactive','country'))
 
-	# take a look at the structure of the data
-	str(mdl.df)
+ First, we take a look at the overall structure of the data and peek at the start and end of the data set.
 
+	str(mdl.df)
 
 	## 'data.frame':    31015 obs. of  9 variables:
 	##  $ date       : Factor w/ 6892 levels "2009/01/01_10:00",..: 1 1 1 2 3 3 4 4 5 5 ...
@@ -56,8 +58,6 @@ Now that R can read it, let's read the data in and start exploring.
 	##  $ inactive   : int  2 2 2 2 2 2 2 2 2 2 ...
 	##  $ country    : int  2 2 2 2 2 2 2 2 2 2 ...
 
-
-	# examine the start and end of the data
 	head(mdl.df)
 
 	##               date          domain             ip
@@ -113,12 +113,12 @@ Now that R can read it, let's read the data in and start exploring.
 	## 31014       1
 	## 31015       1
 
-R uses the value `NA` to signal when data is missing so we'll need to replace all of the `'-'`'s in the source data set with `NA` values to ensure the sane functionality of many of the functions we'll be using.
+R uses the value `NA` to signal when data is missing so we'll need to replace all of the `'-'`'s in the source data set with `NA` values to ensure the proper functionality of many of the functions we'll be using. (We're at about `In [13]` on the CS iPython notebook for folks keeping both of them up.)
 
 	:::SLexer
-	mdl.df[mdl.df == "-"] = NA
+	mdl.df[mdl.df == "-"] <- NA
 
-That will initially let us use `complete.cases()` to remove all incomplete records.
+That will initially let us use `complete.cases()` to remove all incomplete records from our data set.
 
 	:::SLexer
 	mdl.df <- mdl.df[complete.cases(mdl.df),]
@@ -173,7 +173,7 @@ That will initially let us use `complete.cases()` to remove all incomplete recor
 	##                                                  900
 	... 
 
-We'll follow the lead of the CS folks and push everything to lowercase since nothing we're working with really is case sensitive.
+We'll follow the lead of the CS folks (`In [17]`) and push everything to lowercase, since nothing we're working with really is case sensitive.
 
 	:::SLexer
 	mdl.df <- data.frame(sapply(mdl.df, tolower))
@@ -186,7 +186,7 @@ We'll follow the lead of the CS folks and push everything to lowercase since not
 	##     dnset.com 
 	##            69
 
-R doesn't have an library that has the equivalent functionality of the `tldextract` Python module, so we'll cheat and just use that module in the form of a helper script to do the domain converisons. After all, true data scientists are first and foremost pragmatists.
+I haven't found an R that has the equivalent functionality of the [`tldextract`](https://github.com/john-kurkowski/tldextract) Python module, so we'll cheat and just use that module in the form of a helper script to do the domain converisons. After all, true data scientists are first and foremost pragmatists. If this were a production script, I'd've take the extra steps to do proper temporary file generation. Since it's just for me (well, us) and this post&hellip;
 
 	:::SLexer
 	# sub-optimal, but didn't feel like writing it in R
@@ -195,13 +195,12 @@ R doesn't have an library that has the equivalent functionality of the `tldextra
 	            quote=FALSE,
 	            col.names=FALSE,
 	            row.names=FALSE)
-	system("~/Desktop/tlds.py", ignore.stdout=TRUE)
+	system("tlds.py", ignore.stdout=TRUE)
 	mdl.df$domain <- factor(scan(file="/tmp/outdomains.txt", 
 	                             what=character(), 
 	                             quiet=TRUE))
 
-
-R is a bit more sensitive about data types than Python is, so we'll convert the `inactive` and `country` columns before correlating them.
+R is a bit more formal about data types than Python is, so we'll convert the `inactive` and `country` columns before correlating them.
 
 	:::SLexer
 	mdl.df$inactive <- as.numeric(mdl.df$inactive)
@@ -211,11 +210,11 @@ R is a bit more sensitive about data types than Python is, so we'll convert the 
 
 	## [1] 1
 
-
-I didn't feel like creating an `g_test` library, so I just made a `gtest` function {[ref](http://en.wikipedia.org/wiki/G_test)} and used R code outright each time the CS post relied on `g_test.highest_gtest_scores()`. In reality, after the second use I should have made it a function, but it serves as a great introduction to the `*apply()`'s for R n00bs.
+I didn't feel like creating an `g_test` library, so I just made a `gtest` function {[ref](http://en.wikipedia.org/wiki/G_test)} and used R code outright each time the CS post relied on `g_test.highest_gtest_scores()`. In reality, after the second use I should have made it a function, but it serves as a great introduction to the `*apply()`'s for those learning R.
 
 	:::SLexer
 	# gtest() related to chi-squared, multinomial and Fisher's exact test
+	# see the ClickSecuity library for caveats to the whole process, however
 	gtest <- function(count, expected) {
 	  if (count == 0) {
 	    return(0)
@@ -224,8 +223,7 @@ I didn't feel like creating an `g_test` library, so I just made a `gtest` functi
 	  }
 	}
 
-
-The premise here is to generate a maximum likelihood statistical significance value for each salient set of values. We first generate a `table` of the malware `description` field.
+The premise here is to generate a maximum likelihood statistical significance value for each salient set of values. We first generate a contingency table of the counts at each combination of malware `description` field's factor level' with R's `table()` function and convert it back to a data frame.
 
 	:::SLexer
 	desc.tot <- table(mdl.df$description)
@@ -234,7 +232,7 @@ The premise here is to generate a maximum likelihood statistical significance va
 	row.names(desc.tot.df) <- NULL
 	colnames(desc.tot.df) <- c("freq","description")
 
-We then generate expected counts per assuming a uniform distribution. I'm not convinced that's an appropriate assumption, but we're duplicating/replicating an example, not enhancing an example, so let's assume a uniform distribution of malware across the ASNs.
+We then generate expected counts per ASN assuming a uniform distribution. I'm not convinced that's an appropriate assumption, but we're duplicating/replicating an example, not enhancing an example, so let's assume a uniform distribution of malware across the ASNs.
 
 	:::SLexer
 	asn.cats <- length(unique(mdl.df$asn))
@@ -252,6 +250,8 @@ Now we build a [contingency table](http://en.wikipedia.org/wiki/Contingency_tabl
 	desc.asn.ct.sum <- count(mdl.df,vars=c("description","asn"))
 
 We now add some columns to the summary we've built, letting us have both `expected` and `actual` values at hand. I *highly* recommend reviewing the CS [data hacking](https://github.com/ClickSecurity/data_hacking/blob/master/data_hacking/simple_stats/simple_stats.py) Python code since it has some additional comments behind the thought process.
+
+The `sapply()` function is akin `map()` functions in other languages. There at a plethora of `*apply()`'s in base R and extended with `plyr`. They let us perform operations across entire objects, and are especially useful when needing to apply a function (like `gtest()`) that was not built to handle vectorized operations. There's [some](http://rforwork.info/2012/04/29/apply_vs_for_loops_in_r/) [debate](http://kbroman.wordpress.com/2013/04/02/apply-vs-for/) as to whether `*apply()` functions are more optimal than `for` or `while` loops, but I like the `apply()` idiom.
 
 	:::SLexer
 	desc.asn.ct.sum <- join(desc.asn.ct.sum, desc.asn.expected.df)
@@ -292,7 +292,7 @@ Then we plot them. I *really* hate stacked bar charts, but, if that's what Pytho
 
 <img src="/blog/images/2014/01/explore/fig01.svg" width="630"/>
 
-We then do the same for the bottom 7...
+We then do the same for the bottom 7&hellip;
 
 	:::SLexer
 	# bottom 7 malware v asn
@@ -434,7 +434,7 @@ Total volume is easy peasy as well:
 
 At this point, I probably would have stopped working with the data set. It's clear something is amiss and that the data set stopped being usable sometime in 2012. However, we press on soley to show the parallels.
 
-This next figure is a time series correlation plot. There are ...[issues](http://empslocal.ex.ac.uk/people/staff/dbs202/cat/stats/corr.html)...with time series correations that are not addressed in the CS post. A *ton* of assumptions are being made by the CS folks, but they started many code blocks previous, so we'll forge ahead with blinders on and see what we come up with.
+This next figure is a time series correlation plot. There are &hellip;[issues](http://empslocal.ex.ac.uk/people/staff/dbs202/cat/stats/corr.html)&hellip;with time series correations that are not addressed in the CS post. A *ton* of assumptions are being made by the CS folks, but they started many code blocks previous, so we'll forge ahead with blinders on and see what we come up with.
 
 Let's work with the top 20 pieces of malware and see what they have in common. We have to do a bit more reformatting and data crunching (steps that the `pandas` `corr()` function hides from us).
 
