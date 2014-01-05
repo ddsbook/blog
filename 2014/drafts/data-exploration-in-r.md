@@ -289,7 +289,7 @@ With the base summary data generated, we now extract the top five malware strain
 	  head(a[order(-a$actual),],5)
 	})
 
-Then we plot them. I *really* hate stacked bar charts, but, if that's what Python folks have to live with, I can go data vis slumming for a while #grin. Note that most plots are selectable to bring up a standalone version which may be larger and definitely easier to scale up and save out.
+Then we plot them. I *really* hate stacked bar charts, but, if that's what Python folks have to live with, I can go data vis slumming for a while `#grin`. Note that most plots are selectable to bring up a standalone version which may be larger and definitely easier to scale up and save out.
 
 	:::SLexer
 	gg <- ggplot(data=exp.v.asn, aes(x=asn, y=freq))
