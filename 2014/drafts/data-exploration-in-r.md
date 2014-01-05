@@ -254,13 +254,17 @@ We now add some columns to the summary we've built, letting us have both `expect
 The `sapply()` function is akin `map()` functions in other languages. There at a plethora of `*apply()`'s in base R and extended with `plyr`. They let us perform operations across entire objects, and are especially useful when needing to apply a function (like `gtest()`) that was not built to handle vectorized operations. There's [some](http://rforwork.info/2012/04/29/apply_vs_for_loops_in_r/) [debate](http://kbroman.wordpress.com/2013/04/02/apply-vs-for/) as to whether `*apply()` functions are more optimal than `for` or `while` loops, but I like the `apply()` idiom.
 
 	:::SLexer
+	# add expected and actual values to the summary data frame
 	desc.asn.ct.sum <- join(desc.asn.ct.sum, desc.asn.expected.df)
 	desc.asn.ct.sum$actual <- mapply(gtest, desc.asn.ct.sum$freq, desc.asn.ct.sum$expected)
 
+	# stick the frequency occurance totals with each summary value
+	# in future posts I'll prlby just use data.table idioms
 	desc.asn.ct.sum$total.freq <- sapply(desc.asn.ct.sum$description, function(x) {
 	  desc.tot.df[desc.tot.df$description == x,]$freq
 	})
 
+	# this give us the max gtest() value
 	tmp <- desc.asn.ct.sum[order(-desc.asn.ct.sum$actual),]
 	desc.asn.expected.df$actual <- sapply(desc.asn.expected.df$description, function(x) { 
 	  max(tmp[tmp$description == x,]$actual)
@@ -270,18 +274,22 @@ The `sapply()` function is akin `map()` functions in other languages. There at a
 	  desc.tot.df[desc.tot.df$description == x,]$freq
 	})
 
-With the base summary data generated, we now extract the top 5 malware strains and compare the expected values vs actual values.
+With the base summary data generated, we now extract the top five malware strains and compare the expected values vs actual values.
 
 	:::SLexer
+	# get top 5
 	top5 <- head(desc.asn.expected.df[order(-desc.asn.expected.df$actual),],5)
+	# filter our summary table by those 5
 	exp.v.asn <- desc.asn.ct.sum[(desc.asn.ct.sum$description %in% top5$description),]
+	# only extract when actual value was greater than expected value
 	exp.v.asn <- exp.v.asn[exp.v.asn$actual > exp.v.asn$expected,]
+	# pull out the top five gtest() results per strain
 	exp.v.asn <- ldply(top5$description, function(x) {
 	  a <- exp.v.asn[exp.v.asn$description==x,]
 	  head(a[order(-a$actual),],5)
 	})
 
-Then we plot them. I *really* hate stacked bar charts, but, if that's what Python folks have to live with, I can go data vis slumming for a while #grin.
+Then we plot them. I *really* hate stacked bar charts, but, if that's what Python folks have to live with, I can go data vis slumming for a while #grin. Note that most plots are selectable to bring up a standalone version which may be larger and definitely easier to scale up and save out.
 
 	:::SLexer
 	gg <- ggplot(data=exp.v.asn, aes(x=asn, y=freq))
@@ -290,9 +298,9 @@ Then we plot them. I *really* hate stacked bar charts, but, if that's what Pytho
 	gg <- gg + theme(axis.text.x=element_text(angle = 90, vjust = 0.5, hjust=1))
 	gg
 
-<img src="/blog/images/2014/01/explore/fig01.svg" width="630"/>
+<a href="/blog/images/2014/01/explore/fig01.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig01.svg" width="630"/></a>
 
-We then do the same for the bottom 7&hellip;
+We then do the same for the bottom seven&hellip;
 
 	:::SLexer
 	# bottom 7 malware v asn
@@ -313,7 +321,18 @@ We then do the same for the bottom 7&hellip;
 	gg <- gg + theme(axis.text.x=element_text(angle = 90, vjust = 0.5, hjust=1))
 	gg
 
-<img src="/blog/images/2014/01/explore/fig02.svg" width="630"/>
+<a href="/blog/images/2014/01/explore/fig02.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig02.svg" width="630"/></a>
+
+Jay &amp; I both like this method of crafting `ggplot2` graphics: 
+
+- build a base plot object with the main data set/plot elements
+- add the `geom`'s (the actual layers being plotted) in the order needed
+- add any `facet`s (see further down in the post)
+- incorporate `scale` colors and other `theme` elements
+- finish the theme formatting
+- display or save the graphic
+
+as it makes it *way* easier to modify/tweak/refine them.
 
 We lather/rinse/repeat for `malware` ~ `domain`:
 
@@ -349,6 +368,7 @@ We lather/rinse/repeat for `malware` ~ `domain`:
 
 	top5 <- head(desc.dom.expected.df[order(-desc.dom.expected.df$actual),],5)
 	exp.v.dom <- desc.dom.ct.sum[(desc.dom.ct.sum$description %in% top5$description),]
+	# this time we take the top 20 results per strain vs top 5
 	exp.v.dom <- ldply(top5$description, function(x) {
 	  a <- exp.v.dom[exp.v.dom$description==x,]
 	  head(a[order(-a$actual),],20)
@@ -361,7 +381,7 @@ We lather/rinse/repeat for `malware` ~ `domain`:
 	gg <- gg + theme(axis.text.x=element_text(angle = 90, vjust = 0.5, hjust=1))
 	gg
 
-<img src="/blog/images/2014/01/explore/fig03.svg" width="630"/>
+<a href="/blog/images/2014/01/explore/fig03.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig03.svg" width="630"/></a>
 
 Following the lead of the CS example at `In [53]`, we drill down on one particular exploit, namely `trojan banker`s.
 
@@ -393,11 +413,13 @@ Following the lead of the CS example at `In [53]`, we drill down on one particul
 So at this point the CS post switches gears, and looks at date range, volume over time, etc. we can do date conversion equally as simply in R and I think it's more straightforward to do aggregations in R, but I'm biased.
 
 	:::SLexer
+	# what do we have to work with string-format-wise?
 	head(as.character(mdl.df$date))
 
 	## [1] "2009/01/01_10:00" "2009/01/01_10:00" "2009/01/01_10:00"
 	## [4] "2009/01/02_00:00" "2009/01/03_00:00" "2009/01/03_00:00"
 
+	# underscores...in dates...yeah...in what universe?
 	mdl.df$date <- as.POSIXct(as.character(mdl.df$date),format="%Y/%m/%d_%H:%M")
 	mdl.df$ym <- strftime(mdl.df$date, format="%Y-%m")
 
@@ -416,11 +438,12 @@ I draw the line (heh) at gnarly line grahps, so we choose to facet them here vs 
 	                 legend.position="none")
 	gg
 
-<img src="/blog/images/2014/01/explore/fig04.svg" width="630"/>
+<a href="/blog/images/2014/01/explore/fig04.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig04.svg" width="630"/></a>
 
 Total volume is easy peasy as well:
 
 	:::SLexer
+	# if you already haven't notices, count() is wicked-cool
 	extract.total <- count(mdl.df, vars=c("ym"))
 
 	gg <- ggplot(extract.total, aes(x=ym, y=freq, group=NA))
@@ -430,23 +453,27 @@ Total volume is easy peasy as well:
 	                 legend.position="none")
 	gg
 
-<img src="/blog/images/2014/01/explore/fig05.svg" width="630"/>
+<a href="/blog/images/2014/01/explore/fig05.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig05.svg" width="630"/></a>
 
-At this point, I probably would have stopped working with the data set. It's clear something is amiss and that the data set stopped being usable sometime in 2012. However, we press on soley to show the parallels.
+At this point, I probably would have stopped working with the data set. It's clear something is amiss and that the data set stopped being usable sometime in 2012. However, we press on soley to show the parallels between `pandas` and R.
 
-This next figure is a time series correlation plot. There are &hellip;[issues](http://empslocal.ex.ac.uk/people/staff/dbs202/cat/stats/corr.html)&hellip;with time series correations that are not addressed in the CS post. A *ton* of assumptions are being made by the CS folks, but they started many code blocks previous, so we'll forge ahead with blinders on and see what we come up with.
+This next figure is a time series correlation plot. There are &hellip;[issues](http://empslocal.ex.ac.uk/people/staff/dbs202/cat/stats/corr.html)&hellip;with time series correations that are not addressed in the CS post. A *ton* of assumptions are being made by the CS folks, but those assumptions started many code blocks ago, so we'll forge ahead with blinders on and see what we come up with.
 
 Let's work with the top 20 pieces of malware and see what they have in common. We have to do a bit more reformatting and data crunching (steps that the `pandas` `corr()` function hides from us).
 
 	:::SLexer
 	top20 <- count(mdl.df,vars=c("ym","description"))
 	top20 <- top20[top20$description %in% head(desc.tot.df$description,20),]
+	# dcast() will take our "long" data frame and make a "wide" one
+	# examine it before/after to see the difference
 	top20 <- dcast(ym~description, data=top20)
 	top20$ym <- as.numeric(factor(top20$ym))
 
 	top20.cor <- cor(top20[,-1], use="pairwise.complete.obs")
 	top20.cor.df = data.frame(top20.cor)
 	top20.cor.df$description <- rownames(top20.cor.df)
+	# melt() takes our wide data frame and makes it long again, primarily
+	# so that ggplot() can use the values as group/factor elements
 	top20.cor.df <- melt(top20.cor.df)
 
 I should have spent more time on breaks and colors, but it shows how to produce a similar graphic as `In [41]` does. I also think that "showing the work" adds a bit of transparencey that `pandas` masks.
@@ -460,9 +487,9 @@ I should have spent more time on breaks and colors, but it shows how to produce 
 	gg <- gg + theme(axis.text.x=element_text(angle = 90, vjust = 0.5, hjust=1))
 	gg 
 
-<img src="/blog/images/2014/01/explore/fig06.svg" width="630"/>
+<a href="/blog/images/2014/01/explore/fig06.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig06.svg" width="630"/></a>
 
-We can dive into specific correlations (note, that I pulled the data way after the CS post went live, so the data isn't 1:1 and neither are the correlaton coefficents).
+We can dive into specific correlations (note, that I downloaded the malware data well after the CS post went live, so the data isn't 1:1 and neither are the correlatons).
 
 ZeuS v1 correlation:
 
@@ -495,7 +522,7 @@ ZeuS v1 time series plot:
 	                 legend.position="none")
 	gg
 
-<img src="/blog/images/2014/01/explore/fig07.svg" width="630"/>
+<a href="/blog/images/2014/01/explore/fig07.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig07.svg" width="630"/></a>
 
 ZeuS v2 correlation:
 
@@ -528,7 +555,7 @@ ZeuS v2 time series plot:
 	                 legend.position="none")
 	gg
 
-<img src="/blog/images/2014/01/explore/fig08.svg" width="630"/>
+<a href="/blog/images/2014/01/explore/fig08.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig08.svg" width="630"/></a>
 
 Trojan and Phoenix Exploit Kit correlation:
 
@@ -560,10 +587,8 @@ Trojan and Phoenix Exploit Kit time series plot:
 	                 legend.position="none")
 	gg
 
-<img src="/blog/images/2014/01/explore/fig09.svg" width="630"/>
+<a href="/blog/images/2014/01/explore/fig09.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig09.svg" width="630"/></a>
 
 ###Conclusions
 
-*(complete riff of the CS post)*
-
-So this exercise was an exploration of the dataset. At this point we have a good idea about what's in the dataset, what cleanup issues we might have and the overall quality of the dataset. We've run some simple correlative statistics and produced some nice plots. Most importantly we should have a good feel for whether this dataset is going to suite our needs for whatever use case we may have.
+So, this exercise was an exploration of the dataset and a display of how to perform the CS `pandas` analysis in R. As the ClickSecurity post indicated, at this point we have a good idea about what's in the dataset, what cleanup issues we might have and the overall quality of the dataset. We've run some simple correlative statistics and produced some nice plots. Most importantly we should have a good feel for whether this dataset is going to suit our needs for whatever use case we may have.
