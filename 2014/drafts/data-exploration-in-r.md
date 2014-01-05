@@ -298,7 +298,7 @@ Then we plot them. I *really* hate stacked bar charts, but, if that's what Pytho
 	gg <- gg + theme(axis.text.x=element_text(angle = 90, vjust = 0.5, hjust=1))
 	gg
 
-<a href="/blog/images/2014/01/explore/fig01.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig01.svg" width="630"/></a>
+<a href="/blog/images/2014/01/explore/fig01.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig01.svg" style="max-width:100%"/></a>
 
 We then do the same for the bottom seven&hellip;
 
@@ -321,7 +321,7 @@ We then do the same for the bottom seven&hellip;
 	gg <- gg + theme(axis.text.x=element_text(angle = 90, vjust = 0.5, hjust=1))
 	gg
 
-<a href="/blog/images/2014/01/explore/fig02.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig02.svg" width="630"/></a>
+<a href="/blog/images/2014/01/explore/fig02.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig02.svg" style="max-width:100%"/></a>
 
 Jay &amp; I both like this method of crafting `ggplot2` graphics: 
 
@@ -381,7 +381,7 @@ We lather/rinse/repeat for `malware` ~ `domain`:
 	gg <- gg + theme(axis.text.x=element_text(angle = 90, vjust = 0.5, hjust=1))
 	gg
 
-<a href="/blog/images/2014/01/explore/fig03.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig03.svg" width="630"/></a>
+<a href="/blog/images/2014/01/explore/fig03.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig03.svg" style="max-width:100%"/></a>
 
 Following the lead of the CS example at `In [53]`, we drill down on one particular exploit, namely `trojan banker`s.
 
@@ -438,7 +438,7 @@ I draw the line (heh) at gnarly line grahps, so we choose to facet them here vs 
 	                 legend.position="none")
 	gg
 
-<a href="/blog/images/2014/01/explore/fig04.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig04.svg" width="630"/></a>
+<a href="/blog/images/2014/01/explore/fig04.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig04.svg" style="max-width:100%"/></a>
 
 Total volume is easy peasy as well:
 
@@ -453,7 +453,7 @@ Total volume is easy peasy as well:
 	                 legend.position="none")
 	gg
 
-<a href="/blog/images/2014/01/explore/fig05.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig05.svg" width="630"/></a>
+<a href="/blog/images/2014/01/explore/fig05.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig05.svg" style="max-width:100%"/></a>
 
 At this point, I probably would have stopped working with the data set. It's clear something is amiss and that the data set stopped being usable sometime in 2012. However, we press on soley to show the parallels between `pandas` and R.
 
@@ -488,7 +488,7 @@ I should have spent more time on breaks and colors, but it shows how to produce 
 	gg <- gg + theme(axis.text.x=element_text(angle = 90, vjust = 0.5, hjust=1))
 	gg 
 
-<a href="/blog/images/2014/01/explore/fig06.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig06.svg" width="630"/></a>
+<a href="/blog/images/2014/01/explore/fig06.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig06.svg" style="max-width:100%"/></a>
 
 We can dive into specific correlations (note, that I downloaded the malware data well after the CS post went live, so the data isn't 1:1 and neither are the correlatons).
 
@@ -523,7 +523,7 @@ ZeuS v1 time series plot:
 	                 legend.position="none")
 	gg
 
-<a href="/blog/images/2014/01/explore/fig07.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig07.svg" width="630"/></a>
+<a href="/blog/images/2014/01/explore/fig07.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig07.svg" style="max-width:100%"/></a>
 
 ZeuS v2 correlation:
 
@@ -556,7 +556,7 @@ ZeuS v2 time series plot:
 	                 legend.position="none")
 	gg
 
-<a href="/blog/images/2014/01/explore/fig08.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig08.svg" width="630"/></a>
+<a href="/blog/images/2014/01/explore/fig08.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig08.svg" style="max-width:100%"/></a>
 
 Trojan and Phoenix Exploit Kit correlation:
 
@@ -588,7 +588,7 @@ Trojan and Phoenix Exploit Kit time series plot:
 	                 legend.position="none")
 	gg
 
-<a href="/blog/images/2014/01/explore/fig09.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig09.svg" width="630"/></a>
+<a href="/blog/images/2014/01/explore/fig09.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig09.svg" style="max-width:100%"/></a>
 
 ###Conclusions
 
