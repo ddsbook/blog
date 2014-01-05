@@ -470,7 +470,7 @@ Let's work with the top 20 pieces of malware and see what they have in common. W
 	top20$ym <- as.numeric(factor(top20$ym))
 
 	top20.cor <- cor(top20[,-1], use="pairwise.complete.obs")
-	top20.cor.df = data.frame(top20.cor)
+	top20.cor.df <- data.frame(top20.cor)
 	top20.cor.df$description <- rownames(top20.cor.df)
 	# melt() takes our wide data frame and makes it long again, primarily
 	# so that ggplot() can use the values as group/factor elements
@@ -501,7 +501,7 @@ ZeuS v1 correlation:
 	zeus <- dcast(ym~description, data=zeus)
 
 	zeus.cor <- cor(zeus[,-1], use="pairwise.complete.obs")
-	zeus.cor.df = data.frame(zeus.cor)
+	zeus.cor.df <- data.frame(zeus.cor)
 	zeus.cor.df$description <- rownames(zeus.cor.df)
 	zeus.cor.df <- melt(zeus.cor.df)
 
@@ -534,7 +534,7 @@ ZeuS v2 correlation:
 	zeus <- dcast(ym~description, data=zeus)
 
 	zeus.cor <- cor(zeus[,-1], use="pairwise.complete.obs")
-	zeus.cor.df = data.frame(zeus.cor)
+	zeus.cor.df <- data.frame(zeus.cor)
 	zeus.cor.df$description <- rownames(zeus.cor.df)
 	zeus.cor.df <- melt(zeus.cor.df)
 
@@ -567,7 +567,7 @@ Trojan and Phoenix Exploit Kit correlation:
 	trojan.phoenix <- dcast(ym~description, data=trojan.phoenix)
 
 	trojan.phoenix.cor <- cor(trojan.phoenix[,-1], use="pairwise.complete.obs")
-	trojan.phoenix.cor.df = data.frame(trojan.phoenix.cor)
+	trojan.phoenix.cor.df <- data.frame(trojan.phoenix.cor)
 	trojan.phoenix.cor.df$description <- rownames(trojan.phoenix.cor.df)
 	trojan.phoenix.cor.df <- melt(zeus.cor.df)
 
