@@ -5,7 +5,7 @@ library(data.table)
 library(ggplot2)
 library(reshape2)
 
-mdl.df <- read.csv(file="~/Desktop/mdl.csv", 
+mdl.df <- read.csv(file="mdl.csv", 
                    col.names=c('date', 'domain', 'ip', 'reverse',
                                'description', 'registrant', 'asn',
                                'inactive','country'))
@@ -40,7 +40,8 @@ write.table(str_extract(mdl.df$domain, perl("^[a-zA-Z0-9\\-\\._]+")),
             quote=FALSE,
             col.names=FALSE,
             row.names=FALSE)
-system("~/Desktop/tlds.py", ignore.stdout=TRUE)
+# get tlds.py from https://gist.github.com/hrbrmstr/8275775
+system("tlds.py", ignore.stdout=TRUE)
 mdl.df$domain <- factor(scan(file="/tmp/outdomains.txt", 
                              what=character(), 
                              quiet=TRUE))
