@@ -6,7 +6,7 @@ Tags: book, blog, R, python, ipython, pandas
 Slug: data-exploration-in-r
 Author: Bob Rudis (@hrbrmstr)
 
-[ClickSecurity](http://www.clicksecurity.com) has been doing a #spiffy job spreading the security data science love with there [data hacking series](http://www.clicksecurity.com/blog/engaging-the-security-community-with-data-hacking-project/). They're using the [Python data science stack](http://datacommunitydc.org/blog/2013/07/python-for-data-analysis-the-landscape-of-tutorials/) and using [iPython notebooks](http://ipython.org/notebook.html) for their work and I felt compelled to reproduce at least one of their examples in [R](http://www.r-project.org/). So, what follows is an R version of ClickSecurity's [Data Exploration of a publicly available dataset](http://nbviewer.ipython.org/github/ClickSecurity/data_hacking/blob/master/mdl_exploration/MDL_Data_Exploration.ipynb). You'll need to have that handy to follow along with the rest of this post. If at all possible, I strongly suggest working through their post **before** following along with our example.
+[ClickSecurity](http://www.clicksecurity.com) has been doing a `#spiffy` job spreading the security data science love with there [data hacking series](http://www.clicksecurity.com/blog/engaging-the-security-community-with-data-hacking-project/). They're using the [Python data science stack](http://datacommunitydc.org/blog/2013/07/python-for-data-analysis-the-landscape-of-tutorials/) and using [iPython notebooks](http://ipython.org/notebook.html) for their work and I felt compelled to reproduce at least one of their examples in [R](http://www.r-project.org/). So, what follows is an R version of ClickSecurity's [Data Exploration of a publicly available dataset](http://nbviewer.ipython.org/github/ClickSecurity/data_hacking/blob/master/mdl_exploration/MDL_Data_Exploration.ipynb). You'll need to have that handy to follow along with the rest of this post. If at all possible, I strongly suggest working through their post **before** following along with our example.
 
 You can grab the full [R source file](http://datadrivensecurity.info/blog/extra/src/R/maldomains.R) as well.
 
@@ -47,6 +47,7 @@ Well, that's not *too* gnarily encoded (pretty much Latin-1), but it's easy enou
 
  First, we take a look at the overall structure of the data and peek at the start and end of the data set.
 
+	:::SLexer
 	str(mdl.df)
 
 	## 'data.frame':    31015 obs. of  9 variables:
@@ -213,7 +214,7 @@ R is a bit more formal about data types than Python is, so we'll convert the `in
 
 	## [1] 1
 
-I didn't feel like creating an `g_test` library, so I just made a `gtest` function {[ref](http://en.wikipedia.org/wiki/G_test)} and used R code outright each time the CS post relied on `g_test.highest_gtest_scores()`. In reality, after the second use I should have made it a function, but it serves as a great introduction to the `*apply()`'s for those learning R.
+I didn't feel like creating a `g_test` library, so I just made a `gtest` function {[ref](http://en.wikipedia.org/wiki/G_test)} and used R code outright each time the CS post relied on `g_test.highest_gtest_scores()`. In reality, after the second use I should have made it a function, but it serves as a great introduction to the `*apply()`'s for those learning R.
 
 	:::SLexer
 	# gtest() related to chi-squared, multinomial and Fisher's exact test
