@@ -10,7 +10,7 @@ Author: Bob Rudis (@hrbrmstr)
 
 You can grab the full [R source file](http://datadrivensecurity.info/blog/extra/src/R/maldomains.R) as well.
 
-###It all beings with data
+###It all begins with data
 
 I have to agree with the ClickSecurity (*CS* from now on) folk in that many data sets available on the internet are rubbish. It takes quite a bit of work to massage data into a format you can work with. Even when you get a workable data set, it may be like the [Malware Domain List](http://www.malwaredomainlist.com/) where it's _kinda_ good, but&mdash;as we'll see&mdash;still has some warts.
 
