@@ -28,7 +28,7 @@ First, we're going to need some help from some R libraries. These will all be us
 
 I grabbed the Malware Domain List from the same source the CS folks did, namely at [http://www.malwaredomainlist.com/mdlcsv.php](http://www.malwaredomainlist.com/mdlcsv.php). Since the CS folks suggested the data was in a gnarly format, I took a look at it in `bash`:
 
-	:::BashLexe
+	:::BashLexer
 	$ file mdl-export.csv
 	mdl-export.csv: ISO-8859 text, with CRLF line terminators
 

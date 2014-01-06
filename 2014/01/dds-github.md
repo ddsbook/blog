@@ -2,7 +2,7 @@ Title: The Logs From Writing a Book
 Date: 2014-01-01 12:00:00
 Category: dataviz
 Tags: book, blog
-Summary: We have wrapped up the book and we are launching this website, blog and podcast to continue the discussion. But before we look forward, we thought it would be a good idea to look back at what we put into writing the book. Since we used github to manage our material, we have all the data github stores about our commits and the first thing we want to look at is the days and times of our checkins.  Take a look...
+Summary: We have wrapped up the book and we are launching this website, blog and podcast to continue the discussion. But before we look forward, we thought it would be a good idea to look back at what we put into writing the book. Since we used github to manage our material, we have all the data github stores about our commits and the first thing we want to look at is the days and times of our checkins.  Take a look&hellip;
 Slug: dds-github
 Author: Bob Rudis (@hrbrmstr) and Jay Jacobs (@jayjacobs)
 
@@ -13,13 +13,11 @@ Author: Bob Rudis (@hrbrmstr) and Jay Jacobs (@jayjacobs)
 We have wrapped up the book and we are launching this website, blog and podcast to continue the discussion. 
 But before we look forward, we thought it would be a good idea to look back at what we put into writing the book.
 Since we used github to manage our material, we have all the data github stores about our commits and the first 
-thing we want to look at is the days and times of our checkins.  Take a look...
+thing we want to look at is the days and times of our checkins.  Take a look&hellip;
 
 <div id="chart"></div>
 
-Sadly, both of us were remiss in the verbosity of our commit comments, so any type of textual analysis or visualization 
-on those would be woefully disappointing. However we thought it would be interesting to also show folks git file commit changes 
-per chapter by day across the lifespan of the book's creation. 
+Sadly, both of us were remiss in the verbosity of our commit comments, so any type of textual analysis or visualization on those would be woefully embarrasing & disappointing. However we thought it would be interesting to also show folks git file commit changes per chapter by day across the lifespan of the book's creation. 
 
 Hover over the legend labels to isolate each chapter in the scatterplot and get a summary of commit
 activity. 
