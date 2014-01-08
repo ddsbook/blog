@@ -214,7 +214,7 @@ R is a bit more formal about data types than Python is, so we'll convert the `in
 
 	## [1] 1
 
-I didn't feel like creating a `g_test` library, so I just made a `gtest` function {[ref](http://en.wikipedia.org/wiki/G_test)} and used R code outright each time the CS post relied on `g_test.highest_gtest_scores()`. In reality, after the second use I should have made it a function, but it serves as a great introduction to the `*apply()`'s for those learning R.
+I didn't feel like making an R package version of ClickSecurity's `g_test` library, so I just made `gtest()` and `highest.gtest.scores()` functions {[ref](http://en.wikipedia.org/wiki/G_test)} along with a helper `gtest.plot()` charting function.
 
 	:::SLexer
 	# gtest() related to chi-squared, multinomial and Fisher's exact test
@@ -226,108 +226,116 @@ I didn't feel like creating a `g_test` library, so I just made a `gtest` functio
 	    return(2*count*log(count/expected))
 	  }
 	}
+		
+	#' Categorical contingency table + G-test
+	#' 
+	#' \code{highest.gtest.scores} takes two categorical vectors and 
+	#' returns a contingency table data.frame with max G-test scores
+	#' 
+	#' @param series.a a vector of categorical data the same size as series.b
+	#' @param series.b a vector of categorical data the same size as series.a
+	#' @param N how many of the top N keys in series.a should be returned
+	#' @param matches how many matches for each key should be returned
+	#' @param reverse reverse sort (high to low)
+	#' @param min.volume for some data you only want to see values with reasonable volume
+	#' @return a data.frame object (contingency table + max G-test score)
+	#' 
+	#' This differes from the ClickSecurity highest_gtest_scores() function since
+	#' we don't return the keys or match_list since they are pretty simple/quick to
+	#' retrieve from the resultant data.frame and won't always be needed
+    
+	highest.gtest.scores <- function(series.a, series.b, 
+	                                 N=10, matches=10, 
+	                                 reverse=FALSE, min.volume=0) {
+	  
+	  # assume series.a categories are equally distributed among series.b categories
+	  
+	  series.a.tab <- table(series.a)
+	  series.a.tab.df <- data.frame(a=names(series.a.tab), 
+	                                a.freq=as.numeric(series.a.tab), 
+	                                stringsAsFactors=FALSE)
+	  series.a.tab.df$expected <- series.a.tab.df$a.freq / 
+	                              length(unique(as.character(series.b)))
+	  
+	  # build base data.frame of series.a & series.v vectors, adding
+	  # series.a's frequency counts and computed expected value
+	  
+	  series.df <- data.frame(a=series.a, b=series.b)
+	  series.df <- merge(series.df, series.a.tab.df)    
+    
+	  # build a contingency table of pairs with series.a min.volume counts
+	  # and calculate a gtest() score for each pair
+	  
+	  con.tab.df <- count(series.df[series.df$a.freq > min.volume, c("a","b")], 
+	                      vars=c("a","b"))
+	  con.tab.df <- join(con.tab.df, series.a.tab.df)
+	  con.tab.df$gscore <- mapply(gtest, con.tab.df$freq, con.tab.df$expected)
+    
+	  # add the max gscore() to the original series.a contingency table
+	  
+	  series.a.tab.df <- merge(series.a.tab.df, 
+	                           aggregate(gscore ~ a, data=con.tab.df, max))
+    
+	  # categories from series.a from the top or bottom?
+	  
+	  n.cats <- NA
+	  if (reverse) {
+	    n.cats <- tail(series.a.tab.df[order(-series.a.tab.df$gscore),], N)
+	  } else {
+	    n.cats <- head(series.a.tab.df[order(-series.a.tab.df$gscore),], N)
+	  }
+	  
+	  # compare counts against expected counts (given the setup null hypothesis
+	  # that each category should have a uniform distribution across all other
+	  # categories)
+	  
+	  a.v.b <- con.tab.df[(con.tab.df$a %in% n.cats$a),]
+	  a.v.b <- a.v.b[a.v.b$gscore > a.v.b$expected,]
+	  a.v.b <- ldply(n.cats$a, function(x) { # only extract top/bottom N cats
+	    tmp <- a.v.b[a.v.b$a==x,] # only looking for thes
+	    head(tmp[order(-tmp$gscore),], matches) # return 'matches' # of pairs
+	  })  
+    
+	  return(a.v.b)
+	  
+	}
+		
+	# helper plot function for the gtest() data frame
+	gtest.plot <- function(gtest.df, xlab="x", ylab="count", title="") {
+	  gg <- ggplot(data=gtest.df, aes(x=b, y=freq))
+	  gg <- gg + geom_bar(stat="identity", position="stack", aes(fill=a))
+	  gg <- gg + theme_bw()
+	  gg <- gg + labs(x=xlab, y=ylab, title=title)
+	  gg <- gg + theme(axis.text.x=element_text(angle=90,vjust=0.5,hjust=1),
+	                   legend.title=element_blank())
+	  return(gg)
+	}
 
-The premise here is to generate a maximum likelihood statistical significance value for each salient set of values. We first generate a contingency table of the counts at each combination of malware `description` field's factor level' with R's `table()` function and convert it back to a data frame.
+We can use `highest.gtest.scores()` to see how various exploits are related to their associated source ASN and then the result to visualize whether exploits are highly correlated to particular ASNs. I *really* hate stacked bar charts, but, if that's what Python folks have to live with, I can go data vis slumming for a while `#grin`. Note that most plots are selectable to bring up a standalone version which may be larger and definitely easier to scale up and save out.
+
+Start with the "top 5" malware/ASN&hellip;
 
 	:::SLexer
-	desc.tot <- table(mdl.df$description)
-	desc.tot.df <- data.frame(sort(desc.tot,decreasing=TRUE))
-	desc.tot.df$description <- rownames(desc.tot.df)
-	row.names(desc.tot.df) <- NULL
-	colnames(desc.tot.df) <- c("freq","description")
-
-We then generate expected counts per ASN assuming a uniform distribution. I'm not convinced that's an appropriate assumption, but we're duplicating/replicating an example, not enhancing an example, so let's assume a uniform distribution of malware across the ASNs.
-
-	:::SLexer
-	asn.cats <- length(unique(mdl.df$asn))
-	desc.asn.expected <- desc.tot / asn.cats
-	desc.asn.expected.df <- as.data.frame(desc.asn.expected)
-	colnames(desc.asn.expected.df) <- c("description","expected")
-
-Now we build a [contingency table](http://en.wikipedia.org/wiki/Contingency_table) between the malware `description` and `asn` fields and then generate an aggregated data frame based on those two columns.
-
-	:::SLexer
-	desc.asn.ct <- table(mdl.df$description, mdl.df$asn) 
-	desc.asn.ct.df <- as.data.frame.matrix(desc.asn.ct)
-	desc.asn.ct.df$description <- rownames(desc.asn.ct.df)
-	desc.asn.ct.df <- data.table(desc.asn.ct.df)
-	desc.asn.ct.sum <- count(mdl.df,vars=c("description","asn"))
-
-We now add some columns to the summary we've built, letting us have both `expected` and `actual` values at hand. I *highly* recommend reviewing the CS [data hacking](https://github.com/ClickSecurity/data_hacking/blob/master/data_hacking/simple_stats/simple_stats.py) Python code since it has some additional comments behind the thought process.
-
-The `sapply()` function is akin `map()` functions in other languages. There at a plethora of `*apply()`'s in base R and extended with `plyr`. They let us perform operations across entire objects, and are especially useful when needing to apply a function (like `gtest()`) that was not built to handle vectorized operations. There's [some](http://rforwork.info/2012/04/29/apply_vs_for_loops_in_r/) [debate](http://kbroman.wordpress.com/2013/04/02/apply-vs-for/) as to whether `*apply()` functions are more optimal than `for` or `while` loops, but I like the `apply()` idiom.
-
-	:::SLexer
-	# add expected and actual values to the summary data frame
-	desc.asn.ct.sum <- join(desc.asn.ct.sum, desc.asn.expected.df)
-	desc.asn.ct.sum$actual <- mapply(gtest, desc.asn.ct.sum$freq, desc.asn.ct.sum$expected)
-
-	# stick the frequency occurance totals with each summary value
-	# in future posts I'll prlby just use data.table idioms
-	desc.asn.ct.sum$total.freq <- sapply(desc.asn.ct.sum$description, function(x) {
-	  desc.tot.df[desc.tot.df$description == x,]$freq
-	})
-
-	# this give us the max gtest() value
-	tmp <- desc.asn.ct.sum[order(-desc.asn.ct.sum$actual),]
-	desc.asn.expected.df$actual <- sapply(desc.asn.expected.df$description, function(x) { 
-	  max(tmp[tmp$description == x,]$actual)
-	})
-
-	desc.asn.expected.df$total.freq <- sapply(desc.asn.expected.df$description, function(x) {
-	  desc.tot.df[desc.tot.df$description == x,]$freq
-	})
-
-With the base summary data generated, we now extract the top five malware strains and compare the expected values vs actual values.
-
-	:::SLexer
-	# get top 5
-	top5 <- head(desc.asn.expected.df[order(-desc.asn.expected.df$actual),],5)
-	# filter our summary table by those 5
-	exp.v.asn <- desc.asn.ct.sum[(desc.asn.ct.sum$description %in% top5$description),]
-	# only extract when actual value was greater than expected value
-	exp.v.asn <- exp.v.asn[exp.v.asn$actual > exp.v.asn$expected,]
-	# pull out the top five gtest() results per strain
-	exp.v.asn <- ldply(top5$description, function(x) {
-	  a <- exp.v.asn[exp.v.asn$description==x,]
-	  head(a[order(-a$actual),],5)
-	})
-
-Then we plot them. I *really* hate stacked bar charts, but, if that's what Python folks have to live with, I can go data vis slumming for a while `#grin`. Note that most plots are selectable to bring up a standalone version which may be larger and definitely easier to scale up and save out.
-
-	:::SLexer
-	gg <- ggplot(data=exp.v.asn, aes(x=asn, y=freq))
-	gg <- gg + geom_bar(stat="identity", position="stack", aes(fill=description))
-	gg <- gg + theme_bw()
-	gg <- gg + theme(axis.text.x=element_text(angle = 90, vjust = 0.5, hjust=1))
-	gg
+	top5 <- highest.gtest.scores(mdl.df$description, mdl.df$asn, 5, 5)
+	gtest.plot(top5, "ASN", "Expected")
 
 <a href="/blog/images/2014/01/explore/fig01.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig01.svg" style="max-width:100%"/></a>
 
-We then do the same for the bottom seven&hellip;
+Then take a look at the "bottom 7" malware/ASN&hellip;
 
-	:::SLexer
-	# bottom 7 malware v asn
-
-	tmp <- desc.asn.expected.df[desc.asn.expected.df$total.freq > 500,]
-	bottom7 <- tail(tmp[order(-tmp$actual),],7)
-	exp.v.asn <- desc.asn.ct.sum[(desc.asn.ct.sum$description %in% bottom7$description),]
-	exp.v.asn <- exp.v.asn[exp.v.asn$actual > exp.v.asn$expected,]
-	exp.v.asn <- ldply(bottom7$description, function(x) {
-	  a <- exp.v.asn[exp.v.asn$description==x,]
-	  head(a[order(-a$actual),],20)
-	})
-
-	:::SLexer
-	gg <- ggplot(data=exp.v.asn, aes(x=asn, y=freq))
-	gg <- gg + geom_bar(stat="identity", position="stack", aes(fill=description))
-	gg <- gg + theme_bw()
-	gg <- gg + theme(axis.text.x=element_text(angle = 90, vjust = 0.5, hjust=1))
-	gg
+		bottom7 <- highest.gtest.scores(mdl.df$description, mdl.df$asn, 7, 20, TRUE, 500)
+		gtest.plot(bottom7, "ASN", "Expected")
 
 <a href="/blog/images/2014/01/explore/fig02.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig02.svg" style="max-width:100%"/></a>
 
-Jay &amp; I both like this method of crafting `ggplot2` graphics: 
+And, finish by looking at the "top 5" malware/domain&hellip;
+
+	top5.dom <- highest.gtest.scores(mdl.df$description, mdl.df$domain, 5)
+	gtest.plot(top5.dom, "Domain", "Expected")
+
+<a href="/blog/images/2014/01/explore/fig03.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig03.svg" style="max-width:100%"/></a>
+
+If you take a look at the `gtest.plot()` function, it shows the pattern Jay &amp; I both like to follow when crafting `ggplot2` graphics: 
 
 - build a base plot object with the main data set/plot elements
 - add the `geom`'s (the actual layers being plotted) in the order needed
@@ -336,56 +344,7 @@ Jay &amp; I both like this method of crafting `ggplot2` graphics:
 - finish the theme formatting
 - display or save the graphic
 
-as it makes it *way* easier to modify/tweak/refine them.
-
-We lather/rinse/repeat for `malware` ~ `domain`:
-
-	:::SLexer
-	# top 5 malware v domain
-
-	domain.cats <- length(unique(mdl.df$domain))
-	desc.dom.expected <- desc.tot / domain.cats
-	desc.dom.expected.df <- as.data.frame(desc.dom.expected)
-	colnames(desc.dom.expected.df) <- c("description","expected")
-
-	desc.dom.ct <- table(mdl.df$description, mdl.df$domain) 
-	desc.dom.ct.df <- as.data.frame.matrix(desc.dom.ct)
-	desc.dom.ct.df$description <- rownames(desc.dom.ct.df)
-	desc.dom.ct.df <- data.table(desc.dom.ct.df)
-	desc.dom.ct.sum <- count(mdl.df,vars=c("description","domain"))
-
-	desc.dom.ct.sum <- join(desc.dom.ct.sum, desc.dom.expected.df)
-	desc.dom.ct.sum$actual <- mapply(gtest, desc.dom.ct.sum$freq, desc.dom.ct.sum$expected)
-
-	desc.dom.ct.sum$total.freq <- sapply(desc.dom.ct.sum$description, function(x) {
-	  desc.tot.df[desc.tot.df$description == x,]$freq
-	})
-
-	tmp <- desc.dom.ct.sum[order(-desc.dom.ct.sum$actual),]
-	desc.dom.expected.df$actual <- sapply(desc.dom.expected.df$description, function(x) { 
-	  max(tmp[tmp$description == x,]$actual)
-	})
-
-	desc.dom.expected.df$total.freq <- sapply(desc.dom.expected.df$description, function(x) {
-	  desc.tot.df[desc.tot.df$description == x,]$freq
-	})
-
-	top5 <- head(desc.dom.expected.df[order(-desc.dom.expected.df$actual),],5)
-	exp.v.dom <- desc.dom.ct.sum[(desc.dom.ct.sum$description %in% top5$description),]
-	# this time we take the top 20 results per strain vs top 5
-	exp.v.dom <- ldply(top5$description, function(x) {
-	  a <- exp.v.dom[exp.v.dom$description==x,]
-	  head(a[order(-a$actual),],20)
-	})
-
-	:::SLexer
-	gg <- ggplot(data=exp.v.dom, aes(x=domain, y=freq))
-	gg <- gg + geom_bar(stat="identity", position="stack", aes(fill=description))
-	gg <- gg + theme_bw()
-	gg <- gg + theme(axis.text.x=element_text(angle = 90, vjust = 0.5, hjust=1))
-	gg
-
-<a href="/blog/images/2014/01/explore/fig03.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig03.svg" style="max-width:100%"/></a>
+as it makes it *way* easier to modify/tweak/refine them. `gest.plot()` also returns the `ggplot` object, so you can further manipulate/use the chart.
 
 Following the lead of the CS example at `In [53]`, we drill down on one particular exploit, namely `trojan banker`s.
 
