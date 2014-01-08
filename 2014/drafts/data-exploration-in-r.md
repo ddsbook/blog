@@ -6,6 +6,12 @@ Tags: book, blog, R, python, ipython, pandas
 Slug: data-exploration-in-r
 Author: Bob Rudis (@hrbrmstr)
 
+<style>
+.deirfig {
+	cursor:ne-resize;
+	opacity:0.4;
+}
+</style>
 [ClickSecurity](http://www.clicksecurity.com) has been doing a `#spiffy` job spreading the security data science love with there [data hacking series](http://www.clicksecurity.com/blog/engaging-the-security-community-with-data-hacking-project/). They're using the [Python data science stack](http://datacommunitydc.org/blog/2013/07/python-for-data-analysis-the-landscape-of-tutorials/) and using [iPython notebooks](http://ipython.org/notebook.html) for their work and I felt compelled to reproduce at least one of their examples in [R](http://www.r-project.org/). So, what follows is an R version of ClickSecurity's [Data Exploration of a publicly available dataset](http://nbviewer.ipython.org/github/ClickSecurity/data_hacking/blob/master/mdl_exploration/MDL_Data_Exploration.ipynb). You'll need to have that handy to follow along with the rest of this post. If at all possible, I strongly suggest working through their post **before** following along with our example.
 
 You can grab the full [R source file](http://datadrivensecurity.info/blog/extra/src/R/maldomains.R) as well.
@@ -318,7 +324,7 @@ Start with the "top 5" malware/ASN&hellip;
 	top5 <- highest.gtest.scores(mdl.df$description, mdl.df$asn, 5, 5)
 	gtest.plot(top5, "ASN", "Expected")
 
-<a href="/blog/images/2014/01/explore/fig01.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig01.svg" style="max-width:100%"/></a>
+<a href="/blog/images/2014/01/explore/fig01.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig01.svg" style="max-width:100%" class="deirfig"/></a>
 
 Then take a look at the "bottom 7" malware/ASN&hellip;
 
@@ -326,7 +332,7 @@ Then take a look at the "bottom 7" malware/ASN&hellip;
 	bottom7 <- highest.gtest.scores(mdl.df$description, mdl.df$asn, 7, 20, TRUE, 500)
 	gtest.plot(bottom7, "ASN", "Expected")
 
-<a href="/blog/images/2014/01/explore/fig02.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig02.svg" style="max-width:100%"/></a>
+<a href="/blog/images/2014/01/explore/fig02.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig02.svg" style="max-width:100%" class="deirfig"/></a>
 
 And, finish by looking at the "top 5" malware/domain&hellip;
 
@@ -334,7 +340,7 @@ And, finish by looking at the "top 5" malware/domain&hellip;
 	top5.dom <- highest.gtest.scores(mdl.df$description, mdl.df$domain, 5)
 	gtest.plot(top5.dom, "Domain", "Expected")
 
-<a href="/blog/images/2014/01/explore/fig03.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig03.svg" style="max-width:100%"/></a>
+<a href="/blog/images/2014/01/explore/fig03.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig03.svg" style="max-width:100%" class="deirfig"/></a>
 
 If you take a look at the `gtest.plot()` function, it shows the pattern Jay &amp; I both like to follow when crafting `ggplot2` graphics: 
 
@@ -394,7 +400,7 @@ I draw the line (heh) at gnarly line grahps, so we choose to facet them here vs 
 	                 legend.position="none")
 	gg
 
-<a href="/blog/images/2014/01/explore/fig04.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig04.svg" style="max-width:100%"/></a>
+<a href="/blog/images/2014/01/explore/fig04.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig04.svg" style="max-width:100%" class="deirfig"/></a>
 
 Total volume is easy peasy as well:
 
@@ -409,7 +415,7 @@ Total volume is easy peasy as well:
 	                 legend.position="none")
 	gg
 
-<a href="/blog/images/2014/01/explore/fig05.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig05.svg" style="max-width:100%"/></a>
+<a href="/blog/images/2014/01/explore/fig05.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig05.svg" style="max-width:100%" class="deirfig"/></a>
 
 At this point, I probably would have stopped working with the data set. It's clear something is amiss and that the data set stopped being usable sometime in 2012. However, we press on soley to show the parallels between `pandas` and R.
 
@@ -432,7 +438,7 @@ Let's work with the top 20 pieces of malware and see what they have in common. W
 	# so that ggplot() can use the values as group/factor elements
 	top20.cor.df <- melt(top20.cor.df)
 
-I should have spent more time on breaks and colors, but it shows how to produce a similar graphic as `In [41]` does. I also think that "showing the work" adds a bit of transparencey that `pandas` masks.
+I should have spent more time on breaks and colors (I just tried to match the CS graphic without going overboard), but it shows how to produce a similar graphic as `In [41]` does. I also think that "showing the work" adds a bit of transparencey that `pandas` masks.
 
 	:::SLexer
 	gg <- ggplot(top20.cor.df, aes(x=description, y=variable))
@@ -444,7 +450,7 @@ I should have spent more time on breaks and colors, but it shows how to produce 
 	gg <- gg + theme(axis.text.x=element_text(angle = 90, vjust = 0.5, hjust=1))
 	gg 
 
-<a href="/blog/images/2014/01/explore/fig06.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig06.svg" style="max-width:100%"/></a>
+<a href="/blog/images/2014/01/explore/fig06.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig06.svg" style="max-width:100%" class="deirfig"/></a>
 
 We can dive into specific correlations (note, that I downloaded the malware data well after the CS post went live, so the data isn't 1:1 and neither are the correlatons).
 
@@ -479,7 +485,7 @@ ZeuS v1 time series plot:
 	                 legend.position="none")
 	gg
 
-<a href="/blog/images/2014/01/explore/fig07.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig07.svg" style="max-width:100%"/></a>
+<a href="/blog/images/2014/01/explore/fig07.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig07.svg" style="max-width:100%" class="deirfig"/></a>
 
 ZeuS v2 correlation:
 
@@ -512,7 +518,7 @@ ZeuS v2 time series plot:
 	                 legend.position="none")
 	gg
 
-<a href="/blog/images/2014/01/explore/fig08.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig08.svg" style="max-width:100%"/></a>
+<a href="/blog/images/2014/01/explore/fig08.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig08.svg" style="max-width:100%" class="deirfig"/></a>
 
 Trojan and Phoenix Exploit Kit correlation:
 
@@ -544,7 +550,7 @@ Trojan and Phoenix Exploit Kit time series plot:
 	                 legend.position="none")
 	gg
 
-<a href="/blog/images/2014/01/explore/fig09.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig09.svg" style="max-width:100%"/></a>
+<a href="/blog/images/2014/01/explore/fig09.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig09.svg" style="max-width:100%" class="deirfig"/></a>
 
 ###Conclusions
 
