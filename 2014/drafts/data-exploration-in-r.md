@@ -323,13 +323,15 @@ Start with the "top 5" malware/ASN&hellip;
 
 Then take a look at the "bottom 7" malware/ASN&hellip;
 
-		bottom7 <- highest.gtest.scores(mdl.df$description, mdl.df$asn, 7, 20, TRUE, 500)
-		gtest.plot(bottom7, "ASN", "Expected")
+	:::SLexer
+	bottom7 <- highest.gtest.scores(mdl.df$description, mdl.df$asn, 7, 20, TRUE, 500)
+	gtest.plot(bottom7, "ASN", "Expected")
 
 <a href="/blog/images/2014/01/explore/fig02.svg" target="_blank"><img src="/blog/images/2014/01/explore/fig02.svg" style="max-width:100%"/></a>
 
 And, finish by looking at the "top 5" malware/domain&hellip;
 
+	:::SLexer
 	top5.dom <- highest.gtest.scores(mdl.df$description, mdl.df$domain, 5)
 	gtest.plot(top5.dom, "Domain", "Expected")
 
