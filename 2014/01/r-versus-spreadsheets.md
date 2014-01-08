@@ -1,7 +1,7 @@
 Title: R vs Spreadsheets
 Date: 2014-01-08 09:00:00
 Category: tools
-Tags: R, Excel, Spreadsheets
+Tags: rstats, Excel, Spreadsheets
 Slug: r-vs-spreadsheets
 Author: Bob Rudis (@hrbrmstr)
 
