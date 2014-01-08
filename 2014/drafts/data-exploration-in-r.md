@@ -290,7 +290,6 @@ I didn't feel like making an R package version of ClickSecurity's `g_test` libra
 	  # categories)
 	  
 	  a.v.b <- con.tab.df[(con.tab.df$a %in% n.cats$a),]
-	  a.v.b <- a.v.b[a.v.b$gscore > a.v.b$expected,]
 	  a.v.b <- ldply(n.cats$a, function(x) { # only extract top/bottom N cats
 	    tmp <- a.v.b[a.v.b$a==x,] # only looking for thes
 	    head(tmp[order(-tmp$gscore),], matches) # return 'matches' # of pairs
@@ -351,29 +350,21 @@ as it makes it *way* easier to modify/tweak/refine them. `gest.plot()` also retu
 Following the lead of the CS example at `In [53]`, we drill down on one particular exploit, namely `trojan banker`s.
 
 	:::SLexer
-	exp.v.dom[exp.v.dom$description == "trojan banker", c("domain","freq")]
+	# drilling down to one particluar exploit
+	banker <- mdl.df[mdl.df$description == "trojan banker",]
+	banker.gt <- highest.gtest.scores(banker$description, banker$domain, N=5)
+	banker.gt[,c(1:3)]
 
-	##                      domain freq
-	## 1                uol.com.br  361
-	## 2     dominiotemporario.com   14
-	## 3               tempsite.ws   10
-	## 4                hpg.com.br    9
-	## 5               feevida.com    7
-	## 6             avisosphp.com    6
-	## 7          shopbrand.com.br    6
-	## 8                hotmail.ru    5
-	## 9           modulosnovs.com    5
-	## 10     sarahbrightman.co.uk    5
-	## 11     araccconsultoria.net    4
-	## 12      ascessoriaaracc.com    4
-	## 13 componentenetempresa.com    4
-	## 14     hospedagemdesites.ws    4
-	## 15    webpresencamaster.com    4
-	## 16             classjar.com    3
-	## 17         freewebhostx.com    3
-	## 18                 front.ru    3
-	## 19              krovatka.su    3
-	## 20           lantorpedo.com    361
+	## 1  trojan banker            uol.com.br   361
+	## 2  trojan banker dominiotemporario.com    14
+	## 3  trojan banker           tempsite.ws    10
+	## 4  trojan banker            hpg.com.br     9
+	## 5  trojan banker           feevida.com     7
+	## 6  trojan banker         avisosphp.com     6
+	## 7  trojan banker      shopbrand.com.br     6
+	## 8  trojan banker            hotmail.ru     5
+	## 9  trojan banker       modulosnovs.com     5
+	## 10 trojan banker  sarahbrightman.co.uk     5
 
 So at this point the CS post switches gears, and looks at date range, volume over time, etc. we can do date conversion equally as simply in R and I think it's more straightforward to do aggregations in R, but I'm biased.
 

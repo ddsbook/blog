@@ -6,7 +6,7 @@ library(ggplot2)
 library(reshape2)
 
 
-mdl.df <- read.csv(file="mdl.csv", 
+mdl.df <- read.csv(file="~/Desktop/mdl.csv", 
                    col.names=c('date', 'domain', 'ip', 'reverse',
                                'description', 'registrant', 'asn',
                                'inactive','country'))
@@ -41,7 +41,7 @@ write.table(str_extract(mdl.df$domain, perl("^[a-zA-Z0-9\\-\\._]+")),
             quote=FALSE,
             col.names=FALSE,
             row.names=FALSE)
-system("tlds.py", ignore.stdout=TRUE)
+system("~/Desktop/tlds.py", ignore.stdout=TRUE)
 mdl.df$domain <- factor(scan(file="/tmp/outdomains.txt", 
                              what=character(), 
                              quiet=TRUE))
@@ -90,14 +90,14 @@ highest.gtest.scores <- function(series.a, series.b,
                                 a.freq=as.numeric(series.a.tab), 
                                 stringsAsFactors=FALSE)
   series.a.tab.df$expected <- series.a.tab.df$a.freq / 
-                              length(unique(as.character(series.b)))
+    length(unique(as.character(series.b)))
   
   # build base data.frame of series.a & series.v vectors, adding
   # series.a's frequency counts and computed expected value
   
   series.df <- data.frame(a=series.a, b=series.b)
   series.df <- merge(series.df, series.a.tab.df)    
-
+  
   # build a contingency table of pairs with series.a min.volume counts
   # and calculate a gtest() score for each pair
   
@@ -105,12 +105,12 @@ highest.gtest.scores <- function(series.a, series.b,
                       vars=c("a","b"))
   con.tab.df <- join(con.tab.df, series.a.tab.df)
   con.tab.df$gscore <- mapply(gtest, con.tab.df$freq, con.tab.df$expected)
-
+  
   # add the max gscore() to the original series.a contingency table
   
   series.a.tab.df <- merge(series.a.tab.df, 
                            aggregate(gscore ~ a, data=con.tab.df, max))
-
+  
   # categories from series.a from the top or bottom?
   
   n.cats <- NA
@@ -125,7 +125,7 @@ highest.gtest.scores <- function(series.a, series.b,
   # categories)
   
   a.v.b <- con.tab.df[(con.tab.df$a %in% n.cats$a),]
-  a.v.b <- a.v.b[a.v.b$gscore > a.v.b$expected,]
+  #   a.v.b <- a.v.b[a.v.b$gscore > a.v.b$expected,]
   a.v.b <- ldply(n.cats$a, function(x) { # only extract top/bottom N cats
     tmp <- a.v.b[a.v.b$a==x,] # only looking for thes
     head(tmp[order(-tmp$gscore),], matches) # return 'matches' # of pairs
@@ -149,24 +149,36 @@ gtest.plot <- function(gtest.df, xlab="x", ylab="count", title="") {
 
 # top 5 malware v asn
 top5 <- highest.gtest.scores(mdl.df$description, mdl.df$asn, 5, 5)
-gtest.plot(top5, "ASN", "Expected")
+gtest.plot(top5, "ASN", "Explot Occurrences")
 
 # bottom 7 malware v asn
 bottom7 <- highest.gtest.scores(mdl.df$description, mdl.df$asn, 7, 20, TRUE, 500)
-gtest.plot(bottom7, "ASN", "Expected")
+gtest.plot(bottom7, "ASN", "Explot Occurrences")
 
 # top 5 malware v domain
 top5.dom <- highest.gtest.scores(mdl.df$description, mdl.df$domain, 5)
-gtest.plot(top5.dom, "Domain", "Expected")
+gtest.plot(top5.dom, "Domain", "Explot Occurrences")
 
-exp.v.dom[exp.v.dom$description == "trojan banker",c("domain","freq")]
+# drilling down to one particluar exploit
+banker <- mdl.df[mdl.df$description == "trojan banker",]
+banker.gt <- highest.gtest.scores(banker$description, banker$domain, N=5)
+colnames(banker.gt) <- c("description", "domain", "count", "a.count", "expected", "gscore")
+banker.gt[,c(1:3)]
 
-head(as.character(mdl.df$date))
+# let's look at the dates
 mdl.df$date <- as.POSIXct(as.character(mdl.df$date),format="%Y/%m/%d_%H:%M")
 mdl.df$ym <- strftime(mdl.df$date, format="%Y-%m")
 
 # hack to sum by year & month
 extract <- count(mdl.df,vars=c("ym","description"))
+
+desc.tot <- table(mdl.df$description)
+desc.tot.df <- data.frame(sort(desc.tot,decreasing=TRUE))
+desc.tot.df$description <- rownames(desc.tot.df)
+row.names(desc.tot.df) <- NULL
+colnames(desc.tot.df) <- c("freq","description")
+head(as.character(mdl.df$date))
+
 extract <- extract[extract$description %in% head(desc.tot.df$description,7),]
 
 gg <- ggplot(extract, aes(x=ym, y=freq, group=description))
