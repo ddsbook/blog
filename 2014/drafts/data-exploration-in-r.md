@@ -2,7 +2,7 @@ Title: Data Exploration of a publicly available dataset (in R)
 Date: 2014-01-06 12:00:00
 Category: dataviz
 Status: draft
-Tags: book, blog, R, python, ipython, pandas
+Tags: book, blog, rstat, python, ipython, pandas
 Slug: data-exploration-in-r
 Author: Bob Rudis (@hrbrmstr)
 
