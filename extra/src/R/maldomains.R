@@ -5,6 +5,7 @@ library(data.table)
 library(ggplot2)
 library(reshape2)
 
+
 mdl.df <- read.csv(file="mdl.csv", 
                    col.names=c('date', 'domain', 'ip', 'reverse',
                                'description', 'registrant', 'asn',
@@ -34,13 +35,12 @@ summary(mdl.df$description)
 
 head(summary(mdl.df$domain))
 
-# sub-optimal, but didn't feel like writing it in R
+# sub-optimal way to get TLDs, but didn't feel like writing it in R
 write.table(str_extract(mdl.df$domain, perl("^[a-zA-Z0-9\\-\\._]+")),
             file="/tmp/indomains.txt",
             quote=FALSE,
             col.names=FALSE,
             row.names=FALSE)
-# get tlds.py from https://gist.github.com/hrbrmstr/8275775
 system("tlds.py", ignore.stdout=TRUE)
 mdl.df$domain <- factor(scan(file="/tmp/outdomains.txt", 
                              what=character(), 
@@ -51,7 +51,9 @@ mdl.df$country <- as.numeric(mdl.df$country)
 
 cor(mdl.df$inactive, mdl.df$country)
 
-# gtest() related to chi-squared, multinomial and Fisher's exact test
+# R version of ClickSecurity's gtest() functions
+# http://l.rud.is/1dvNxHQ
+
 gtest <- function(count, expected) {
   if (count == 0) {
     return(0)
@@ -60,114 +62,104 @@ gtest <- function(count, expected) {
   }
 }
 
-desc.tot <- table(mdl.df$description)
-desc.tot.df <- data.frame(sort(desc.tot,decreasing=TRUE))
-desc.tot.df$description <- rownames(desc.tot.df)
-row.names(desc.tot.df) <- NULL
-colnames(desc.tot.df) <- c("freq","description")
+#' Categorical contingency table + G-test
+#' 
+#' \code{highest.gtest.scores} takes two categorical vectors and 
+#' returns a contingency table data.frame with max G-test scores
+#' 
+#' @param series.a a vector of categorical data the same size as series.b
+#' @param series.b a vector of categorical data the same size as series.a
+#' @param N how many of the top N keys in series.a should be returned
+#' @param matches how many matches for each key should be returned
+#' @param reverse reverse sort (high to low)
+#' @param min.volume for some data you only want to see values wiht reasonable volume
+#' @return a data.frame object (contingency table + max G-test score)
+#' 
+#' This differes from the ClickSecurity highest_gtest_scores() function since
+#' we don't return the keys or match_list since they are pretty simple/quick to
+#' retrieve from the resultant data.frame and won't always be needed
 
-asn.cats <- length(unique(mdl.df$asn))
-desc.asn.expected <- desc.tot / asn.cats
-desc.asn.expected.df <- as.data.frame(desc.asn.expected)
-colnames(desc.asn.expected.df) <- c("description","expected")
+highest.gtest.scores <- function(series.a, series.b, 
+                                 N=10, matches=10, 
+                                 reverse=FALSE, min.volume=0) {
+  
+  # assume series.a categories are equally distributed among series.b categories
+  
+  series.a.tab <- table(series.a)
+  series.a.tab.df <- data.frame(a=names(series.a.tab), 
+                                a.freq=as.numeric(series.a.tab), 
+                                stringsAsFactors=FALSE)
+  series.a.tab.df$expected <- series.a.tab.df$a.freq / 
+                              length(unique(as.character(series.b)))
+  
+  # build base data.frame of series.a & series.v vectors, adding
+  # series.a's frequency counts and computed expected value
+  
+  series.df <- data.frame(a=series.a, b=series.b)
+  series.df <- merge(series.df, series.a.tab.df)    
 
-desc.asn.ct <- table(mdl.df$description, mdl.df$asn) 
-desc.asn.ct.df <- as.data.frame.matrix(desc.asn.ct)
-desc.asn.ct.df$description <- rownames(desc.asn.ct.df)
-desc.asn.ct.df <- data.table(desc.asn.ct.df)
-desc.asn.ct.sum <- count(mdl.df,vars=c("description","asn"))
+  # build a contingency table of pairs with series.a min.volume counts
+  # and calculate a gtest() score for each pair
+  
+  con.tab.df <- count(series.df[series.df$a.freq > min.volume, c("a","b")], 
+                      vars=c("a","b"))
+  con.tab.df <- join(con.tab.df, series.a.tab.df)
+  con.tab.df$gscore <- mapply(gtest, con.tab.df$freq, con.tab.df$expected)
 
-desc.asn.ct.sum <- join(desc.asn.ct.sum, desc.asn.expected.df)
-desc.asn.ct.sum$actual <- mapply(gtest, desc.asn.ct.sum$freq, desc.asn.ct.sum$expected)
+  # add the max gscore() to the original series.a contingency table
+  
+  series.a.tab.df <- merge(series.a.tab.df, 
+                           aggregate(gscore ~ a, data=con.tab.df, max))
 
-desc.asn.ct.sum$total.freq <- sapply(desc.asn.ct.sum$description, function(x) {
-desc.tot.df[desc.tot.df$description == x,]$freq
-})
+  # categories from series.a from the top or bottom?
+  
+  n.cats <- NA
+  if (reverse) {
+    n.cats <- tail(series.a.tab.df[order(-series.a.tab.df$gscore),], N)
+  } else {
+    n.cats <- head(series.a.tab.df[order(-series.a.tab.df$gscore),], N)
+  }
+  
+  # compare counts against expected counts (given the setup null hypothesis
+  # that each category should have a uniform distribution across all other
+  # categories)
+  
+  a.v.b <- con.tab.df[(con.tab.df$a %in% n.cats$a),]
+  a.v.b <- a.v.b[a.v.b$gscore > a.v.b$expected,]
+  a.v.b <- ldply(n.cats$a, function(x) { # only extract top/bottom N cats
+    tmp <- a.v.b[a.v.b$a==x,] # only looking for thes
+    head(tmp[order(-tmp$gscore),], matches) # return 'matches' # of pairs
+  })
+  
+  return(a.v.b)
+  
+}
 
-tmp <- desc.asn.ct.sum[order(-desc.asn.ct.sum$actual),]
-desc.asn.expected.df$actual <- sapply(desc.asn.expected.df$description, function(x) { 
-max(tmp[tmp$description == x,]$actual)
-})
+# helper plot function for the gtest() data frame
 
-desc.asn.expected.df$total.freq <- sapply(desc.asn.expected.df$description, function(x) {
-desc.tot.df[desc.tot.df$description == x,]$freq
-})
+gtest.plot <- function(gtest.df, xlab="x", ylab="count", title="") {
+  gg <- ggplot(data=gtest.df, aes(x=b, y=freq))
+  gg <- gg + geom_bar(stat="identity", position="stack", aes(fill=a))
+  gg <- gg + theme_bw()
+  gg <- gg + labs(x=xlab, y=ylab, title=title)
+  gg <- gg + theme(axis.text.x=element_text(angle=90,vjust=0.5,hjust=1),
+                   legend.title=element_blank())
+  return(gg)
+}
 
-top5 <- head(desc.asn.expected.df[order(-desc.asn.expected.df$actual),],5)
-exp.v.asn <- desc.asn.ct.sum[(desc.asn.ct.sum$description %in% top5$description),]
-exp.v.asn <- exp.v.asn[exp.v.asn$actual > exp.v.asn$expected,]
-exp.v.asn <- ldply(top5$description, function(x) {
-a <- exp.v.asn[exp.v.asn$description==x,]
-head(a[order(-a$actual),],5)
-})
-
-gg <- ggplot(data=exp.v.asn, aes(x=asn, y=freq))
-gg <- gg + geom_bar(stat="identity", position="stack", aes(fill=description))
-gg <- gg + theme_bw()
-gg <- gg + theme(axis.text.x=element_text(angle = 90, vjust = 0.5, hjust=1))
-gg
+# top 5 malware v asn
+top5 <- highest.gtest.scores(mdl.df$description, mdl.df$asn, 5, 5)
+gtest.plot(top5, "ASN", "Expected")
 
 # bottom 7 malware v asn
-
-tmp <- desc.asn.expected.df[desc.asn.expected.df$total.freq > 500,]
-bottom7 <- tail(tmp[order(-tmp$actual),],7)
-exp.v.asn <- desc.asn.ct.sum[(desc.asn.ct.sum$description %in% bottom7$description),]
-exp.v.asn <- exp.v.asn[exp.v.asn$actual > exp.v.asn$expected,]
-exp.v.asn <- ldply(bottom7$description, function(x) {
-  a <- exp.v.asn[exp.v.asn$description==x,]
-  head(a[order(-a$actual),],20)
-})
-
-gg <- ggplot(data=exp.v.asn, aes(x=asn, y=freq))
-gg <- gg + geom_bar(stat="identity", position="stack", aes(fill=description))
-gg <- gg + theme_bw()
-gg <- gg + theme(axis.text.x=element_text(angle = 90, vjust = 0.5, hjust=1))
-gg
+bottom7 <- highest.gtest.scores(mdl.df$description, mdl.df$asn, 7, 20, TRUE, 500)
+gtest.plot(bottom7, "ASN", "Expected")
 
 # top 5 malware v domain
-
-domain.cats <- length(unique(mdl.df$domain))
-desc.dom.expected <- desc.tot / domain.cats
-desc.dom.expected.df <- as.data.frame(desc.dom.expected)
-colnames(desc.dom.expected.df) <- c("description","expected")
-
-desc.dom.ct <- table(mdl.df$description, mdl.df$domain) 
-desc.dom.ct.df <- as.data.frame.matrix(desc.dom.ct)
-desc.dom.ct.df$description <- rownames(desc.dom.ct.df)
-desc.dom.ct.df <- data.table(desc.dom.ct.df)
-desc.dom.ct.sum <- count(mdl.df,vars=c("description","domain"))
-
-desc.dom.ct.sum <- join(desc.dom.ct.sum, desc.dom.expected.df)
-desc.dom.ct.sum$actual <- mapply(gtest, desc.dom.ct.sum$freq, desc.dom.ct.sum$expected)
-
-desc.dom.ct.sum$total.freq <- sapply(desc.dom.ct.sum$description, function(x) {
-  desc.tot.df[desc.tot.df$description == x,]$freq
-})
-
-tmp <- desc.dom.ct.sum[order(-desc.dom.ct.sum$actual),]
-desc.dom.expected.df$actual <- sapply(desc.dom.expected.df$description, function(x) { 
-  max(tmp[tmp$description == x,]$actual)
-})
-
-desc.dom.expected.df$total.freq <- sapply(desc.dom.expected.df$description, function(x) {
-  desc.tot.df[desc.tot.df$description == x,]$freq
-})
-
-top5 <- head(desc.dom.expected.df[order(-desc.dom.expected.df$actual),],5)
-exp.v.dom <- desc.dom.ct.sum[(desc.dom.ct.sum$description %in% top5$description),]
-exp.v.dom <- ldply(top5$description, function(x) {
-  a <- exp.v.dom[exp.v.dom$description==x,]
-  head(a[order(-a$actual),],20)
-})
-
-gg <- ggplot(data=exp.v.dom, aes(x=domain, y=freq))
-gg <- gg + geom_bar(stat="identity", position="stack", aes(fill=description))
-gg <- gg + theme_bw()
-gg <- gg + theme(axis.text.x=element_text(angle = 90, vjust = 0.5, hjust=1))
-gg
+top5.dom <- highest.gtest.scores(mdl.df$description, mdl.df$domain, 5)
+gtest.plot(top5.dom, "Domain", "Expected")
 
 exp.v.dom[exp.v.dom$description == "trojan banker",c("domain","freq")]
-
 
 head(as.character(mdl.df$date))
 mdl.df$date <- as.POSIXct(as.character(mdl.df$date),format="%Y/%m/%d_%H:%M")
@@ -208,10 +200,6 @@ gg <- ggplot(top20.cor.df, aes(x=description, y=variable))
 gg <- gg + geom_tile(aes(fill=value), color="#7f7f7f")
 gg <- gg + scale_fill_gradient2(limits=range(top20.cor.df$value,na.rm=TRUE),
                                 low="#34419a", mid="#fdfec1", high="#9f0024", na.value="white")
-# gg <- gg + scale_fill_gradient2(limits=range(top20.cor.df$value,na.rm=TRUE),
-#                                 low="#06072b", mid="orange", high="red", na.value="white")
-# gg <- gg + scale_fill_gradient(limits=range(top20.cor.df$value,na.rm=TRUE),
-#                                low="#EDF8FB",high="#005824",na.value="white")
 gg <- gg + theme_bw()
 gg <- gg + labs(x="", y="")
 gg <- gg + theme(axis.text.x=element_text(angle = 90, vjust = 0.5, hjust=1))
