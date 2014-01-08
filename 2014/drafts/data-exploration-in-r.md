@@ -7,7 +7,7 @@ Slug: data-exploration-in-r
 Author: Bob Rudis (@hrbrmstr)
 
 <style>
-.deirfig {
+.deirfig:hover {
 	cursor:ne-resize;
 	opacity:0.4;
 }
