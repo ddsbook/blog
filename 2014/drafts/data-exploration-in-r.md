@@ -16,7 +16,7 @@ Author: Bob Rudis (@hrbrmstr)
 
 So, what follows is an R version of ClickSecurity's [Data Exploration of a publicly available dataset](http://nbviewer.ipython.org/github/ClickSecurity/data_hacking/blob/master/mdl_exploration/MDL_Data_Exploration.ipynb). You'll need to have that handy to follow along with the rest of this post. If at all possible, I strongly suggest working through their post **before** following along with our example.
 
-You can grab the full [R source file](http://datadrivensecurity.info/blog/extra/src/R/maldomains.R) as well.
+You can grab the full [R source file](https://github.com/ddsbook/blog/blob/master/extra/src/R/maldomains.R) as well.
 
 ###It all begins with data
 
