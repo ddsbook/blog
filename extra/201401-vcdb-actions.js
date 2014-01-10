@@ -1,7 +1,7 @@
 var dataset; // a global
 var localdata = [];
 var industries;
-d3.csv("actions.csv", function(error, csv) {
+d3.csv("/blog/data/vcdb-actions.csv", function(error, csv) {
     if (error) return console.warn(error);
     dataset = csv;
     setData("Overall")
