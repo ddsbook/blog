@@ -24,5 +24,4 @@ Theft and privilege abuse are common and public disclosures are light on details
 ### How this was made
 This was created with D3, and the data was extracted from VCDB with an R script I posted to a [gist]( https://gist.github.com/jayjacobs/8346745).
 
-
 <script type="text/javascript" src="/blog/extra/201401-vcdb-actions.js"></script>
