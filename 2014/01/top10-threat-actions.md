@@ -24,6 +24,6 @@ What do you see here?
 Theft and privilege abuse are common and public disclosures are light on details, so “unknown” hacking actions are a prominent theme.  The one take away is that we've got quite a bit of variation across industries.  Now, it might be hard to attribute a whole lot of meaning to this data given the high amount of unknowns and sample bias of the in the collection method, but it sure is interesting to click around there for a bit, isn’t it?
 
 ### How this was made
-This was created with D3, and the data was extracted from VCDB with an R script I posted to a [gist]( https://gist.github.com/jayjacobs/8346745).
+This was created with [D3](http://d3js.org/), and the data was extracted from VCDB with an R script I posted to a [gist]( https://gist.github.com/jayjacobs/8346745).
 
 <script type="text/javascript" src="/blog/extra/201401-vcdb-actions.js"></script>
