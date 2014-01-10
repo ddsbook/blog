@@ -2,7 +2,6 @@ Title: Top 10 Threat Actions by Industry
 Date: 2014-01-09 20:41:14
 Category: dataviz
 Tags: d3, vcdb
-Status: draft
 Summary: I work a lot with breach data and one of the things that is slowly emerging from the data is that there is no single approach that would work for every organization.  In order to begin to peel away at this problem (and to work on my D3 skills), I am tapping into the VCDB data set.  For those not familiar with [VCDB](http://veriscommunity.net/doku.php?id=public) (VERIS Community Database), it is a project started at Verizon early in 2013 (and part of my rather fun day job).  VCDB scours headlines for information about security incidents and records them in the [VERIS](http://veriscommunity.net) format.&hellip;
 Slug: top10-threat-actions
 Author: Jay Jacobs (@jayjacobs)
