@@ -10,9 +10,9 @@ Sometimes you have to call it like it is and I could not resist re-posting somet
 
 <img src="/blog/images/2014/01/wtf01.png" style="max-width:100%"/>
 
-The image excerpt was from a [@visually](http://twitter.com/visually) [submission](http://visual.ly/global-trends-ddos-attacks) by @blockdos1.
+The image excerpt was from a [@visually](	http://twitter.com/visually) [submission](http://visual.ly/global-trends-ddos-attacks) by @blockdos1.
 
-Apart from the egregious of a (_shudder_) pie chart for that component of the infographic, there's bar chart which obviously slipped past the Q/A department in it as well:
+Apart from the egregious use of a (_shudder_) pie chart for that component of the infographic, there's a bar chart which obviously slipped past the Q/A department in it as well:
 
 <img src="/blog/images/2014/01/wtf02.png" style="max-width:100%"/>
 
