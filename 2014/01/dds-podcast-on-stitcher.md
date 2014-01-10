@@ -1,7 +1,6 @@
 Title: Data Driven Security Podcast on Stitcher
 Date: 2014-01-10 07:00:00
 Category: news
-Status: draft
 Tags: podcast
 Slug: dds-podcast-on-stitcher	
 Author: Bob Rudis (@hrbrmstr)
