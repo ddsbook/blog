@@ -1,5 +1,5 @@
 Title: Data Driven Security Podcast on Stitcher
-Date: 2014-01-10 07:00:00
+Date: 2014-01-09 07:00:00
 Category: news
 Tags: podcast
 Slug: dds-podcast-on-stitcher	
