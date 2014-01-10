@@ -1,0 +1,23 @@
+.stitle {
+    font: 14px sans-serif;
+    color:black;
+}
+.menu {
+    font: 10px sans-serif;
+    pointer:"click";
+    color:black;
+}
+.menu:hover {
+    cursor:pointer;
+    fill:red;
+}
+.axis {
+    font: 10px sans-serif;
+}
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+.x.axis path { display: none; }

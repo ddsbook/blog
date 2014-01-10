@@ -1,6 +1,7 @@
 library(verisr)
 library(Hmisc) # for capitalize
-vcdb <- json2veris("~/Documents/json/newfinal/vcdb")
+# director with VCDB incidents in JSON format
+vcdb <- json2veris("github/vcdb")
 mat <- veris2matrix(vcdb, unknown=T)
 nmat <- colnames(mat)
 data(industry2)
@@ -49,5 +50,5 @@ out3$short <- short.name
 out3$cat <- cat.name
 out3$summary <- paste(out3$summary, paste0("<font color=\"", out3$color, "\"><b>", out3$short, "</b>"), paste0("<i>", out3$cat, "</i></font>"), sep="<br>")
 
-write.csv(out3, "~/Documents/dds/vcdba/actions.csv", row.names=F)
+write.csv(out3, "actions.csv", row.names=F)
 write.csv(ind, "industry.csv", row.names=F)
