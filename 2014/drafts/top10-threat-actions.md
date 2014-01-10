@@ -16,7 +16,7 @@ I have a feeling I’ll be doing quite a bit of things with this data because 1)
 There are two data points within incidents I want to pull out to question this “one size fits all” approach: the industry of the victim and the threat actions of the attacker.  VERIS uses the North American Industry Classification System (NAICS) for industries, and defines over 100 varieties of threat actions across 7 categories. What I’d like to do is compare the top 10 threat actions in the top 10 industries.  If one security-size fits all, then we would see just some minor random variation) across industries. 
 
 ### The Viz
-<i>Select an industry on the right and mouse-over the bar for details of the actions.  The digit in the industry is the NAICS code (e.g. [Public (92)]( http://www.census.gov/cgi-bin/sssd/naics/naicsrch?code=92&search=2012%20NAICS%20Search) is Public Administration). </i>
+<i>Select an industry on the right and mouse-over the bar for details of the actions.  The digit in the industry is the NAICS code (e.g. [Public (92)]( http://www.census.gov/cgi-bin/sssd/naics/naicsrch?code=92&search=2012%20NAICS%20Search) is Public Administration). The color on the bars are category colors taken from the Verizon 2012 DBIR.</i>
 
 <div id="chart"></div>
 
