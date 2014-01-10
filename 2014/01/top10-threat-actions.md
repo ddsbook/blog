@@ -19,7 +19,8 @@ There are two data points within incidents I want to pull out to question this �
 
 <div id="chart"></div>
 
-What do you see here?  
+What do you see here? 
+ 
 Theft and privilege abuse are common and public disclosures are light on details, so “unknown” hacking actions are a prominent theme.  The one take away is that we've got quite a bit of variation across industries.  Now, it might be hard to attribute a whole lot of meaning to this data given the high amount of unknowns and sample bias of the in the collection method, but it sure is interesting to click around there for a bit, isn’t it?
 
 ### How this was made
