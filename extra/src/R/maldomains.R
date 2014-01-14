@@ -46,6 +46,18 @@ mdl.df$domain <- factor(scan(file="/tmp/outdomains.txt",
                              what=character(), 
                              quiet=TRUE))
 
+#
+# Could use rPython interface but it doesn't work on Windows yet and
+# has some idiosyncracies on OS X.
+#
+# library(rPython)
+# 
+# python.exec("import tldextract")
+# python.assign("hosts", mdl.df$domain)
+# python.exec("tlds = ['.'.join(tldextract.extract(host.rstrip())[-2 : ]) for host in hosts]")
+# tlds <- factor(python.get("tlds"))
+#
+
 mdl.df$inactive <- as.numeric(mdl.df$inactive)
 mdl.df$country <- as.numeric(mdl.df$country)
 
