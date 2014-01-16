@@ -51,4 +51,4 @@ Python has a similar [rpy2](http://rpy.sourceforge.net/rpy2.html) module for goi
 
 Data science isn't about sticking with one tool, it's about answering questions and solving problems. If you can save time by using a critical piece of functionality from another language in a hybrid solution like `rPython` or `rPy2` there is really no reason not to. There may be cases where performance or production stability concerns make it necessary to stay within one language and replicate functionality from another, but those instances will more likely be the exception vs the rule.
 
-For those just beginning on the data science path, you can find out more about R packages and Python modules at [Quick-R](http://www.statmethods.net/interface/packages.html) and [python.org](http://docs.python.org/2/tutorial/modules.html) respectively.
+For those just beginning on the data science path, you can find out more about R packages and Python modules at [Quick-R](http://www.statmethods.net/interface/packages.html) and [python.org](http://docs.python.org/2/tutorial/modules.html) respectively (or, perhaps even our [soon-to-be-released book](http://amzn.to/ddsec))
