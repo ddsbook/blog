@@ -43,7 +43,7 @@ Here's what the revised code looks like using `rPython` instead of calling out t
 	python.exec("tlds = ['.'.join(tldextract.extract(host.rstrip())[-2 : ]) for host in hosts]")
 	tlds <- factor(python.get("tlds"))
 
-Through `rPython` we are able to pass R variables to Python and read Python data structures back into R pretty seamlessly. Unlike many hybrid language biding approaches, `rPython` converts all data to JSON structures for the exchange between environments. While this approach does not provide direct variable memory access between environemnts, it does optimize compatibility.
+Through `rPython` we are able to pass R variables to Python and read Python data structures back into R pretty seamlessly. Unlike many hybrid language binding approaches, `rPython` converts all data to JSON structures for the exchange between environments. While this approach does not provide direct variable memory access between environemnts, it does optimize compatibility.
 
 As this relatively simplistic example shows, you can execute almost any bit of Python code and use nearly every Python module without having to resort to file-based data exchange methods.
 
