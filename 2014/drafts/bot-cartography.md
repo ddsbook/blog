@@ -1,9 +1,9 @@
-Title: The Basics of Bot Cartograpy (R + D3)
-Date: 2014-01-06 12:00:00
+Title: The Basics of Bot Cartograpy : Part 1 (Projections, Point Size and Opacity)
+Date: 2014-01-16 12:00:00
 Category: dataviz
 Status: draft
-Tags: book, blog, maps, R, d3
-Slug: basics-of-bot-cartography
+Tags: book, blog, maps, d3, map, cartography
+Slug: basics-of-bot-cartography-part-1
 Author: Bob Rudis (@hrbrmstr)
 
 <style>
@@ -23,20 +23,24 @@ Author: Bob Rudis (@hrbrmstr)
 }
 </style>
 
-<smaller><i>(This post expands on a topic presented in Chapter 5 of [Data Driven Security : The Book](http://amzn.to/ddsbook))</i></smaller>
+<smaller><i>(This series of posts expands on a topic presented in Chapter 5 of [Data Driven Security : The Book](http://amzn.to/ddsbook))</i></smaller>
 
-Cartographers (map makers) and infosec folk both have the unenviable task of figuring out the best way to communite complexity to a diverse audience. Maps hold an unwarranted place of privilege in the minds of viewers and they seem to have taken an equally unwarranted place of status when it comes to infosec folk wanting to show where "badness" comes from. More often than not, these malicious locations are displayed on a Google Map using Google's [maps API](https://developers.google.com/maps/). Now, Google Maps is great for directions and managing specific physical waypoints, but they imply a pecision that is just not there when attributing IP address malfeasnace. Plus, when you use Google Maps, you're embedding a great deal of third-party code, user tracking and URL calls that just aren't necessary when there are plenty of other ways to get the same points on a map; plus, you're limited to a very <i>meh</i> projection.
+Cartographers (map makers) and infosec folk both have the unenviable task of figuring out the best way to communite complexity to a diverse audience. Maps hold an unwarranted place of privilege in the minds of viewers and they seem to have taken an equally unwarranted place of status when it comes to infosec folk wanting to show where "badness" comes from. More often than not, these malicious locations are displayed on a Google Map using Google's [maps API](https://developers.google.com/maps/). Now, Google Maps is great for directions and managing specific physical waypoints, but they imply a level of precision that is just not there when attributing IP address malfeasnace. Plus, when you use Google Maps, you're embedding a great deal of third-party code, user tracking and URL calls that just aren't necessary when there are plenty of other ways to get the same points on a map; plus, you're limited to a very <i>meh</i> projection.
 
-This post will show you how to place points on a map in both R &amp; D3, and in a slightly more accurate way than you can with Google Maps. It will also demonstrate the use of a much saner projection than the ubiquitous Mercator projection most folks are familiar with. The data we'll use is from the [@abuse_ch](https://twitter.com/abuse_ch) [ZeuS Tracker](https://zeustracker.abuse.ch/) data set. If you already know these mechanics, you can jump to the end of the post. Both the resultant R and D3 maps will be SVG images vs static bitmaps you may be used to generating, and the D3 map can be extended to enable panning and zooming similar to Google Maps.
+This post kicks of a series that will cover the fundamentals of cartographic machinations and&mdash;at various points&mdash;show you how to make maps in R, Python &amp; D3, all in a more accurate way than you can with Google Maps. The data we'll use is from the [@abuse_ch](https://twitter.com/abuse_ch) [ZeuS Tracker](https://zeustracker.abuse.ch/) data set. You'll want to follow along until the final post as we'll be covering the most important aspect of creating map visualizations: when **not** to use them.
 
-The R code is embedded in the post can also be found on [our github repo](https://github.com/ddsbook/blog/blob/master/extra/src/R/zeusmap.R), and the D3 code is inhenently available via <code>view-source:</code> in your browser.
 
 ###The Making of a Map
 
-Maps have three primary distinct attributes: _scale_, _projection_, and _symbolic representation_.  Any (all, really) of those elements distort reality in some way. _Scale_ distorts size and hides (or overemphasizes) detail. _Projections_ take our very 3D world and mathematically flatten it onto a 2D canvas, requiring numerous tradeoffs between accuracy and readability. _Symbols_ describe and distinguish geographic features and locations and guide viewers into knowing what bits are/aren't relevant.
+Maps have three primary distinct attributes: _scale_, _projection_, and _symbolic representation_.  Any (all, really) of those elements distort reality in some way. _Scale_ distorts size and hides (or overemphasizes) detail. _Projections_ take our very 3D world and mathematically flatten it onto a 2D canvas, requiring numerous tradeoffs between accuracy and readability. _Symbols_ describe and distinguish geographic features and locations and guide viewers into knowing what bits are/aren't relevant. In this post, we're going to focus mainly on the _projection_ and _symbolic representation_ components, but we'll touch a bit on _scale_ as well.
+
+To set some context, here is the @abuse_ch ZeuS Tracker Google map:
+
+<img src="/blog/images/2014/01/abuse-gmap.png" width="630" height="394"/>
+
 
 <script src="/blog/extra/d3.geo.projection.v0.min.js"></script>
-<script src="/blog/exgtra/topojson.v1.min.js"></script>
+<script src="/blog/extra/topojson.v1.min.js"></script>
 
 
     :::LassoXmlLexer
@@ -48,8 +52,6 @@ Maps have three primary distinct attributes: _scale_, _projection_, and _symboli
     </markers>
 
 Original abuse.ch zeus tracker google map:
-
-<img src="/blog/images/2014/01/abuse-gmap.png" width="630" height="394"/>
 
     :::SLexer
 	library(XML)
