@@ -8,12 +8,9 @@ Author: Jay Jacobs (@jayajacobs)
 
 <style>
 .deirfig:hover {
-	opacity:0.4;
+	opacity:0.7;
 }
 </style>
-
-Inspecting Internet Traffic: Part 1
-========================================================
 
 I like honeypots.  Not so much for what they show about individual attackers, but for what they can show about the trends across attackers.  I've struggled to get much honeypot data though, so if anyone has access and would like some help making sense of it, please let me know.
 
@@ -158,18 +155,14 @@ print(gg)
 
 
 
-And let's take a seven day moving average, and let's remove the free scales on the y-axis.  This will allow us to compare the heights across each panel  directly by it's height in the panel.
+This is awful choppy and it is difficult to see any trends here so let's take a seven day moving average and remove the free scales on the y-axis.  This will allow us to compare the heights across each panel directly by its height in the panel.
 
- A moving average will apply take an average of moving window (in our case, 7 days) and the result is a reduction and widening of the spikes and smoothing of the valleys.  We'd do this to see trends over time.
+ A moving average will apply an average withing a moving window (in this case the "window" is 7 days wide) and the result is a reduction and widening of the spikes and smoothing of the valleys.  We do this here to smooth out the extra noise and maybe we can see trends over time.
 
 
 ```r
 # need to reshape, (melt, cast)
 library(reshape)
-```
-
-
-```r
 # cast this into a data.frame so we can operate on individual hosts
 hmatrix <- cast(hosts, day ~ host, value = "freq")
 # now loop on each host and apply a 7-day moving average
@@ -193,4 +186,4 @@ print(gg)
 
 This is interesting, looks like the hosts in Oregon, Singapore and Tokyo are seeing about twice as many hosts as the others.  It might be nice to attribute that to geographical differences or perhaps these IP addresses have a history (prior to Daniel getting them), but we can't really assume any of those at this point.  
 
-This post got long quick, so in the next post, we will continue to explore this data by looking at the ports...
+This post got long quick, so in the next post, we will continue to explore this data by looking at the ports.  But we've already learned a great deal about this data.  We know it's mostly TCP, though UDP and ICMP traffic is in there.  We also know there is a big difference if we look at total packets or if we look at unique hosts.  All of this will be something to keep in mind as proceed on in our exploration next time.
