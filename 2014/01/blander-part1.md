@@ -1,7 +1,7 @@
 Title: Inspecting Internet Traffic: Part 1
 Date: 2014-01-16 22:30:00
 Category: analysis
-Tags: EDA, analysis
+Tags: EDA, analysis, honeypot
 Slug: blander-part1
 Author: Jay Jacobs (@jayjacobs)
 
@@ -13,14 +13,14 @@ Author: Jay Jacobs (@jayjacobs)
 
 I like honeypots.  Not so much for what they show about individual attackers, but for what they can show about the trends across attackers.  I've struggled to get good honeypot data though, so if anyone has access to data (or people with data) and would like some help making sense of it, please let me know.  
 
-I recently got some data from my friend Daniel Blander.  He and I were talking about learning from honeypots some time ago, and he spun up several instances across the world and just let iptables capture packets.  He let these run from March to September last year and shared the data so we can play around with it.  I'm going to break this up over a three-part blog series.
+I recently got some data from my friend Daniel Blander.  He and I were talking about learning from honeypots some time ago, and he spun up several instances across the world and just let `iptables` capture packets.  He let these run from March to September last year and shared the data so we can play around with it.  I'm going to break this up over a three-part blog series.
 
 Eventually I'll want to ask questions of this data.  Before I get to that, I'll want to explore this data, figure out what we have and what kinds of questions the data would be able to answer.  This is officially called exploratory data analysis (EDA) and it's attributed to [John Tukey](http://en.wikipedia.org/wiki/John_Tukey).  We'll use whatever we can to figure out what we've got in this data and simply improve our intuition about the data.  This should help use make connections and discoveries we wouldn't normally see.
 
-I wrote a quick parser (in python) to convert the iptables log to a CSV, so I want to load the output of that up.
+I wrote a quick parser (in Python) to convert the `iptables` log to a CSV, so I want to load the output of that up.
 
 ```r
-csv <- read.csv("http://datadrivensecurity.info/data/2014/01/marx.csv")
+csv <- read.csv("marx.csv")
 # let's look at the first few rows.
 head(csv)
 ```
@@ -36,7 +36,7 @@ head(csv)
 ```
 
 
-If you'd like to follow along at home, use the URL above or the [csv is available for download](http://datadrivensecurity.info/data/2014/01/marx.csv).
+If you'd like to follow along at home, use the URL above or the [csv is available for download](http://datadrivensecurity.info/blog/data/2014/01/marx.csv.gz).
 
 In case you don't recognize those source (src) and destination (dst) fields those are IP addresses.  They are much easier to store (and manipulate) in a long integer format than as a string in the dotted quad formats.  If you work with large data sets too or store these in a database, please convert to long first!
 
