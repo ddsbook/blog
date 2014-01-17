@@ -36,7 +36,7 @@ head(csv)
 ```
 
 
-If you'd like to follow along at home, use the URL above or the [csv is available for download]("/data/2014/01/marx.csv").
+If you'd like to follow along at home, use the URL above or the [csv is available for download](http://datadrivensecurity.info/data/2014/01/marx.csv).
 
 In case you don't recognize those source (src) and destination (dst) fields those are IP addresses.  They are much easier to store (and manipulate) in a long integer format than as a string in the dotted quad formats.  If you work with large data sets too or store these in a database, please convert to long first!
 
