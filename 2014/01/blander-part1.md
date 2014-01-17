@@ -3,8 +3,7 @@ Date: 2014-01-16 22:30:00
 Category: analysis
 Tags: EDA, analysis
 Slug: blander-part1
-Status: draft
-Author: Jay Jacobs (@jayajacobs)
+Author: Jay Jacobs (@jayjacobs)
 
 <style>
 .deirfig:hover {
@@ -12,7 +11,7 @@ Author: Jay Jacobs (@jayajacobs)
 }
 </style>
 
-I like honeypots.  Not so much for what they show about individual attackers, but for what they can show about the trends across attackers.  I've struggled to get much honeypot data though, so if anyone has access and would like some help making sense of it, please let me know.
+I like honeypots.  Not so much for what they show about individual attackers, but for what they can show about the trends across attackers.  I've struggled to get good honeypot data though, so if anyone has access to data (or people with data) and would like some help making sense of it, please let me know.  
 
 I recently got some data from my friend Daniel Blander.  He and I were talking about learning from honeypots some time ago, and he spun up several instances across the world and just let iptables capture packets.  He let these run from March to September last year and shared the data so we can play around with it.  I'm going to break this up over a three-part blog series.
 
