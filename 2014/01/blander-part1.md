@@ -36,9 +36,9 @@ head(csv)
 ```
 
 
-If you'd like to follow along at home, use the URL above or the <a href="http://datadrivensecurity.info/blog/data/2014/01/marx.csv.gz" download="marx.csv.gz">csv is available for download</a>.
+If you'd like to follow along at home, the <a href="http://datadrivensecurity.info/blog/data/2014/01/marx.gz" download="marx.gz">csv is available for download</a>.
 
-In case you don't recognize those source (src) and destination (dst) fields those are IP addresses.  They are much easier to store (and manipulate) in a long integer format than as a string in the dotted quad formats.  If you work with large data sets too or store these in a database, please convert to long first!
+In case you don't recognize those source (src) and destination (dst) fields those are IP addresses.  They are much easier to store (and manipulate) in a long integer format than as a string in the dotted quad formats.  If you, too, work with large data sets or store addresses in a database, please convert to long first!
 
 R provides a really nice summary() function that gives us a nice overall view of the data we have.
 
