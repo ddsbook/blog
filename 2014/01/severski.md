@@ -3,7 +3,6 @@ Date: 2014-01-17 22:30:00
 Category: R
 Tags: simluation
 Slug: severski
-Status: draft
 Author: Jay Jacobs (@jayjacobs)
 
 <style>
