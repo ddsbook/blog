@@ -1,7 +1,7 @@
 Title: Playing with betaPERT
 Date: 2014-01-17 22:30:00
-Category: R
-Tags: simluation
+Category: analysis
+Tags: simluation, R
 Slug: severski
 Author: Jay Jacobs (@jayjacobs)
 
