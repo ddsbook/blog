@@ -32,7 +32,7 @@ library(mc2d)
 ```
 
 
-This loads up the mc2d package and gives us access to the *pert functions, where * is d, p, q and r and corresponds to the convention within R for distribution functions (do a help(rpert) for the docs).  Let's create a distribution with 10,000 samples and create basic histogram.
+This loads up the `mc2d` package and gives us access to the `*pert` functions, where `*` is `d`, `p`, `q` and `r` and corresponds to the convention within R for distribution functions (do a `help(rpert)` for the docs).  Let's create a distribution with 10,000 samples and create basic histogram.
 
 
 ```r
@@ -49,7 +49,7 @@ summary(est)
 ```
 
 
-You can see what the output is and you can repeat this if you set the same seed.  But the range of values is between 50 and 437 (doesn't quite reach 500), and the mode isn't easy to pick out from these numbers (it's a continuous distribution).  Let's see what it looks like in a histogram with ggplot.
+You can see what the output is and you can repeat this if you set the same seed.  But the range of values is between 50 and 437 (doesn't quite reach 500), and the mode isn't easy to pick out from these numbers (it's a continuous distribution).  Let's see what it looks like in a histogram with `ggplot`.
 
 
 ```r
@@ -64,7 +64,7 @@ print(gg)
 
 
 
-Now I've been really digging density plots lately to show distributions.  They smooth things out and make it pretty, so let's create a histogram again (and set the "y" value to a magical "..density..") and overlay a density plot so we can get a feel for what the curve looks like.
+Now I've been really digging density plots lately to show distributions.  They smooth things out and make it pretty, so let's create a histogram again (and set the "`y`" value to a magical "`..density..`") and overlay a density plot so we can get a feel for what the curve looks like.
 
 
 ```r
@@ -82,7 +82,7 @@ print(gg)
 Now the most likely value we set is clear to be around a hundred.
 
 ### Confidence value
-Now there's that fourth value in the betaPERT call that is used in what's called a "modified PERT" distribution and was developed by David Vose.  It sets the kurtosis (also called the "peakedness" or as we called it the "confidence") of the distribution, as the number gets higher, the distribution will cluster a lot more around the most likely value, with lower values the peak mellows out a bit.  The original betaPERT function was designed with a kurtosis of 4, so some like to think of that as the beginning reference and modify the kurtosis.  Let's see what different values do to the curve, with the rpert function, we pass this in as the shape parameter.
+Now there's that fourth value in the betaPERT call that is used in what's called a "modified PERT" distribution and was developed by David Vose.  It sets the [kurtosis](http://en.wikipedia.org/wiki/Kurtosis) (also called the "peakedness" or as we called it the "confidence") of the distribution, as the number gets higher, the distribution will cluster a lot more around the most likely value, with lower values the peak mellows out a bit.  The original betaPERT function was designed with a kurtosis of 4, so some like to think of that as the beginning reference and modify the kurtosis.  Let's see what different values do to the curve, with the `rpert` function, we pass this in as the shape parameter.
 
 
 ```r
@@ -101,12 +101,12 @@ print(gg)
 <a href="/blog/images/2014/01/severski/confidence.svg" target="_blank"><img src="/blog/images/2014/01/severski/confidence.svg" style="max-width:100%" class="deirfig"/></a>
 
 
-Now we get a visual here of what the values in that confidence mean.  All the code is on the page, so fire up R and try out some different values in the "k" values above and see how they work out!
+Now we get a visual here of what the values in that confidence mean.  All the code is on the page, so fire up RStudio and try out some different values in the "`k`" values above and see how they work out!
 
 ### One last "fun" thing: ALE
-One of the examples I used to give with OpenPERT was to do the classic Annualized Loss Expectancy (ALE) example but with Monte Carlo simulations.  For the uninitiated, ALE attempts to estimate annual loss by multiplying the Annual Rate of Occurrence (ARO) by the Single Loss Expectancy (SLE).  Basically, estimate how many times a bad thing will occur (on average) and how much it will cost each time (on average) and then multiply those.  One of the issues with this is that any given year won't be like any other year and any two events may have different loss with each, so multplying averages like this makes for some odd results... Enter the BetaPERT distribution.
+One of the examples I used to give with OpenPERT was to do the classic [Annualized Loss Expectancy](http://en.wikipedia.org/wiki/Annualized_Loss_Expectancy) (ALE) example but with Monte Carlo simulations.  For the uninitiated, ALE attempts to estimate annual loss by multiplying the Annual Rate of Occurrence (ARO) by the Single Loss Expectancy (SLE).  Basically, estimate how many times a bad thing will occur (on average) and how much it will cost each time (on average) and then multiply those.  One of the issues with this is that any given year won't be like any other year and any two events may have different loss with each, so multplying averages like this makes for some odd results... Enter the BetaPERT distribution.
 
-Let's say an event of a lost laptop occurs at a minimum 10 times in a year, at a maximum we may lose up to 60, but most likely around 2 a month, so 24 in a year. This will be the "aro" variable.
+Let's say an event of a lost laptop occurs at a minimum 10 times in a year, at a maximum we may lose up to 60, but most likely around 2 a month, so 24 in a year. This will be the "`aro`" variable.
 
 For each event, we'd have to replace the laptop and occasionally we have some lost productivity and sometime lost data we have to deal with, so let's say $800 to $10,000, with the most likely around $1,000, but we know there is more variety here, so let's make the confidence a "2" on this.  This will be the "sle" variable.
 
@@ -125,7 +125,7 @@ sle <- rpert(n, 800, 1000, 10000, shape = 2)
 ```
 
 
-Now what's great about R is we can simply multiple the two vectors (as variables) together and it does the right thing.
+Now what's great about R is we can simply multiply the two vectors (as variables) together and it does the right thing.
   
 
 ```r
@@ -146,7 +146,7 @@ print(gg)
 <a href="/blog/images/2014/01/severski/ale.svg" target="_blank"><img src="/blog/images/2014/01/severski/ale.svg" style="max-width:100%" class="deirfig"/></a>
 
 
-So it looks like most likely lost laptops (assuming we could back up those estimations), would most likely be around $50,000 per year, with years going above that.  The summary command could be useful too.
+So it looks like most likely lost laptops (assuming we could back up those estimations), would most likely be around $50,000 per year, with years going above that.  The `summary` command could be useful too.
 
 ```r
 summary(ale)
