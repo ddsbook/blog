@@ -8,7 +8,7 @@ library(reshape2)
 
 mdl.df <- read.csv(file="~/Desktop/mdl.csv", 
                    col.names=c('date', 'domain', 'ip', 'reverse',
-                               'description', 'registrant', 'asn',
+                               'description', 'registrant', 'asn', 
                                'inactive','country'))
 
 # take a look at the structure of the data
