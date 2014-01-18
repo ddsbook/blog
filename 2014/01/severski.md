@@ -82,7 +82,7 @@ print(gg)
 Now the most likely value we set is clear to be around a hundred.
 
 ### Confidence value
-Now there's that fourth value in the betaPERT call that is used in what's called a "modified PERT" distribution and was developed by David Vose.  It sets the [kurtosis](http://en.wikipedia.org/wiki/Kurtosis) (also called the "peakedness" or as we called it the "confidence") of the distribution, as the number gets higher, the distribution will cluster a lot more around the most likely value, with lower values the peak mellows out a bit.  The original betaPERT function was designed with a kurtosis of 4, so some like to think of that as the beginning reference and modify the kurtosis.  Let's see what different values do to the curve, with the `rpert` function, we pass this in as the shape parameter.
+Now there's that fourth value in the betaPERT call that is used in what's called a "modified PERT" distribution and was [developed by David Vose](http://www.vosesoftware.com/ModelRiskHelp/index.htm#Distributions/Continuous_distributions/Modified_PERT_distribution.htm).  It sets the [kurtosis](http://en.wikipedia.org/wiki/Kurtosis) (also called the "peakedness" or as we called it the "confidence") of the distribution, as the number gets higher, the distribution will cluster a lot more around the most likely value, with lower values the peak mellows out a bit.  The original betaPERT function was designed with a kurtosis of 4, so some like to think of that as the beginning reference and modify the kurtosis.  Let's see what different values do to the curve, with the `rpert` function, we pass this in as the shape parameter.
 
 
 ```r
