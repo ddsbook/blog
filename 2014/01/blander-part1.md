@@ -17,7 +17,7 @@ I recently got some data from my friend Daniel Blander.  He and I were talking a
 
 Eventually I'll want to ask questions of this data.  Before I get to that, I'll want to explore this data, figure out what we have and what kinds of questions the data would be able to answer.  This is officially called exploratory data analysis (EDA) and it's attributed to [John Tukey](http://en.wikipedia.org/wiki/John_Tukey).  We'll use whatever we can to figure out what we've got in this data and simply improve our intuition about the data.  This should help use make connections and discoveries we wouldn't normally see.
 
-I wrote a quick parser (in Python) to convert the `iptables` log to a CSV, so I want to load the output of that up.
+I wrote a quick parser (in Python) to convert the `iptables` log to a `CSV`, so I want to load the output of that up.
 
 ```r
 csv <- read.csv("marx.csv")
@@ -38,9 +38,9 @@ head(csv)
 
 If you'd like to follow along at home, the <a href="http://datadrivensecurity.info/blog/data/2014/01/marx.gz" download="marx.gz">csv is available for download</a>.
 
-In case you don't recognize those source (src) and destination (dst) fields those are IP addresses.  They are much easier to store (and manipulate) in a long integer format than as a string in the dotted quad formats.  If you, too, work with large data sets or store addresses in a database, please convert to long first!
+In case you don't recognize those source (`src`) and destination (`dst`) fields those are IP addresses.  They are much easier to store (and manipulate) in a long integer format than as a string in the dotted quad formats.  If you, too, work with large data sets or store addresses in a database, please convert to long first!
 
-R provides a really nice summary() function that gives us a nice overall view of the data we have.
+R provides a really nice `summary()` function that gives us a nice overall view of the data we have.
 
 ```r
 summary(csv)
@@ -73,9 +73,9 @@ summary(csv)
 ##  NA's   :44811
 ```
 
-Looks like the host names are also going to help us determine the location of the hosts (that will be handy later).  Also the protocols (in the "proto" field) show that we had around 4 times as many TCP packets as UDP and even less ICMP packets.  Also, the source and destination ports (spt and dpt) show what's known as a five-number summary with the mean included.  It gives us an idea of the spread of ports used. 
+Looks like the host names are also going to help us determine the location of the hosts (that will be handy later).  Also the protocols (in the "`proto`" field) show that we had around 4 times as many `TCP` packets as `UDP` and even less `ICMP` packets.  Also, the source and destination ports (`spt` and `dpt`) show what's known as a five-number summary with the mean included.  It gives us an idea of the spread of ports used. 
 
-R naturally converted the numeric fields to numbers but we may not want that on all the fields.  TCP and UDP ports are not really numbers and the ICMP type field (type) has an integer that represents the type of ICMP packet.  Let's convert that back to factor and look at the summary of the ICMP packet types.
+R naturally converted the numeric fields to numbers but we may not want that on all the fields.  `TCP` and `UDP` ports are not really numbers and the `ICMP` type field (type) has an integer that represents the type of `ICMP` packet.  Let's convert that back to factor and look at the summary of the `ICMP` packet types.
 
 ```r
 csv$type <- factor(csv$type)
@@ -87,7 +87,7 @@ summary(csv$type)
 ##    536   4251    127  38597   1156      2    142 406770
 ```
 
-The NA's are produced when there is no value (the protocol was not ICMP), but we can see that ICMP type 8 (ping) is the most seen icmp type. We could make a bar chart of that later perhaps, but it's enough to just see the numbers. Okay, now what?  Let's use the timestamp on the entries and plot the activity on each host over time.  We will want to look for any stretches of missing data, etc.
+The `NA`'s are produced when there is no value (the protocol was not `ICMP`), but we can see that `ICMP` type 8 (ping) is the most seen icmp type. We could make a bar chart of that later perhaps, but it's enough to just see the numbers. Okay, now what?  Let's use the timestamp on the entries and plot the activity on each host over time.  We will want to look for any stretches of missing data, etc.
 
 
 ```r
@@ -108,7 +108,7 @@ head(hosts)
 ## 6 2013-03-08 groucho-eu   73
 ```
 
-You can see the effect of aggregate() on the data.  It counted up the how many unique hosts for each day and put that into the freq column.  Now we can plot these just to see if we have any obvious holes or missing data.  Because the "day" column is a date field, the ggplot library will be smart about handling it on the x-axis.
+You can see the effect of `aggregate()` on the data.  It counted up the how many unique hosts for each day and put that into the freq column.  Now we can plot these just to see if we have any obvious holes or missing data.  Because the "`day`" column is a date field, the `ggplot` library will be smart about handling it on the x-axis.
 
 ```r
 library(ggplot2)
@@ -185,4 +185,4 @@ print(gg)
 
 This is interesting, looks like the hosts in Oregon, Singapore and Tokyo are seeing about twice as many hosts as the others.  It might be nice to attribute that to geographical differences or perhaps these IP addresses have a history (prior to Daniel getting them), but we can't really assume any of those at this point.  
 
-This post got long quick, so in the next post, we will continue to explore this data by looking at the ports.  But we've already learned a great deal about this data.  We know it's mostly TCP, though UDP and ICMP traffic is in there.  We also know there is a big difference if we look at total packets or if we look at unique hosts.  All of this will be something to keep in mind as proceed on in our exploration next time.
+This post got long quick, so in the next post, we will continue to explore this data by looking at the ports.  But we've already learned a great deal about this data.  We know it's mostly `TCP`, though `UDP` and `ICMP` traffic is in there.  We also know there is a big difference if we look at total packets or if we look at unique hosts.  All of this will be something to keep in mind as proceed on in our exploration next time.
