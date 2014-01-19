@@ -47,16 +47,23 @@ svg {
 	text-align:center;
 }
 
+select {
+	font-family:Lato;
+	font-size:20px;
+}
+
 </style>
 </head>
 <body>
 	<div id="map"></div><br/>
-	<div id="mlab"></div><br/>
-	<center>Dot opacity:	<input type="range" name="dotopacity" min="0.1" max="1.0" step="0.1" value="0.2"> 
-	Dot size:	<input type="range" name="dotsize" min="0.5" max="3.0" step="0.5" value="1.0"> 
-	<input type="button" value="merc" onclick="merc();"/> 
-	<input type="button" value="wink" onclick="wink();"/>
-	<input type="button" value="equi" onclick="equi();"/><br/><br/></center>
+	<div id="mlab"><select id="prjsel" class="prjsel">
+		<option value="merc();">Mercator Projection</option>
+		<option value="wink();" SELECTED>Winkel Tripel Projection</option>
+		<option value="equi();">Equirectangular Projection</option>
+	</select><br/>
+	Dot opacity:	<input type="range" name="dotopacity" min="0.1" max="1.0" step="0.1" value="0.2"> 
+	Dot size:	<input type="range" name="dotsize" min="0.5" max="3.0" step="0.5" value="1.0"><br/><br/>
+	</div>
 	<div id="zoom"></div><br/>
 	
 <script src="d3.v3.min.js"></script>
@@ -79,7 +86,6 @@ makeFlys = function() {
 	// do the same for mercator and equirectangular
 	
 	var currProj = "winkel"
-	$("#mlab").text("Winkel Tripel Projection")
 
 	var winkel = d3.geo.winkel3()
 	    .scale(145)
@@ -96,6 +102,7 @@ makeFlys = function() {
 	    .translate([(width / 2)-10, (height / 2)-30])
 	    .precision(.1);
 
+	// make a zoomed-in version of the maps
 
 	var winkelZoom = d3.geo.winkel3()
 	    .scale(800)
@@ -116,12 +123,13 @@ makeFlys = function() {
 	// auto-apply our new projections to paths we make
 
 	var wPath = d3.geo.path().projection(winkel);
-	var wzPath = d3.geo.path().projection(winkelZoom);
-
 	var mPath = d3.geo.path().projection(mercator);
-	var mzPath = d3.geo.path().projection(mercatorZoom);
-	
 	var ePath = d3.geo.path().projection(equirectangular);
+
+  // and the ZOOM!
+
+	var wzPath = d3.geo.path().projection(winkelZoom);
+	var mzPath = d3.geo.path().projection(mercatorZoom);
 	var ezPath = d3.geo.path().projection(equirectangularZoom);
 
 	// append a startng svg, trimming view to get rid of Antarctica
@@ -132,6 +140,8 @@ makeFlys = function() {
 	    .attr("width", width)
 	    .attr("height", height-90);
 
+	// and the ZOOM!
+
 	var wzSvg = d3.select("#zoom").append("svg")
 	    .attr("class","d3map")
 	    .attr("width", width)
@@ -140,9 +150,7 @@ makeFlys = function() {
 	// we'll need this helper function to convert our points
 	// to the projection coordinate system
 	
-	pts = function(d) {
-		return([+d.longitude, +d.latitude]);
-	}
+	pts = function(d) { return([+d.longitude, +d.latitude]); }
 
   // build the world from the topojson data
 
@@ -151,7 +159,6 @@ makeFlys = function() {
 		if (currProj != "equi") {
 			
 			currProj = "equi"
-			$("#mlab").text("Equirectangular Projection")
 	
 		  wSvg.selectAll(".wland")
 		      .attr("d", ePath);
@@ -163,6 +170,7 @@ makeFlys = function() {
 	      .attr("cx", function(d) { return equirectangular(pts(d))[0]; })
 	      .attr("cy", function(d) { return equirectangular(pts(d))[1]; })
 
+			// and the ZOOM
 
 		  wzSvg.selectAll(".wland")
 		      .attr("d", ezPath);
@@ -183,7 +191,6 @@ makeFlys = function() {
 		if (currProj != "winkel") {
 			
 			currProj = "winkel"
-			$("#mlab").text("Winkel Tripel Projection")
 	
 		  wSvg.selectAll(".wland")
 		      .attr("d", wPath);
@@ -195,6 +202,7 @@ makeFlys = function() {
 	      .attr("cx", function(d) { return winkel(pts(d))[0]; })
 	      .attr("cy", function(d) { return winkel(pts(d))[1]; })
 
+			// and the ZOOM
 
 		  wzSvg.selectAll(".wland")
 		      .attr("d", wzPath);
@@ -215,7 +223,6 @@ makeFlys = function() {
 		if (currProj != "merc") {
 			
 			currProj = "merc"
-			$("#mlab").text("Mercator Projection")
 	
 		  wSvg.selectAll(".wland")
 		      .attr("d", mPath);
@@ -227,7 +234,8 @@ makeFlys = function() {
 	      .attr("cx", function(d) { return mercator(pts(d))[0]; })
 	      .attr("cy", function(d) { return mercator(pts(d))[1]; })
 
-	
+			// and the ZOOM
+
 		  wzSvg.selectAll(".wland")
 		      .attr("d", mzPath);
 
@@ -244,19 +252,12 @@ makeFlys = function() {
 
 	d3.json("world-50m.json", function(error, world) {
 
-		// make the ocean
+		// make the ocean and land
 	
 		wSvg.append("rect")
 			  .attr("width", width)
 			  .attr("height", height-90)
 				.attr("fill","white");
-	
-		wzSvg.append("rect")
-			  .attr("width", width)
-			  .attr("height", height-90)
-				.attr("fill","white");
-
-		// make the land 
 	
 	  wSvg.insert("path", ".graticule")
 	      .datum(topojson.feature(world, world.objects.land))
@@ -268,6 +269,12 @@ makeFlys = function() {
 	      .attr("class", "wboundary")
 	      .attr("d", wPath);
 
+		// and the ZOOM
+	
+		wzSvg.append("rect")
+			  .attr("width", width)
+			  .attr("height", height-90)
+				.attr("fill","white");
 	
 	  wzSvg.insert("path", ".graticule")
 	      .datum(topojson.feature(world, world.objects.land))
@@ -297,6 +304,8 @@ makeFlys = function() {
 	      .attr("cy", function(d) { return winkel(pts(d))[1]; })
 	      .attr("r", function(d) { return rad; });
 				
+			// and the ZOOM!
+			
 		  wzSvg.selectAll(".wbot")
 		    .data(marx)
 		    .enter()
@@ -317,6 +326,7 @@ makeFlys();
 
 var $op = $('input[name="dotopacity"]');
 var $si = $('input[name="dotsize"]');
+var $ps = $('#prjsel');
 
 $op.bind('change', function(e) {
     e.preventDefault();
@@ -327,6 +337,12 @@ $si.bind('change', function(e) {
     e.preventDefault();
 		rad = $(this).val();
 		d3.selectAll(".wbot").attr("r",$(this).val());
+});
+
+$ps.bind('change', function(e) {
+    e.preventDefault();
+		var prjFunc = $(this).val();
+		eval(prjFunc);
 });
 
 </script>
