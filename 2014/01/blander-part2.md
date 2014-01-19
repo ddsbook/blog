@@ -81,6 +81,7 @@ I've been thinking about this for quite a while.  I know there's something in th
 I've also looked at other representations and found myself wondering what I was looking at.  For example, look at the [SANS DShield data on port 1433](http://www.dshield.org/port.html?port=1433).  I love that the DShield data is out there and available/searchable like that, but can you look at that plot and understand it's relative importance?  It seems like 40,000 hosts are a lot, but is this out of millions of collection points or twenty? It's hard to tell if this is really scary or just noisy -- a total count (of whatever) isn't helpful if we don't know the context (the sample we are counting within).
 
 So I figured there are a few things I should strive for:
+
 * Measure ports in a scale that has meaning to the reader
 * Measurements should be comparable across ports
 * Measurements should be mentally scalable (from one to thousands)
