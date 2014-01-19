@@ -21,7 +21,7 @@
 	fill-opacity:0.2;
 	stroke:#ffffcc;
 	stroke-width:0.15;
-	fill:#f3b24c;
+	fill:#94bb5f;
 }
 
 svg {
@@ -50,15 +50,14 @@ svg {
 </style>
 </head>
 <body>
-<center>Dot opacity:	<input type="range" name="dotopacity" min="0.1" max="1.0" step="0.1" value="0.2"> 
-Dot size:	<input type="range" name="dotsize" min="0.5" max="3.0" step="0.5" value="1.0"> 
-<input type="button" value="merc" onclick="merc();"/> 
-<input type="button" value="wink" onclick="wink();"/>
-<input type="button" value="equi" onclick="equi();"/><br/></center>
-
-
 	<div id="map"></div><br/>
 	<div id="mlab"></div><br/>
+	<center>Dot opacity:	<input type="range" name="dotopacity" min="0.1" max="1.0" step="0.1" value="0.2"> 
+	Dot size:	<input type="range" name="dotsize" min="0.5" max="3.0" step="0.5" value="1.0"> 
+	<input type="button" value="merc" onclick="merc();"/> 
+	<input type="button" value="wink" onclick="wink();"/>
+	<input type="button" value="equi" onclick="equi();"/><br/><br/></center>
+	<div id="zoom"></div><br/>
 	
 <script src="d3.v3.min.js"></script>
 <script src="d3.geo.projection.v0.min.js"></script>
@@ -69,12 +68,7 @@ makeFlys = function() {
 	// setup sizes so it fits in our blog post :-)
 	
 	var rad = 1.0 ;
-	
-	// transition stuff
-	
-	var dtime = 1 ; 
-	var easeType = "linear";
-	
+		
 	var width = 630,
 	    height = 500;
 
@@ -102,18 +96,43 @@ makeFlys = function() {
 	    .translate([(width / 2)-10, (height / 2)-30])
 	    .precision(.1);
 
+
+	var winkelZoom = d3.geo.winkel3()
+	    .scale(800)
+	    .translate([(width / 2)-200, (height*1.75)])
+	    .precision(.1);
+
+	var mercatorZoom = d3.geo.mercator()
+	    .scale(525)
+	    .translate([(width / 2)-200, (height*1.4)])
+	    .precision(.1);
+
+	var equirectangularZoom = d3.geo.equirectangular()
+	    .scale(550)
+	    .translate([(width / 2)-200, (height*1.4)])
+	    .precision(.1);
+
+
 	// auto-apply our new projections to paths we make
 
 	var wPath = d3.geo.path().projection(winkel);
+	var wzPath = d3.geo.path().projection(winkelZoom);
 
 	var mPath = d3.geo.path().projection(mercator);
+	var mzPath = d3.geo.path().projection(mercatorZoom);
 	
 	var ePath = d3.geo.path().projection(equirectangular);
+	var ezPath = d3.geo.path().projection(equirectangularZoom);
 
 	// append a startng svg, trimming view to get rid of Antarctica
 	// well, in _most_ of the projections
 
 	var wSvg = d3.select("#map").append("svg")
+	    .attr("class","d3map")
+	    .attr("width", width)
+	    .attr("height", height-90);
+
+	var wzSvg = d3.select("#zoom").append("svg")
 	    .attr("class","d3map")
 	    .attr("width", width)
 	    .attr("height", height-90);
@@ -135,17 +154,25 @@ makeFlys = function() {
 			$("#mlab").text("Equirectangular Projection")
 	
 		  wSvg.selectAll(".wland")
-				  //.transition().duration(dtime).ease(easeType)
 		      .attr("d", ePath);
 
-		  wSvg.selectAll(".graticule")
-				  .transition().ease(easeType)
+		  wSvg.selectAll(".wboundary")
 		      .attr("d", ePath);
 	
 		  wSvg.selectAll(".wbot")
-			  //.transition().duration(dtime).ease(easeType)
 	      .attr("cx", function(d) { return equirectangular(pts(d))[0]; })
 	      .attr("cy", function(d) { return equirectangular(pts(d))[1]; })
+
+
+		  wzSvg.selectAll(".wland")
+		      .attr("d", ezPath);
+
+		  wzSvg.selectAll(".wboundary")
+		      .attr("d", ezPath);
+
+		  wzSvg.selectAll(".wbot")
+	      .attr("cx", function(d) { return equirectangularZoom(pts(d))[0]; })
+	      .attr("cy", function(d) { return equirectangularZoom(pts(d))[1]; })
 
 	  }
 
@@ -159,17 +186,25 @@ makeFlys = function() {
 			$("#mlab").text("Winkel Tripel Projection")
 	
 		  wSvg.selectAll(".wland")
-				  //.transition().duration(dtime).ease(easeType)
 		      .attr("d", wPath);
 
-		  wSvg.selectAll(".graticule")
-				  //.transition().duration(dtime).ease(easeType)
+		  wSvg.selectAll(".wboundary")
 		      .attr("d", wPath);
 	
 		  wSvg.selectAll(".wbot")
-			  //.transition().duration(dtime).ease(easeType)
 	      .attr("cx", function(d) { return winkel(pts(d))[0]; })
 	      .attr("cy", function(d) { return winkel(pts(d))[1]; })
+
+
+		  wzSvg.selectAll(".wland")
+		      .attr("d", wzPath);
+
+		  wzSvg.selectAll(".wboundary")
+		      .attr("d", wzPath);
+
+		  wzSvg.selectAll(".wbot")
+	      .attr("cx", function(d) { return winkelZoom(pts(d))[0]; })
+	      .attr("cy", function(d) { return winkelZoom(pts(d))[1]; })
 				
 		}
 		
@@ -183,17 +218,25 @@ makeFlys = function() {
 			$("#mlab").text("Mercator Projection")
 	
 		  wSvg.selectAll(".wland")
-				  //.transition().duration(dtime).ease(easeType)
 		      .attr("d", mPath);
 
-		  wSvg.selectAll(".graticule")
-				  //.transition().duration(dtime).ease(easeType)
+		  wSvg.selectAll(".wboundary")
 		      .attr("d", mPath);
 	
 		  wSvg.selectAll(".wbot")
-			  //.transition().duration(dtime).ease(easeType)
 	      .attr("cx", function(d) { return mercator(pts(d))[0]; })
 	      .attr("cy", function(d) { return mercator(pts(d))[1]; })
+
+	
+		  wzSvg.selectAll(".wland")
+		      .attr("d", mzPath);
+
+		  wzSvg.selectAll(".wboundary")
+		      .attr("d", mzPath);
+
+		  wzSvg.selectAll(".wbot")
+	      .attr("cx", function(d) { return mercatorZoom(pts(d))[0]; })
+	      .attr("cy", function(d) { return mercatorZoom(pts(d))[1]; })
 
 	  }
 
@@ -206,7 +249,12 @@ makeFlys = function() {
 		wSvg.append("rect")
 			  .attr("width", width)
 			  .attr("height", height-90)
-				.attr("fill","#1C6BA0");
+				.attr("fill","white");
+	
+		wzSvg.append("rect")
+			  .attr("width", width)
+			  .attr("height", height-90)
+				.attr("fill","white");
 
 		// make the land 
 	
@@ -219,6 +267,18 @@ makeFlys = function() {
 	      .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
 	      .attr("class", "wboundary")
 	      .attr("d", wPath);
+
+	
+	  wzSvg.insert("path", ".graticule")
+	      .datum(topojson.feature(world, world.objects.land))
+	      .attr("class", "wland")
+	      .attr("d", wzPath);
+
+	  wzSvg.insert("path", ".graticule")
+	      .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
+	      .attr("class", "wboundary")
+	      .attr("d", wzPath);
+
 
 		// add the bots
 		// https://zeustracker.abuse.ch/images/googlemaps/googledb.php
@@ -235,6 +295,15 @@ makeFlys = function() {
 				.attr("class", "wbot")
 	      .attr("cx", function(d) { return winkel(pts(d))[0]; })
 	      .attr("cy", function(d) { return winkel(pts(d))[1]; })
+	      .attr("r", function(d) { return rad; });
+				
+		  wzSvg.selectAll(".wbot")
+		    .data(marx)
+		    .enter()
+				.append("circle")
+				.attr("class", "wbot")
+	      .attr("cx", function(d) { return winkelZoom(pts(d))[0]; })
+	      .attr("cy", function(d) { return winkelZoom(pts(d))[1]; })
 	      .attr("r", function(d) { return rad; });
 							
 		});
