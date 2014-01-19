@@ -1,7 +1,6 @@
 Title: SolvoMediocris : An Example Of Using Shiny For Interactive Data Analysis 
 Date: 2014-01-18 21:00:00
 Category: dataviz
-Status: draft
 Tags: shiny, R
 Slug: solvo-mediocris
 Author: Bob Rudis (@hrbrmstr)
@@ -13,7 +12,7 @@ An innocent thread on the [SIRA mailing list](http://societyinforisk.org/) begat
 	
 _(see Jay's post & David's gist for complete context)_
 
-In a nutshell, David made a great R simulation of a [FAIR](http://en.wikipedia.org/wiki/Factor_analysis_of_information_risk) risk analysis. So great, in fact, that it was really straightforward to turn into a [Shiny](http://www.rstudio.com/shiny/) app. To quote from their site: "Shiny makes it super simple for R users like you to turn analyses into interactive web applications that anyone can use."
+In a nutshell, David made a great R simulation of a [FAIR](http://en.wikipedia.org/wiki/Factor_analysis_of_information_risk) risk analysis. So great, in fact, that it was really straightforward to turn it into a [Shiny](http://www.rstudio.com/shiny/) app. To quote from their site: "Shiny makes it super simple for R users like you to turn analyses into interactive web applications that anyone can use."
 
 Readers will no doubt be seeing many Shiny apps from DDS over the coming months/years. I will refrain from duplicating content in the extremely helpful [Shiny tutorial](http://rstudio.github.io/shiny/tutorial/) series, so you should head over there and read through that first before continuing here. 
 
@@ -75,7 +74,7 @@ Here's the `ui.R` code:
 			
 	))
 
-As you can see, (hopefully) it's pretty readable/digestible without explanation. Shiny lets you use templates and you can even use raw HTML with callbacks to the server. However, as you can see it's quick work to use the "HTML functions" exposed by the `shiny` package to knock out a basic interface.  The `tef…`, `tcap…` etc names become `input$tef…` variables on the server and the innate "reactive" functionality of the Shiny framework makes it super-simple to process those values as they change. The `mainPanel()` function defines the output areas for what the server will generate.
+As you can see, (hopefully) it's pretty readable/digestible without much explanation. Shiny lets you use templates and you can even use raw HTML with callbacks to the server. However, as you can see it's quick work to use the "HTML functions" exposed by the `shiny` package to knock out a basic interface.  The `tef…`, `tcap…` etc names become `input$tef…` variables on the server and the innate "reactive" functionality of the Shiny framework makes it super-simple to process those values as they change. The `mainPanel()` function defines the output areas for what the server will generate.
 
 The server side is pretty lean as you can see in `server.R`:
 
@@ -140,4 +139,4 @@ The server side is pretty lean as you can see in `server.R`:
 
 Anytime one of the input variables changes, `simulate` "invalidates" and the simulation is re-run and the outputs (plot and data)are updated.
 
-We'll cover Shiny in more detail in upcoming posts and as we build more apps. In the meantime, you can grab these source files over at our [gist](https://gist.github.com/hrbrmstr/8499598) and drop a note in the comments if you have any questions.
+We'll cover Shiny in more detail in upcoming posts and as we build more apps. In the meantime, you can grab these source files over at our [gist](https://gist.github.com/hrbrmstr/8499598), play with [the app](http://shiny.dds.ec/solvomediocris/) and drop a note in the comments if you have any questions.
