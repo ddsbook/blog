@@ -36,38 +36,44 @@ svg {
 	width:630px;
 }
 
-#wink, #equi, #merc {
+#map, #mlab {
   display: block;
 	width:630px;
 	max-width:100%;
-	display:inline;
 	margin-left:auto;
 	margin-right:auto;
+	font-family:Lato;
+	font-weight:400;
+	text-align:center;
 }
 
 </style>
 </head>
 <body>
 <center>Dot opacity:	<input type="range" name="dotopacity" min="0.1" max="1.0" step="0.1" value="0.2"> 
-Dot size:	<input type="range" name="dotsize" min="1.0" max="3.0" step="0.5" value="1.0"> 
+Dot size:	<input type="range" name="dotsize" min="0.5" max="3.0" step="0.5" value="1.0"> 
 <input type="button" value="merc" onclick="merc();"/> 
 <input type="button" value="wink" onclick="wink();"/>
 <input type="button" value="equi" onclick="equi();"/><br/></center>
 
 
-	<div id="wink"></div><br/>
-	<div id="merc"></div><br/>
-	<div id="equi"></div><br/>	
+	<div id="map"></div><br/>
+	<div id="mlab"></div><br/>
 	
 <script src="d3.v3.min.js"></script>
 <script src="d3.geo.projection.v0.min.js"></script>
 <script src="topojson.v1.min.js"></script>
 <script>
-makeBots = function() {
+makeFlys = function() {
 	
 	// setup sizes so it fits in our blog post :-)
 	
-	var rad = 1 ;
+	var rad = 1.0 ;
+	
+	// transition stuff
+	
+	var dtime = 1000 ; 
+	var easeType = "bounce";
 	
 	var width = 630,
 	    height = 500;
@@ -75,6 +81,11 @@ makeBots = function() {
 	// setup Winkel tripel projection, again sizing
 	// it properly so the portion of the world we care
 	// about fits in our blog post div
+	//
+	// do the same for mercator and equirectangular
+	
+	var currProj = "winkel"
+	$("#mlab").text("Winkel Tripel Projection")
 
 	var winkel = d3.geo.winkel3()
 	    .scale(145)
@@ -91,7 +102,7 @@ makeBots = function() {
 	    .translate([(width / 2)-10, (height / 2)-30])
 	    .precision(.1);
 
-	// auto-apply our new projection to paths we make
+	// auto-apply our new projections to paths we make
 
 	var wPath = d3.geo.path().projection(winkel);
 
@@ -100,78 +111,92 @@ makeBots = function() {
 	var ePath = d3.geo.path().projection(equirectangular);
 
 	// append a startng svg, trimming view to get rid of Antarctica
+	// well, in _most_ of the projections
 
-	var wSvg = d3.select("#wink").append("svg")
+	var wSvg = d3.select("#map").append("svg")
 	    .attr("class","d3map")
 	    .attr("width", width)
 	    .attr("height", height-90);
 		
-
-	var mSvg = d3.select("#merc").append("svg")
-		  .attr("class","d3map")
-	    .attr("width", width)
-	    .attr("height", height-90);
-
-	var eSvg = d3.select("#equi").append("svg")
-		  .attr("class","d3map")
-	    .attr("width", width)
-	    .attr("height", height-90);
-		
-	// we'll need this helper function to convert our maker points
+	// we'll need this helper function to convert our points
 	// to the projection coordinate system
 	
 	pts = function(d) {
-		return([+d3.select(d).attr("lng"), +d3.select(d).attr("lat")]);
+		return([+d.longitude, +d.latitude]);
 	}
 
   // build the world from the topojson data
 
   equi = function() {
+		
+		if (currProj != "equi") {
+			
+			currProj = "equi"
+			$("#mlab").text("Equirectangular Projection")
 	
-	  wSvg.selectAll(".wland")
-			  .transition().duration(100).ease("circle")
-	      .attr("d", ePath);
+		  wSvg.selectAll(".wland")
+				  .transition().duration(dtime).ease(easeType)
+		      .attr("d", ePath);
 
-	  wSvg.selectAll(".graticule")
-			  .transition().ease("circle")
-	      .attr("d", ePath);
+		  wSvg.selectAll(".graticule")
+				  .transition().ease(easeType)
+		      .attr("d", ePath);
 	
-	  wSvg.selectAll(".wbot")
-		  .transition().duration(100).ease("circle")
-      .attr("cx", function(d) { return equirectangular(pts(d))[0]; })
-      .attr("cy", function(d) { return equirectangular(pts(d))[1]; })
+		  wSvg.selectAll(".wbot")
+			  .transition().duration(dtime).ease(easeType)
+	      .attr("cx", function(d) { return equirectangular(pts(d))[0]; })
+	      .attr("cy", function(d) { return equirectangular(pts(d))[1]; })
+
+	  }
+
   }
 
   wink = function() {
+		
+		if (currProj != "winkel") {
+			
+			currProj = "winkel"
+			$("#mlab").text("Winkel Tripel Projection")
 	
-	  wSvg.selectAll(".wland")
-			  .transition().duration(100).ease("circle")
-	      .attr("d", wPath);
+		  wSvg.selectAll(".wland")
+				  .transition().duration(dtime).ease(easeType)
+		      .attr("d", wPath);
 
-	  wSvg.selectAll(".graticule")
-			  .transition().duration(100).ease("circle")
-	      .attr("d", wPath);
+		  wSvg.selectAll(".graticule")
+				  .transition().duration(dtime).ease(easeType)
+		      .attr("d", wPath);
 	
-	  wSvg.selectAll(".wbot")
-		  .transition().duration(100).ease("circle")
-      .attr("cx", function(d) { return winkel(pts(d))[0]; })
-      .attr("cy", function(d) { return winkel(pts(d))[1]; })
+		  wSvg.selectAll(".wbot")
+			  .transition().duration(dtime).ease(easeType)
+	      .attr("cx", function(d) { return winkel(pts(d))[0]; })
+	      .attr("cy", function(d) { return winkel(pts(d))[1]; })
+				
+		}
+		
   }
 
   merc = function() {
+		
+		if (currProj != "merc") {
+			
+			currProj = "merc"
+			$("#mlab").text("Mercator Projection")
 	
-	  wSvg.selectAll(".wland")
-			  .transition().duration(100).ease("circle")
-	      .attr("d", mPath);
+		  wSvg.selectAll(".wland")
+				  .transition().duration(dtime).ease(easeType)
+		      .attr("d", mPath);
 
-	  wSvg.selectAll(".graticule")
-			  .transition().duration(100).ease("circle")
-	      .attr("d", mPath);
+		  wSvg.selectAll(".graticule")
+				  .transition().duration(dtime).ease(easeType)
+		      .attr("d", mPath);
 	
-	  wSvg.selectAll(".wbot")
-		  .transition().duration(100).ease("circle")
-      .attr("cx", function(d) { return mercator(pts(d))[0]; })
-      .attr("cy", function(d) { return mercator(pts(d))[1]; })
+		  wSvg.selectAll(".wbot")
+			  .transition().duration(dtime).ease(easeType)
+	      .attr("cx", function(d) { return mercator(pts(d))[0]; })
+	      .attr("cy", function(d) { return mercator(pts(d))[1]; })
+
+	  }
+
   }
 
 	d3.json("world-50m.json", function(error, world) {
@@ -201,10 +226,10 @@ makeBots = function() {
 		// use d3.xml() to read in XML data then extract lat/lng from
 		// each <marker> element
 
-		d3.xml("zeus.xml", function(error, zeus) {
+		d3.csv("latlon.csv", function(error, marx) {
 		
 		  wSvg.selectAll(".wbot")
-		    .data(zeus.documentElement.getElementsByTagName("marker"))
+		    .data(marx)
 		    .enter()
 				.append("circle")
 				.attr("class", "wbot")
@@ -219,7 +244,7 @@ makeBots = function() {
 	d3.select(self.frameElement).style("height", height + "px");
 }
 
-makeBots();
+makeFlys();
 
 var $op = $('input[name="dotopacity"]');
 var $si = $('input[name="dotsize"]');

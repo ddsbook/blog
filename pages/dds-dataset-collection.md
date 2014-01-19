@@ -1,5 +1,5 @@
 Title: DDS Dataset Collection
-Date: 2014-01-18 13:00:00
+Date: 2014-01-19 00:10:00
 Category: News
 Tags: blog, data
 Slug: dds-dataset-collection
@@ -12,4 +12,5 @@ When you're looking for risky data to play with, bookmark this page and check ba
 
 **Honeypots**
 
-- [marx.csv](/blog/data/2014/01/marx.gz) [4MB] : A gzip'd CSV file from a collection of AWS honeypots. See [Jay's blog post](http://datadrivensecurity.info/blog/posts/2014/Jan/blander-part1/) for more information.
+- [marx.csv](/blog/data/2014/01/marx.gz) [4MB] : A tar/gzip'd CSV file from a collection of AWS honeypots. See [Jay's blog post](http://datadrivensecurity.info/blog/posts/2014/Jan/blander-part1/) for more information.
+- [marx-geo.csv](/blog/data/2014/01/marx-geo.gz) [7.2MB] : A tar/gzip'd CSV file from a collection of AWS honeypots with both long int and string IPv4 addresses and full geolocation information (via MaxMind GeoIP2)
