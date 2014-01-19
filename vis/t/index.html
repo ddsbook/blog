@@ -135,7 +135,7 @@ makeFlys = function() {
 			$("#mlab").text("Equirectangular Projection")
 	
 		  wSvg.selectAll(".wland")
-				  .transition().duration(dtime).ease(easeType)
+				  //.transition().duration(dtime).ease(easeType)
 		      .attr("d", ePath);
 
 		  wSvg.selectAll(".graticule")
@@ -143,7 +143,7 @@ makeFlys = function() {
 		      .attr("d", ePath);
 	
 		  wSvg.selectAll(".wbot")
-			  .transition().duration(dtime).ease(easeType)
+			  //.transition().duration(dtime).ease(easeType)
 	      .attr("cx", function(d) { return equirectangular(pts(d))[0]; })
 	      .attr("cy", function(d) { return equirectangular(pts(d))[1]; })
 
@@ -159,15 +159,15 @@ makeFlys = function() {
 			$("#mlab").text("Winkel Tripel Projection")
 	
 		  wSvg.selectAll(".wland")
-				  .transition().duration(dtime).ease(easeType)
+				  //.transition().duration(dtime).ease(easeType)
 		      .attr("d", wPath);
 
 		  wSvg.selectAll(".graticule")
-				  .transition().duration(dtime).ease(easeType)
+				  //.transition().duration(dtime).ease(easeType)
 		      .attr("d", wPath);
 	
 		  wSvg.selectAll(".wbot")
-			  .transition().duration(dtime).ease(easeType)
+			  //.transition().duration(dtime).ease(easeType)
 	      .attr("cx", function(d) { return winkel(pts(d))[0]; })
 	      .attr("cy", function(d) { return winkel(pts(d))[1]; })
 				
@@ -183,15 +183,15 @@ makeFlys = function() {
 			$("#mlab").text("Mercator Projection")
 	
 		  wSvg.selectAll(".wland")
-				  .transition().duration(dtime).ease(easeType)
+				  //.transition().duration(dtime).ease(easeType)
 		      .attr("d", mPath);
 
 		  wSvg.selectAll(".graticule")
-				  .transition().duration(dtime).ease(easeType)
+				  //.transition().duration(dtime).ease(easeType)
 		      .attr("d", mPath);
 	
 		  wSvg.selectAll(".wbot")
-			  .transition().duration(dtime).ease(easeType)
+			  //.transition().duration(dtime).ease(easeType)
 	      .attr("cx", function(d) { return mercator(pts(d))[0]; })
 	      .attr("cy", function(d) { return mercator(pts(d))[1]; })
 
