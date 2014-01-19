@@ -116,7 +116,7 @@ gg <- gg + theme_bw()
 print(gg)
 ```
 
-<a href="/blog/images/2014/01/blander/plot-box.svg" target="_blank"><img src="/blog/images/2014/01/blander/plot-box.svg" style="max-width:100%" class="deirfig"/></a>
+<a href="/blog/images/2014/01/blander/port-box.svg" target="_blank"><img src="/blog/images/2014/01/blander/port-box.svg" style="max-width:100%" class="deirfig"/></a>
 
 
 So now we are getting somewhere with the above boxplot. If you aren't familiar with the boxplot, this is showing the distribution of values we've recorded.  This is capturing the variance in these readings.  See how 1433 has days (outliers) when they spike up over 60 hosts per day and yet dip down under 20 hosts per day.  Port 135 seems have a lot more variance compared to it's neighbors.  Why?  No idea, but maybe we'll see something if we plot this over time per port.  This is looking at an aggregate over seven montshs, we need to include the element of time and let's ditch the box plot.  Maybe we can visualize this to emphasize the element of time and perhaps make any trends more obvious. 
@@ -137,7 +137,7 @@ gg <- gg + theme_bw()
 print(gg)
 ```
 
-<a href="/blog/images/2014/01/blander/plot-smooth.svg" target="_blank"><img src="/blog/images/2014/01/blander/plot-smooth.svg" style="max-width:100%" class="deirfig"/></a>
+<a href="/blog/images/2014/01/blander/port-smooth.svg" target="_blank"><img src="/blog/images/2014/01/blander/port-smooth.svg" style="max-width:100%" class="deirfig"/></a>
 
 
 Now that's pretty interesting.  We could start to see trends over time.  What's interesting is that this is averaged across all the hosts.  So dramatic changes are smoothed out across the hosts and overall trends are much easier to see. Now there are many ways we could continue to look at this: we could use each host's values per day (not averaging across hosts), or look for differences across demographics (location, type of hosting if we had it, etc).  
