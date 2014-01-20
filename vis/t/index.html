@@ -45,6 +45,7 @@ svg {
 	font-family:Lato;
 	font-weight:400;
 	text-align:center;
+	vertical-align:center;
 }
 
 select {
@@ -56,16 +57,14 @@ select {
 </head>
 <body>
 	<div id="map"></div><br/>
-	<div id="mlab"><select id="prjsel" class="prjsel">
-		<option value="merc();">Mercator Projection</option>
-		<option value="wink();" SELECTED>Winkel Tripel Projection</option>
-		<option value="equi();">Equirectangular Projection</option>
-	</select><br/>
-	Dot opacity:	<input type="range" name="dotopacity" min="0.1" max="1.0" step="0.1" value="0.2"> 
-	Dot size:	<input type="range" name="dotsize" min="0.5" max="3.0" step="0.5" value="1.0"><br/><br/>
+	<div id="mlab">Dot opacity:	<input type="range" name="dotopacity" min="0.1" max="1.0" step="0.1" value="0.2"> <select id="prjsel" class="prjsel">
+<option value="merc();">Mercator Projection</option>
+<option value="wink();" SELECTED>Winkel Tripel Projection</option>
+<option value="equi();">Equirectangular Projection</option>
+</select> Dot size:	<input type="range" name="dotsize" min="0.5" max="3.0" step="0.5" value="1.0">
+<br/><br/>
 	</div>
 	<div id="zoom"></div><br/>
-	
 <script src="d3.v3.min.js"></script>
 <script src="d3.geo.projection.v0.min.js"></script>
 <script src="topojson.v1.min.js"></script>
