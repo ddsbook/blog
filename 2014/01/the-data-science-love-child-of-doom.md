@@ -7,7 +7,7 @@ Author: Bob Rudis (@hrbrmstr)
 
 Readers of the [data exploration in R post](http://datadrivensecurity.info/blog/drafts/data-exploration-in-r.html) will have noticed the use of Python for the extraction of TLD components of malware domain names. The excerpt in question is below:
 
-	:::SLexer
+	:::r
 	write.table(str_extract(mdl.df$domain, perl("^[a-zA-Z0-9\\-\\._]+")),
 	            file="/tmp/indomains.txt",
 	            quote=FALSE,
@@ -26,7 +26,7 @@ I used the `temp file write->script execute->temp file read` process in the main
 To get `rPython` setup in R on Linux or Mac OS X, it's just a matter of doing a standard _source_ install of the R package:
 
 
-	:::SLexer
+	:::r
 	install.packages("rPython", type="source")
 
 Most R modules work fine with a standard binary installation (i.e. leave off the `type="source"`), but you'll want `rPython` to establish bindings to *your* default Python environment (when I installed the binary version on OS X it defaulted to Python 2.6 when 2.7 was my default install and that caused some module import issues).
@@ -35,7 +35,7 @@ Those folks working on Windows systems will need to [check out the README](http:
 
 Here's what the revised code looks like using `rPython` instead of calling out to a schell script:
 
-	:::SLexer
+	:::r
 	library(rPython)
 	
 	python.exec("import tldextract")

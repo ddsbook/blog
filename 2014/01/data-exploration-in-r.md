@@ -25,7 +25,7 @@ As the original post states, this exercise mostly exists to show how to understa
 
 First, we're going to need some help from some R libraries. These will all be used throughout the code for this example. The `stringr` and `plyr` libraries give us some enhanced data munging/manipulation ability. The `MASS` library helps us with some stats work. The `data.table` library optimizes work with large data frames and the `reshape2` library help us transform the shape of our data. Finally, `ggplot2` gives us some `#spiffy` graphics tools.
 
-	:::SLexer
+	:::r
 	library(stringr)
 	library(plyr)
 	library(MASS)
@@ -46,7 +46,7 @@ Well, that's not *too* gnarily encoded (pretty much Latin-1), but it's easy enou
 
 **Note that R could have read it in the original format**. You can try it yourself by just substituting the data files used in the `read.csv()` call. I'm just following along with the crutches Python seems to need. Now, let's hoover up the data and start exploring. 
 
-	:::SLexer
+	:::r
 	mdl.df <- read.csv(file="mdl.csv", 
 	                   col.names=c('date', 'domain', 'ip', 'reverse',
 	                               'description', 'registrant', 'asn',
@@ -54,7 +54,7 @@ Well, that's not *too* gnarily encoded (pretty much Latin-1), but it's easy enou
 
  First, we take a look at the overall structure of the data and peek at the start and end of the data set.
 
-	:::SLexer
+	:::r
 	str(mdl.df)
 
 	## 'data.frame':    31015 obs. of  9 variables:
@@ -125,12 +125,12 @@ Well, that's not *too* gnarily encoded (pretty much Latin-1), but it's easy enou
 
 R uses the value `NA` to signal when data is missing so we'll need to replace all of the `'-'`'s in the source data set with `NA` values to ensure the proper functionality of many of the functions we'll be using. (We're at about `In [13]` on the CS iPython notebook for folks keeping both of them up.)
 
-	:::SLexer
+	:::r
 	mdl.df[mdl.df == "-"] <- NA
 
 That will initially let us use `complete.cases()` to remove all incomplete records from our data set.
 
-	:::SLexer
+	:::r
 	mdl.df <- mdl.df[complete.cases(mdl.df),]
 
 	# re-explore the data
@@ -185,7 +185,7 @@ That will initially let us use `complete.cases()` to remove all incomplete recor
 
 We'll follow the lead of the CS folks (`In [17]`) and push everything to lowercase, since nothing we're working with really is case sensitive.
 
-	:::SLexer
+	:::r
 	mdl.df <- data.frame(sapply(mdl.df, tolower))
 	summary(mdl.df$description)
 
@@ -198,7 +198,7 @@ We'll follow the lead of the CS folks (`In [17]`) and push everything to lowerca
 
 I haven't found an R that has the equivalent functionality of the [`tldextract`](https://github.com/john-kurkowski/tldextract) Python module, so we'll cheat and just use that module in the form of a helper script to do the domain converisons. After all, true data scientists are first and foremost pragmatists. If this were a production script, I'd've take the extra steps to do proper temporary file generation. Since it's just for me (well, us) and this post&hellip;
 
-	:::SLexer
+	:::r
 	# sub-optimal, but didn't feel like writing it in R
 	write.table(str_extract(mdl.df$domain, perl("^[a-zA-Z0-9\\-\\._]+")),
 	            file="/tmp/indomains.txt",
@@ -213,7 +213,7 @@ I haven't found an R that has the equivalent functionality of the [`tldextract`]
 
 R is a bit more formal about data types than Python is, so we'll convert the `inactive` and `country` columns before correlating them.
 
-	:::SLexer
+	:::r
 	mdl.df$inactive <- as.numeric(mdl.df$inactive)
 	mdl.df$country <- as.numeric(mdl.df$country)
     
@@ -223,7 +223,7 @@ R is a bit more formal about data types than Python is, so we'll convert the `in
 
 I didn't feel like making an R package version of ClickSecurity's `g_test` library, so I just made `gtest()` and `highest.gtest.scores()` functions {[ref](http://en.wikipedia.org/wiki/G_test)} along with a helper `gtest.plot()` charting function.
 
-	:::SLexer
+	:::r
 	# gtest() related to chi-squared, multinomial and Fisher's exact test
 	# see the ClickSecuity library for caveats to the whole process, however
 	gtest <- function(count, expected) {
@@ -321,7 +321,7 @@ We can use `highest.gtest.scores()` to see how various exploits are related to t
 
 Start with the "top 5" malware/ASN&hellip;
 
-	:::SLexer
+	:::r
 	top5 <- highest.gtest.scores(mdl.df$description, mdl.df$asn, 5, 5)
 	gtest.plot(top5, "ASN", "Expected")
 
@@ -329,7 +329,7 @@ Start with the "top 5" malware/ASN&hellip;
 
 Then take a look at the "bottom 7" malware/ASN&hellip;
 
-	:::SLexer
+	:::r
 	bottom7 <- highest.gtest.scores(mdl.df$description, mdl.df$asn, 7, 20, TRUE, 500)
 	gtest.plot(bottom7, "ASN", "Expected")
 
@@ -337,7 +337,7 @@ Then take a look at the "bottom 7" malware/ASN&hellip;
 
 And, finish by looking at the "top 5" malware/domain&hellip;
 
-	:::SLexer
+	:::r
 	top5.dom <- highest.gtest.scores(mdl.df$description, mdl.df$domain, 5)
 	gtest.plot(top5.dom, "Domain", "Expected")
 
@@ -356,7 +356,7 @@ as it makes it *way* easier to modify/tweak/refine them. `gest.plot()` also retu
 
 Following the lead of the CS example at `In [53]`, we drill down on one particular exploit, namely `trojan banker`s.
 
-	:::SLexer
+	:::r
 	# drilling down to one particluar exploit
 	banker <- mdl.df[mdl.df$description == "trojan banker",]
 	banker.gt <- highest.gtest.scores(banker$description, banker$domain, N=5)
@@ -375,7 +375,7 @@ Following the lead of the CS example at `In [53]`, we drill down on one particul
 
 So at this point the CS post switches gears, and looks at date range, volume over time, etc. we can do date conversion equally as simply in R and I think it's more straightforward to do aggregations in R, but I'm biased.
 
-	:::SLexer
+	:::r
 	# what do we have to work with string-format-wise?
 	head(as.character(mdl.df$date))
 
@@ -392,7 +392,7 @@ So at this point the CS post switches gears, and looks at date range, volume ove
 
 I draw the line (heh) at gnarly line grahps, so we choose to facet them here vs munge them all into one mess of spaghetti.
 
-	:::SLexer
+	:::r
 	gg <- ggplot(extract, aes(x=ym, y=freq, group=description))
 	gg <- gg + geom_line(aes(color=description))
 	gg <- gg + facet_wrap(~description,ncol=1)
@@ -405,7 +405,7 @@ I draw the line (heh) at gnarly line grahps, so we choose to facet them here vs 
 
 Total volume is easy peasy as well:
 
-	:::SLexer
+	:::r
 	# if you already haven't notices, count() is wicked-cool
 	extract.total <- count(mdl.df, vars=c("ym"))
 
@@ -424,7 +424,7 @@ This next figure is a time series correlation plot. There are &hellip;[issues](h
 
 Let's work with the top 20 pieces of malware and see what they have in common. We have to do a bit more reformatting and data crunching (steps that the `pandas` `corr()` function hides from us).
 
-	:::SLexer
+	:::r
 	top20 <- count(mdl.df,vars=c("ym","description"))
 	top20 <- top20[top20$description %in% head(desc.tot.df$description,20),]
 	# dcast() will take our "long" data frame and make a "wide" one
@@ -441,7 +441,7 @@ Let's work with the top 20 pieces of malware and see what they have in common. W
 
 I should have spent more time on breaks and colors (I just tried to match the CS graphic without going overboard), but it shows how to produce a similar graphic as `In [41]` does. I also think that "showing the work" adds a bit of transparencey that `pandas` masks.
 
-	:::SLexer
+	:::r
 	gg <- ggplot(top20.cor.df, aes(x=description, y=variable))
 	gg <- gg + geom_tile(aes(fill=value), color="#7f7f7f")
 	gg <- gg + scale_fill_gradient(limits=range(top20.cor.df$value,na.rm=TRUE),
@@ -457,7 +457,7 @@ We can dive into specific correlations (note, that I downloaded the malware data
 
 ZeuS v1 correlation:
 
-	:::SLexer
+	:::r
 	zeus <- count(mdl.df,vars=c("ym","description"))
 	zeus <- zeus[zeus$description %in% c('zeus v1 trojan','zeus v1 config file','zeus v1 drop zone'),]
 	zeus.df <- zeus
@@ -477,7 +477,7 @@ ZeuS v1 correlation:
 
 ZeuS v1 time series plot:
 
-	:::SLexer
+	:::r
 	gg <- ggplot(zeus.df, aes(x=ym, y=freq, group=description))
 	gg <- gg + geom_line(aes(color=description))
 	gg <- gg + facet_wrap(~description,ncol=1)
@@ -490,7 +490,7 @@ ZeuS v1 time series plot:
 
 ZeuS v2 correlation:
 
-	:::SLexer
+	:::r
 	zeus <- count(mdl.df,vars=c("ym","description"))
 	zeus <- zeus[zeus$description %in% c('zeus v2 trojan','zeus v2 config file','zeus v2 drop zone'),]
 	zeus.df <- zeus
@@ -510,7 +510,7 @@ ZeuS v2 correlation:
 
 ZeuS v2 time series plot:
 
-	:::SLexer
+	:::r
 	gg <- ggplot(zeus.df, aes(x=ym, y=freq, group=description))
 	gg <- gg + geom_line(aes(color=description))
 	gg <- gg + facet_wrap(~description,ncol=1)
@@ -523,7 +523,7 @@ ZeuS v2 time series plot:
 
 Trojan and Phoenix Exploit Kit correlation:
 
-	:::SLexer
+	:::r
 	trojan.phoenix <- count(mdl.df,vars=c("ym","description"))
 	trojan.phoenix <- trojan.phoenix[trojan.phoenix$description %in% c('trojan','phoenix exploit kit'),]
 	trojan.phoenix.df <- trojan.phoenix
@@ -542,7 +542,7 @@ Trojan and Phoenix Exploit Kit correlation:
 
 Trojan and Phoenix Exploit Kit time series plot:
 
-	:::SLexer
+	:::r
 	gg <- ggplot(trojan.phoenix.df, aes(x=ym, y=freq, group=description))
 	gg <- gg + geom_line(aes(color=description))
 	gg <- gg + facet_wrap(~description,ncol=1)

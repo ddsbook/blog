@@ -7,7 +7,7 @@ Author: Bob Rudis (@hrbrmstr)
 
 An innocent thread on the [SIRA mailing list](http://societyinforisk.org/) begat a [detailed explanation](http://datadrivensecurity.info/blog/posts/2014/Jan/severski/) by Jay which begat a comment with a link to a [gist](https://gist.github.com/davidski/8490758) by [David Severski](http://twitter.com/dseverski) that had an equally innocent comment:
 
-	:::SLexer
+	:::r
 	# extending to UI framework of your choice is left as an exercise for the reader
 	
 _(see Jay's post & David's gist for complete context)_
@@ -24,7 +24,7 @@ The interface is _extremely_ dynamic (i.e. whenever any value changes, the risk 
 
 Here's the `ui.R` code:
 
-	:::SLexer
+	:::r
 	shinyUI(pageWithSidebar(
 		
 	    headerPanel("SolvoMediocris"),
@@ -78,7 +78,7 @@ As you can see, (hopefully) it's pretty readable/digestible without much explana
 
 The server side is pretty lean as you can see in `server.R`:
 
-	:::SLexer
+	:::r
 	library(shiny)
 	library(mc2d)
 	library(ggplot2)

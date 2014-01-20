@@ -36,6 +36,7 @@ Maps have three primary distinct attributes: _scale_, _projection_, and _symboli
 
 The first thing we need to do is geolocate the honeypot data. There are real pitfalls when geolocating IP addresses that we cover fairly thoroughly in the book, so we'll issue a  *caveat lector*  and move on to adding geographic information to the `marx` data set with a simple Python script that uses the  [MaxMind GeoLite2](http://dev.maxmind.com/geoip/geoip2/geolite2/) database and Python API:
 
+	:::python
 	import csv
 	import geoip2.database
 	 
