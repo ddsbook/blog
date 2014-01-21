@@ -293,11 +293,7 @@ makeFlys = function() {
 	      .attr("d", wzPath);
 
 
-		// add the bots
-		// https://zeustracker.abuse.ch/images/googlemaps/googledb.php
-		//
-		// use d3.xml() to read in XML data then extract lat/lng from
-		// each <marker> element
+		// add the "flys"
 
 		d3.csv("latlon.csv", function(error, marx) {
 		
@@ -327,6 +323,8 @@ makeFlys = function() {
 
 	d3.select(self.frameElement).style("height", height + "px");
 }
+
+// make the vis
 
 makeFlys();
 
