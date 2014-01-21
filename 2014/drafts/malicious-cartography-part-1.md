@@ -87,4 +87,6 @@ Ugh. We can do better. _Much_ better. _Unless_ our goal is to generate a ZOMGOSH
 
 ###Mapping in D3
 
-<iframe height="900px" frameborder="0" seamless="seamless" width="630px" border="0" cellspacing="0" style="border-style: none; width: 100%; padding:0; border:0; height:900px; min-height:900px" src="/blog/vis/t/index.html"/></iframe>test
+If you can't tell, we _really_ like the [D3 framework](http://d3js.org/) for data visualization projects, and D3 excels at map making. 
+
+<iframe height="900px" frameborder="0" scrolling="no" seamless="seamless" width="630px" border="0" cellspacing="0" style="border-style: none; width: 100%; padding:0; border:0; height:900px; min-height:900px" src="/blog/vis/malmaps-d3/index.html"/></iframe>test

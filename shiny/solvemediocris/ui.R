@@ -36,7 +36,7 @@ shinyUI(pageWithSidebar(
 	    numericInput("lmh", "Max:", 10000, min = 0),
 	    numericInput("lmconf", "Conf:", 1, min = 1, max = 5), br(),
 	    
-			numericInput("N", "# Iterations:", 50000, min = 1000, step=1000), br(),
+			numericInput("N", "# Iterations:", 1000, min = 1000, step=1000), br(),
 			
 			actionButton("runmodel", "Run Model"),
 			
@@ -46,8 +46,8 @@ shinyUI(pageWithSidebar(
 		
     mainPanel(
         tabsetPanel(
-            tabPanel("Distribution", plotOutput("plot")),
-            tabPanel("Detail", verbatimTextOutput("detail"), verbatimTextOutput("detail2"))
+            tabPanel("Distribution", plotOutput("plot"), plotOutput("plot1", height="100px")),
+            tabPanel("Detail", verbatimTextOutput("detail"), verbatimTextOutput("detail2"), plotOutput("plot2"))
         ), 
 				includeHTML("tracker.html")
     )
