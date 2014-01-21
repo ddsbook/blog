@@ -87,6 +87,31 @@ Ugh. We can do better. _Much_ better. _Unless_ our goal is to generate a ZOMGOSH
 
 ###Mapping in D3
 
-If you can't tell, we _really_ like the [D3 framework](http://d3js.org/) for data visualization projects, and D3 excels at map making. 
+If you can't tell, we _really_ like the [D3 framework](http://d3js.org/) for data visualization projects, and D3 excels at map making. So, we're going to move our cartographic machinations from Google Maps to D3 and weave in some of the projection, scale and symbol concepts along the way. If you want to take a look at the source or just see the maps in a separate window, [follow this link](http://dds.ec/blog/vis/malmaps-d3/) to a standalone version of the visualization. Without further blathering on, here are the maps we'll be referring to (you can take some time to explore the controls we've provided before the rest of the post).
 
-<iframe height="900px" frameborder="0" scrolling="no" seamless="seamless" width="630px" border="0" cellspacing="0" style="border-style: none; width: 100%; padding:0; border:0; height:900px; min-height:900px" src="/blog/vis/malmaps-d3/index.html"/></iframe>test
+<iframe height="900px" frameborder="0" scrolling="no" seamless="seamless" width="630px" border="0" cellspacing="0" style="border-style: none; width: 100%; padding:0; margin-bottom:10px; margin-top:0; margin-left:0; margin-right:0; border:0; height:900px; min-height:900px" src="/blog/vis/malmaps-d3/index.html"/></iframe>
+
+####Projections
+
+The first difference you should notice (from the GMap) is that the earth looks _skewed_. That's because we've defaulted to the [Winkel Tripel](http://www.winkel.org/other/Winkel%20Tripel%20Projections.htm) projection and most folks are used to seeing the [Mercator](http://geography.about.com/library/weekly/aa030201b.htm) projection when they are looking at a 2D map. We've included Mercator as a menu selection as well as the [equirectangular projection](http://mathworld.wolfram.com/EquirectangularProjection.html). Projections are nothing more than a mathematical mapping of 3D space onto a 2D plane. Each one skews reality in some way. Until we all start using holographic displays, we're stuck with this mapping, so it's up to us as communicators to use the right projection for the right purpose.
+
+The Mercator projection is awesome for navigation but it's terrible for communicating sizes (compare Greenland on a 3D globe to what you find on a Mercator map to see just how egregious the distortion is). Google defaults to Mercator (it _is_ mainly for driving directions) but does have support for other projections, though most users never see anything but the default even when sites use the custom APIs for GMaps. In our sample maps visualization, you can switch between the projections to see the distortion on a macro level and on a regional level. In some projections, the points become mashed together and in others they spread apart even when zoomed in.
+
+If you're going to use a map, you need to consider the impact distortion has and ensure you're not misrepresenting the data. Winkel Tripel is a good general purpose projection to standardize on since it tries to minimize the area, direction and distance distortions (that's the 'triple' in Winkel Tripel). NASA uses the equirectangular projection quite a bit as do most organiations that create [thematic maps](http://en.wikipedia.org/wiki/Thematic_map) and it isn't a bad alternative to Winkel Tripel. However, as you can see in the example, you'll need to use a bit more space in your layout.
+
+>NOTE: D3 makes many projections [available](https://github.com/mbostock/d3/wiki/Geo-Projections) and you should be able to slipstream additional ones into our base example to see the differences between all of them.
+
+####Scale
+
+Scale is also important since we don't have screens or printed materials the size of the planet and need to shrink down geographical elements to a manageble size. We won't focus too much on scale since information security use cases for maps tend to not go down to street-level detail. We don't usually display roads or other, similar features so we never really have to think about which elements to include or eliminate. In the example above, consider if it would have been helpful to include additional regional boundary details on the zoomed-in map of Europe or if we should have tossed in US county boundaries on the main overview map. Google (and your car's GPS for that matter) makes many of these decisions for you so you may take them for granted. You'll need to assess whether you need to add or remove detail as you present your view of reality to the consumers of your visualiztaion. We've stuck with country boundaries in both views in this example and consider that a a pretty safe default. If you're just focusing on certain countries or regions and are going to do more sub-region analyses (perhaps a US county-level choropleth) you'll need to judiciously add more definition as the scale changes.
+
+Also take note that most projections distort distance in the middle or at the edges, so be careful of using "equals" when stating scale since it's unlikely you'll be using a projection that affords this type of precision. Either using a pure ratio (i.e. "_1:9,600_") or a sentence (e.g. "+One inch represents 800 feet+") is suggested, with a graphical "stick" legend being your last choice (or a used as a secondary labeling element).
+
+####Symbols
+
+
+
+
+
+
+http://xkcd.com/977/

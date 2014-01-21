@@ -68,7 +68,7 @@ select {
 <option value="wink();" SELECTED>Winkel Tripel Projection</option>
 <option value="equi();">Equirectangular Projection</option>
 </select><br/>
-Dot opacity:	<input type="range" name="dotopacity" min="0.1" max="1.0" step="0.1" value="0.2"> Dot size:	<input type="range" name="dotsize" min="0.5" max="3.0" step="0.5" value="1.0">
+<input type="text" readonly size="3" id="oplab" value="0.2" style="border:1px solid black;"/> Dot opacity:	<input type="range" name="dotopacity" min="0.1" max="1.0" step="0.1" value="0.2"> Dot size:	<input type="range" name="dotsize" min="0.5" max="3.0" step="0.5" value="1.0"> <input type="text" readonly size="3" id="szlab" style="border:1px solid black;" value="1.0"/>
 <br/><br/>
 	</div>
 	<div id="zoom"></div>
@@ -334,11 +334,13 @@ var $ps = $('#prjsel');
 
 $op.bind('change', function(e) {
     e.preventDefault();
+		$("#oplab").val($(this).val())
 		d3.selectAll(".wbot").style({"fill-opacity":$(this).val()});
 });
 
 $si.bind('change', function(e) {
     e.preventDefault();
+		$("#szlab").val($(this).val())
 		rad = $(this).val();
 		d3.selectAll(".wbot").attr("r",$(this).val());
 });
