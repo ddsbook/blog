@@ -109,6 +109,11 @@ Also take note that most projections distort distance in the middle or at the ed
 
 ####Symbols
 
+While we let you play with projections, symbolic representation is the main focus of the example we've provided. Symbols tell us where "stuff" is and also, perhaps, what "stuff" is on a map. Hopefully you've played with the controls in this visualization to how differences in _opacity_ (how solid the fill of shape is) and _size_ can impact what is being communicated. The Google map (which is similar to the [ZeroAccess map](http://www.f-secure.com/weblog/archives/00002430.html) created by F-Secure) shows points on a map with symbols. The default is a push-pin, but you can use almost any symbol you like. Again, this is great for directions but we'll _almost_ let the visualizations explain themselves. Chaging opacity will help convey (or distort) true density on a given place on a map. Varying size can help communicate lack of precision or could be used if you're going to size points proportionally. In this case, we created unique points from the original data since we just wanted to see how geographically diverse the "fly" nodes were. Giant symbols and even larger circles make the spread of nodes seem much worse than they really are. More often than not, points on a map track to population (this map is from [the BBC](http://www.bbc.co.uk/bitesize/standard/geography/population/distribution_density/revision/1/)):
+
+<center><img src="http://datadrivensecurity.info/blog/images/2014/01/g155.gif" style="max-width:100%; width:546px"></center>
+ 
+
 
 
 
