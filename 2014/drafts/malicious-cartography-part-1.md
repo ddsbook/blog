@@ -1,4 +1,4 @@
-Title: Malicious Cartograpy in D3 : Part 1 (Projections, Point Size and Opacity)
+Title: Malicious Cartography in D3 : Part 1 (Projections, Point Size and Opacity)
 Date: 2014-01-21 15:30:00
 Category: dataviz
 Tags: maps, d3, map, cartography
