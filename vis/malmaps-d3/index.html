@@ -93,7 +93,7 @@ makeFlys = function() {
 	
 	var currProj = "winkel"
 
-	var winkel = d3.geo.winkel3()
+	var winkel = d3.geo.winkel()
 	    .scale(145)
 	    .translate([(width / 2)-30, height / 2])
 	    .precision(.1);
@@ -110,7 +110,7 @@ makeFlys = function() {
 
 	// make a zoomed-in version of the maps
 
-	var winkelZoom = d3.geo.winkel3()
+	var winkelZoom = d3.geo.winkel()
 	    .scale(800)
 	    .translate([(width / 2)-200, (height*1.75)])
 	    .precision(.1);
