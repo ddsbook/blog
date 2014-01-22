@@ -122,7 +122,7 @@ However, we'll be covering that topic a future post.
 
 ####Wrapping Up Part 1
 
-For now, realize that you as a map maker wield great power when you chose to use maps to convey meaning/information. Your audience is innately conditioned to accept what they see at face value and will react accordingly. When you're displaying bots/nodes in a geospatial way choose your map asthetics wisely and with integrity. Unless you're deliberately trying to mislead your consumers (or yourself) thoughtfully consider color, opacity, size, scale & projection to ensure your message is honest and definitely share the data you used to generate it so others can reproduce your results and, perhaps, challenge your assumptions.
+For now, realize that you as a map maker wield great power when you choose to use maps to convey meaning/information. Your audience is innately conditioned to accept what they see at face value and will react accordingly. When you're displaying bots/nodes in a geospatial way choose your map asthetics wisely and with integrity. Unless you're deliberately trying to mislead your consumers (or yourself) thoughtfully consider color, opacity, size, scale & projection to ensure your message is honest and definitely share the data you used to generate it so others can reproduce your results and, perhaps, challenge your assumptions.
 
 Avoid defaulting to Google Maps and experiment with D3 (feel free to use our [source](https://github.com/ddsbook/blog/blob/master/vis/malmaps-d3/index.html) as a starting point). If you feel "stuck" with Google Maps, take a look at their [API](https://developers.google.com/maps/) to see how to modify the base theme to make your views more accurate and appealing to your audience.
  
