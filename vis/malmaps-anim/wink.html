@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+<style>
+.wland {
+  fill: #222;
+}
+
+.wboundary {
+  fill: none;
+  stroke: #7f7f7f;
+  stroke-width: .15px;
+}
+
+.wbot {
+	fill-opacity:0.2;
+	stroke:#ffffcc;
+	stroke-width:0.15;
+	fill:#f3b24c;
+}
+
+svg {
+	max-width:100%;
+}
+
+.d3map {
+  display: block;
+	margin-left:auto;
+	margin-right:auto;
+	max-width:100%;
+	width:630px;
+}
+
+#wink, #equi, #merc {
+  display: block;
+	width:630px;
+	max-width:100%;
+	display:inline;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+</style>
+</head>
+<body>
+Dot opacity:	<input type="range" name="dotopacity" min="0.1" max="1.0" step="0.1" value="0.2"><br/>
+Dot size:	<input type="range" name="dotsize" min="1.0" max="3.0" step="0.5" value="1.0"><br/>
+
+	<div id="wink"></div><br/>
+	<div id="merc"></div><br/>
+	<div id="equi"></div><br/>	
+	
+<script src="d3.v3.min.js"></script>
+<script src="d3.geo.projection.v0.min.js"></script>
+<script src="topojson.v1.min.js"></script>
+<script>
+makeBots = function() {
+	
+	// setup sizes so it fits in our blog post :-)
+	
+	var width = 630,
+	    height = 500;
+
+	// setup Winkel tripel projection, again sizing
+	// it properly so the portion of the world we care
+	// about fits in our blog post div
+
+	var winkel = d3.geo.winkel3()
+	    .scale(145)
+	    .translate([(width / 2)-30, height / 2])
+	    .precision(.1);
+
+	var mercator = d3.geo.mercator()
+	    .scale(95)
+	    .translate([(width / 2)-10, (height / 2)+30])
+	    .precision(.1);
+
+	var equirectangular = d3.geo.equirectangular()
+	    .scale(100)
+	    .translate([(width / 2)-10, (height / 2)-30])
+	    .precision(.1);
+
+	// auto-apply our new projection to paths we make
+
+	var wPath = d3.geo.path().projection(winkel);
+
+	var mPath = d3.geo.path().projection(mercator);
+	
+	var ePath = d3.geo.path().projection(equirectangular);
+
+	// append a startng svg, trimming view to get rid of Antarctica
+
+	var wSvg = d3.select("#wink").append("svg")
+	    .attr("class","d3map")
+	    .attr("width", width)
+	    .attr("height", height-90);
+		
+
+	var mSvg = d3.select("#merc").append("svg")
+		  .attr("class","d3map")
+	    .attr("width", width)
+	    .attr("height", height-90);
+
+	var eSvg = d3.select("#equi").append("svg")
+		  .attr("class","d3map")
+	    .attr("width", width)
+	    .attr("height", height-90);
+		
+	// we'll need this helper function to convert our maker points
+	// to the projection coordinate system
+	
+	pts = function(d) {
+		return([+d3.select(d).attr("lng"), +d3.select(d).attr("lat")]);
+	}
+
+  // build the world from the topojson data
+
+	d3.json("world-50m.json", function(error, world) {
+
+		// make the ocean
+	
+		wSvg.append("rect")
+			  .attr("width", width)
+			  .attr("height", height-90)
+				.attr("fill","#1C6BA0");
+	
+		mSvg.append("rect")
+			  .attr("width", width)
+			  .attr("height", height-90)
+				.attr("fill","#1C6BA0");
+	
+		eSvg.append("rect")
+			  .attr("width", width)
+			  .attr("height", height-90)
+				.attr("fill","#1C6BA0");
+
+		// make the land 
+	
+	  wSvg.insert("path", ".graticule")
+	      .datum(topojson.feature(world, world.objects.land))
+	      .attr("class", "wland")
+	      .attr("d", wPath);
+
+	  wSvg.insert("path", ".graticule")
+	      .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
+	      .attr("class", "wboundary")
+	      .attr("d", wPath);
+	
+	
+	  mSvg.insert("path", ".graticule")
+	      .datum(topojson.feature(world, world.objects.land))
+	      .attr("class", "wland")
+	      .attr("d", mPath);
+
+	  mSvg.insert("path", ".graticule")
+	      .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
+	      .attr("class", "wboundary")
+	      .attr("d", mPath);
+
+	
+	  eSvg.insert("path", ".graticule")
+	      .datum(topojson.feature(world, world.objects.land))
+	      .attr("class", "wland")
+	      .attr("d", ePath);
+
+	  eSvg.insert("path", ".graticule")
+	      .datum(topojson.mesh(world, world.objects.countries, function(a, b) { return a !== b; }))
+	      .attr("class", "wboundary")
+	      .attr("d", ePath);
+
+		// add the bots
+		// https://zeustracker.abuse.ch/images/googlemaps/googledb.php
+		//
+		// use d3.xml() to read in XML data then extract lat/lng from
+		// each <marker> element
+
+		d3.xml("zeus.xml", function(error, zeus) {
+		
+		  wSvg.selectAll(".wbot")
+		    .data(zeus.documentElement.getElementsByTagName("marker"))
+		    .enter()
+				.append("circle")
+				.attr("class", "wbot")
+	      .attr("cx", function(d) { return winkel(pts(d))[0]; })
+	      .attr("cy", function(d) { return winkel(pts(d))[1]; })
+	      .attr("r", function(d) { return 1; });
+		
+		  mSvg.selectAll(".wbot")
+		    .data(zeus.documentElement.getElementsByTagName("marker"))
+		    .enter()
+				.append("circle")
+				.attr("class", "wbot")
+	      .attr("cx", function(d) { return mercator(pts(d))[0]; })
+	      .attr("cy", function(d) { return mercator(pts(d))[1]; })
+	      .attr("r", function(d) { return 1; });
+		
+		  eSvg.selectAll(".wbot")
+		    .data(zeus.documentElement.getElementsByTagName("marker"))
+		    .enter()
+				.append("circle")
+				.attr("class", "wbot")
+	      .attr("cx", function(d) { return equirectangular(pts(d))[0]; })
+	      .attr("cy", function(d) { return equirectangular(pts(d))[1]; })
+	      .attr("r", function(d) { return 1; });
+							
+		});
+
+	});
+
+	d3.select(self.frameElement).style("height", height + "px");
+}
+
+makeBots();
+
+var $op = $('input[name="dotopacity"]');
+var $si = $('input[name="dotsize"]');
+
+$op.bind('change', function(e) {
+    e.preventDefault();
+		d3.selectAll(".wbot").style({"fill-opacity":$(this).val()});
+});
+
+$si.bind('change', function(e) {
+    e.preventDefault();
+		d3.selectAll(".wbot").attr("r",$(this).val());
+});
+
+</script>
+</body>
+</html>
