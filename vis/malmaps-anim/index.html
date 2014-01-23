@@ -100,6 +100,8 @@ var attackDelay = 200; // ms
 var end ;
 // var end = 10;
 
+var flys;
+
 attack = function() {
 		
 	if (start >= end) {
@@ -109,36 +111,45 @@ attack = function() {
 		showAll();
 		
 	} else {
+		
+	  flys = wSvg.selectAll(".wbot").data([]);
+		flys.exit().remove();
 
-    var result = m.filter (
+    result = m.filter (
 	    function (e,i,a) {
 				return(e.day == days[start]);
 	    }
 		);	
+		
+	  flys = wSvg.selectAll(".wbot").data(result);
 			  		
-	  var flys = wSvg.selectAll(".wbot").data(result);
-			
-    flys.attr("class", "wbot")
-	      .attr("cx", function(d) { return winkel(pts(d))[0]; })
-	      .attr("cy", function(d) { return winkel(pts(d))[1]; })
-	      .attr("r", function(d) { return rad; });
+    // 			
+    // flys.attr("class", "wbot")
+    // 	      .attr("cx", function(d) { return winkel(pts(d))[0]; })
+    // 	      .attr("cy", function(d) { return winkel(pts(d))[1]; })
+    // 	      .attr("r", function(d) { return rad; });
 
     flys.enter()
 				.append("circle")
 				.attr("class", "wbot")
 	      .attr("cx", function(d) { return winkel(pts(d))[0]; })
 	      .attr("cy", function(d) { return winkel(pts(d))[1]; })
-				.each(function(d,i) {
+	      .attr("r", function(d) { return 6; })
+				.transition()
+				.ease("linear")
+				.duration(300)
+	      .attr("r", function(d) { return rad; })
+ 				.each(function(d,i) {
 					var c = +$("#"+d.host).text();
 					var f = +d.freq;
 					$("#"+d.host).text(c+f);
-				});
-
-		flys.exit().remove();
+				})
 		
 		start += 1;
-
-		attackTimer = setTimeout(attack,attackDelay);
+		
+		setTimeout(function() {
+			attackTimer = setTimeout(attack,attackDelay);
+		}, 200);
 				
 	}
 	
@@ -150,16 +161,20 @@ showAll = function() {
 	
 	d3.csv("latlon.csv", function(error, ll) {
 		  		
-	  var flys = wSvg.selectAll(".wbot").data(ll);
+	  flys = wSvg.selectAll(".wbot").data([]);
+		flys.exit().remove();
+					
+	  flys = wSvg.selectAll(".wbot").data(ll);
 
 	  flys.enter()
 				.append("circle")
 				.attr("class", "wbot")
 	      .attr("cx", function(d) { return winkel([0,0])[0]; })
 	      .attr("cy", function(d) { return winkel([0,0])[1]; })
+	      .attr("r", function(d) { return 6; })
 				.transition()
 				.delay(500)
-				.ease("bounce")
+				.ease("linear")
 	      .attr("cx", function(d) { return winkel(pts(d))[0]; })
 	      .attr("cy", function(d) { return winkel(pts(d))[1]; })
 	      .attr("r", function(d) { return rad; });	
