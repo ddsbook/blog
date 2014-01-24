@@ -1,9 +1,8 @@
 Title: Inspecting Internet Traffic: Part 2
-Date: 2014-01-19 14:30:00
+Date: 2014-01-23 21:30:00
 Category: analysis
 Tags: EDA, analysis, honeypot, R
 Slug: blander-part2
-Status: draft
 Author: Jay Jacobs (@jayjacobs)
 
 <style>
