@@ -13,7 +13,7 @@ Author: Jay Jacobs (@jayjacobs)
 
 This is part 2 of a series ([visit part 1](http://datadrivensecurity.info/blog/posts/2014/Jan/blander-part1/)).  I will be looking at destination ports in this post.
 
-Bob and I spent quite a bit of time early on in the book showing what we can learn from IP addresses.  But let's talk about ports. What's interesting about ports is that they appear numeric, but they really are a categorical variable (or in R, a factor).  SSH(22) isn't one less than telnet(23) and one more than FTP(21), right?  So whenever you include port numbers in a plot you'll want to convert them to a factor. Port numbers are also protocol specific, we can't group UDP 1433 with TCP 1433.  So let's go back to Daniel Blander's "marx" data and look into the destination ports in the data.  Remember our goal here is to simply explore and improve our understanding of the data. As we develop our understanding, questions may naturally arise that we could try to tackle.
+Bob and I spent quite a bit of time early on in the [book](http://amzn.to/ddsec) showing what we can learn from IP addresses.  But let's talk about ports. What's interesting about ports is that they appear numeric, but they really are a categorical variable (or in R, a `factor`).  `SSH(22)` isn't one less than `telnet(23) `and one more than `FTP(21),` right?  So whenever you include port numbers in a plot you'll want to convert them to a factor. Port numbers are also protocol specific, we can't group `UDP 1433` with `TCP 1433`.  So let's go back to Daniel Blander's "`marx`" data and look into the destination ports in the data.  Remember our goal here is to simply explore and improve our understanding of the data. As we develop our understanding, questions may naturally arise that we could try to tackle.
 
 
 ```r
@@ -42,7 +42,7 @@ summary(factor(csv$dpt), maxsum = 10)
 ##   44811
 ```
 
-Now we're getting somehwere.  Except we didn't filter for just TCP traffic, so this may be conflating TCP and UDP ports.
+Now we're getting somehwere.  Except we didn't filter for just `TCP` traffic, so this may be conflating `TCP` and `UDP` ports.
 
 
 ```r
@@ -59,9 +59,10 @@ summary(tcp.ports, maxsum = 10)
 ```
 
 
-And there we have it.  You can see that port 56338 dropped off (and wow, that's a weird UDP port). Also notice that a few of the ports dropped a few in numbers, looks like a few wild UDP packet on those ports have been removed.  
+And there we have it.  You can see that port 56338 dropped off (and wow, that's a weird `UDP` port). Also notice that a few of the ports dropped a few in numbers, looks like a few wild `UDP` packet on those ports have been removed.  
 
-So 1433 (MS SQL) is at the top followed by the "Windows SMB over IP" port (445).  Just stop for a moment and think about what we're looking at.  Port 1433 was scanned for more than twice any other port.  What if we take a page from "no default password" and simply changed the default port to 1434?
+So `1433 (MS SQL)` is at the top followed by the` "Windows SMB over IP" port (445)`.  Just stop for a moment and think about what we're looking at.  Port 1433 was scanned for more than twice any other port.  What if we take a page from "no default password" and simply changed the default port to 1434?
+
 
 ```r
 sum(tcp.ports == 1434)
@@ -77,6 +78,7 @@ Right away, and without any real math to speak of, you should feel safe to recom
 ### What do we want to know about ports?
 
 I've been thinking about this for quite a while.  I know there's something in this type of data we could learn from.  I know the ports scanned ebb and flow depending on the weaknesses out there and perceived benefit to the attacker.
+
 I've also looked at other representations and found myself wondering what I was looking at.  For example, look at the [SANS DShield data on port 1433](http://www.dshield.org/port.html?port=1433).  I love that the DShield data is out there and available/searchable like that, but can you look at that plot and understand it's relative importance?  It seems like 40,000 hosts are a lot, but is this out of millions of collection points or twenty? It's hard to tell if this is really scary or just noisy -- a total count (of whatever) isn't helpful if we don't know the context (the sample we are counting within).
 
 So I figured there are a few things I should strive for:
@@ -143,4 +145,4 @@ Now that's pretty interesting.  We could start to see trends over time.  What's 
 
 With just this data, we coud explore questions like, why does port 23 increase since May, is that significant? If we added more data like this, we could increase our confidence in the samples, maybe even test more about the demographics of servers.  But right now we could view two or more ports on top of one another, on the same scale and get a feel for their relative differences. 
 
-Wrapping up, I find it quite fun to explore data like this and it'd be nice to dig into other ports and look at the UDP ports as well (there was that odd 56338 in there).  But time and space don't enable that.  However, just reading through this, what questions does this raise for you?
+Wrapping up, I find it quite fun to explore data like this and it'd be nice to dig into other ports and look at the `UDP` ports as well (there was that odd 56338 in there).  But time and space don't enable that.  However, just reading through this, what questions does this raise for you?
