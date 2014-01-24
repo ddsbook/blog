@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<link rel="stylesheet" href="jquery-ui.css">
 <script src="jquery-1.9.1.js"></script>
 <script src="jquery-ui.js"></script>
 <style>
@@ -33,7 +34,7 @@ svg {
 	max-width:100%;
 }
 
-#adate {
+#adate, #slideDiv {
 	width:100%;
 	max-width:100%;
 	margin-left:auto;
@@ -50,7 +51,7 @@ svg {
 	margin-right:auto;
 }
 
-.counterdiv {
+.counterdiv, .valuediv {
 	display:inline-block;
 	width:11.11%;
 	text-align:center;
@@ -86,6 +87,7 @@ select {
 </head>
 <body>
 	<div id="map"></div><br/>
+	<div id="slideDiv"><input type="range" id="daySlider" min="0" max="10" value="0" step="1" style="width:800px; display:none"/></div><br/>
 	<div id="countertitles"></div><br/>
 	<div id="counters"></div><br/>
 	<div id="adate"></div><br/>
@@ -106,81 +108,64 @@ var rad = 1.0 ;
 var attackTimer ;
 var attackDelay = 200; // ms
 var end ;
+var prevVal ;
 // var end = 10;
 
 var flys;
 
-attack = function() {
-		
-	if (start >= end) {
-
-		clearTimeout(attackTimer);
-		
-		showAll();
-		
-	} else {
-		
-	  flys = wSvg.selectAll(".wbot").data([]);
-		
-		flys.exit()
-				.each(function(d,i){console.log("EXIT: " + d.host);})
-		    .transition()
-				.style("opacity",0)
-				.remove();
-
-		result = [m[start]];
-
-		//     result = m.filter (
-		// 	    function (e,i,a) {
-		// 		return(e.day == days[start]);
-		// 	    }
-		// );	
-		
-//		$("#adate").text(days[start]);
-		
-	  flys = wSvg.selectAll(".wbot").data(result);
-							  		
-    // 			
-    // flys.attr("class", "wbot")
-    // 	      .attr("cx", function(d) { return winkel(pts(d))[0]; })
-    // 	      .attr("cy", function(d) { return winkel(pts(d))[1]; })
-    // 	      .attr("r", function(d) { return rad; });
-
-    flys.enter()
-				.append("circle")
-				// 
-				//  				.each(function(d,i) {
-				// 	console.log(d);
-				// 	var c = +$("#"+d.host).text();
-				// 	var f = +d.freq;
-				// 	$("#"+d.host).text(c+f);
-				// })
-				.attr("class", "wbot")
-	      .attr("cx", function(d) { return winkel(pts(d))[0]; })
-	      .attr("cy", function(d) { return winkel(pts(d))[1]; })
-	      .attr("r", function(d) { return 10; })
-				.attr("fill","#94bb5f")
-				.attr("fill-opacity","0.2")
-				.transition()
-				.duration(2000)
-	      .attr("r", function(d) { return rad; })
-				.each(function(d,i){console.log("ENTER: " + d.host);})
-
-		start += 1;
-
-		setTimeout(function() {
-			//flys.exit().remove();
-			attackTimer = setTimeout(attack,attackDelay);
-		}, 200);
-				
-	}
+attack = function(daySel) {
 	
+	console.log("ATTACK! " + daySel);
+		
+  flys = wSvg.selectAll(".wbot").data([]);
+	
+	flys.exit()
+	    .transition()
+			.duration(300)
+			.attr("fill","black")
+			.remove();
+
+  result = m.filter (
+    function (e,i,a) {
+			return(e.day == days[daySel]);
+    }
+	);	
+	
+	console.log(result.length);
+	
+	d3.selectAll(".valuediv").text("0");
+		
+  flys = wSvg.selectAll(".wbot").data(result);
+		  			
+	// flys.attr("class", "wbot")
+	// 	      .attr("cx", function(d) { return winkel(pts(d))[0]; })
+	// 	      .attr("cy", function(d) { return winkel(pts(d))[1]; })
+	// 	      .attr("r", function(d) { return rad; });
+		
+  flys.enter()
+			.append("circle")
+			.attr("class", "wbot")
+      .attr("cx", function(d) { return winkel(pts(d))[0]; })
+      .attr("cy", function(d) { return winkel(pts(d))[1]; })
+      .attr("r", function(d) { return 10; })
+			.transition()
+			.duration(100)
+      .delay(function(d, i) { return i * 1; })
+			.transition()
+			.duration(250)
+      .delay(function(d, i) { return i * 1; })
+      .attr("r", function(d) { return rad; })
+			.each(function(d,i) {
+				var c = +$("#"+d.host).text();
+				var f = +d.freq;
+				$("#"+d.host).text(f+c);
+			})
+	
+					
 }
 
 showAll = function() {
-	
-	console.log("showAll()");
-	
+		
 	d3.csv("latlon.csv", function(error, ll) {
 		  		
 	  flys = wSvg.selectAll(".wbot").data([]);
@@ -193,10 +178,12 @@ showAll = function() {
 				.attr("class", "wbot")
 	      .attr("cx", function(d) { return winkel([0,0])[0]; })
 	      .attr("cy", function(d) { return winkel([0,0])[1]; })
-	      .attr("r", function(d) { return 6; })
+	      .attr("r", function(d) { return 10; })
 				.transition()
-				.delay(500)
-				.ease("linear")
+				// .delay(1)
+				// .transition()
+				.duration(250)
+				// .ease("linear")
 	      .attr("cx", function(d) { return winkel(pts(d))[0]; })
 	      .attr("cy", function(d) { return winkel(pts(d))[1]; })
 	      .attr("r", function(d) { return rad; });	
@@ -277,8 +264,9 @@ loadFlys = function() {
 		hosts = d3.set(marx.map(function(d) { return(d.host); })).values();
 		xtnt = d3.extent(marx.map(function(d) { return(d.freq) ; }));
 		
-		end = 100;//days.length ;
-		
+		$('#daySlider').attr('max', days.length-1);
+		$('#daySlider').css("display","inline-block");
+				
 		var q = d3.select("#countertitles");
 
 		q.selectAll("div")
@@ -294,15 +282,32 @@ loadFlys = function() {
 		  .data(hosts)
 			.enter()
 			.append("div")
-			.attr("class","counterdiv")
+			.attr("class","valuediv")
 			.attr("id",function(d){return(d);});
 	
 	  makeMap();
-	
-	  start = 0;
 		
-		attackTimer = setTimeout(attack,attackDelay);
-					
+		$('#daySlider').bind('change', function(e) {
+		    e.preventDefault();
+				var curVal = +$(this).val();
+		    $("#adate").text(days[curVal]);					
+		});
+		
+		$('#daySlider').bind('mouseup', function(e) {
+			var curVal = +$(this).val();
+			if (curVal != prevVal) {
+				prevVal = curVal ;
+				console.log(curVal);
+				attack(curVal);
+			}
+		});
+
+    setTimeout(function() { 
+			attack(0); 
+			prevVal=0; 
+			$("#adate").text(days[0]); 
+		}, 1500);	
+							
 	});
 
 }
