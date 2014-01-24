@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
+<link rel="stylesheet" href="jquery-ui.css">
 <script src="jquery-1.9.1.js"></script>
 <script src="jquery-ui.js"></script>
 <style>
@@ -121,57 +122,53 @@ attack = function() {
 	} else {
 		
 	  flys = wSvg.selectAll(".wbot").data([]);
-		
 		flys.exit()
-				.each(function(d,i){console.log("EXIT: " + d.host);})
 		    .transition()
-				.style("opacity",0)
+				.attr("fill","black")
 				.remove();
 
-		result = [m[start]];
-
-		//     result = m.filter (
-		// 	    function (e,i,a) {
-		// 		return(e.day == days[start]);
-		// 	    }
-		// );	
+    result = m.filter (
+	    function (e,i,a) {
+				return(e.day == days[start]);
+	    }
+		);	
 		
-//		$("#adate").text(days[start]);
+		$("#adate").text(days[start]);
 		
 	  flys = wSvg.selectAll(".wbot").data(result);
-							  		
+			  		
     // 			
     // flys.attr("class", "wbot")
     // 	      .attr("cx", function(d) { return winkel(pts(d))[0]; })
     // 	      .attr("cy", function(d) { return winkel(pts(d))[1]; })
     // 	      .attr("r", function(d) { return rad; });
-
-    flys.enter()
-				.append("circle")
-				// 
-				//  				.each(function(d,i) {
-				// 	console.log(d);
-				// 	var c = +$("#"+d.host).text();
-				// 	var f = +d.freq;
-				// 	$("#"+d.host).text(c+f);
-				// })
-				.attr("class", "wbot")
-	      .attr("cx", function(d) { return winkel(pts(d))[0]; })
-	      .attr("cy", function(d) { return winkel(pts(d))[1]; })
-	      .attr("r", function(d) { return 10; })
-				.attr("fill","#94bb5f")
-				.attr("fill-opacity","0.2")
-				.transition()
-				.duration(2000)
-	      .attr("r", function(d) { return rad; })
-				.each(function(d,i){console.log("ENTER: " + d.host);})
-
-		start += 1;
-
-		setTimeout(function() {
-			//flys.exit().remove();
-			attackTimer = setTimeout(attack,attackDelay);
-		}, 200);
+		
+		d3.transition().duration(100).each(function() {
+		
+	    flys.enter()
+					.insert("circle")
+	 				.each(function(d,i) {
+						var c = +$("#"+d.host).text();
+						var f = +d.freq;
+						$("#"+d.host).text(c+f);
+					})
+					.attr("class", "wbot")
+		      .attr("cx", function(d) { return winkel(pts(d))[0]; })
+		      .attr("cy", function(d) { return winkel(pts(d))[1]; })
+		      .attr("r", function(d) { return 10; })
+					.transition()
+					.duration(100)
+		      .delay(function(d, i) { return i * 10; })
+		      .attr("r", function(d) { return rad; })
+ 		
+					start += 1;
+		
+					setTimeout(function() {
+						flys.exit().remove();
+						attackTimer = setTimeout(attack,attackDelay);
+					}, 3000);
+			
+		})
 				
 	}
 	
@@ -277,7 +274,7 @@ loadFlys = function() {
 		hosts = d3.set(marx.map(function(d) { return(d.host); })).values();
 		xtnt = d3.extent(marx.map(function(d) { return(d.freq) ; }));
 		
-		end = 100;//days.length ;
+		end = 10;//days.length ;
 		
 		var q = d3.select("#countertitles");
 
