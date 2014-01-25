@@ -14,7 +14,6 @@ I had the opportunity to attend "[http://computefest.seas.harvard.edu/data-storm
 The [@DDSecBlog)[http://twitter.com/ddsecblog/] account was live-tweeting as much as possible and I've hoovered them all up and put them below. So, while you're waiting for the podcast you can peruse the tweets to see i there are 140 character nuggets worth bookmarking. 
 
 #### _Weathering the Data Storm: The Promise and Challenges of Data Science_ Tweetscription
-
 <table style="width:100%;max-width:100%"<tr class="twrow" valign="top"><td wrap>Rachel Schutt starting her talk on "What is Data Science" @; highlighting "promise" & "challenge" in the symposium's title "Data Science" subsumes other fields and disciplines; is a moving target; comes with much hype but also much promise</td></tr>
 <tr class="twrow" valign="top"><td wrap>Data Science as a job title: great summary of part of "Building Data Science Teams" by @OReillyMedia  (buy the book :-)</td></tr>
 <tr class="twrow" valign="top"><td wrap>Facebook & LinkedIn started building "data products" (e.g. friend recommendations) from scads of raw user action logs</td></tr>
