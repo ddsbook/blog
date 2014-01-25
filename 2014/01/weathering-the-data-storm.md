@@ -12,7 +12,7 @@ Author: Bob Rudis (@hrbrmstr)
 <img src="/blog/images/2014/01/storm.jpg" width="630"/>
 I had the opportunity to attend [Weathering the Data Storm: The Promise and Challenges of Data Science](http://computefest.seas.harvard.edu/data-storm) at Harvard yesterday (2013-01-24). Overall, it was an excellent symposium and I'll be talking with Jay about it on the next [podcast](http://datadrivensecurity.info/podcast).
 
-The [@DDSecBlog[(http://twitter.com/ddsecblog/) account was live-tweeting as much as possible and I've hoovered them all up and put them below. So, while you're waiting for the podcast you can peruse the tweets to see i there are 140 character nuggets worth bookmarking. 
+The [@DDSecBlog](http://twitter.com/ddsecblog/) account was live-tweeting as much as possible and I've hoovered them all up and put them below. So, while you're waiting for the podcast you can peruse the tweets to see i there are 140 character nuggets worth bookmarking. 
 
 #### _Weathering the Data Storm: The Promise and Challenges of Data Science_ Tweetscription
 <table style="width:100%;max-width:100%"<tr class="twrow" valign="top"><td wrap>Rachel Schutt starting her talk on "What is Data Science" @; highlighting "promise" & "challenge" in the symposium's title "Data Science" subsumes other fields and disciplines; is a moving target; comes with much hype but also much promise</td></tr>
