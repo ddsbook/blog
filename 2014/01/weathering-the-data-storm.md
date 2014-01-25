@@ -9,6 +9,7 @@ Author: Bob Rudis (@hrbrmstr)
 .twrow tr:nth-child(even) {background: rgba(148,187,95,0.25)}
 .twrow tr:nth-child(odd) {background: #FFF}
 </style>
+<img src="/blog/images/2014/01/storm.jpg" width="630"/>
 I had the opportunity to attend "[http://computefest.seas.harvard.edu/data-storm](Weathering the Data Storm: The Promise and Challenges of Data Science)" at Harvard yesterday (2013-01-24). Overall, it was an excellent symposium and I'll be talking with Jay about it on the next [podcast](http://datadrivensecurity.info/podcast).
 
 The [@DDSecBlog)[http://twitter.com/ddsecblog/] account was live-tweeting as much as possible and I've hoovered them all up and put them below. So, while you're waiting for the podcast you can peruse the tweets to see i there are 140 character nuggets worth bookmarking. 
