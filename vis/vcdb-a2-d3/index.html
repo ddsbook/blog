@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,900' rel='stylesheet' type='text/css'>
+<script src="d3.v3.min.js" type="text/javascript" charset="utf8"></script>
+<script src="jquery-1.10.2.min.js" type="text/javascript" charset="utf8"></script>
+<script src="jquery-migrate-1.2.1.min.js" type="text/javascript" charset="utf8"></script>
+
+<style>
+
+body {
+	margin:0px;
+	padding:0px;
+}
+
+.htext {
+	text-anchor:middle;
+	fill:black;
+  font-family:Lato;
+  font-weight:400;
+	font-size:12px;	
+}
+
+.a2title {
+	text-anchor:middle;
+	fill:black;
+  font-family:Lato;
+  font-weight:400;
+	font-size:12px;
+}
+
+.xlab, .ylab {
+	text-anchor:end;
+	fill:black;
+  font-family:Lato;
+  font-weight:400;
+	font-size:12px;
+}
+
+svg {
+	shape-rendering: crispEdges;
+}
+
+#a2 {
+	display:inline-block;
+	width:480px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+</style>
+
+<script>
+	
+var margin = { top: 30, right: 0, bottom: 90, left: 80 },
+    width = 480 - margin.left - margin.right,
+    height = 360 - margin.top - margin.bottom,
+		grid = { x : Math.floor(width / 8), y : Math.floor(height / 7) }
+	
+var assets = [ "asset.assets.Server", "asset.assets.Network", "asset.assets.User.Dev",
+               "asset.assets.Media", "asset.assets.Person", "asset.assets.Kiosk.Term", "asset.assets.Unknown" ] ;
+							 
+var actions = [ "action.malware", "action.hacking", "action.social", "action.misuse",
+                "action.physical", "action.error", "action.environmental", "action.unknown"  ] ;
+
+// initialize A2
+var a2 = {} ;
+
+for(var i = 0, k = assets.length; i < k; ++i) {
+	a2[assets[i]] = {} ;
+	for(var j=0, l = actions.length; j < l; ++j) {
+		a2[assets[i]][actions[j]] = 0 ;
+	}
+}
+
+var a2Max = -Infinity;
+
+var a2Melted = [ ] ;
+
+var r ;
+				 				 
+$(document).ready(function(){
+
+	d3.csv("/data/csv/vcdb.csv", function(d) {
+		 		 
+		for(var i = 0, k = assets.length; i < k; ++i) {
+			if (d[assets[i]] != "0") {
+				for(var j=0, l = actions.length; j < l; ++j) {					
+					if (d[actions[j]] != "0") {
+						a2[assets[i]][actions[j]] += 1 ;
+						a2Max = (a2Max < a2[assets[i]][actions[j]]) ? a2[assets[i]][actions[j]] : a2Max ;
+						continue ;
+					}	
+				}	
+			}		
+		}
+		 
+		return(d) ;
+		 
+	 }, function(error, rows) {
+		 		 
+		 r = rows ;
+		 
+		 var n = 0 ;
+		 
+		 for(var i = 0, k = assets.length; i < k; ++i) {
+		 	 for(var j=0, l = actions.length; j < l; ++j) {
+		 		 a2Melted[n++] = { asset : assets[i],
+				                   action : actions[j],
+						    					 count : a2[assets[i]][actions[j]]
+											   } ;
+		 	 }
+		 }		 
+
+
+		 var colorScale = d3.scale.linear()
+		     .range(['#D8EEFE', '#4682B4']) // or use hex values
+		     .domain([0, a2Max]);
+
+     var svg = d3.select("#a2").append("svg")
+         .attr("width", width + margin.left + margin.right)
+         .attr("height", height + margin.top + margin.bottom);
+				 
+		 var heatArea = svg.append("g")
+                        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+		 
+     var heatMap = heatArea.selectAll(".count")
+         .data(a2Melted)
+         .enter().append("rect")
+				 .attr("class","count")
+         .attr("x", function(d) { return actions.indexOf(d.action) * grid.x; })
+         .attr("y", function(d) { return assets.indexOf(d.asset) * grid.y; })
+         .attr("width", grid.x)
+         .attr("height", grid.y)
+				 .attr("stroke","#7f7f7f")
+				 .style("fill", function(d) { return d.count > 0 ? colorScale(d.count) : "#FFFFFF"});
+				 
+		 var heatText = heatArea.selectAll(".htext")
+		     .data(a2Melted)
+		     .enter().append("text")
+				 .attr("class", "htext")
+         .attr("x", function(d) { return (actions.indexOf(d.action) * grid.x) + grid.x/2; })
+         .attr("y", function(d) { return (assets.indexOf(d.asset) * grid.y) + grid.y/2 + 12/2; })
+				 .text(function(d) { return d.count > 0 ? d.count : "" })
+				 
+		 var heatTitle = svg.append("g")
+											  .attr("transform", "translate(" + margin.left + "," + 0 + ")");
+
+		 heatTitle.append("text")
+						  .attr("class","a2title")
+							.attr("x", width/2)
+							.attr("y", margin.top/2 + 14/2)
+							.text("A2 Grid: Assets and Actions");
+
+ 		 var heatYLab = svg.append("g")
+ 											    .attr("transform", "translate(" + 0 + "," + margin.top + ")");
+
+ 		 heatYLab.selectAll("ylab")
+		          .data(assets)
+							.enter()
+							.append("text")
+							.attr("class","ylab")
+ 							.attr("x", margin.left - 6	)
+		          .attr("y", function(d, i) { return (i * grid.y) + grid.y/2 + 12/2; })
+ 							.text(function(d) { return(d.replace("asset.assets.","").replace("."," ")) });
+
+
+		 var heatXLab = svg.append("g")
+											    .attr("transform", "translate(" + margin.left + "," + (margin.top+height+6) + ")");
+
+		 heatXLab.selectAll("xlab")
+		          .data(actions)
+							.enter()
+							.append("text")
+							.attr("transform", function(d,i) { return("translate(" + ((i * grid.x) + (grid.x/2) + (12/2)) + ",0)rotate(-90)") })
+							.attr("class","xlab")
+							.text(function(d) { return(d.replace("action.","").replace("."," ")) })
+		 		 			 	
+	 });
+	
+});
+
+</script>
+</head>
+<body>
+<div style="width:100%;text-align:center"><div id="a2" class="a2"></div></div>
+</body>
+</html>
