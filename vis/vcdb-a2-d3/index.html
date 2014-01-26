@@ -83,7 +83,7 @@ var r ;
 				 				 
 $(document).ready(function(){
 
-	d3.csv("/data/csv/vcdb.csv", function(d) {
+	d3.csv("data/csv/vcdb.csv", function(d) {
 		 		 
 		for(var i = 0, k = assets.length; i < k; ++i) {
 			if (d[assets[i]] != "0") {
