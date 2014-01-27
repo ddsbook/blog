@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title></title>
+<title>VCDB A2 Grid</title>
 <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,900' rel='stylesheet' type='text/css'>
 <script src="d3.v3.min.js" type="text/javascript" charset="utf8"></script>
 <script src="jquery-1.10.2.min.js" type="text/javascript" charset="utf8"></script>
@@ -83,15 +83,11 @@ var actions = [ "action.malware", "action.hacking", "action.social", "action.mis
 
 var a2 = {} ;
 var a2Melted ;
-var colorScale ;
 var svg ;
 var heatArea ;
-var heatMap ;
-var heatText ;
-var heatTitle ;
-var heatYLab ;
-var heatXLab ;
-var orgSize ;
+var r ;
+
+// init heatmap cells
 
 for(var i = 0, k = assets.length; i < k; ++i) {
 	a2[assets[i]] = {} ;
@@ -99,13 +95,6 @@ for(var i = 0, k = assets.length; i < k; ++i) {
 		a2[assets[i]][actions[j]] = 0 ;
 	}
 }
-
-var a2Max = -Infinity;
-
-var a2Melted = [ ] ;
-
-var r ;
-var filtered = [];
 
 showLoadingScreen = function() {
 	$(".loading").css("display","table-cell")
@@ -115,28 +104,27 @@ hideLoadingScreen= function() {
 	$(".loading").css("display","none")	
 }
 
-
-
-updateOrgSize = function() {
-	
-  var v = this.options[this.selectedIndex].value ;
-	
-	updateA2OrgSize(v)
-	
+// for popup
+updateOrgSize = function() {	
+	updateA2OrgSize(this.options[this.selectedIndex].value)
 }
 
 updateA2OrgSize = function(v) {
 	
 	var a2Max = -Infinity;
-		
-	a2Melted = [] ;
-	filtered = [] ;
+	var a2Melted = [] ;
+	var filtered = [];
+
+  // zero out heatmap cell values
 
 	for(var i = 0, k = assets.length; i < k; ++i) {
 		for(var j=0, l = actions.length; j < l; ++j) {
 			a2[assets[i]][actions[j]] = 0 ;
 		}
 	}
+	
+	// filter VCDB entries by selection
+	// TODO: make this a %in% set thing
 
 	if (v == "All") {
 		filtered = r ;
@@ -145,6 +133,8 @@ updateA2OrgSize = function(v) {
 			return(d["victim.employee_count"] == v)
 		})
 	}
+
+  // make heatmap values
 
   filtered.map(function(d) {
 		for(var i = 0, k = assets.length; i < k; ++i) {
@@ -160,6 +150,8 @@ updateA2OrgSize = function(v) {
 		}  	
   })
 
+  // "melt" our data so we can loop through it with D3
+
   m = 0 ;
   for(var i = 0, k = assets.length; i < k; ++i) {
  	  for(var j=0, l = actions.length; j < l; ++j) {
@@ -169,18 +161,22 @@ updateA2OrgSize = function(v) {
 									    } ;
 		}
   }
+	
+	// setup color scale for heatmap
 
-  colorScale = d3.scale.linear()
+	var colorScale = d3.scale.linear()
      .range(['#D8EEFE', '#4682B4']) 
      .domain([0, a2Max]);
 
-  console.log(a2Melted.length);
-	
-	heatMap = heatArea.selectAll(".count").data(a2Melted)
+  // remove the old colors & values
+
+	var heatMap = heatArea.selectAll(".count").data(a2Melted) ;
 	heatMap.remove()
 	
-	heatText = heatArea.selectAll(".htext")
+	var heatText = heatArea.selectAll(".htext")
 	heatText.remove()
+
+  // shade the heatmap cells
 	
   heatMap = heatArea.selectAll(".count")
       .data(a2Melted)
@@ -193,7 +189,9 @@ updateA2OrgSize = function(v) {
 		  .attr("stroke","#7f7f7f")
 		  .style("fill", function(d) { return d.count > 0 ? colorScale(d.count) : "#FFFFFF"});
 		 
- heatText = heatArea.selectAll(".htext")
+	// add the text for the cell values. nothing if "0"	 
+
+  heatText = heatArea.selectAll(".htext")
       .data(a2Melted)
       .enter().append("text")
 		  .attr("class", "htext")
@@ -205,7 +203,7 @@ updateA2OrgSize = function(v) {
 				 				 
 $(document).ready(function(){
 
-	showLoadingScreen();
+	showLoadingScreen(); // 3.5+MB might take a noticeable second or two
 
   d3.csv("data/csv/vcdb.csv", function(d) {
 		 		 		 
@@ -215,22 +213,26 @@ $(document).ready(function(){
 		 
 		 hideLoadingScreen();
 		 		 
-		 r = rows ;
+		 r = rows ; // will need this later
 		 
-		 colorScale = d3.scale.linear()
-		     .range(['#D8EEFE', '#4682B4']) 
-		     .domain([0, a2Max]);
-
+		 // setup the heatmap SVG
+		 
      svg = d3.select("#a2").append("svg")
          .attr("width", width + margin.left + margin.right)
          .attr("height", height + margin.top + margin.bottom);
+			
+		 // re-orient x/y for the cells
 				 
 		 heatArea = svg.append("g")
                         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 		 
+		 // build the cells
+		 
 		 updateA2OrgSize("All")
+		 
+		 // title the heatmap
 		 				 
-		 heatTitle = svg.append("g")
+		 var heatTitle = svg.append("g")
 											  .attr("transform", "translate(" + margin.left + "," + 0 + ")");
 
 		 heatTitle.append("text")
@@ -239,7 +241,10 @@ $(document).ready(function(){
 							.attr("y", margin.top/2 + 14/2)
 							.text("VCDB : A2 Grid: Assets and Actions");
 
- 		 heatYLab = svg.append("g")
+
+		 // add y labels
+		 
+ 		 var heatYLab = svg.append("g")
  											    .attr("transform", "translate(" + 0 + "," + margin.top + ")");
 
  		 heatYLab.selectAll("ylab")
@@ -251,8 +256,9 @@ $(document).ready(function(){
 		          .attr("y", function(d, i) { return (i * grid.y) + grid.y/2 + 12/2; })
  							.text(function(d) { return(d.replace("asset.assets.","").replace("."," ")) });
 
-
-		 heatXLab = svg.append("g")
+		 // add x labels
+		
+		 var heatXLab = svg.append("g")
 											    .attr("transform", "translate(" + margin.left + "," + (margin.top+height+6) + ")");
 
 		 heatXLab.selectAll("xlab")
@@ -262,8 +268,10 @@ $(document).ready(function(){
 							.attr("transform", function(d,i) { return("translate(" + ((i * grid.x) + (grid.x/2) + (12/2)) + ",0)rotate(-90)") })
 							.attr("class","xlab")
 							.text(function(d) { return(d.replace("action.","").replace("."," ")) })
-							
-	   orgSize = d3.set(r.map(function(d) { return d["victim.employee_count"]})).values();
+				
+		 // setup the popup menup
+						
+	   var orgSize = d3.set(r.map(function(d) { return d["victim.employee_count"]})).values();
 		 orgSize.unshift("All");
 
 		 var list = d3.select("#orgSz").append("select").on("change", updateOrgSize)
@@ -282,7 +290,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<div class="loading">Loading data&hellip;</div>
+<div class="loading">Loading VCDB data&hellip;</div>
 <div style="width:100%;text-align:center"><div id="a2" class="a2"></div><br/><div id="orgSz">Org size: </div></div>
 </body>
 </html>
