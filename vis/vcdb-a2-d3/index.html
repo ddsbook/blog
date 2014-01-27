@@ -134,6 +134,8 @@ updateA2OrgSize = function(v) {
 		})
 	}
 
+	$("#incCt").text(filtered.length)
+
   // make heatmap values
 
   filtered.map(function(d) {
@@ -274,7 +276,8 @@ $(document).ready(function(){
 	   var orgSize = d3.set(r.map(function(d) { return d["victim.employee_count"]})).values();
 		 orgSize.unshift("All");
 
-		 var list = d3.select("#orgSz").append("select").on("change", updateOrgSize)
+		 // var list = d3.select("#orgSz").append("select").on("change", updateOrgSize)
+		 var list = d3.select("#orgSel").on("change", updateOrgSize)
 
 		 list.selectAll("option")
 				 .data(orgSize)
@@ -291,6 +294,6 @@ $(document).ready(function(){
 </head>
 <body>
 <div class="loading">Loading VCDB data&hellip;</div>
-<div style="width:100%;text-align:center"><div id="a2" class="a2"></div><br/><div id="orgSz">Org size: </div></div>
+<div style="width:100%;text-align:center"><div id="a2" class="a2"></div><br/><div id="orgSz">Org size: <select id="orgSel"></select> (<span id="incCt"></span> incidents)</div></div>
 </body>
 </html>
