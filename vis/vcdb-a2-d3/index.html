@@ -13,6 +13,22 @@
 body {
 	margin:0px;
 	padding:0px;
+	width:100%;
+	height:100%;
+	font-family:Lato;
+}
+
+.loading {
+	display:none;
+	z-index:99;
+	width:100%;
+	height:100%;
+	position:absolute;
+	background-color:rgba(0,0,0,0.25);
+	text-align:center;
+	vertical-align:,middle;
+	font-size:60px;
+	color:white;
 }
 
 .htext {
@@ -65,8 +81,17 @@ var assets = [ "asset.assets.Server", "asset.assets.Network", "asset.assets.User
 var actions = [ "action.malware", "action.hacking", "action.social", "action.misuse",
                 "action.physical", "action.error", "action.environmental", "action.unknown"  ] ;
 
-// initialize A2
 var a2 = {} ;
+var a2Melted ;
+var colorScale ;
+var svg ;
+var heatArea ;
+var heatMap ;
+var heatText ;
+var heatTitle ;
+var heatYLab ;
+var heatXLab ;
+var orgSize ;
 
 for(var i = 0, k = assets.length; i < k; ++i) {
 	a2[assets[i]] = {} ;
@@ -80,11 +105,48 @@ var a2Max = -Infinity;
 var a2Melted = [ ] ;
 
 var r ;
-				 				 
-$(document).ready(function(){
+var filtered = [];
 
-	d3.csv("data/csv/vcdb.csv", function(d) {
-		 		 
+showLoadingScreen = function() {
+	$(".loading").css("display","table-cell")
+}
+
+hideLoadingScreen= function() {
+	$(".loading").css("display","none")	
+}
+
+
+
+updateOrgSize = function() {
+	
+  var v = this.options[this.selectedIndex].value ;
+	
+	updateA2OrgSize(v)
+	
+}
+
+updateA2OrgSize = function(v) {
+	
+	var a2Max = -Infinity;
+		
+	a2Melted = [] ;
+	filtered = [] ;
+
+	for(var i = 0, k = assets.length; i < k; ++i) {
+		for(var j=0, l = actions.length; j < l; ++j) {
+			a2[assets[i]][actions[j]] = 0 ;
+		}
+	}
+
+	if (v == "All") {
+		filtered = r ;
+	} else {
+		filtered = r.filter(function(d) { 
+			return(d["victim.employee_count"] == v)
+		})
+	}
+
+  filtered.map(function(d) {
 		for(var i = 0, k = assets.length; i < k; ++i) {
 			if (d[assets[i]] != "0") {
 				for(var j=0, l = actions.length; j < l; ++j) {					
@@ -95,66 +157,89 @@ $(document).ready(function(){
 					}	
 				}	
 			}		
+		}  	
+  })
+
+  m = 0 ;
+  for(var i = 0, k = assets.length; i < k; ++i) {
+ 	  for(var j=0, l = actions.length; j < l; ++j) {
+ 		  a2Melted[m++] = { asset : assets[i],
+		                    action : actions[j],
+				    					  count : a2[assets[i]][actions[j]]
+									    } ;
 		}
+  }
+
+  colorScale = d3.scale.linear()
+     .range(['#D8EEFE', '#4682B4']) 
+     .domain([0, a2Max]);
+
+  console.log(a2Melted.length);
+	
+	heatMap = heatArea.selectAll(".count").data(a2Melted)
+	heatMap.remove()
+	
+	heatText = heatArea.selectAll(".htext")
+	heatText.remove()
+	
+  heatMap = heatArea.selectAll(".count")
+      .data(a2Melted)
+      .enter().append("rect")
+		  .attr("class","count")
+      .attr("x", function(d) { return actions.indexOf(d.action) * grid.x; })
+      .attr("y", function(d) { return assets.indexOf(d.asset) * grid.y; })
+      .attr("width", grid.x)
+      .attr("height", grid.y)
+		  .attr("stroke","#7f7f7f")
+		  .style("fill", function(d) { return d.count > 0 ? colorScale(d.count) : "#FFFFFF"});
 		 
+ heatText = heatArea.selectAll(".htext")
+      .data(a2Melted)
+      .enter().append("text")
+		  .attr("class", "htext")
+      .attr("x", function(d) { return (actions.indexOf(d.action) * grid.x) + grid.x/2; })
+      .attr("y", function(d) { return (assets.indexOf(d.asset) * grid.y) + grid.y/2 + 12/2; })
+		  .text(function(d) { return d.count > 0 ? d.count : "" })
+	
+}
+				 				 
+$(document).ready(function(){
+
+	showLoadingScreen();
+
+  d3.csv("data/csv/vcdb.csv", function(d) {
+		 		 		 
 		return(d) ;
 		 
-	 }, function(error, rows) {
+	}, function(error, rows) {
+		 
+		 hideLoadingScreen();
 		 		 
 		 r = rows ;
 		 
-		 var n = 0 ;
-		 
-		 for(var i = 0, k = assets.length; i < k; ++i) {
-		 	 for(var j=0, l = actions.length; j < l; ++j) {
-		 		 a2Melted[n++] = { asset : assets[i],
-				                   action : actions[j],
-						    					 count : a2[assets[i]][actions[j]]
-											   } ;
-		 	 }
-		 }		 
-
-
-		 var colorScale = d3.scale.linear()
-		     .range(['#D8EEFE', '#4682B4']) // or use hex values
+		 colorScale = d3.scale.linear()
+		     .range(['#D8EEFE', '#4682B4']) 
 		     .domain([0, a2Max]);
 
-     var svg = d3.select("#a2").append("svg")
+     svg = d3.select("#a2").append("svg")
          .attr("width", width + margin.left + margin.right)
          .attr("height", height + margin.top + margin.bottom);
 				 
-		 var heatArea = svg.append("g")
+		 heatArea = svg.append("g")
                         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 		 
-     var heatMap = heatArea.selectAll(".count")
-         .data(a2Melted)
-         .enter().append("rect")
-				 .attr("class","count")
-         .attr("x", function(d) { return actions.indexOf(d.action) * grid.x; })
-         .attr("y", function(d) { return assets.indexOf(d.asset) * grid.y; })
-         .attr("width", grid.x)
-         .attr("height", grid.y)
-				 .attr("stroke","#7f7f7f")
-				 .style("fill", function(d) { return d.count > 0 ? colorScale(d.count) : "#FFFFFF"});
-				 
-		 var heatText = heatArea.selectAll(".htext")
-		     .data(a2Melted)
-		     .enter().append("text")
-				 .attr("class", "htext")
-         .attr("x", function(d) { return (actions.indexOf(d.action) * grid.x) + grid.x/2; })
-         .attr("y", function(d) { return (assets.indexOf(d.asset) * grid.y) + grid.y/2 + 12/2; })
-				 .text(function(d) { return d.count > 0 ? d.count : "" })
-				 
-		 var heatTitle = svg.append("g")
+		 updateA2OrgSize("All")
+		 				 
+		 heatTitle = svg.append("g")
 											  .attr("transform", "translate(" + margin.left + "," + 0 + ")");
 
 		 heatTitle.append("text")
 						  .attr("class","a2title")
 							.attr("x", width/2)
 							.attr("y", margin.top/2 + 14/2)
-							.text("A2 Grid: Assets and Actions");
+							.text("VCDB : A2 Grid: Assets and Actions");
 
- 		 var heatYLab = svg.append("g")
+ 		 heatYLab = svg.append("g")
  											    .attr("transform", "translate(" + 0 + "," + margin.top + ")");
 
  		 heatYLab.selectAll("ylab")
@@ -167,7 +252,7 @@ $(document).ready(function(){
  							.text(function(d) { return(d.replace("asset.assets.","").replace("."," ")) });
 
 
-		 var heatXLab = svg.append("g")
+		 heatXLab = svg.append("g")
 											    .attr("transform", "translate(" + margin.left + "," + (margin.top+height+6) + ")");
 
 		 heatXLab.selectAll("xlab")
@@ -177,6 +262,18 @@ $(document).ready(function(){
 							.attr("transform", function(d,i) { return("translate(" + ((i * grid.x) + (grid.x/2) + (12/2)) + ",0)rotate(-90)") })
 							.attr("class","xlab")
 							.text(function(d) { return(d.replace("action.","").replace("."," ")) })
+							
+	   orgSize = d3.set(r.map(function(d) { return d["victim.employee_count"]})).values();
+		 orgSize.unshift("All");
+
+		 var list = d3.select("#orgSz").append("select").on("change", updateOrgSize)
+
+		 list.selectAll("option")
+				 .data(orgSize)
+				 .enter()
+				 .append("option")
+				 .attr("value", function(d) {return d;})
+				 .text(function(d) { return d; });
 		 		 			 	
 	 });
 	
@@ -185,6 +282,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<div style="width:100%;text-align:center"><div id="a2" class="a2"></div></div>
+	<div class="loading">Loading data&hellip;</div>
+<div style="width:100%;text-align:center"><div id="a2" class="a2"></div><br/><div id="orgSz">Org size: </div></div>
 </body>
 </html>
