@@ -1,5 +1,5 @@
 Title: Data-Driven Security (The Book) Available on Google Books & Amazon Kindle! (+book signing at RSA)
-Date: 2014-01-31 14:30:00
+Date: 2014-01-30 14:30:00
 Category: news, shameless self-promotion
 Tags: book
 Slug: dds-on-google-books
