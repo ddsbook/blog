@@ -1,8 +1,8 @@
-Title: Boxpots for Everyone
+Title: Boxplots for Everyone
 Date: 2014-02-01 09:32:09
 Category: datavis
 Tags: shiny
-Slug: boxpots-for-everyone
+Slug: boxplots-for-everyone
 Author: Bob Rudis (@hrbrmstr)
 
 Nature (VOL.11 NO.2 | FEBRUARY 2014) had a really useful letter to the editor [PDF](http://www.nature.com/nmeth/journal/v11/n2/pdf/nmeth.2811.pdf)  [readcube](http://www.readcube.com/articles/10.1038%2Fnmeth.2811) titled "*BoxPlotR: a web tool for generation of box plots*" that included this equally really useful overview graphic that shows a sample of 100 data points visualized five different ways.
