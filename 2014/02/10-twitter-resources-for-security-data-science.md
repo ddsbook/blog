@@ -2,6 +2,7 @@ Title: 10 Twitter Resources To Follow For [Security] Data Scientists
 Date: 2014-02-01 09:54:17
 Category: shamlessvirality
 Tags: twitter, data science
+Summary: If your day happens to be too tumultuous for a textbook and too busy for a long-form blog post, consider tapping into these Twitter resources to see what's happening in the world of [security] data science&hellip;
 Slug: 10-twitter-resources-for-security-data-science
 Author: Bob Rudis (@hrbrmstr)
 
