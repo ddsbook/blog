@@ -1,7 +1,6 @@
 Title: ripal - Password Dump Analysis in R
-Date: 2014-02-03 09:00:00
+Date: 2014-02-040 10:00:00
 Category: analysis
-Status: draft
 Tags: R, passwords
 Slug: ripal
 Author: Bob Rudis (@hrbrmstr)
