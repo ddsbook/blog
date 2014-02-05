@@ -24,6 +24,11 @@ First, we'll read in a sample file (the [infamous "phpbb" hack dump](http://sla.
 	setnames(passwords ,"V1", "orig") # decent label for the column
 	tot <- nrow(passwords) # we compute many ratios with this
 
+> So, it turns out `fread()` is not optimal for this use-case since (as the docs clearly state but I obviously ignored) that it will stop reading on the first blank line. The following is updated code (changes posted to github as well) for reading in the data file and converting it to a `data.table`:
+
+	passwords <- read.delim("phbb.txt", header=FALSE, col.names=c("orig"), stringsAsFactors=FALSE)
+	passwords <- data.table(passwords)
+
 We can get the "top 10" passwords pretty easily in R using the `summary()` function on a `factor()` (a function that creates a special enumerated reference type of a set of input values) created from the original passwords, but the `phpbb` file was pre-`uniq`'d so it isn't very interesting in this case:
 
 
