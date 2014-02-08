@@ -1,0 +1,103 @@
+It's super-`#spiffy` to see organizations like [Sucuri](http://sucuri.net/) share data and insight. Since they did some great work (both in data capture and sharing of their analyses), I thought it might be fun (yes, Jay & I have a strange notion of "fun") to "show the work" in R. You should read [their post](http://blog.sucuri.net/2014/02/darkleech-bitly-com-insightful-statistics.html) first before playing along at home. We'll provide links to the data file at the end of this post.
+
+I combined the three Darkleech bit.ly files and stuck a proper header it, which makes it much easier to handle with `read.csv()`. I also normalized all the timestamp formats (they are all "%Y:%m:%d %H:%M:%S" now).
+
+```{r}
+library(plyr)
+require(RCurl)
+
+grantdad.URL = "https://raw.github.com/ddsbook/blog/master/data/2014/02/sucuri/grantdad.txt"
+grantdad <- read.csv(textConnection(getURL(grantdad.URL)), stringsAsFactors=FALSE, sep="\t")
+# to factor by host
+grantdad$host <- factor(gsub("^[a-zA-Z0-9]*\\.", "", gsub("(http[s]*://|/.*$)", "", grantdad$long.url)))
+# for aggregating by minute
+grantdad$ts.min <- as.POSIXct(gsub("\\:[0-9][0-9]$","",grantdad$ts)) 
+```
+
+I'm initially made an assumption the timestamp in the original files is the creation date+time of the short URL and that the click count is there just for convenience (neither the post nor pastebin 'splains). Looking at the `long.url` field, though, it seems that if this assumption is right, we might have an issue with the way the data was collected:
+
+```{r}
+# show duplicate long URLs entries short link and time stamp
+g.dups <- grantdad[grantdad$long.url %in% grantdad[duplicated(grantdad$long.url),]$long.url,c(2,3,1)]
+g.dups[order(g.dups$bitly.link.id),]
+```
+
+Those `click.count` numbers are close enough (OK, *exact*) that it looks like it might be a data collection/management issue (these RESTful APIs can be annoying at times). From my own examination of the bit.ly API, I'm pretty sure it's supposed to be the creation time of the link, so we'll remove the duplicates before continuing:
+
+```{r}
+grantdad <- grantdad[!duplicated(grantdad$long.url),]
+```
+
+With the data cleaned up we can aggregate `clicks` and `counts` (short URL creations) by anything we want. We'll start with by-minute aggregation:
+
+```{r}
+# aggregate URL creation and clicks by minute
+clicks <- count(grantdad, c("ts.min","host"), wt_var="click.count")
+colnames(clicks) <- c("ts", "host", "clicks")
+counts <- count(grantdad, c("ts.min","host"))
+colnames(counts) <- c("ts", "host", "counts")
+by.min <- merge(clicks, counts)
+```
+
+```{r}
+# across all hosts
+summary(by.min$counts)
+# per-host
+by(by.min, by.min$host, function(x) { summary(x$counts)})
+```
+
+```{r ByMinuteBoxPlot, fig.width=6, fig.height=4, dev=c('svg', 'png')}
+gg <- ggplot(by.min, aes(factor(host), counts))
+gg <- gg + geom_boxplot(aes(fill=host))
+gg <- gg + theme_bw()
+gg <- gg + labs(x="Target No-IP.com Host", y="Click Count (per min)", title="Click Counts (per-host, by minute)")
+gg <- gg + theme(legend.position="none")
+gg
+```
+
+The [bit.ly API best practices](http://dev.bitly.com/best_practices.html) page does not explicitly state what the per-minute link-creation rate limit is, but it *sure* looks like `grantdad` at least *assumed* it was 60 short-links per minute. (NOTE: `grantdad` could have been under a `no-ip.com` API rate limit threshold requirement as well&hellip;I didn't look at `no-ip.com` API details)
+
+Before we do further work with per-minute information (i.e. try do hourly aggregation), we should examine the source data a bit more closely. Since the original post documents that the time periods are:
+
+- 18:30 and 19:10 (Jan 25)
+- 09:40 and 22:10 (Jan 28)
+- 23:20 and 23:59 (Feb 04)
+- 00:00 and 03:40 (Feb 05)
+
+let's look at block of the complete hours of January 28<sup>th</sup> (the longest contiguous stretch in the data set) to see if there might be more methods to `grantdad`'s maliciousness (and to get a feel for how we should do any extrapolation):
+
+```{r}
+# extract 10:00 up to (but not including) 20:00
+jan28 <- grantdad[grep("2014-01-28 1[0-9]",grantdad$ts),]
+by(jan28, jan28$host, function(x) { 
+  summary(factor(gsub("(^2014-01-28 |\\:00$)", "", as.character(x$ts.min))))
+})
+```
+
+While this continues to show `grantdad` kept below the (again, assumed) 60 link creations per minute rate limit, he/she also spaced out the creation&mdash;albeit somewhat inconsistently&mdash;to every 5- or 10-minutes (and needed a bathroom break or fell asleep at 19:25, perhaps suggesting they were firing a script off by hand). 
+
+We can look at each "minute chunk" in aggregate for that time period as well:
+
+```{r}
+jan28.bymin <- factor(gsub("(^2014-01-28 1[0-9]\\:|\\:00$)", "", as.character(jan28$ts.min)))
+summary(jan28.bymin)
+```
+
+```{r BarGraphLinksCreated, fig.width=7, fig.height=5, dev=c('svg', 'png')}
+plot(jan28.bymin, col="steelblue", xlab="Minute", ylab="Links Created", main="Links Created", sub="Jan 28 (1000-1959) grouped by Minute-in-hour")
+```
+
+This is either the world's most inconsistent (or crafty) cron-job or `grantdad` like to press &#8593; + `ENTER` alot.
+
+We can use this summary to get get an idea of the average number of links being created in a five-minute period:
+
+```{r}
+# nine days
+summary(as.numeric(table(jan28.bymin)/9))
+```
+
+If we use the `mean`, we then have **~`r round(mean(as.numeric(table(jan28.bymin)/9)))`** links created every five minutes and can use that fact to do the extrapolation over the Jan 25-Feb 5 time period suggested in the article to get **`r formatC(mean(as.numeric(table(jan28.bymin)/9)) * 12 * 24 * 12, format="fg", big.mark = ",")`** total estimated links created during that 12-day period which is about 10K more than estimated in the Sucuri post and puts the complete estimate of created malicious links (assuming a start on Dec 16<sup>th</sup>) at **`r formatC(mean(as.numeric(table(jan28.bymin)/9)) * 12 * 24 * 51, format="fg", big.mark = ",")`**.
+
+It looks like my assumption of the fields in the data files was accurate and both Sucuri and DDSec came to roughly the same conclusions (both are estimates, so neither is "right").
+
+We may delve into the rest of the data provided by Sucuri, but want to express kudos again for sharing it and helping further the [reproducible research](http://reproducibleresearch.net/index.php/Main_Page) movement in the security domain.
