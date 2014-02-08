@@ -1,7 +1,6 @@
 Title: Reproducible Security Domain Research With Sucuri Darkleech Data
 Date: 2014-02-08 12:00:00
 Category: analysis
-Status: draft
 Tags: R, reproducible research, botnet
 Slug: reproducible-research-sucuri-darkleech-data
 Author: Bob Rudis (@hrbrmstr)
@@ -198,4 +197,4 @@ It looks like my assumption of the fields in the data files was accurate and bot
 
 We may delve into the rest of the data provided by Sucuri, but want to express kudos again for sharing it and helping further the [reproducible research](http://reproducibleresearch.net/index.php/Main_Page) movement in the security domain.
 
-You can grab all of the data files, including our combined `grantdad.txt` file over on [github](https://github.com/ddsbook/blog/tree/master/data/2014/02/sucuri). We stuck the `Rmd` [file](https://github.com/ddsbook/blog/tree/master/data/2014/02/sucuri/grantdad.Rmd) used to create this post there as well. `#reproducibleresearch`
+You can grab all of the data files, including our combined `grantdad.txt` file over on [github](https://github.com/ddsbook/blog/tree/master/data/2014/02/sucuri). We stuck the `Rmd` [file](https://raw.github.com/ddsbook/blog/master/data/2014/02/sucuri/grantdad.Rmd) used to create this post there as well. `#reproducibleresearch`
