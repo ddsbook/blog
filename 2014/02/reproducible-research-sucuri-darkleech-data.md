@@ -192,7 +192,7 @@ We can use this summary to get get an idea of the average number of links being 
 	##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 	##    12.9    18.1    39.1    34.9    47.5    59.0
 
-If we use the `mean`, we then have **~35** links created every five minutes and can use that fact to do the extrapolation over the Jan 25-Feb 5 time period suggested in the article to get **120,576** total estimated links created during that 12-day period which is about 10K more than estimated in the Sucuri post and puts the complete estimate of created malicious links (assuming a start on Dec 16<sup>th</sup>) at **512,448**.
+If we use the `mean`, we then have **~35** links created every five minutes and can use that fact to do the extrapolation over the Jan 25-Feb 5 time period suggested in the article to get **120,576** total estimated links created during that 12-day period which is **about 10K more than estimated** in the Sucuri post and puts the complete estimate of created malicious links (assuming a start on Dec 16<sup>th</sup>) at **512,448**.
 
 It looks like my assumption of the fields in the data files was accurate and both Sucuri and DDSec came to roughly the same conclusions (both are estimates, so neither is "right").
 
