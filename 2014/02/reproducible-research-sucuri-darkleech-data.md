@@ -8,7 +8,7 @@ Author: Bob Rudis (@hrbrmstr)
 
 It's super-`#spiffy` to see organizations like [Sucuri](http://sucuri.net/) share data and insight. Since they did some great work (both in data capture and sharing of their analyses), I thought it might be fun (yes, Jay & I have a strange notion of "fun") to "show the work" in R. You should read [their post](http://blog.sucuri.net/2014/02/darkleech-bitly-com-insightful-statistics.html) first before playing along at home. We'll provide links to the data file at the end of this post.
 
-I combined the three Darkleech bit.ly files and stuck a proper header it, which makes it much easier to handle with `read.csv()`. I also normalized all the timestamp formats (they are all "%Y:%m:%d %H:%M:%S" now).
+I combined the three Darkleech bit.ly files and stuck a proper header it, which makes it much easier to handle with `read.csv()`. I also normalized all the timestamp formats (they are all "`%Y:%m:%d %H:%M:%S`" now).
 
 	:::r
 	library(plyr)
@@ -28,7 +28,6 @@ I'm initially made an assumption the timestamp in the original files is the crea
 	g.dups <- grantdad[grantdad$long.url %in% grantdad[duplicated(grantdad$long.url),]$long.url, c(2, 3, 1)]
 	g.dups[order(g.dups$bitly.link.id), ]
 
-	:::r
 	##                        ts click.count bitly.link.id
 	## 6431  2014-01-28 18:50:17           2       19YJNDs
 	## 6433  2014-01-28 18:50:17           2       19YJNDs
@@ -99,19 +98,14 @@ With the data cleaned up we can aggregate `clicks` and `counts` (short URL creat
 	# across all hosts
 	summary(by.min$counts)
 
-
-	:::r
 	##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 	##     1.0    58.0    59.0    57.8    59.0    60.0
 
-
-	:::r
 	# per-host
 	by(by.min, by.min$host, function(x) {
 	    summary(x$counts)
 	})
 
-	:::r
 	## by.min$host: myftp.biz
 	##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 	##     1.0    58.0    58.0    57.6    59.0    60.0 
@@ -124,7 +118,6 @@ With the data cleaned up we can aggregate `clicks` and `counts` (short URL creat
 	##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 	##    12.0    58.0    58.0    57.2    59.0    60.0
 
-	:::r
 	gg <- ggplot(by.min, aes(factor(host), counts))
 	gg <- gg + geom_boxplot(aes(fill = host))
 	gg <- gg + theme_bw()
@@ -152,8 +145,6 @@ let's look at block of the complete hours of January 28<sup>th</sup> (the longes
 	    summary(factor(gsub("(^2014-01-28 |\\:00$)", "", as.character(x$ts.min))))
 	})
 
-
-	:::r
 	## jan28$host: myftp.biz
 	## 10:05 11:00 11:20 11:30 12:20 13:40 14:35 14:55 15:30 15:40 16:15 16:40 
 	##    57    58    59    57    59    59    59    59    59    59    59    59 
@@ -182,13 +173,9 @@ We can look at each "minute chunk" in aggregate for that time period as well:
 	jan28.bymin <- factor(gsub("(^2014-01-28 1[0-9]\\:|\\:00$)", "", as.character(jan28$ts.min)))
 	summary(jan28.bymin)
 
-
-	:::r
 	##  00  05  10  15  20  25  30  35  40  45  50  55 
 	## 351 411 236 352 413 178 471 118 473 118 531 116
 
-
-	:::r
 	plot(jan28.bymin, col = "steelblue", xlab = "Minute", ylab = "Links Created", 
 	    main = "Links Created", sub = "Jan 28 (1000-1959) grouped by Minute-in-hour")
 
@@ -202,8 +189,6 @@ We can use this summary to get get an idea of the average number of links being 
 	# nine days
 	summary(as.numeric(table(jan28.bymin)/9))
 
-
-	:::r
 	##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 	##    12.9    18.1    39.1    34.9    47.5    59.0
 
