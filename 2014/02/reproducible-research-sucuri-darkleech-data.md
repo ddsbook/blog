@@ -20,7 +20,7 @@ I combined the three Darkleech bit.ly files and stuck a proper header it, which 
 	# for aggregating by minute
 	grantdad$ts.min <- as.POSIXct(gsub("\\:[0-9][0-9]$", "", grantdad$ts))
 
-I'm initially made an assumption the timestamp in the original files is the creation date+time of the short URL and that the click count is there just for convenience (neither the post nor pastebin 'splains). Looking at the `long.url` field, though, it seems that if this assumption is right, we might have an issue with the way the data was collected:
+I initially made an assumption the timestamp in the original files is the creation date+time of the short URL and that the click count is there just for convenience (neither the post nor pastebin 'splains). Looking at the `long.url` field, though, it seems that if this assumption is right, we might have an issue with the way the data was collected:
 
 	:::r
 	# show duplicate long URLs entries short link and time stamp
