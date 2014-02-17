@@ -2,9 +2,8 @@ Title: AlienVault Longitudinal Study Part 1
 Date: 2014-02-17 16:40
 Tags: R, Visualization, AlienVault
 Category: Data Analysis
-Author: Steve Patton
-Summary: Data management precedes data science.
-Status: Draft
+Author: Steve Patton (@spttnnh)
+Status: draft
 
 Chapter 3 of Data Driven Security explores one download of the AlienVault reputation database. As you can see from the book, the reputation database has many interesting aspects to explore, including country profiles, risk versus reliability, and a variety of threat types. Of course, one download represents a simple snapshot in time. Yet we know threats are continually changing, moving, intensifying and waning. How could we expand our analysis to look at the reputation database over time?
 
