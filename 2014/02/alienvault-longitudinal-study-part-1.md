@@ -4,16 +4,16 @@ Tags: datavis, dataviz, AlienVault, data analysis. data management
 Category: Analysis
 Author: Steve Patton (@spttnnh)
 
-Chapter 3 of Data Driven Security explores one download of the AlienVault reputation database. As you can see from the book, the reputation database has many interesting aspects to explore, including country profiles, risk versus reliability, and a variety of threat types. Of course, one download represents a simple snapshot in time. Yet we know threats are continually changing, moving, intensifying and waning. How could we expand our analysis to look at the reputation database over time?
+Chapter 3 of [Data-Driven Security](http://amzn.to/ddsec) explores one download of the [AlienVault](http://www.alienvault.com/) reputation database. As you can see from the book, the reputation database has many interesting aspects to explore, including country profiles, risk versus reliability, and a variety of threat types. Of course, one download represents a simple snapshot in time. Yet we know threats are continually changing, moving, intensifying and waning. How could we expand our analysis to look at the reputation database over time?
 
-In this series of occasional posts, we will take a time series of the database, and essentially conduct a brief longitudinal study of the reputation database and its changes. One of the first challenges is how to get a picture of change over time, and to manage the resulting dataset. For our purposes, a cron job captured the reputation database hourly for three months (October through December 2013). The resulting files are the primary dataset for our study. It can be overwhelming to manage this number of elements:
+In this series of occasional posts, we will take a time series of the database, and essentially conduct a brief [longitudinal study](http://en.wikipedia.org/wiki/Longitudinal_study) of the reputation database and its changes. One of the first challenges is how to get a picture of change over time, and to manage the resulting dataset. For our purposes, a cron job captured the reputation database hourly for three months (October through December 2013). The resulting files are the primary dataset for our study. It can be overwhelming to manage this number of elements:
 
  * 250,000 records
  * 8 fields
  * 24 times daily
  * 92 days
 
-produces a truckload of elements: 4.4 billion, to be somewhat precise.
+produces a truckload of elements: **4.4 billion**, to be somewhat precise.
 
 While all this data needs to be processed for our analysis, there are certain simplifications that can reduce the amount of data needed to draw meaningful conclusions. For example, out of approximately 885,000 unique IP addresses found over the study period, less than 4% of the addresses had any change to their description. Additionally, less than one tenth of one percent of records had a change to the reliability or risk rating of an address. We can use this relative stability of records to responsibly prune the number of records we track. The raw number of records is roughly 250,000 times 24 hours times 92 days, or 552 million rows. But by choosing our smallest unit of analysis to be a day, we can smooth out any gaps in our hourly collection, and reduce our record count to about 20 million.
 
@@ -33,7 +33,7 @@ For all the wonderful features of open source R, there are some tasks it is not 
         bzip2 avrep${YMDHM}.data
     fi
 
-Here is the table definition script for MySQL:
+Here is the table definition script for MariaDB:
 
     DROP TABLE IF EXISTS avip;
     CREATE TABLE avip (
