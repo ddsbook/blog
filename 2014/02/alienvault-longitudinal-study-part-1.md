@@ -1,9 +1,8 @@
 Title: AlienVault Longitudinal Study Part 1
 Date: 2014-02-17 16:40
-Tags: R, Visualization, AlienVault
-Category: Data Analysis
+Tags: datavis, dataviz, AlienVault, data analysis. data management
+Category: Analysis
 Author: Steve Patton (@spttnnh)
-Status: draft
 
 Chapter 3 of Data Driven Security explores one download of the AlienVault reputation database. As you can see from the book, the reputation database has many interesting aspects to explore, including country profiles, risk versus reliability, and a variety of threat types. Of course, one download represents a simple snapshot in time. Yet we know threats are continually changing, moving, intensifying and waning. How could we expand our analysis to look at the reputation database over time?
 
@@ -18,7 +17,7 @@ produces a truckload of elements: 4.4 billion, to be somewhat precise.
 
 While all this data needs to be processed for our analysis, there are certain simplifications that can reduce the amount of data needed to draw meaningful conclusions. For example, out of approximately 885,000 unique IP addresses found over the study period, less than 4% of the addresses had any change to their description. Additionally, less than one tenth of one percent of records had a change to the reliability or risk rating of an address. We can use this relative stability of records to responsibly prune the number of records we track. The raw number of records is roughly 250,000 times 24 hours times 92 days, or 552 million rows. But by choosing our smallest unit of analysis to be a day, we can smooth out any gaps in our hourly collection, and reduce our record count to about 20 million.
 
-For all the wonderful features of R, there are some tasks it is not well suited for. When dealing with millions of records, a relational database is an ideal tool for managing and aggregating records. Here is a brief overview of the foundational scripts used to make the primary dataset for our study. The bash script running hourly in cron is below:
+For all the wonderful features of open source R, there are some tasks it is not well suited for. When dealing with millions of records, a relational database is an ideal tool for managing and aggregating records. Here is a brief overview of the foundational scripts used to make the primary dataset for our study. The bash script running hourly in cron is below:
 
     YMDHM=`date +%Y%m%d%H%M`
     cd /data/avrep
@@ -86,7 +85,7 @@ Here is the processing script called for each AlienVault download:
         x       VARCHAR(10)
     );
     
-    LOAD DATA LOCAL INFILE '/home/steve/Develop/avrep/avrep_tmp.data' INTO TABLE avrep
+    LOAD DATA LOCAL INFILE '/data/avrep_tmp.data' INTO TABLE avrep
          FIELDS TERMINATED BY '#';
     SHOW WARNINGS;
     
