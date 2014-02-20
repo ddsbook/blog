@@ -15,8 +15,9 @@ You can manually watch feeds like [LeakedIn](https://twitter.com/leakedin) and [
 
 all of which is documented pretty well at the github repo.
 
->Twitter and other languages all have libraries that interface directly with Twitter, but I find it's
->both easier to extract data with `t` and makes the analysis or visualization code much cleaner as a result
+>Twitter and other languages all have libraries that interface directly with Twitter, but I find it's 
+>both easier to extract data with `t` and using said extract makes the core  data analysis and/or 
+>visualization code much cleaner as a result.
 
 Once you're setup, you can actually use `t` to read, post and search twitter just as you would with any GUI Twitter client. For example, youc can see the lastet posts by the `@dumpmon` bot via:
 
