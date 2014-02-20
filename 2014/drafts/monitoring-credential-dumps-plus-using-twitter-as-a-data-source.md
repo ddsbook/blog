@@ -11,7 +11,7 @@ The topic of "dump monitoring"&mdash;i.e. looking for lists of stolen/hacked cre
 You can manually watch feeds like [LeakedIn](https://twitter.com/leakedin) and [Dump Monitor](https://twitter.com/dumpmon) (both of which monitor multiple dump sites) to look for details on dumps from sites or organizations you care about, but since `@dumpmon` actually provides summary information in most of the tweets, it could be useful just to look at the volume of dumps over time. One of the easiest ways to do this is via the ["t" utility](https://github.com/sferik/t) developed by Erik Michaels-Ober. `t` is a Ruby script that provides a powerful command-line interface to Twitter. To use it, you'll need to setup an application slot at the [Twitter dev portal](http://dev.twitter.com/apps/new) and setup your credentials via
 
     :::bash
-    `t authorize`
+    t authorize
 
 all of which is documented pretty well at the github repo.
 
