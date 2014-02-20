@@ -1,7 +1,6 @@
 Title: Monitoring Credential Dumps Plus Using Twitter As a Data Source
-Date: 2014-02-20 09:14:06
+Date: 2014-02-20 10:30
 Category: analysis
-Status: draft
 Tags: data analysis, twitter, data visualization, datavis, passwords
 Slug: monitoring-credential-dumps-plus-using-twitter-as-a-data-source
 Author: Bob Rudis (@hrbrmstr)
@@ -57,7 +56,7 @@ The `@dumpmon` bot provides some additional data, but for the purposes of this p
 
 <center><a href="http://datadrivensecurity.info/dashboard/img/dumpmon.svg" target=_blank><img src="/dashboard/img/dumpmon.svg" max-width="100%"/></a></center>
 
-The liberally annotated R code is below. We're doing a daily `@dumpmon` [extract](http://datadrivensecurity.info/data/dumpmon.csv) [CSV] that you can use on your own if you don't want to muck with `t`/Ruby and we'll also be generating the [above chart](http://datadrivensecurity.info/dashboard/img/dumpmon.svg) daily as well (which will be on a forthcoming Data Driven Security 'Daily Dashboard' page).
+The liberally annotated R code is below and is also available [on our github repo](https://github.com/ddsbook/blog/blob/master/extra/src/R/dumpmon.R). We're doing a daily `@dumpmon` [extract](http://datadrivensecurity.info/data/dumpmon.csv) [CSV] that you can use on your own if you don't want to muck with `t`/Ruby and we'll also be generating the [above chart](http://datadrivensecurity.info/dashboard/img/dumpmon.svg) daily as well (which will be on a forthcoming Data Driven Security 'Daily Dashboard' page).
 
 Note that we aren't using all the `@dumpmon` data and we also aren't taking into account the "goodness" value that the bot calculates. It's also worth mentioning that some of the dumps that `@dumpmon` finds aren't *actual* dumps (they just have data that looks *dump-ish* and fits certain broad keyword parameters). If you want more refined, accurate statistcs and dump results, you can clone the `@dumpmon` [github repo](https://github.com/jordan-wright/dumpmon) and refine the code or curate the data results on your own (and you won't need to mine Twitter for the stats!).
 
