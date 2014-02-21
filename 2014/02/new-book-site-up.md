@@ -1,7 +1,6 @@
 Title: New Book Site Up!
 Date: 2014-02-21 09:01:22
 Category: book
-Status: draft
 Tags: book
 Slug: new-book-site-up
 Author: Bob Rudis (@hrbrmstr)
