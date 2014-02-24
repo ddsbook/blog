@@ -21,8 +21,5 @@ for their generous support of this collaborative and engaging event. The lineup 
 
 If you are attending (there's space left, so hit me up if you still want to go), you may even win a copy of [a certain book](http://amzn.to/ddsec) :-)
 
-<div id="pdf" style="width:100%">
-  <object width="630" height="500" type="application/pdf" data="//blog/extra/metricon9-agenda.pdf?#zoom=85&scrollbar=0&toolbar=0&navpanes=0" id="pdf_content">
-    <p>Your browser is not allowing you to see embedded PDFs :-(</p>
-  </object>
-</div>
+<object data="/blog/extra/metricon9-agenda.pdf" TYPE="application/x-pdf" TITLE="Metricon 9 Program/Agenda" 
+width=630 height=500><a href="/blog/extra/metricon9-agenda.pd">Your browser is not allowing you to see embedded PDFs :-(</a></object>
