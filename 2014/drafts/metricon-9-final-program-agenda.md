@@ -21,4 +21,9 @@ for their generous support of this collaborative and engaging event. The lineup 
 
 If you are attending (there's space left, so hit me up if you still want to go), you may even win a copy of [a certain book](http://amzn.to/ddsec) :-)
 
-<iframe src="http://docs.google.com/gview?url=http://datadrivensecurity.info/blog/extra/metricon9-agenda.pdf&embedded=true" style="width:630px; height:500px;" frameborder="0" seamless="seamless" ></iframe>
+
+<div id="pdf">
+  <object width="630" height="500" type="application/pdf" data="//blog/extra/metricon9-agenda.pdf?#zoom=85&scrollbar=0&toolbar=0&navpanes=0" id="pdf_content">
+    <p>Your browser is not allowing you to see embedded PDFs :-(</p>
+  </object>
+</div>
