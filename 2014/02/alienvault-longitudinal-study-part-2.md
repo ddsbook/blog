@@ -184,7 +184,7 @@ We can easily see now a breakdown of type for one day:
     9 rows in set (0.00 sec)
 
 This shows us how scanning hosts dwarf everything else in the feed. To help see this
-more clearly, we will look at the whole time series, and view the types by percentage:
+more clearly, we will look at the whole time series and view the types by percentage:
 
     MariaDB [avrep]> SET @total = (SELECT COUNT(*) from avtrack);
     Query OK, 0 rows affected (18.45 sec)
