@@ -1,8 +1,9 @@
 Title: AlienVault Longitudinal Study Part 1
 Date: 2014-02-17 16:40
-Tags: datavis, dataviz, AlienVault, data analysis. data management
+Tags: datavis, dataviz, AlienVault, data analysis, data management
 Category: Analysis
 Author: Steve Patton (@spttnnh)
+Slug: alienvault-longitudinal-study-part-1
 
 Chapter 3 of [Data-Driven Security](http://amzn.to/ddsec) explores one download of the [AlienVault](http://www.alienvault.com/) reputation database. As you can see from the book, the reputation database has many interesting aspects to explore, including country profiles, risk versus reliability, and a variety of threat types. Of course, one download represents a simple snapshot in time. Yet we know threats are continually changing, moving, intensifying and waning. How could we expand our analysis to look at the reputation database over time?
 
