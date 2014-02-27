@@ -256,7 +256,7 @@ type categories we have been exploring.
     
 This simple plot shows the problem of the overwhelming number of scanning hosts.
 
-<center><img src="type_addr.svg" width="630" style="max-width:100%"/></center>
+<center><img src="/blog/images/2014/02/type_addr.svg" width="630" style="max-width:100%"/></center>
 
 If we alter the graph by omitting scanned hosts, with this R code:
 
@@ -265,7 +265,7 @@ ggplot(daytype[daytype$type!="Scanning Host",], aes(x=d, y=count))+geom_point()+
 
 this is what we get:
 
-<center><img src="noscan_addr.svg" width="630" style="max-width:100%"/></center>
+<center><img src="/blog/images/2014/02/noscan_addr.svg" width="630" style="max-width:100%"/></center>
 
 You can see more detail since we've dropped the scanning hosts, but a 
 simple point plot won't show us the relationships we want to view. To do that,
