@@ -260,8 +260,8 @@ This simple plot shows the problem of the overwhelming number of scanning hosts.
 
 If we alter the graph by omitting scanned hosts, with this R code:
 
-ggplot(daytype[daytype$type!="Scanning Host",], aes(x=d, y=count))+geom_point()+theme_bw()+
-  xlab("Day")+ylab("IP Addresses")+ggtitle("Addresses by Type (x Scan Hosts) 10/13 - 12/13")
+    ggplot(daytype[daytype$type!="Scanning Host",], aes(x=d, y=count))+geom_point()+theme_bw()+
+      xlab("Day")+ylab("IP Addresses")+ggtitle("Addresses by Type (x Scan Hosts) 10/13 - 12/13")
 
 this is what we get:
 
