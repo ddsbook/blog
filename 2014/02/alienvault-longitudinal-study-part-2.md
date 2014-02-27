@@ -1,12 +1,13 @@
 Title: AlienVault Longitudinal Study Part 2
-Date: 2014-02-22 17:00
-Tags: datavis, dataviz, AlienVault, data analysis. data management
+Date: 2014-02-27 09:00
+Tags: datavis, dataviz, AlienVault, data analysis,data management
 Category: Analysis
+Slug: alienvault-longitudinal-study-part-2
 Author: Steve Patton (@spttnnh)
-Status: Draft
+Status: draft
 
 In [Part 1](alienvault-longitudinal-study-part-1) we looked at acquiring raw
-data, and wrangling it into a time series dataset. Now we will examine
+data and wrangling it into a time series dataset. Now we will examine
 [AlienVault](http://www.alienvault.com/) types in the reputation database.
 Listing 3-22 of [Data-Driven Security](http://amzn.to/ddsec) shows R code that
 groups type categories into a larger group of "multiples" when there is a
@@ -14,7 +15,7 @@ semicolon in the type. This is a useful simplification when taking a first
 look at a complex dataset. In this post, we will look deeper at types, and
 the combinations in the dataset. While we will get to pictures later in the
 post, it is important to "know your data" prior to cranking up your favorite
-'viz' engine.
+'vis' engine.
 
 Our dataset has 80 unique different types:
 
