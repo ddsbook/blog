@@ -4,7 +4,7 @@ Tags: datavis, dataviz, AlienVault, data analysis,data management
 Category: Analysis
 Slug: alienvault-longitudinal-study-part-2
 Author: Steve Patton (@spttnnh)
-Status: Draft
+Status: draft
 
 In [Part 1](alienvault-longitudinal-study-part-1) we looked at acquiring raw
 data and wrangling it into a time series dataset. Now we will examine
