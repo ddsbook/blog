@@ -1,13 +1,12 @@
 Title: AlienVault Longitudinal Study Part 2
-Date: 2014-02-27 09:00
-Tags: datavis, dataviz, AlienVault, data analysis,data management
+Date: 2014-02-22 17:00
+Tags: datavis, dataviz, AlienVault, data analysis. data management
 Category: Analysis
-Slug: alienvault-longitudinal-study-part-2
 Author: Steve Patton (@spttnnh)
-Status: draft
+Status: Draft
 
 In [Part 1](alienvault-longitudinal-study-part-1) we looked at acquiring raw
-data and wrangling it into a time series dataset. Now we will examine
+data, and wrangling it into a time series dataset. Now we will examine
 [AlienVault](http://www.alienvault.com/) types in the reputation database.
 Listing 3-22 of [Data-Driven Security](http://amzn.to/ddsec) shows R code that
 groups type categories into a larger group of "multiples" when there is a
@@ -15,7 +14,7 @@ semicolon in the type. This is a useful simplification when taking a first
 look at a complex dataset. In this post, we will look deeper at types, and
 the combinations in the dataset. While we will get to pictures later in the
 post, it is important to "know your data" prior to cranking up your favorite
-'vis' engine.
+'viz' engine.
 
 Our dataset has 80 unique different types:
 
@@ -256,7 +255,7 @@ type categories we have been exploring.
     
 This simple plot shows the problem of the overwhelming number of scanning hosts.
 
-<center><img src="/blog/images/2014/02/type_addr.svg" width="630" style="max-width:100%"/></center>
+<center><img src="type_addr.svg" width="630" style="max-width:100%"/></center>
 
 If we alter the graph by omitting scanned hosts, with this R code:
 
@@ -265,31 +264,38 @@ If we alter the graph by omitting scanned hosts, with this R code:
 
 this is what we get:
 
-<center><img src="/blog/images/2014/02/noscan_addr.svg" width="630" style="max-width:100%"/></center>
+<center><img src="noscan_addr.svg" width="630" style="max-width:100%"/></center>
 
 You can see more detail since we've dropped the scanning hosts, but a 
-simple point plot won't show us the relationships we want to view. To do that,
-we'll need a facet grid plot. We will remove the x scale breaks, since in the
+simple point plot won't show us the relationships we want to view. Even if we enhance
+this plot with a different color for each type, it is still difficult to see the
+different types clearly:
+
+    ggplot(daytype[daytype$type!="Scanning Host",], aes(x=d, y=count, color=type))+geom_point()+theme_bw()+
+      xlab("Day")+ylab("IP Addresses")+ggtitle("Addresses by Type (x Scan Hosts) 10/13 - 12/13")
+
+this is what we get:
+
+<center><img src="noscan_addr_color.svg" width="630" style="max-width:100%"/></center>
+
+To really separate all the types
+we'll need a facet grid blot. We will remove the x scale breaks, since in the
 small facet grid format the dates become unreadable.
 
 Here is a facet_grid plot of all threat types:
 
-    mage=ggplot(daytype, aes(d, count)) + geom_point() + theme_bw() +
+    ggplot(daytype, aes(d, count)) + geom_point() + theme_bw() +
         scale_x_date(breaks=NULL) + xlab("Day") + ylab("Count") + facet_grid(. ~ type)
-    image
-    ggsave(file="/home/steve/Develop/avrep/post/output/alltype.svg", plot=image)
 
-<center><img src="/blog/images/2014/02/alltype.svg" width="630" style="max-width:100%"/></center>
+<center><img src="alltype.svg" width="630" style="max-width:100%"/></center>
 
 This is a different view of the overwhelming number of scanning hosts. Now if we
 repeat the plot but omit scanning hosts, here is the revised facet_grid:
 
-    image=ggplot(daytype[daytype$type!="Scanning Host",], aes(d, count)) + geom_point() + theme_bw() +
+    ggplot(daytype[daytype$type!="Scanning Host",], aes(d, count)) + geom_point() + theme_bw() +
       scale_x_date(breaks=NULL) + xlab("Day") + ylab("Count") + facet_grid(. ~ type)
-    image
-    ggsave(file="/home/steve/Develop/avrep/post/output/type.svg", plot=image)
 
-<center><img src="/blog/images/2014/02/type.svg" width="630" style="max-width:100%"/></center>
+<center><img src="type.svg" width="630" style="max-width:100%"/></center>
 
 The revised plot lets us see the variability of the numerically smaller types.
 Now we more fully understand types over our sample period. In our next installment
