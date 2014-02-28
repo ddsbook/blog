@@ -105,9 +105,7 @@ How do the reliability and risk ratings of compound types compare to the others?
 That is quite interesting! Addresses with a compound type, while they represent a small
 fraction of addresses in the AlienVault Reputation Database, average a risk rating more
 than *18% higher* than addresses with a simple type. Not only that, but they average a
-reliability rating *87% higher* than addresses with a simple type. This actually makes sense,
-since addresses demonstrating multiple types of malicious behavior are both a higher risk
-and higher reliability with regard to that risk.
+reliability rating *87% higher* than addresses with a simple type. This actually makes sense, since addresses demonstrating multiple types of malicious behavior are both a higher risk and higher reliability with regard to that risk.
 
 What about compound types in relation to our time series? We have determined that
 addresses with a compound type are a small fraction of all tracked addresses, but do
