@@ -22,4 +22,4 @@ The lineup of speakers and attendees is truly exceptional and it will be difficu
 
 If you are attending (*there's space left, so hit me up if you still want to go*), you may even win a copy of [a certain book](http://amzn.to/ddsec) :-)
 
-<iframe class="scribd_iframe_embed" src="//www.scribd.com/embeds/208959239/content?start_page=1&view_mode=scroll&show_recommendations=true" data-auto-height="false" data-aspect-ratio="undefined" scrolling="no" id="doc_37463" width="100%" height="600" frameborder="0"></iframe>
+<iframe class="scribd_iframe_embed" src="//www.scribd.com/embeds/209747325/content?start_page=1&view_mode=scroll&access_key=key-1p9u2frqhy0ccobgyukn&show_recommendations=true" data-auto-height="false" data-aspect-ratio="1.29411764705882" scrolling="no" id="doc_40563" width="100%" height="600" frameborder="0"></iframe>
