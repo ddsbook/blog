@@ -1,7 +1,6 @@
 Title: METRICON 9 - Storified
-Date: 2014-03-02 22:39:44
+Date: 2014-03-02 23:00:00
 Category: metricon
-Status: draft
 Tags: metricon, storify
 Slug: metricon-9-storified
 Summary: Jay & I will be doing a podcast on RSA + METRICON 9 soon, but over the weekend I managed to make a "Storify-ed" recap of it from tweets that went throughout the day. While I already posted a direct link to Storify on Twitter, here's a re-post of it on DDS.
