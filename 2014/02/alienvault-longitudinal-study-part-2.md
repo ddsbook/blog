@@ -140,8 +140,7 @@ Had we done a graph of all types, our output would have been confused by
 almost ten times more data points, 90% of which add up to less than one
 percent of our data.
 
-Continuing our exploration of the types, we now
-build a small table that will help us look at type by day:
+Continuing our exploration of the types, we now build a small table that will help us look at type by day:
 
     DROP TABLE IF EXISTS daytype;
     CREATE TABLE daytype (
@@ -182,8 +181,7 @@ We can easily see now a breakdown of type for one day:
     +------------+----------------------+--------+
     9 rows in set (0.00 sec)
 
-This shows us how scanning hosts dwarf everything else in the feed. To help see this
-more clearly, we will look at the whole time series and view the types by percentage:
+This shows us how scanning hosts dwarf everything else in the feed. To help see this more clearly, we will look at the whole time series and view the types by percentage:
 
     MariaDB [avrep]> SET @total = (SELECT COUNT(*) from avtrack);
     Query OK, 0 rows affected (18.45 sec)
@@ -220,8 +218,7 @@ category, we should be careful to inform readers what we've done in the interest
 of full disclosure and better understanding.
 
 First, we will remove some mystery by showing R code for the two graphs included at
-the bottom of [Part 1](alienvault-longitudinal-study-part-1). We won't
-repeat the inclusion of the graphics here.
+the bottom of [Part 1](alienvault-longitudinal-study-part-1). We won't repeat the inclusion of the graphics here.
 
     library(RMySQL)
     library(reshape2)
