@@ -254,7 +254,7 @@ type categories we have been exploring.
     
 This simple plot shows the problem of the overwhelming number of scanning hosts.
 
-<center><img src="type_addr.svg" width="630" style="max-width:100%"/></center>
+<center><img src="/blog/images/2014/02/type_addr.svg" width="630" style="max-width:100%"/></center>
 
 If we alter the graph by omitting scanned hosts, with this R code:
 
@@ -263,7 +263,7 @@ If we alter the graph by omitting scanned hosts, with this R code:
 
 this is what we get:
 
-<center><img src="noscan_addr.svg" width="630" style="max-width:100%"/></center>
+<center><img src="/blog/images/2014/02/noscan_addr.svg" width="630" style="max-width:100%"/></center>
 
 You can see more detail since we've dropped the scanning hosts, but a 
 simple point plot won't show us the relationships we want to view. Even if we enhance
@@ -275,7 +275,7 @@ different types clearly:
 
 this is what we get:
 
-<center><img src="noscan_addr_color.svg" width="630" style="max-width:100%"/></center>
+<center><img src="/blog/images/2014/02/noscan_addr_color.svg" width="630" style="max-width:100%"/></center>
 
 To really separate all the types
 we'll need a facet grid blot. We will remove the x scale breaks, since in the
@@ -286,7 +286,7 @@ Here is a facet_grid plot of all threat types:
     ggplot(daytype, aes(d, count)) + geom_point() + theme_bw() +
         scale_x_date(breaks=NULL) + xlab("Day") + ylab("Count") + facet_grid(. ~ type)
 
-<center><img src="alltype.svg" width="630" style="max-width:100%"/></center>
+<center><img src="/blog/images/2014/02/alltype.svg" width="630" style="max-width:100%"/></center>
 
 This is a different view of the overwhelming number of scanning hosts. Now if we
 repeat the plot but omit scanning hosts, here is the revised facet_grid:
@@ -294,7 +294,7 @@ repeat the plot but omit scanning hosts, here is the revised facet_grid:
     ggplot(daytype[daytype$type!="Scanning Host",], aes(d, count)) + geom_point() + theme_bw() +
       scale_x_date(breaks=NULL) + xlab("Day") + ylab("Count") + facet_grid(. ~ type)
 
-<center><img src="type.svg" width="630" style="max-width:100%"/></center>
+<center><img src="/blog/images/2014/02/type.svg" width="630" style="max-width:100%"/></center>
 
 The revised plot lets us see the variability of the numerically smaller types.
 Now we more fully understand types over our sample period. In our next installment
