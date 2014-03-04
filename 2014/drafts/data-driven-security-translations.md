@@ -1,7 +1,6 @@
 Title: Thank You! Plus, Data-Driven Security in Simplified Chinese
-Date: 2014-03-04 08:13:39
+Date: 2014-03-04 09:00:00
 Category: book
-Status: draft
 Tags: book
 Slug: data-driven-security-translations
 Author: Bob Rudis (@hrbrmstr)
