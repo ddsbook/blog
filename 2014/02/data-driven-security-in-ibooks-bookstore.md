@@ -11,7 +11,7 @@ It seems I missed spamming that Data-Driven Security (the book) is also up on Ap
 
 The whole automation/back-end side of the book publishing biz has been fascinating to observe. From the fairly obvious batch-upload processes that our publisher has at Amazon to the lack of dual-author fields at other e-book retailers, to the DRM-laden formats at one site, to the open e-book/PDF formats at others, and the metadata-connecting-assumptions at others, it seems that the publishing community is taking a "shotgun vs sniper-rifle" approach to groking the current publishing landscape and reaching the largest audience.
 
-Despite having an extensive e-book library, I still <3 dead tree books for reference and neither Jay nor I have (yet) had the tactile satisfaction of holding the paper-version our modest tome, and it looks like it may not make it into physical bookstores (if Jay's experience at a brick-and-mortar B&N is any gauge). So, we may be getting our first physical look with the print [pre-order](http://amzn.to/ddsec) folks.
+Despite having an extensive e-book library, I still <3 dead tree books for reference and neither Jay nor I have (yet) had the tactile satisfaction of holding the paper-version our modest tome, and it looks like it may not make it into physical bookstores (if Jay's experience at a brick-and-mortar B&N is any gauge). So, we may be getting our first physical look with the print [pre-order](http://bit.ly/ddsec) folks.
 
 And, finally, since I've already caught a typo or two, don't forget to submit any errata to [errata@datadrivensecurity.info](mailto:errata@datadrivensecurity.info). We'll see if we can't come up with a decent "DDS Bug Bounty" prize or two.
 

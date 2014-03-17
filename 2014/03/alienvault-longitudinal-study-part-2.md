@@ -8,7 +8,7 @@ Slug: alienvault-longitudinal-study-part-2
 In [Part 1](alienvault-longitudinal-study-part-1) we looked at acquiring raw
 data, and wrangling it into a time series dataset. Now we will examine
 [AlienVault](http://www.alienvault.com/) types in the reputation database.
-Listing 3-22 of [Data-Driven Security](http://amzn.to/ddsec) shows R code that
+Listing 3-22 of [Data-Driven Security](http://bit.ly/ddsec) shows R code that
 groups type categories into a larger group of "multiples" when there is a
 semicolon in the type. This is a useful simplification when taking a first
 look at a complex dataset. In this post, we will look deeper at types, and

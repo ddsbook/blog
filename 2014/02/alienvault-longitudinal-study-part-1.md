@@ -5,7 +5,7 @@ Category: Analysis
 Author: Steve Patton (@spttnnh)
 Slug: alienvault-longitudinal-study-part-1
 
-Chapter 3 of [Data-Driven Security](http://amzn.to/ddsec) explores one download of the [AlienVault](http://www.alienvault.com/) reputation database. As you can see from the book, the reputation database has many interesting aspects to explore, including country profiles, risk versus reliability, and a variety of threat types. Of course, one download represents a simple snapshot in time. Yet we know threats are continually changing, moving, intensifying and waning. How could we expand our analysis to look at the reputation database over time?
+Chapter 3 of [Data-Driven Security](http://bit.ly/ddsec) explores one download of the [AlienVault](http://www.alienvault.com/) reputation database. As you can see from the book, the reputation database has many interesting aspects to explore, including country profiles, risk versus reliability, and a variety of threat types. Of course, one download represents a simple snapshot in time. Yet we know threats are continually changing, moving, intensifying and waning. How could we expand our analysis to look at the reputation database over time?
 
 In this series of occasional posts, we will take a time series of the database, and essentially conduct a brief [longitudinal study](http://en.wikipedia.org/wiki/Longitudinal_study) of the reputation database and its changes. One of the first challenges is how to get a picture of change over time, and to manage the resulting dataset. For our purposes, a cron job captured the reputation database hourly for three months (October through December 2013). The resulting files are the primary dataset for our study. It can be overwhelming to manage this number of elements:
 

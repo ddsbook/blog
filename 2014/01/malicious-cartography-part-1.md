@@ -5,7 +5,7 @@ Tags: maps, d3, map, cartography
 Slug: malicious-cartography-part-1
 Author: Bob Rudis (@hrbrmstr)
 
-<small><i>(This series of posts expands on a topic presented in Chapter 5 of [Data Driven Security : The Book](http://amzn.to/ddsbook))</i></small>
+<small><i>(This series of posts expands on a topic presented in Chapter 5 of [Data Driven Security : The Book](http://bit.ly/ddsbook))</i></small>
 
 Cartographers (map makers) and infosec professionals both have the unenviable task of figuring out the best way to communite complexity to a diverse audience. Maps hold an unwarranted place of privilege in the minds of viewers and they seem to have taken an equally unwarranted place of status when it comes to infosec folk wanting to show where "badness" comes from. More often than not, these malicious locations are displayed on a Google Map using Google's [maps API](https://developers.google.com/maps/). Now, Google Maps is great for directions and managing specific physical waypoints, but they imply a level of precision that is just not there when attributing IP address malfeasnace. Plus, when you use Google Maps, you're embedding a great deal of third-party code, user tracking and URL calls that just aren't necessary when there are plenty of other ways to get the same points on a map; plus, if you don't delve into the Google Maps API, you're limited to a very *meh* representation of the globe.
 
@@ -126,4 +126,4 @@ For now, realize that you as a map maker wield great power when you choose to us
 
 Avoid defaulting to Google Maps and experiment with D3 (feel free to use our [source](https://github.com/ddsbook/blog/blob/master/vis/malmaps-d3/index.html) as a starting point). If you feel "stuck" with Google Maps, take a look at their [API](https://developers.google.com/maps/) to see how to modify the base theme to make your views more accurate and appealing to your audience.
  
-We'll leave you (until Part 2) with these [two](http://xkcd.com/977/) mapping [gems](http://xkcd.com/1138/) from XKCD and a reminder to check out Chapter 5 of [Data Driven Security : The Book](http://amzn.to/ddsbook) for a more detailed look into telling data stories with maps.
+We'll leave you (until Part 2) with these [two](http://xkcd.com/977/) mapping [gems](http://xkcd.com/1138/) from XKCD and a reminder to check out Chapter 5 of [Data Driven Security : The Book](http://bit.ly/ddsec) for a more detailed look into telling data stories with maps.

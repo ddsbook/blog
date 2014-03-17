@@ -7,7 +7,7 @@ Author: Bob Rudis (@hrbrmstr)
 
 The [`pipal`](http://www.digininja.org/projects/pipal.php) utility is one of the standard, "go-to" tools when analyzing cracked password dumps. It's a command-line program written in Ruby and I thought it would be interesting to port the base functionality to R and then build upon that base over time (R has some really handy advanced textual analysis tools).
 
-This first relase duplicates most of `pipal`'s functionality and will hopefully serve as an extended introduction to R for those just approaching the language. Our [book](http://amzn.to/ddsec) provides a solid, basic introduction to R, but this example incorporates more complex data structures and packages and some additional `*apply()` function machinations that we didn't really cover in detail in the text (due to lack of time/space).
+This first relase duplicates most of `pipal`'s functionality and will hopefully serve as an extended introduction to R for those just approaching the language. Our [book](http://bit.ly/ddsec) provides a solid, basic introduction to R, but this example incorporates more complex data structures and packages and some additional `*apply()` function machinations that we didn't really cover in detail in the text (due to lack of time/space).
 
 We'll start by loading two packages for assistance. The `data.table` package gives us the wicked-fast `fread()` function and `stringr` makes working with strings a bit less messy. 
 
