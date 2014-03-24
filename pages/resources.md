@@ -57,3 +57,13 @@ Author: Bob Rudis (@hrbrmstr)
 - [HCL Picker](http://tristen.ca/hcl-picker/) : An open source, D3-based color picker, that lets you select colors based on hue, chroma and lightness.
 - [Adobe Kuler](https://kuler.adobe.com/) : An online tool, provided by Adobe, which allows you to design compelling color palettes or choose from a wide assortment of pre-made palettes.
 - [OS X Color Picker Palettes](https://github.com/sathomas/colors) : Use ColorBrewer palettes in Excel, PhotoShop and any other application on your Mac. 
+
+**Online Schools and Learning Resources**
+- [edX](https://www.edx.org/course-list/allschools/statistics-data-analysis/allcourses) : Browse the collection of courses in statistics and data analysis at edX.
+- [Coursera](https://www.coursera.org/courses?cats=stats) : Browser the collection of free online courses in statistics and data analysis at Coursera.
+- [Syracuse University](http://ischool.syr.edu/future/cas/introtodatasciencemooc.aspx) : Data Science Open Online course through Syracuse.
+- [UC Berkeley](http://www .ischool.berkeley.edu/programs/mids) : Master of Information and Data Science (MIDS) online program.
+- [Univ of Washington](http://www.pce.uw.edu/certificates/data-science.html) : University of Washington’s certificate in data science.
+- [Penn State](http://www.worldcampus.psu .edu/degrees-and-certificates/applied-statistics-certificate/overview) : Penn State's Applied Statistics online curriculum.
+- [Coursera Specialization - Data Science](https://www.coursera.org/specialization/jhudatascience/1) : A collection of nine courses covering topics in data science for $49 each.  After completion of a capstone project attendees get a "Specialization Certificate".
+- [Carnegie Melon University](http://oli.cmu.edu/learn-with-oli/see-our-free-open-courses/) : CMU's Open Learning Initiative with courses in statistics and research methods.
