@@ -59,6 +59,7 @@ Author: Bob Rudis (@hrbrmstr)
 - [OS X Color Picker Palettes](https://github.com/sathomas/colors) : Use ColorBrewer palettes in Excel, PhotoShop and any other application on your Mac. 
 
 **Online Schools and Learning Resources**
+
 - [edX](https://www.edx.org/course-list/allschools/statistics-data-analysis/allcourses) : Browse the collection of courses in statistics and data analysis at edX.
 - [Coursera](https://www.coursera.org/courses?cats=stats) : Browser the collection of free online courses in statistics and data analysis at Coursera.
 - [Syracuse University](http://ischool.syr.edu/future/cas/introtodatasciencemooc.aspx) : Data Science Open Online course through Syracuse.
@@ -67,3 +68,4 @@ Author: Bob Rudis (@hrbrmstr)
 - [Penn State](http://www.worldcampus.psu .edu/degrees-and-certificates/applied-statistics-certificate/overview) : Penn State's Applied Statistics online curriculum.
 - [Coursera Specialization - Data Science](https://www.coursera.org/specialization/jhudatascience/1) : A collection of nine courses covering topics in data science for $49 each.  After completion of a capstone project attendees get a "Specialization Certificate".
 - [Carnegie Melon University](http://oli.cmu.edu/learn-with-oli/see-our-free-open-courses/) : CMU's Open Learning Initiative with courses in statistics and research methods.
+
