@@ -1,10 +1,9 @@
 Title: AlienVault Longitudinal Study Part 3
 Date: 2014-04-02 10:00
-Tags: datavis, dataviz, AlienVault, data analysis. data management
+Tags: datavis, dataviz, AlienVault, data analysis. data management, R
 Category: Analysis
 Author: Steve Patton (@spttnnh)
 Slug: alienvault-longitudinal-study-part-3
-Status: draft
 
 In [Part 1](/blog/2014/02/alienvault-longitudinal-study-part-1) we looked at
 acquiring raw data, and wrangling it into a time series dataset. In
