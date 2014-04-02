@@ -1,5 +1,5 @@
 Title: AlienVault Longitudinal Study Part 3
-Date: 2014-03-09 18:00
+Date: 2014-04-02 10:00
 Tags: datavis, dataviz, AlienVault, data analysis. data management
 Category: Analysis
 Author: Steve Patton (@spttnnh)
