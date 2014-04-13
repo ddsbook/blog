@@ -11,9 +11,7 @@ The US Government Accountability Office (GAO) released a report on April 2, 2014
 But, when I saw this data for the first figure:
 
     Figure: Information Security Incidents Involving PII, Fiscal Years 2009–2013: 
-    
-    [Refer to PDF for image: vertical bar graph] 
-    
+        
     Fiscal year: 2009; 
     Number of reported incidents: 10,481. 
     
@@ -28,11 +26,40 @@ But, when I saw this data for the first figure:
     
     Fiscal year: 2013; 
     Number of reported incidents: 26,566. 
-    
-    Source: GAO analysis of US-CERT data for fiscal years 2009-2013.
 
 I thought *"oh, they led with a bar chart&hellip;the doc must be halfway decent"*. So, I grabbed the PDF and flipped to Figure 1:
 
-![fig1](/blog/images/2014/04/fig1.jpg)
+<center>![fig1](/blog/images/2014/04/fig1.jpg)</center>
 
-Well, I don't know how they managed to do it, but the Feds managed to mess up a simple bar chart. The title says *"in thousands"* but the y-axis ticks are just 2-digits  
+Well, I don't know how it's possbible, but the Feds managed to mess up a simple bar chart. The title says *"in thousands"* but the y-axis tick labels are just 2-digits, yet the labels on the bars are in the thousands:
+
+<center>![fig1a](/blog/images/2014/04/fig1a.jpg)</center>
+
+The document has a few more like it (and, of course it has a pie chart).
+
+ZDNet posted [an article](http://www.zdnet.com/government-breaches-at-all-time-high-press-blunder-under-reports-by-millions-7000028113/) where the mis-interpretation of the charts caused them to chide other news reports only to have them retract said chides (take a look at the overstrikes in their post). One of the examples they focused on was the total incident count:
+
+    Figure 1: Information Security Incidents Reported to US-CERT by All 
+    Federal Agencies, Fiscal Years 2009-2013: 
+    
+    Fiscal year: 2009; 
+    Number of reported incidents: 29,999. 
+    
+    Fiscal year: 2010; 
+    Number of reported incidents: 41,776. 
+    
+    Fiscal year: 2011; 
+    Number of reported incidents: 42,854. 
+    
+    Fiscal year: 2012; 
+    Number of reported incidents: 48,562. 
+    
+    Fiscal year: 2013; 
+    Number of reported incidents: 61,214. 
+
+The bar chart is equally as awry as the example above, so I won't repeat it. Instead, let's see how we can make some better visualizations from it and show how to do more detailed customizations with `ggplot` along the way.
+
+First, we'll make a proper version of the bar chart:
+
+<center>![fig1-ggplot](/blog/images/2014/04/fig1-ggplot.svg)</center>
+
