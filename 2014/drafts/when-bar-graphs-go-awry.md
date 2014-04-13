@@ -61,5 +61,5 @@ The bar chart is equally as awry as the example above, so I won't repeat it. Ins
 
 First, we'll make a proper version of the bar chart:
 
-<center>![fig1-ggplot](/blog/images/2014/04/fig1-ggplot.svg)</center>
+<center>![fig1-ggplot](/blog/images/2014/04/fig1-ggplot.png)</center>
 
