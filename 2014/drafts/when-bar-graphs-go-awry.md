@@ -59,7 +59,26 @@ ZDNet posted [an article](http://www.zdnet.com/government-breaches-at-all-time-h
 
 The bar chart is equally as awry as the example above, so I won't repeat it. Instead, let's see how we can make some better visualizations from it and show how to do more detailed customizations with `ggplot` along the way.
 
-First, we'll make a proper version of the bar chart:
+First, we'll make a proper version of the bar chart with the following R code:
+
+    :::rsplus
+    # make a data frame for the values in the chart
+    incidents <- data.frame(year=c(2009,2010,2011,2012,2013),
+                            count=c(29999,41776,42854,48562,61214))
+    
+    # make the plot
+    gg <- ggplot(data=incidents, aes(x=year, y=count))
+    gg <- gg + geom_bar(stat="identity", fill="steelblue", width=0.75)
+    gg <- gg + geom_text(aes(label=prettyNum(count, big.mark=",")), vjust=1.25, color="white")
+    gg <- gg + labs(x="", y="", title="Figure 1: Information Security Incidents\nReported to US-CERT by All Federal Agencies")
+    gg <- gg + theme_bw()
+    gg <- gg + theme(plot.title=element_text(face="bold", hjust=0))
+    gg <- gg + theme(panel.border=element_blank())
+    gg <- gg + theme(panel.grid=element_blank())
+    gg <- gg + theme(axis.ticks.y=element_blank())
+    gg <- gg + theme(axis.text.y=element_blank())
+    gg <- gg + theme(panel.margin=unit(c(1,0,0,0), "picas"))
+    gg
 
 <center>![fig1-ggplot](/blog/images/2014/04/fig1-ggplot.png)</center>
 
