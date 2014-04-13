@@ -1,4 +1,4 @@
-Title: When Bar Graphs Go Awry
+Title: When Bar Graphs Go Awry + Customizing ggplot2
 Date: 2014-04-08 22:34:29
 Category: blog
 Status: draft
@@ -81,4 +81,43 @@ First, we'll make a proper version of the bar chart with the following R code:
     gg
 
 <center>![fig1-ggplot](/blog/images/2014/04/fig1-ggplot.png)</center>
+
+We moved the title over to match the GAO style but ditched the Y axis ticks+labels and background ornamentation and labeled the bars with the actual values on the inside to maximize space. Specifying the various `theme` elements individually makes it really easy to keep a snippet library around to mix & match when you need to. Of course, if you use a fairly consistent set of `theme` parameters, you can always make your own theme and just use that.
+
+**Beyond Bars**
+
+While the actual number of incidents is necessary to convey, it might be more useful to focus on the rate of difference (increase or decrease) between years instead of the raw values. We can use the `diff` function in R to compute and use a dot+line plot to give us the utility & accuracy of bars with the aesthetics of dots and using on-chart labels vs axis ticks again.
+
+    :::rsplus
+    # calculate the diffs
+    incidents$diff <- c(0,diff(incidents$count))
+    # setup where the labels will go
+    incidents$hjust <- c(0,-0.125,-0.125,-0.125,1.125)
+    
+    # start with 2010 incidents since 2009 will be 0 diff from itself
+    gg <- ggplot(data=incidents[incidents$year>2009,], aes(x=year, y=diff))
+    gg <- gg + geom_segment(aes(xend=year, y=0, yend=diff), color="steelblue", 
+                                                            alpha=1/4)
+    gg <- gg + geom_point(aes(y=diff), size=3, color="steelblue",)
+    gg <- gg + geom_text(aes(y=diff, label=sprintf("%s diff\n[%s total]",
+                                                   prettyNum(diff, big.mark=","), 
+                                                   prettyNum(count, big.mark=",")), 
+                             hjust=hjust), vjust=1, color="black", size=4)
+    gg <- gg + labs(x="\n(2009 start base == 29,999 incidents)", y="", 
+                    title="YoY Breach Count Increase")
+    gg <- gg + theme_bw()
+    gg <- gg + theme(plot.title=element_text(face="bold", hjust=0))
+    gg <- gg + theme(panel.border=element_blank())
+    gg <- gg + theme(panel.grid=element_blank())
+    gg <- gg + theme(axis.ticks.y=element_blank())
+    gg <- gg + theme(axis.text.y=element_blank())
+    gg <- gg + theme(panel.margin=unit(c(1,0,1,0), "picas"))
+    gg
+
+<center>![fig2](/blog/images/2014/04/fig2.png)</center>
+
+
+
+
+
 
