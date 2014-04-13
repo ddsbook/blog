@@ -33,6 +33,6 @@ But, when I saw this data for the first figure:
 
 I thought *"oh, they led with a bar chart&hellip;the doc must be halfway decent"*. So, I grabbed the PDF and flipped to Figure 1:
 
-![fig1](/images/2014/04/fig1.jpg)
+![fig1](/blog/images/2014/04/fig1.jpg)
 
 Well, I don't know how they managed to do it, but the Feds managed to mess up a simple bar chart. The title says *"in thousands"* but the y-axis ticks are just 2-digits  
