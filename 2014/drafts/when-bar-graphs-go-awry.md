@@ -6,7 +6,7 @@ Tags: blog
 Slug: when-bar-graphs-go-awry
 Author: Bob Rudis (@hrbrmstr)
 
-The US Government Accountability Office (GAO) release a report on April 2, 2014 titled "[Federal Agencies Need to Enhance Responses to Data Breaches](http://www.gao.gov/products/GAO-14-487T)". One of the extremely positive effects of [Section 508](http://www.ada.gov/508/index.html) is that agencies must produce these type of reports in an accessible format (usually plain text) and I almost always start with those documents since it's nigh impossible to come across a useless pie chart in those.
+The US Government Accountability Office (GAO) released a report on April 2, 2014 titled "[Federal Agencies Need to Enhance Responses to Data Breaches](http://www.gao.gov/products/GAO-14-487T)". One of the extremely positive effects of [Section 508](http://www.ada.gov/508/index.html) is that agencies must produce these type of reports in an accessible format (usually plain text) and I almost always start with those documents since it's nigh impossible to come across a useless pie chart in those.
 
 But, when I saw this data for the first figure:
 
@@ -33,6 +33,6 @@ But, when I saw this data for the first figure:
 
 I thought *"oh, they led with a bar chart&hellip;the doc must be halfway decent"*. So, I grabbed the PDF and flipped to Figure 1:
 
-![fig1](fig1.jpg)
+![fig1](/blog/2014/04/fig1.jpg)
 
-Well, I don't know how they managed to do it, but the Feds managed to mess up a simple bar chart. The title says *"in thousands"* but the y-axis ticks are just 2-digits
+Well, I don't know how they managed to do it, but the Feds managed to mess up a simple bar chart. The title says *"in thousands"* but the y-axis ticks are just 2-digits  
