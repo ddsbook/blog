@@ -10,8 +10,8 @@ Well over a year ago, I stumbled across ["Mapping Bike Accidents in R"](http://b
 The basic premise for create data-driven videos is exactly the same as the stop motion "claymation" technique.  But rather than use clay and modify it slightly, we will use data to create the individual frames.  In order to do this, you will need R and then some video software to combine the exported images into a video.  I personally use [avconv](http://libav.org/avconv.html) to create the videos, but just search for "stop motion" software and you should come up with something (even iMovie on the mac can create stop motion videos).
 
 Let's start with a little geekiness though and some equations: <br>
-$x=v_0t\cos(\theta)$ and $y=v_0t \sin(\theta) - \frac{1}{2}gt^2$<br>
-Recognize those?  Don't worry, they are not necessary to create a video using R, but they fun to play with because they are the formulas for calculating projectile motion.  And see the $t$ in there?  That represents time meaning that's what we will focus on for each frame we create.  The rest of the formula is $v_0$ is the initial velocity of the projectile,  $\theta$ is the angle at which it was launched and $g$ is the constant for gravity (though we can make gravity whatever we want for this simulation).
+x=v<sub>0</sub>t cos(&Theta;) and y=v<sub>0</sub>t sin(&Theta;) - &#189;gt<super>2</super><br>
+Recognize those?  Don't worry, they are not necessary to create a video using R, but they fun to play with because they are the formulas for calculating projectile motion.  And see the "t" in there?  That represents time meaning that's what we will focus on for each frame we create.  The rest of the formula is v<sub>0</sub> is the initial velocity of the projectile,  &Theta; is the angle at which it was launched and "g" is the constant for gravity (though we can make gravity whatever we want for this simulation).
 
 Let's start with a simple bouncing ball.  We want to first create a data frame that will track the balls position as it bounces:
 
