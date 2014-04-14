@@ -1,8 +1,7 @@
 Title: When Bar Graphs Go Awry + Customizing ggplot2
 Date: 2014-04-08 22:34:29
-Category: blog
-Status: draft
-Tags: blog
+Category: datavis
+Tags: R, visualization,
 Slug: when-bar-graphs-go-awry
 Author: Bob Rudis (@hrbrmstr)
 
@@ -116,7 +115,9 @@ While the actual number of incidents is necessary to convey, it might be more us
 
 <center>![fig2](/blog/images/2014/04/fig2.png)</center>
 
-That chart should help show how much better (or worse) incident counts were between years and shoudl also help the consumer ask new questions that the detail data (which it looks like we do not have in the GAO report) should be able to answer (like "which department/agency contributed to the yearly increases?").
+That chart should help show how much better (or worse) incident counts were between years and shoudl also help the consumer ask new questions that the detail data (which it looks like we do not have in the GAO report) should be able to answer (like *"which department/agency contributed to the yearly increases?"*).
+
+When reviewing/analyaing any US government report, make sure to find the more accessible version and even look for raw data on [data.gov](http://data.gov/) to ensure you're getting the core of the message. And, don't always rely on the visualizations presented to you by any report (industry, government, etc.). If you can get the data, make your own visualizations to ensure the message is not getting mangled in the medium.
 
 Finally, take a look at the way the `ggplot2` function parameters were formed for all these graphs. It's possible to perform a significant amount of customization in-code to achieve a desired output effect, and this&mdash;in turn&mdash;makes it really straightforward to script production-ready output in R for repeated reports with little effort.
 
