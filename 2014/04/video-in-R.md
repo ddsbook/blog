@@ -3,7 +3,7 @@ Date: 2014-04-14 00:15:04
 Category: R
 Tags: R, video
 Slug: video-in-R
-Author: Jay Jacobs(@jayjacobs)
+Author: Jay Jacobs (@jayjacobs)
 
 Well over a year ago, I stumbled across ["Mapping Bike Accidents in R"](http://bayesianbiologist.com/2012/09/14/mapping-bike-accidents-in-r/) and was immediately taken in by the possibilities of creating videos from data.  Since then I've done several videos, mostly just for fun.  We also touched on the topic rather briefly in our book, and I presented these bouncing balls at a local R user group a few meetings back.  I thought it would be good for me to put this post together to share how I create videos with R.
 
