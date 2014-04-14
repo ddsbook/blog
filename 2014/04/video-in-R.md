@@ -66,8 +66,7 @@ snapshot <- function(df, ct, outdir = "bouncing") {
 ```
 
 
-This function will take in a data frame (we will define this next), and updates the "time" then recalculate where the ball should be and creates a simple plot and saves it off.  Let's create 280 frames (PNG files) of a single ball bouncing.
-
+This function will take in the data frame we defined above, and updates the "time" then recalculate where the ball should be and creates a simple plot and saves it off.  Let's create 280 frames (PNG files) of a single ball bouncing.
 
 ```r
 for (i in seq(280)) {
