@@ -5,9 +5,9 @@ Tags: R, video
 Slug: video-in-R
 Author: Jay Jacobs(@jayjacobs)
 
-Well over a year ago, I stumbled across ["Mapping Bike Accidents in R"](http://bayesianbiologist.com/2012/09/14/mapping-bike-accidents-in-r/) and was immediately taken in by the possibilities of creating videos from data.  Since then I've done several videos, mostly just for fun.  We also touched on the topic rather briefly in our book, and I presented these bouncing balls at a local R user group a few meetings back.
+Well over a year ago, I stumbled across ["Mapping Bike Accidents in R"](http://bayesianbiologist.com/2012/09/14/mapping-bike-accidents-in-r/) and was immediately taken in by the possibilities of creating videos from data.  Since then I've done several videos, mostly just for fun.  We also touched on the topic rather briefly in our book, and I presented these bouncing balls at a local R user group a few meetings back.  I thought it would be good for me to put this post together to share how I create videos with R.
 
-The basic premise is exactly the same as the stop motion "claymation" technique.  But rather than use clay and modify it slightly, we will use data to create the individual frames.  In order to do this, you will need R and then some video software to combine the exported images into a video.  I personally use [avconv](http://libav.org/avconv.html) to create the videos, but just search for "stop motion" software and you should come up with something (even iMovie on the mac can create stop motion videos).
+The basic premise for create data-driven videos is exactly the same as the stop motion "claymation" technique.  But rather than use clay and modify it slightly, we will use data to create the individual frames.  In order to do this, you will need R and then some video software to combine the exported images into a video.  I personally use [avconv](http://libav.org/avconv.html) to create the videos, but just search for "stop motion" software and you should come up with something (even iMovie on the mac can create stop motion videos).
 
 Let's start with a little geekiness though and some equations: <br>
 $x=v_0t\cos(\theta)$ and $y=v_0t \sin(\theta) - \frac{1}{2}gt^2$<br>
@@ -108,7 +108,9 @@ for (i in seq(1100)) {
 ```
 
 
-And there we have it: 1,500 bouncing balls being flung around the video:
+And there we have it: 1,500 bouncing balls being flung around in this video:
 
 <iframe width="560" height="315" src="//www.youtube.com/embed/84_PWVMVJmU" frameborder="0" allowfullscreen></iframe>
+
+Enjoy, and happy video making!
 
