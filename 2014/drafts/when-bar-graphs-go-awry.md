@@ -116,8 +116,9 @@ While the actual number of incidents is necessary to convey, it might be more us
 
 <center>![fig2](/blog/images/2014/04/fig2.png)</center>
 
+That chart should help show how much better (or worse) incident counts were between years and shoudl also help the consumer ask new questions that the detail data (which it looks like we do not have in the GAO report) should be able to answer (like "which department/agency contributed to the yearly increases?").
 
-
+Finally, take a look at the way the `ggplot2` function parameters were formed for all these graphs. It's possible to perform a significant amount of customization in-code to achieve a desired output effect, and this&mdash;in turn&mdash;makes it really straightforward to script production-ready output in R for repeated reports with little effort.
 
 
 
