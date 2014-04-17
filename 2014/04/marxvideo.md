@@ -22,8 +22,11 @@ This is the end result:
 <iframe width="560" height="315" src="//www.youtube.com/embed/1fLHh7axV7A" frameborder="0" allowfullscreen></iframe>
 
 Some things that are interesting about this:
+
 * Vietnam kicks off two sustained scans of almost all the hosts at 1:12 and 4:04 in the video.  This is rather interesting because these hosts are spread out all over the world and the source would have no way to know that these hosts were related.  This means they either scanned all AWS space across the world or they were scanning the whole internet.  No idea which.
 * At 4:28, a source in Iran did a massive port scan of the single host in Tokyo creating a __huge__ point on the screen and the counts for each to jump way up.  At first it filled the whole screen and I had no idea why the screen was filling with a single color.  I ended up taking the square root of the packet count to feed into the size parameter.
 
 The full source code is here:
-[[ gist jayjacobs:10610909 ]]
+
+<script src="https://gist.github.com/jayjacobs/10610909.js"></script>
+
