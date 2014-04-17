@@ -6,4 +6,8 @@ Tags: blog
 Slug: test
 Author: Bob Rudis (@hrbrmstr)
 
-[[ gist hrbrmstr:9921419 ]]
+I wonder why the following
+
+[[ gist hrbrmstr:f2293e4e9e064c94e6ba ]]
+
+isn't working
