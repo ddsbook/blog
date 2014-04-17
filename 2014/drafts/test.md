@@ -8,6 +8,6 @@ Author: Bob Rudis (@hrbrmstr)
 
 I wonder why the following
 
-[gist:id=0a330b212b46517ffee9,file=22855197.R]
+[gist:id=3254906,file=brew-update-notifier.sh]
 
 isn't working
