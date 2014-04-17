@@ -2,7 +2,6 @@ Title: Visualizing countries from the Marx data
 Date: 2014-04-16 22:15:04
 Category: R
 Tags: R, video, Marx
-Status: draft
 Slug: marxvideo
 Author: Jay Jacobs (@jayjacobs)
 
