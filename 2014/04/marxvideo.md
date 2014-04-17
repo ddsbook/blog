@@ -15,17 +15,17 @@ Within the marx data, we have 28 weeks and chances are good the first and last a
 
 ### The Payload
 
-The "trick" to the this whole thing is to create a blank plot and add each data element using the base graphics within R.  No fancy ggplot for this one.  Each point is added with points(), the bar charts on the each side are created with rect(), the labels are all text() elements and each frame of this video is created individually and sequentially numbered.   I ended up creating 8,134 frames and it took just over 40 minutes (I think the png size here took a lot of time).  Once all of the images were created, I used the avconv tool (just like in the [tutorial](http://datadrivensecurity.info/blog/posts/2014/Apr/video-in-R/) I posted earlier) and generated an HD image to upload to youtube. 
+The "trick" to the this whole thing is to create a blank plot and add each data element using the base graphics within R.  No fancy `ggplot` for this one.  Each point is added with `points()`, the bar charts on the each side are created with `rect()`, the labels are all `text()` elements and each frame of this video is created individually and sequentially numbered.   I ended up creating 8,134 frames and it took just over 40 minutes (I think the png size here took a lot of time).  Once all of the images were created, I used the avconv tool (just like in the [tutorial](http://datadrivensecurity.info/blog/posts/2014/Apr/video-in-R/) I posted earlier) and generated an HD image to upload to youtube. 
 
 This is the end result:
 
 <iframe width="560" height="315" src="//www.youtube.com/embed/1fLHh7axV7A" frameborder="0" allowfullscreen></iframe>
 
-The colors are unique for each source and the size of the balls are relative to the number of packets in a 5-minute window.  One interesting little twist I did is for each ball: I do a tiny rnorm() on the destination, giving a little sense of randomness to the video.  Without that it looked too machine-like as they just went in a straight and repeating line.
+The colors are unique for each source and the size of the balls are relative to the number of packets in a 5-minute window.  One interesting little twist I did is for each ball: I do a tiny `rnorm()` on the destination, giving a little sense of randomness to the video.  Without that it looked too machine-like as they just went in a straight and repeating line.
 
 Some things that are interesting about this:
 
-* Vietnam kicks off two sustained scans of almost all the hosts at 1:12 and 4:04 in the video.  This is rather interesting because these hosts are spread out all over the world and the source would have no way to know that these hosts were related.  This means they either scanned all AWS space across the world or they were scanning the whole internet.  No idea which.
+* Vietnam kicks off two sustained scans of almost all the hosts at 1:12 and 4:04 in the video.  This is rather interesting because these hosts are spread out all over the world and the source would have no way to know that these hosts were related.  This means they either scanned all AWS space across the world or they were scanning the whole internet.  No idea which.<br/>
 * At 4:28, a source in Iran did a massive port scan of the single host in Tokyo creating a __huge__ point on the screen and the counts for each to jump way up.  At first it filled the whole screen and I had no idea why the screen was filling with a single color.  I ended up taking the square root of the packet count to feed into the size parameter.
 
 The full source code is here:
