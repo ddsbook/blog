@@ -6,4 +6,4 @@ Tags: blog
 Slug: test
 Author: Bob Rudis (@hrbrmstr)
 
-[[ hrbrmstr:9921419 ]]
+[[ gist hrbrmstr:9921419 ]]
