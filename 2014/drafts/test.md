@@ -8,6 +8,6 @@ Author: Bob Rudis (@hrbrmstr)
 
 I wonder why the following
 
-[[ gist hrbrmstr:f2293e4e9e064c94e6ba ]]
+[gist:id=0a330b212b46517ffee9,file=22855197.R]
 
 isn't working
