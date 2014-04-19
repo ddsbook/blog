@@ -65,11 +65,11 @@ and, will probably want to validate the format ahead of time since some files ar
 
 We've teased out some graphs on Twitter the other day and *could* have just posted end-to-end code here. Rather than do that, we're issuing a DDS reader challenge! Winning is simple! Just provide a **complete solution** to the following requirements and you'll be entered to win a **signed copy of our book**. All you have to do to enter is send an e-mail to `contest at datadrivensecurity dot info` with a link to a [GitHub Gist](https://gist.github.com/) (any language/platform within reason), an iPython Notebook (via the [iPython Notebook Viewer](http://nbviewer.ipython.org/)) or [RPubs](https://rpubs.com/) that does the following:
 
-- has a script/program uses the CSV provided (or a better one you can find or create that has even more issuers) that downloads the CRLs and generates a data file or database records that have (at a minmum) `timestamp`, `issuer` & `reason` fields (you can include more if you want)
-- has one more more additioanl scripts/programs that performs analyses and generates charts with explanations that tells the story of what CRL revocations looked like before **and** after the Heartbleed "crisis". At a minimum, you **must** show by-day, by-hour, by-issuer and by-reason views
+- has a script/program that uses the CSV provided (or a better one you can find or create that has even more issuers) that downloads the CRLs and generates a data file or database records that have (at a minmum) `timestamp`, `issuer` & `reason` fields (you can include more if you want)
+- has one or more additional scripts/programs that performs analyses and generates charts with explanations that tells the story of what CRL revocations looked like before **and** after the Heartbleed "crisis". At a minimum, you **must** show by-day, by-hour, by-issuer and by-reason views
 - extra consideration will be given to submissions that are repeatable (i.e. not one-off scripts)
 
-Once we receive the e-mail, you'll get a confirmation response (ping us on Twitter if you don't get a response as we don't control the e-mail forwarder at GoDaddy, and--well--it's *GoDaddy*).
+Once we receive the e-mail, you'll get a confirmation response (ping us on Twitter if you don't get a response as it's a GoDaddy forwarder).
 
 Make sure you don't blather out the URL you provide to us before the contest! We'll publish **all** working entries in the post that announces the winner. If you already have a copy of our book or [acquire a copy](http://bit.ly/ddsec) to help with the contest, we'll work out another book-prize (preferably from Wiley Press :-) with you.
 
