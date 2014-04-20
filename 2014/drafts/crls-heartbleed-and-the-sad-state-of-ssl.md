@@ -1,8 +1,7 @@
 Title: CRLs, Heartbleed, the Sad State of SSL & a DDS Reader Challenge!
-Date: 2014-04-19 15:28:34
-Category: challenge
-Status: draft
-Tags: python, ssl, heartbleed, analysis
+Date: 2014-04-20 15:00:00
+Category: contests
+Tags: python, ssl, heartbleed, analysis, contest
 Slug: crls-heartbleed-and-the-sad-state-of-ssl
 Author: Bob Rudis (@hrbrmstr) & Jay Jacobs (@jayjacobs)
 
@@ -30,9 +29,9 @@ If you want to play along at home with Netcraft & SANS ISC, you *could* go the r
 
     openssl crl -in <filename> -inform DER -text
 
-by hand and processing the output, but it might be a bit better to use our [CSV version](https://gist.github.com/hrbrmstr/b466f9348b6369990c05) [GH] and write a script to grab the files (which is simple enough to not put here).
+individually on each one and processing the output, but it might be a bit better to use our [CSV version](https://gist.github.com/hrbrmstr/b466f9348b6369990c05) [GH] and write a script to grab the files (which is simple enough to not put here).
 
-Rather than rely on the `openssl` command-line, you can use the `PyOpenSSL` library to process the files, which will make it easier to grab the reason for revocation:
+Rather than rely on the `openssl` command-line tool, you can use the `PyOpenSSL` library to process the files, which will make it easier to grab the reason for revocation:
 
     import OpenSSL
     import sys
@@ -56,8 +55,7 @@ Rather than rely on the `openssl` command-line, you can use the `PyOpenSSL` libr
 
 You'll need to do a translation step first from DER to PEM:
 
-    openssl crl -inform DER -outform PEM \
-       -in revoked.crl -out revoked.pem
+    openssl crl -inform DER -outform PEM -in revoked.crl -out revoked.pem
 
 and, will probably want to validate the format ahead of time since some files are actually PEM files to begin with.
 
@@ -75,6 +73,6 @@ Make sure you don't blather out the URL you provide to us before the contest! We
 
 This contest will run until **Sunday, April 26, 2014 23:59PDT** and the winner will be announced by Wednesday of that week.
 
-Questions & clarifications can be asked of either Bob or Jay on Twitter. 
+Questions & clarifications can be asked of either Bob or Jay on Twitter or in the comments. 
 
 
