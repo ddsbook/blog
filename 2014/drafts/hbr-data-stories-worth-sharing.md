@@ -1,12 +1,11 @@
 Title: Four HBR "Data Stories" Worth Reading
 Date: 2014-04-20 13:00:00
 Category: datavis
-Status: draft
 Tags: datavis, hbr
 Slug: four-hbr-data-stories-worth-reading
 Author: Bob Rudis (@hrbrmstr)
 
-The Harvard Business Review [online magazine](http://hbr.org/)<small><sup>*</sup></small> is chock full of great articles, many of which intersect with the notion of creating compelling narratives and/or visualizations with data (two of the premises we talk about frequently in [our book](http://bit.ly/ddsec)). Here are some excellent data-oriented articles there that I felt warranted a blog post to consolidate and share.
+The Harvard Business Review (@[HarvardBiz](https://twitter.com/HarvardBiz)) [online magazine](http://hbr.org/)<small><sup>*</sup></small> is chock full of great articles, many of which intersect with the notion of creating compelling narratives and/or visualizations with data (two of the premises we talk about frequently in [our book](http://bit.ly/ddsec)). Here are some excellent data-oriented articles there that I felt warranted a blog post to consolidate and share.
 
 First up is "[How to Tell a Story with Data](http://blogs.hbr.org/2013/04/how-to-tell-a-story-with-data/)" by Jim Stikeleather. He delves into five points that are key once you have delved into data and unlocked it:
 
