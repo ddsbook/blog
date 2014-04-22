@@ -5,7 +5,7 @@ Category: Analysis
 Author: Steve Patton (@spttnnh)
 Slug: alienvault-longitudinal-study-part-2
 
-In [Part 1](alienvault-longitudinal-study-part-1) we looked at acquiring raw
+In [Part 1](/blog/alienvault-longitudinal-study-part-1) we looked at acquiring raw
 data, and wrangling it into a time series dataset. Now we will examine
 [AlienVault](http://www.alienvault.com/) types in the reputation database.
 Listing 3-22 of [Data-Driven Security](http://bit.ly/ddsec) shows R code that
