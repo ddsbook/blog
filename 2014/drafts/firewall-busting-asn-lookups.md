@@ -19,6 +19,8 @@ The following is a small function that performs an IP&#8594;ASN mapping if given
     #' @return list with "ip", "asn", "cidr", "cn", "registry"
     ip2asn <- function(ip="216.90.108.31") {
     
+      orig <- ip
+      
       # reverse the octets
       ip <- paste(rev(unlist(strsplit(ip, "\\."))), sep="", collapse=".")
     
@@ -32,12 +34,13 @@ The following is a small function that performs an IP&#8594;ASN mapping if given
       out <- unlist(strsplit(gsub("\"", "", out), "\ *\\|\ *"))
     
       # return as a list  
-      return(list(ip=ip, asn=out[1], cidr=out[2], cn=out[3], registry=out[4]))
+      return(list(ip=orig, asn=out[1], cidr=out[2], cn=out[3], registry=out[4]))
     
     }
     
+    ip2asn()
     $ip
-    [1] "31.108.90.216"
+    [1] "216.90.108.31"
     
     $asn
     [1] "23028"
