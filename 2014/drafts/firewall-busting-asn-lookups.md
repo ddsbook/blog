@@ -1,7 +1,6 @@
 Title: Firewall-busting ASN-lookups - Part 1
-Date: 2014-04-23 22:11:26
+Date: 2014-04-23 23:00:00
 Category: tools
-Status: draft
 Tags: asn, ip, r, rstats
 Slug: firewall-busting-asn-lookups
 Author: Bob Rudis (@hrbrmstr)
