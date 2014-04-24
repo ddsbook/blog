@@ -56,6 +56,8 @@ The following is a small function that performs an IP&#8594;ASN mapping if given
 
 >Remember: you can use `?STRING` at the `R` console to lookup any routine that you might not be familiar with.
 
+As the Team CYMRU site itself says: *"The DNS daemon is designed for rapid reverse lookups, much in the same way as RBL lookups are done. DNS has the added advantage of being cacheable and based on UDP so there is much less overhead."* That means this could be a very robust way to perform these lookups, especially if you setup a [wicked](http://www.thekelleys.org.uk/dnsmasq/doc.html)-[cool](http://unbound.net/) DNS caching server.
+
 This function relies on the [dig](http://www.madboa.com/geek/dig/) command. Readers who are running Windows might need to [install](http://www.madboa.com/geek/dig/) `dig` before using this function.
 
 Stay tuned for Part 2!
