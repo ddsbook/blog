@@ -5,7 +5,7 @@ Tags: asn, ip, r, rstats
 Slug: firewall-busting-asn-lookups
 Author: Bob Rudis (@hrbrmstr)
 
->This is a short post on one way to bust through your corproate firewall when trying to use the [Team CYMRU ASN lookup facility](http://www.team-cymru.org/Services/ip-to-asn.html#dns) that we presented in [our book](http://bit.ly/ddsec). Part 2 will show how to create a [vectorized](http://stackoverflow.com/a/11965712/1457051) version of this code.
+>This is a short post on one way to bust through your corporate firewall when trying to use the [Team CYMRU ASN lookup facility](http://www.team-cymru.org/Services/ip-to-asn.html#dns) that we presented in [our book](http://bit.ly/ddsec). Part 2 will show how to create a [vectorized](http://stackoverflow.com/a/11965712/1457051) version of this code.
 
 Most corporate networks aren't going to allow `port 43` (`WHOIS`) access directly, which will make the bulk lookup routines that we presented in *Data-Driven Security* (the book) fail miserably. The Team CYMRU "API" also works via `DNS`, and I suspect that gets out in far more places than `WHOIS` does (just ask any C&C malware author).
 
