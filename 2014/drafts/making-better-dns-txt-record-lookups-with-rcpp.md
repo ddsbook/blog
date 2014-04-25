@@ -1,7 +1,6 @@
 Title: Making Better DNS TXT Record Lookups With Rcpp
-Date: 2014-04-25 12:00:00
+Date: 2014-04-25 16:00:00
 Category: R
-Status: draft
 Tags: rstats, R, Rcpp
 Slug: making-better-dns-txt-record-lookups-with-rcpp
 Author: Bob Rudis (@hrbrmstr)
