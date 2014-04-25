@@ -8,7 +8,7 @@ Author: Bob Rudis (@hrbrmstr)
 
 *Technically* this is Part 2 of [Firewall-busting ASN-lookups](http://datadrivensecurity.info/blog/posts/2014/Apr/firewall-busting-asn-lookups/). However, I said (in Part 1) that Part 2 would be about making a vectorized version and this is absolutely not about that. Rather than fib, I merely misdirect. Moving on&hellip;
 
-As you can see in Part 1, we have to resort to a `system()` call to do the `TXT` record lookup with `dig`. Frankly, I really dislike that. It's somewhat sloppy, wasteful of resources and we can do better. *Much* better (initially, just a *little* better, tho). R, like most modern interpreted languages, has a C interface. Hadley Wickham goes into far more detail in his epic online (and I'm assuming soon-to-be print) book [Advanced R Programming](http://adv-r.had.co.nz/C-interface.html) than I will be doing in this post and Jonathan Callahan also has some [great in-depth material](http://mazamascience.com/WorkingWithData/?p=1099) you should review. This post will (*should?*) get you jumpstarted with the basics of integrating C &amp; R and will dovetail nicely with Part 2 of the proper series, since we'll not only make a vectorized version of the `ip2asn()` lookup but also make it into a proper R package.
+As you can see in Part 1, we have to resort to a `system()` call to do the `TXT` record lookup with `dig`. Frankly, I really dislike that. It's somewhat sloppy, wasteful of resources and we can do better. *Much* better (initially, just a *little* better, tho). R, like most modern interpreted languages, has a C interface. Hadley Wickham goes into far more detail in his epic online (and I'm assuming soon-to-be print) book [Advanced R Programming](http://adv-r.had.co.nz/C-interface.html) than I will be doing in this post and Jonathan Callahan also has some [great in-depth material](http://mazamascience.com/WorkingWithData/?p=1099) you should review. This post will (*should?*) get you jumpstarted with the basics of integrating C &amp; R and will dovetail nicely with Part 2 of the proper series, since we'll not only make a vectorized version of the `ip2asn()` lookup but also putting it into a proper R package.
 
 ### Peeking Under The Covers
 
@@ -30,7 +30,7 @@ Even if you've only dabbled with R, you've already used traditional C-backed fun
     }
     <environment: namespace:RMySQL>
 
->PROTIP: you can see the source code for **any** R function by just typing the function name sans-parenthesis & parameters at the R console prompt
+>PROTIP: you can see the source code for **any** R function by just typing the function name sans-parentheses & parameters at the R console prompt
 
 Towards the bottom of the above code listing, you'll see the `.Call("RS_MySQL_closeConnection"...)` line which is reaching out to the underlying C/C++ code (in `RS-MySQL.c`) that makes up the libary. Here's the definition for that function:
 
@@ -45,11 +45,11 @@ Towards the bottom of the above code listing, you'll see the `.Call("RS_MySQL_cl
     			RS_MySQL_cloneConParams(RS_DBI_getConnection(conHandle)->conParams));
     }
 
-Now, we're not working wity MySQL in this post, but that's a fairly familiar tool and provides the framework for us to discuss how we'll be using C/C++,  `Rcpp` & `.Call()` to make DNS calls from R in a much more efficient manner.
+Now, we're not working with MySQL in this post, but that's a fairly familiar tool and provides the framework for us to discuss how we'll be using C/C++,  `Rcpp` & `.Call()` to make DNS calls from R in a much more efficient manner.
 
 ### Picking A DNS Library
 
-For folks familiar with DNS, you may be thinking that we're going to build an interface to the trusted old standard `BIND` `libresolv` library. While that was an option, we're going to skip with tradition and use the [ldns](http://www.nlnetlabs.nl/projects/ldns/) library from [NLNet Labs](https://twitter.com/NLnetLabs), makers of the `#spiffy` [Unbound](https://twitter.com/NLnetLabs) validating recursive caching resolver (which uses `ldns`).  Their `ldns` implementation has a simple but also robust API which supports IPv4, IPv6, TSIG, & DNSEC plus is wicked fast, small and can make *synchronous* calls (which makes it easier to do a basic port). If you're running Mac OS X, you'll need to either use [homebrew](http://brew.sh/) or [MacPorts](http://www.macports.org/). I prefer the former, and used:
+For folks familiar with DNS, you may be thinking that we're going to build an interface to the trusted old standard `BIND` `libresolv` library. While that was an option, we're going to skip with tradition and use the [ldns](http://www.nlnetlabs.nl/projects/ldns/) library from [NLNet Labs](https://twitter.com/NLnetLabs), makers of the `#spiffy` [Unbound](https://twitter.com/NLnetLabs) validating recursive caching resolver (which uses `ldns`).  Their `ldns` implementation has a simple but also robust API which supports IPv4, IPv6, TSIG & DNSEC plus is wicked fast, small and can make *synchronous* calls (which makes it easier to do a basic port). If you're running Mac OS X, you'll need to either use [Homebrew](http://brew.sh/) or [MacPorts](http://www.macports.org/) or compile the library from source. I prefer the former, and used:
 
     brew install ldns
 
