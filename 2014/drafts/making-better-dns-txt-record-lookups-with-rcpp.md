@@ -80,7 +80,7 @@ We'll begin with having you install the `Rcpp` package. Fire up an R console (or
 
     > install.packages("Rcpp")
 
-Next, create a directory (perhaps `ip2asn` for this limited example) and put the following code blok into the file `txt.cpp` (or just use the one you cloned above):
+Next, create a directory (perhaps `ip2asn` for this limited example) and put the following code block into the file `txt.cpp` (or just use the one you cloned above):
 
     // these three includes do a great deal of heavy lifting
     // by making the necessary structures, functions and macros
