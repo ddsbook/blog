@@ -12,7 +12,7 @@ In [Making Better DNS TXT Record Lookups With Rcpp](http://datadrivensecurity.in
 
 The `txt()` function we created in the previous post works, but it's difficult to use and manage in production. You've got to keep libraries and R source files manually organized and accessible in the right fashion or your code won't work. And, foremost, it was one small, hastily crafted function. We promised *much* better and we aim to deliver. The first thing we need to do is create an R [package](http://www.statmethods.net/interface/packages.html). These are similar to Python pacakges, or Perl modules in that they group functions and data together and can be installed easily. You can make them by hand, but [RStudio](http://www.rstudio.com/) makes the whole act of creating a package – even an `Rcpp`-based package - really simple. Just go to `File->New Project->New Directory->R Package` and, in this case, choose "Package w/Rcpp". Give it a name and a location and definitely go the "git repository" route since it will make it easier to manage code changes/rollbacks and also help you get it up on Github, which is a good first stop for publishing your work to the broader community.
 
-<center><img src="http://datadrivensecurity.info/blog/images/2014/04/rstudio.png" alt="rstudio" style="max-wdith:100%"/></center>
+<center><img src="http://datadrivensecurity.info/blog/images/2014/04/rstudio.png" alt="rstudio"/></center>
 
 
 
