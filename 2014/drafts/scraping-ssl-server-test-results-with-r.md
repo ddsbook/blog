@@ -1,7 +1,6 @@
 Title: Scraping SSL Labs Server Test Results With R
-Date: 2014-04-29 13:15:49
+Date: 2014-04-29 21:30:00
 Category: munging
-Status: draft
 Tags: data munging, xml, R, rstats, scraping
 Slug: scraping-ssl-server-test-results-with-r
 Author: Bob Rudis (@hrbrmstr)
