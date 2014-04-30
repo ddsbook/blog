@@ -158,6 +158,6 @@ There are many tweaks you can make to this function to extract more data and per
 
 Hopefully you've seen how well-suited R is for this type of operation and have been encouraged to use it in your next attempt at some site/data scraping.
 
-<div style="font-size:10px">
+<div style="font-size:12px">
 <script src="https://gist.github.com/hrbrmstr/11387877.js"></script>
 </diV>
