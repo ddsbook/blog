@@ -36,8 +36,7 @@ You'll also see that there's often a delay between issuing a request and getting
 
 We'll account for the domain and IP address in the function parameters along with the amount of time we should pause between `GET`+check attempts. It's also a good idea to provide a way to pass in any extra `curl` options (e.g. in the event folks are behind a proxy server and need to input that to make the requests work). We'll define the function with some default parameters:
 
-    get_rating <- function(site="rud.is", ip="", 
-                           pause=5, curl.opts=list()) {
+    get_rating <- function(site="rud.is", ip="", pause=5, curl.opts=list()) {
     }
 
 This definition says that if we just call `get_rating()`, it will 
@@ -51,9 +50,9 @@ This definition says that if we just call `get_rating()`, it will
 
 For the IP address logic, we'll have to test if we passed in an an address string and perform a lookup if not:
 
-  # try to resolve IP if not specified; if no IP can be found, return
-  # a "NA" data frame
-  
+    # try to resolve IP if not specified; if no IP can be found, return
+    # a "NA" data frame
+    
       if (ip == "") {
         tmp <- nsl(site)
         if (is.null(tmp)) {
@@ -68,6 +67,7 @@ For the IP address logic, we'll have to test if we passed in an an address strin
 Once we have an IP address, we'll need to make the call to the `ssllabs.com` test site and perform the check loop:
 
     # get the contents of the URL (will be the raw HTML text)
+    # build the URL with sprintf
     
     rating.dat <- getURL(sprintf("https://www.ssllabs.com/ssltest/analyze.html?d=%s&s=%s&ignoreMismatch=on", site, ip), .opts=curl.opts)
     
@@ -96,7 +96,7 @@ We can then start making some decisions based on the results:
     
     x <- htmlTreeParse(rating.dat, useInternalNodes = TRUE)    
 
-Unfortunately, the results are not "consistent". While there are plenty of uniquely identifiable `<div>`s, there are enough differences that we have to be a bit generic in our selection of data elements to extract. I'll leave the `view-source:` of a result as an exercise to the reader. For this example, we'll focus on extracting:
+Unfortunately, the results are not "consistent". While there are plenty of uniquely identifiable `<div>`s, there are enough differences between runs that we have to be a bit generic in our selection of data elements to extract. I'll leave the `view-source:` of a result as an exercise to the reader. For this example, we'll focus on extracting:
 
 - the overall rating (A-F)
 - the "Certificate" score
@@ -108,7 +108,7 @@ There are *plenty* of additional fields to extract, but you should be able to ex
 
 ### Extracting the results
 
-We'll need to delve into [XPath](http://www.w3schools.com/xpath/xpath_syntax.asp) to extract the `<div>` values. We'll use the `xpathSApply` to perform this task. Since there sometimes is a `<span>` tag within the `<div>` for the rating and since the rating has a class tag to help identify which color it should be, we use a `starts-with` selection parameter to just get anything beginning with `rating_`. If it returns an R `list` structure, we know we have the one with a `<span>` element and, so we re-issue the call with that extra XPath component.
+We'll need to delve into [XPath](http://www.w3schools.com/xpath/xpath_syntax.asp) to extract the `<div>` values. We'll use the `xpathSApply` function to perform this task. Since there sometimes is a `<span>` tag within the `<div>` for the rating and since the rating has a class tag to help identify which color it should be, we use a `starts-with` selection parameter to just get anything beginning with `rating_`. If it returns an R `list` structure, we know we have the one with a `<span>` element, so we re-issue the call with that extra XPath component.
 
     rating <- xpathSApply(x,"//div[starts-with(@class,'rating_')]/text()", xmlValue)
     if (class(rating) == "list") {
@@ -125,7 +125,7 @@ For the four attributes (and values) we'll be extracting, we can use the `getNod
     labs <- xpathSApply(labs[[1]], "//div[@class='chartLabel']/text()", xmlValue)
     vals <- xpathSApply(vals[[1]], "//div[starts-with(@class,'chartValue')]/text()", xmlValue)
 
-So, by this point, `labs` will be a vector of label names and `vals` will be the corresponding values. We'll put them, the original domain and the IP address into a data frame:
+At this point, `labs` will be a vector of label names and `vals` will be the corresponding values. We'll put them, the original domain and the IP address into a data frame:
 
     # rbind will turn the vector into row elements, with each
     # value being in a column
@@ -138,7 +138,7 @@ So, by this point, `labs` will be a vector of label names and `vals` will be the
     colnames(rating.result) <- c("site", "ip", "rating", 
                                   gsub(" ", "\\.", labs))
 
-And return the result:
+and return the result:
   
     return(rating.result)
 
@@ -156,6 +156,6 @@ If we run the whole function on one domain we'll get a one-row data frame back a
 
 There are many tweaks you can make to this function to extract more data and perform additional processing. If you make some of your own changes, you're encouraged to add to the gist (link above & below) and/or drop a note in the comments.
 
-Hopefully you've seen some of the hidden power of R and have been encouraged to use it in your next attempt at some site/data scraping.
+Hopefully you've seen how well-suited R is for this type of operation and have been encouraged to use it in your next attempt at some site/data scraping.
 
 <script src="https://gist.github.com/hrbrmstr/11387877.js"></script>
