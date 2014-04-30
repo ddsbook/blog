@@ -8,19 +8,20 @@ Author: Bob Rudis (@hrbrmstr)
 
 >**NOTE**: Qualys allows automated access to their SSL Server Test site in their [T&C's](https://www.ssllabs.com/about/terms.html), and the R fucntion/script provided here does its best to adhere to their guidelines. However, if you launch multiple scripts at one time and catch their attention you will, no doubt, be banned.
 
-This post will show you how to do some basic web page data scraping with R. To make it more palatable to those in the security domain, we'll be scraping the results from Qualys SSL Labs [SSL Test](https://www.ssllabs.com/ssltest/) site by building an R function that will:
+This post will show you how to do some basic web page data scraping with R. To make it more palatable to those in the security domain, we'll be scraping the results from Qualys' SSL Labs [SSL Test](https://www.ssllabs.com/ssltest/) site by building an R function that will:
 
 - fetch the contents of a URL with `RCurl`
 - process the HTML page tags with R's `XML` library
 - identify the key elements from the page that need to be scraped
 - organize the results into a usable R data structure
 
-You can skip ahead to the code (in [this gist](https://gist.github.com/hrbrmstr/11387877)) or read on for some expository that isn't in the code's comments.
+You can skip ahead to the code at the end (or in [this gist](https://gist.github.com/hrbrmstr/11387877)) or read on for some expository that isn't in the code's comments.
 
 ### Setting up the script and processing flow
 
 We'll need some assistance from three R packages to perform the scraping, processing and transformation tasks:
 
+    :::rsplus
     library(RCurl) # scraping
     library(XML)   # XML (HTML) processing
     library(plyr)  # data transformation
