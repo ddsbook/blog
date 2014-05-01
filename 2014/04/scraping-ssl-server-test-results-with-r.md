@@ -107,11 +107,11 @@ There are *plenty* of additional fields to extract, but you should be able to ex
 
 ### Extracting the results
 
-We'll need to delve into [XPath](http://www.w3schools.com/xpath/xpath_syntax.asp) to extract the `<div>` values. We'll use the `xpathSApply` function to perform this task. Since there sometimes is a `<span>` tag within the `<div>` for the rating and since the rating has a class tag to help identify which color it should be, we use a `starts-with` selection parameter to just get anything beginning with `rating_`. If it returns an R `list` structure, we know we have the one with a `<span>` element, so we re-issue the call with that extra XPath component.
+We'll need to delve into [XPath](http://www.w3schools.com/xpath/xpath_syntax.asp) to extract the `<div>` values. We'll use the `[[]]` notation with `xmlVAlue` & `xpathSApply` function to perform these tasks. Since there sometimes is a `<span>` tag within the `<div>` for the rating and since the rating has a class tag to help identify which color it should be, we use a `starts-with` selection parameter to just get anything beginning with `rating_`. If it returns an R `list` structure, we know we have the one with a `<span>` element, so we re-issue the call with that extra XPath component.
 
-    rating <- xpathSApply(x,"//div[starts-with(@class,'rating_')]/text()", xmlValue)
+    rating <- xmlValue(x[["//div[starts-with(@class,'rating_')]/text()"]])
     if (class(rating) == "list") {
-      rating <- xpathSApply(x,"//div[starts-with(@class,'rating_')]/span/text()", xmlValue)
+      rating <- xmlValue(x[["//div[starts-with(@class,'rating_')]/span/text()"]])
     }
 
 For the four attributes (and values) we'll be extracting, we can use the `getNodeSet`  call which will give us all of them into a structure we can process with `xpathSApply`

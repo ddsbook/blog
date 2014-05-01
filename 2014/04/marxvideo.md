@@ -1,5 +1,5 @@
 Title: Visualizing countries from the Marx data
-Date: 2014-04-16 22:15:04
+Date: 2014-04-30 10:30:00
 Category: R
 Tags: R, video, Marx
 Slug: marxvideo
