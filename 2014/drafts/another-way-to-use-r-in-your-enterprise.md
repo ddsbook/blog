@@ -11,7 +11,7 @@ We mentioned [Revolution R Enterprise](http://www.revolutionanalytics.com/) (RRE
 
 Their new [AdviseR](http://www.revolutionanalytics.com/adviser) program (yes, we R folk tend to capitalize all our "R"'s a bit too often) lets you get full, live human technical support and access to their community support forumns, R knowledge bank and free monthly webinars for just under **$800.00USD** per-year. There are many more benefits to the AdviseR program listed on their site.
 
-As we say in Maine, this is a *wicked-good deal*. These folks are super-smart, give back to the community on a regular basis and have a boatload of knowledge to share. If this post feels like an advert, I feel compelled to point out that wee, here, at DDS are not affiliated with Revolution Analytics in any way (apart from being fans) and get nothing more out of pimping AdviseR than a chance to help out fellow infosec R users who are trying to use our favorite in their shops.
+As we say in Maine, this is a *wicked-good deal*. These folks are super-smart, give back to the community on a regular basis and have a boatload of knowledge to share. If this post feels like an advert, I feel compelled to point out that we, here, at DDS are not affiliated with Revolution Analytics in any way (apart from being fans) and get nothing more out of pimping AdviseR than a chance to help out fellow infosec R users who are trying to use our favorite in their shops.
 
 >**Enterprise Governance Social Engineering Pro-tip**
 >
