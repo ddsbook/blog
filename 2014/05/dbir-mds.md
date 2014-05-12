@@ -3,10 +3,9 @@ Date: 2014-05-12 14:15:04
 Category: R
 Tags: R, MDS
 Slug: dbir-mds
-status: draft
 Author: Jay Jacobs (@jayjacobs)
 
-The Verizon Data Breach Investigations Report is out and having spent quite a bit of effort on its creation, I'm glad to see it out there.  One bit of feedback that I've heard is around the cover.  Some people don't realize that the cover is actually created diretly from breach data.  I wanted to walk through how we can create something like that cover on the open breach data within the VERIS Community Database. 
+The [Verizon Data Breach Investigations Report](http://www.verizonenterprise.com/DBIR/2014) is out and having spent quite a bit of effort on its creation, I'm glad to see it out there.  One bit of feedback that I've heard is around the cover.  Some people don't realize that the cover is actually created diretly from breach data.  As a way to rectify that, I thought I'd walk through a relatively simple example and create something like that cover on the open breach data within the VERIS Community Database. 
 
 ### VERIS Community Database (VCDB)
 
@@ -47,7 +46,7 @@ Let's set the directory for the JSON files we downloaded from the VCDB repo.
 
 ```r
 # Go to https://github.com/vz-risk/VCDB and download the JSON data
-vcdb.dir <- "~/Documents/github/VCDB/data/json"
+vcdb.dir <- "VCDB/data/json"
 # load up the JSON into a verisr object
 vcdb <- json2veris(vcdb.dir)
 ```
@@ -75,7 +74,7 @@ ouch <- dist(vmat, method="manhattan")
 # feel free to try the default method of "euclidian" distance or "canberra" 
 ```
 
-Now here's the magic part.  We are running a method called "multi-dimensional scaling".  Based off of the distance calculations we just made, multi-dimensional scaling will do a best-effort to position the points on a two-dimensional plane (meaning x,y coordinates we can plot) based on those distances.  Within R, the base stats package has the cmdscale() function that does all the computations for us.
+Now here's the magic part.  We are running a method called [multi-dimensional scaling](http://en.wikipedia.org/wiki/Multidimensional_scaling).  Based off of the distance calculations we just made, multi-dimensional scaling will do a best-effort to position the points on a two-dimensional plane (meaning x,y coordinates we can plot) based on those distances.  Within R, the base stats package has the cmdscale() function that does all the computations for us.
 
 
 ```r
@@ -83,7 +82,7 @@ Now here's the magic part.  We are running a method called "multi-dimensional sc
 mds <- cmdscale(ouch)
 ```
 
-At this point the mds variable has all the x,y coordinates for the position of the points.  But it's a little boring if we just simply plot it now.
+At this point the mds variable has all the x,y coordinates for the position of the points.  But it's a little boring if we simply plot it now.
 
 
 ```r
@@ -92,7 +91,7 @@ plot(mds)
 
 ![plot of chunk baseplot](/blog/images/2014/05/baseplot.png) 
 
-So let's go back to the getpatternlist I mentioned earlier.  This function assigns each incident into the first pattern it matches. This will enable us to add a unique color for each pattern in the plot.
+So let's go back to the getpatternlist() I mentioned earlier.  This function assigns each incident into the first pattern it matches. This will enable us to add a unique color for each pattern in the plot.
 
 
 ```r
@@ -178,4 +177,5 @@ print(gg)
 
 ![plot of chunk mds-label](/blog/images/2014/05/mds-label.png) 
 
-There we have it!  Now I would probably use that last image as a reference and manually place the labels with an editor.  But we can see the patterns pretty clearly here.  And with a relatively small amount of code!
+There we have it!  Now that last image isn't very pretty and the labels are relatively difficult to read, so I would have just use that last image as a reference and manually place the labels with an editor.  But we can see the patterns pretty clearly here.  And with a relatively small amount of code, we went from raw JSON in the VCDB to the style of MDS we used on the cover of the DBIR!
+
