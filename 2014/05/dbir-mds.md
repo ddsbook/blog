@@ -5,7 +5,7 @@ Tags: R, MDS
 Slug: dbir-mds
 Author: Jay Jacobs (@jayjacobs)
 
-The [Verizon Data Breach Investigations Report](http://www.verizonenterprise.com/DBIR/2014) is out and having spent quite a bit of effort on its creation, I'm glad to see it out there.  One bit of feedback that I've heard is around the cover.  Some people don't realize that the cover is actually created diretly from breach data.  As a way to rectify that, I thought I'd walk through a relatively simple example and create something like that cover on the open breach data within the VERIS Community Database. 
+The [Verizon Data Breach Investigations Report](http://www.verizonenterprise.com/DBIR/2014) is out and having spent quite a bit of effort on its creation, I'm glad to see it out there.  One bit of feedback that I've heard is around the cover.  Some people don't realize that the cover is actually created directly from breach data.  As a way to rectify that, I thought I'd walk through a relatively simple example and create something like that cover on the open breach data within the VERIS Community Database. 
 
 ### VERIS Community Database (VCDB)
 
