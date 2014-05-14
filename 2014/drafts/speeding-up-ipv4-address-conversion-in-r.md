@@ -9,6 +9,7 @@ In [our book](http://dds.ec/amzn) we provide examples of how to convert IPv4 add
 
 For those unfamiliar with C++, Boost is a collection of robust and rigorously developed/peer-reviewed C++ libraries that are very compatible with `Rcpp`. We're going to use the <code>[ip::address_v4](http://www.boost.org/doc/libs/1_55_0/doc/html/boost_asio/reference/ip__address_v4.html)</code> class to replace the functionality of two of the book's IPv4 conversion functions (`ip2long` and `long2ip`). Put the following code into a file called `iputils.cpp`
 
+    :::cpp
     #include <Rcpp.h> 
     #include <boost/asio/ip/address_v4.hpp>
     
@@ -31,6 +32,7 @@ For those unfamiliar with C++, Boost is a collection of robust and rigorously de
 
 Now, either in another R file or in the R console, do the following:
 
+    :::rsplus
     # these make the Rcpp magic happen
     library(Rcpp)
     library(inline)
