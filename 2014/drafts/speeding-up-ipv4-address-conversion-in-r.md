@@ -1,6 +1,5 @@
 Title: Speeding Up IPv4 Address Conversion in R
 Date: 2014-05-14 20:00:00
-Status: draft
 Tags: rstats, r, rcpp
 Slug: speeding-up-ipv4-address-conversion-in-r
 Author: Bob Rudis (@hrbrmstr)
@@ -51,7 +50,7 @@ Now, either in another R file or in the R console, do the following:
 
 The `iputils.cpp` file will need to be in the working directory for that bit of code to work (which is why packages are usually a better route). The call to `sourceCpp` does most of the heavy lifting for us (with some help from the `[[Rcpp::export]]` hint in the code which tells `sourceCpp` to do quite a bit of work for you under the covers). The `sourceCpp` function takes care of ensuring that proper memory allocation & garbage collection protection is performed and also handles all return value wrapping (conversion). As you can see in the code snippet, the Boost `asio` library provides two methods that make it super-easy to use native versions of the IP address conversion functions and also highlights the object compatibilty between `Rcpp` and C++.
 
-Performing the same 4,000 IPv4 conversion exercise now takes **`0.01s`** (remember, the pure R version took **`0.1`s**). For a few thousand IP addresses, the difference is negligible, but if you're working with millions or billions of IP addresses, this speedup can help dramatically and keep your processing in R vs potentially splitting up you workflow between R and, say, Python.
+Performing the same 4,000 IPv4 conversion exercise now takes **`0.01s`** (remember, the pure R version took **`0.1s`**). For a few thousand IP addresses, the difference is negligible, but if you're working with millions or billions of IP addresses, this speedup can help dramatically and keep your processing in R vs potentially splitting up you workflow between R and, say, Python.
 
 >**Exercise for the reader!**
 >
