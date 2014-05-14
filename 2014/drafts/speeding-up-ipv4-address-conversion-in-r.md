@@ -32,7 +32,7 @@ For those unfamiliar with C++, Boost is a collection of robust and rigorously de
 
 Now, either in another R file or in the R console, do the following:
 
-    :::rsplus
+    :::r
     # these make the Rcpp magic happen
     library(Rcpp)
     library(inline)
