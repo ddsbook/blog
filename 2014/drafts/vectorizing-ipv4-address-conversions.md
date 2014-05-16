@@ -6,7 +6,7 @@ Tags: rstats, r, rcpp
 Slug: vectorizing-ipv4-address-conversions-part-1
 Author: Bob Rudis (@hrbrmstr)
 
-Our [previous post](http://datadrivensecurity.info/blog/posts/2014/May/speeding-up-ipv4-address-conversion-in-r/) showed how to speed up the conversion of IPv4 addresses to/from integer format by taking advantage of a simple `Rcpp` wrapper to "bootsted" native functions. However, to convert more than one IP address, you need to stick those functions into one of the R `*apply` functions, which does the job, but is not an optimal solution. Ideally, it would be advantageous to be able to pass in a vector (with more than one element) of character IP addresses or a vector of integer format IP addresses and know that the function will work.
+Our [previous post](http://datadrivensecurity.info/blog/posts/2014/May/speeding-up-ipv4-address-conversion-in-r/) showed how to speed up the conversion of IPv4 addresses to/from integer format by taking advantage of a simple `Rcpp` wrapper to "bootsted" native functions. However, to convert more than one IP address, you need to stick those functions into one of the R `*apply` functions, which does the job, but is not an optimal solution. Ideally, it would be advantageous to be able to pass in a vector (with more than one element) of character IP addresses or a vector of integer format IP addresses and know that the function will "just work".
 
 In this post we'll introduce a shortcut method of vectorization with the `Vectorize()` function. Then, in the second and final part of the series, we'll look at implementing the necessary code at the `Rcpp` layer to perform the vectorization at the C++-level and show some benchmarks for each method.
 
