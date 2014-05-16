@@ -1,7 +1,6 @@
 Title: Vectorizing IPv4 Address Conversions - Part 1
 Date: 2014-05-16 07:26:53
 Category: tools
-Status: draft
 Tags: rstats, r, rcpp
 Slug: vectorizing-ipv4-address-conversions-part-1
 Author: Bob Rudis (@hrbrmstr)
