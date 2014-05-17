@@ -272,7 +272,7 @@ basic math to see how long each method would take to process **1
 billion** IP addresses. We'll use the median values from above and
 compare the results in a simple bar chart:
 
-<a class="mag" href="/blog/images/2014/05/billion.png"><img src="/blog/images/2014/05/billion.png" title="billion" alt="billion" style="display: block; margin: auto;" />
+<a class="mag" href="/blog/images/2014/05/billion.png"><img src="/blog/images/2014/05/billion.png" title="billion" alt="billion" style="width: 75%; display: block; margin: auto;" />
 
 The fully vectorized `Rcpp` version are the clear "winner" and will let
 us scale our IPv4 address conversions to millions, billions or trillions
