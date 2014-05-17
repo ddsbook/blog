@@ -86,7 +86,7 @@ gg <- gg + theme(legend.position = "none", strip.background = element_blank())
 gg
 ```
 
-![plot](/blog/images/2014/04/subset-stats.svg) 
+<a class="mag" href="/blog/images/2014/04/subset-stats.svg"><img src="/blog/images/2014/04/subset-stats.svg"></a>
 
 While they are all pretty speedy, the `with/ave` combo consistently "wins" when I run this test code. The `by` method always comes in second each time as well. The `ddply` method is consistently the slowest, but none of them are laggards.
 
