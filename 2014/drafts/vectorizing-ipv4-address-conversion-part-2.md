@@ -265,7 +265,7 @@ boxplot). Note that the plot is on a **log scale**, so the differences
 between each set of comparisons are actually much larger than your eye
 will initially comprehend (hence the inclusion of the above tables).
 
-<img src="/blog/images/violin.png" title="microbenchmark violin plot" alt="microbenchmark violin plot" style="max-width:100%; display: block; margin: auto;" />
+<img src="/blog/images/2014/05/violin.png" title="microbenchmark violin plot" alt="microbenchmark violin plot" style="max-width:100%; display: block; margin: auto;" />
 
 The fully vectorized `Rcpp` version are the clear "winner" and will let
 us scale our IPv4 address conversions to millions, billions or trillions
