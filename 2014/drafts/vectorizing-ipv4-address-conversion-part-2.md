@@ -280,4 +280,4 @@ of operations without having to rely on other scripting languages. We
 can use this base as foundation for a complete IP address `S4` class
 that we'll cover in future posts.
 
-You can find the `Rmd` source that helped generate this post over [at github](https://gist.github.com/hrbrmstr/ae97ee7d27435d04fc4c).
+You can find the `Rmd` source that helped generate this post over [at github](https://gist.github.com/hrbrmstr/ae97ee7d27435d04fc4c) along with the [data file](https://github.com/ddsbook/blog/tree/master/data/2014/05).
