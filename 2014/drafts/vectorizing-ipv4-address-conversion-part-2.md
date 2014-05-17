@@ -273,7 +273,7 @@ of operations without having to rely on other scripting languages. We
 can use this base as foundation for a complete IP address `S4` class
 that we'll cover in future posts.
 
-<link rel="stylesheet" href="/blog/extra/magnific.css"/>
+<link rel="stylesheet" href="/blog/extra/magnific-popup.css"/>
 <script src="/blog/extra/magnific.js"></script>
 <script>
 $(document).ready(function() {
