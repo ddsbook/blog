@@ -276,8 +276,11 @@ that we'll cover in future posts.
 <link rel="stylesheet" href="/blog/extra/magnific.css"/>
 <script src="/blog/extra/magnific.js"></script>
 <script>
-$('.mag').magnificPopup({ 
-  type: 'image'
-	// other options
+$(document).ready(function() {
+  $('.mag').magnificPopup({ 
+    type: 'image'
+  	// other options
+  });
 });
+
 </script> 
