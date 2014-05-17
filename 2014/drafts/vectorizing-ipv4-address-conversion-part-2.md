@@ -274,7 +274,7 @@ compare the results in a simple bar chart:
 
 <a class="mag" href="/blog/images/2014/05/billion.png"><img src="/blog/images/2014/05/billion.png" title="billion" alt="billion" style="display: block; margin: auto;" /></a>
 
-The fully vectorized `Rcpp` version are the clear "winner" and will let
+The fully vectorized `Rcpp` versions are the clear "winners" and will let
 us scale our IPv4 address conversions to millions, billions or trillions
 of operations without having to rely on other scripting languages. We
 can use this base as foundation for a complete IP address `S4` class
