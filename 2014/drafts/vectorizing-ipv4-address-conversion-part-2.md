@@ -88,7 +88,7 @@ we're going to pit all three in a head-to-head performance competition.
       paste(Map(octet, c(24,16,8,0)), sep="", collapse=".")
     }, USE.NAMES=FALSE)
 
-Now, we'll read in a file of \~8,000 IPv4 addresses, make them into
+Now, we'll read in a file of ~8,000 IPv4 addresses, make them into
 integers and then use the `microbenchmark` package to profile the
 to/from conversion of all three versions of the routines.
 
@@ -108,7 +108,7 @@ to/from conversion of all three versions of the routines.
 
 Then, we'll take a look at the results (all times are in seconds):
 
-<center><style>td { font-family:monospace; padding:5px} table { margin-bottom:12px;}</style>
+<center><style>td { font-family:monospace; font-size:0.8em; padding:5px} table { margin-bottom:12px;}</style>
 <TABLE border=1>
 <TR> <TH> 
 Version
