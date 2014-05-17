@@ -265,10 +265,19 @@ boxplot). Note that the plot is on a **log scale**, so the differences
 between each set of comparisons are actually much larger than your eye
 will initially comprehend (hence the inclusion of the above tables).
 
-<img src="/blog/images/2014/05/violin.png" title="microbenchmark violin plot" alt="microbenchmark violin plot" style="max-width:100%; display: block; margin: auto;" />
+<a class="mag" href="/blog/images/2014/05/violin.png"><img src="/blog/images/2014/05/violin.png" title="microbenchmark violin plot" alt="microbenchmark violin plot" style="max-width:100%; display: block; margin: auto;" /></a>
 
 The fully vectorized `Rcpp` version are the clear "winner" and will let
 us scale our IPv4 address conversions to millions, billions or trillions
 of operations without having to rely on other scripting languages. We
 can use this base as foundation for a complete IP address `S4` class
 that we'll cover in future posts.
+
+<link rel="stylesheet" href="/blog/extra/magnific.css"/>
+<script src="/blog/extra/magnific.js"></script>
+<script>
+$('.mag').magnificPopup({ 
+  type: 'image'
+	// other options
+});
+</script> 
