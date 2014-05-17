@@ -267,10 +267,17 @@ will initially comprehend (hence the inclusion of the above tables).
 
 <a class="mag" href="/blog/images/2014/05/violin.png"><img src="/blog/images/2014/05/violin.png" title="microbenchmark violin plot" alt="microbenchmark violin plot" style="max-width:100%; display: block; margin: auto;" /></a>
 
+It's often difficult for us to grok fractional seconds, so let's do some
+basic math to see how long each method would take to process **1
+billion** IP addresses. We'll use the median values from above and
+compare the results in a simple bar chart:
+
+<a class="mag" href="/blog/images/2014/05/billion.png" title="billion" alt="billion" style="display: block; margin: auto;" />
+
 The fully vectorized `Rcpp` version are the clear "winner" and will let
 us scale our IPv4 address conversions to millions, billions or trillions
 of operations without having to rely on other scripting languages. We
 can use this base as foundation for a complete IP address `S4` class
 that we'll cover in future posts.
 
-You can find the `Rmd` source for (most) of this post over [at github](https://gist.github.com/hrbrmstr/ae97ee7d27435d04fc4c).
+You can find the `Rmd` source that helped generate this post over [at github](https://gist.github.com/hrbrmstr/ae97ee7d27435d04fc4c).
