@@ -282,5 +282,4 @@ $(document).ready(function() {
   	// other options
   });
 });
-
 </script> 
