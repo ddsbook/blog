@@ -212,3 +212,45 @@ Now, you don't need the smartphone app to see the hotspots. Xfinity has a [web-b
 
 <img style="max-width:100%" src="http://datadrivensecurity.info/blog/images/2014/05/xfin-web.png"/>
 
+Those dots are actually bitmap tiles (even as you zoom in). Xfinity either did that to "protect" the data, save bandwidth or speed up load-time (creating 260K+ points can take a few, noticeable seconds). We can reproduce this in R without Google Maps pretty easily:
+
+    :::rsplus
+    library(maptools)
+    library(maps)
+    library(rgeos)
+    library(ggcounty)
+    
+    # grab the US map with counties
+    
+    us <- ggcounty.us(color="#777777", size=0.125)
+    
+    # plot the points in "Xfinity red" with a 
+    # reasonable alpha setting & point size
+    
+    gg <- us$gg
+    gg <- gg %+% xfin + aes(x=longitude, y=latitude)
+    gg <- gg + geom_point(color="#c90318", size=1, alpha=1/20)
+    gg <- gg + coord_map(projection="mercator")
+    gg <- gg + xlim(range(us$map$long))
+    gg <- gg + ylim(range(us$map$lat))
+    gg <- gg + labs(x="", y="")
+    gg <- gg + theme_bw()
+    
+    # the map tends to stand out beter on a darker background but
+    # the panel background color isn't truly "necessary"
+    
+    gg <- gg + theme(panel.background=element_rect(fill="#878787"))
+    gg <- gg + theme(panel.grid=element_blank())
+    gg <- gg + theme(panel.border=element_blank())
+    gg <- gg + theme(axis.ticks.x=element_blank())
+    gg <- gg + theme(axis.ticks.y=element_blank())
+    gg <- gg + theme(axis.text.x=element_blank())
+    gg <- gg + theme(axis.text.y=element_blank())
+    gg <- gg + theme(legend.position="none")
+    gg
+
+<img style="max-width:100%" src="http://datadrivensecurity.info/blog/images/2014/05/xfin-ggplot-1.png"/>
+
+I made the dots a bit smaller and used a fairly reasonable alpha setting for them. However, the macro- (i.e. the view of the whole U.S.) plus dot-view really doesn't give a feel for just how pervasive the coverage (and, hence, tracking) is per area.
+
+ 
