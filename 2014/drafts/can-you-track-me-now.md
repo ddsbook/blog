@@ -236,8 +236,8 @@ Those dots are actually bitmap tiles (even as you zoom in). Xfinity either did t
     gg <- gg + labs(x="", y="")
     gg <- gg + theme_bw()
     
-    # the map tends to stand out beter on a darker background but
-    # the panel background color isn't truly "necessary"
+    # the map tends to stand out beter on a non-white background
+    # but the panel background color isn't truly "necessary"
     
     gg <- gg + theme(panel.background=element_rect(fill="#878787"))
     gg <- gg + theme(panel.grid=element_blank())
@@ -251,6 +251,6 @@ Those dots are actually bitmap tiles (even as you zoom in). Xfinity either did t
 
 <a class="mag" href="/blog/images/2014/05/xfin-ggplot-1.png"><img style="max-width:100%" src="http://datadrivensecurity.info/blog/images/2014/05/xfin-ggplot-1.png"/></a>
 
-I made the dots a bit smaller and used a fairly reasonable alpha setting for them. However, the macro- (i.e. the view of the whole U.S.) plus dot-view really doesn't give a feel for just how pervasive the coverage (and, hence, tracking) is per area.
+I made the dots a bit smaller and used a fairly reasonable alpha setting for them. However, the macro- (i.e. the view of the whole U.S.) plus dot-view really doesn't give a feel for the true scope of the coverage (or possible tracking) is per area.
 
  
