@@ -1,4 +1,4 @@
-Title: Can You Track Me Now? (Visualizing Xfinity Wi-Fi HotSpot Coverage)
+Title: Can You Track Me Now? (Visualizing Xfinity Wi-Fi Hotspot Coverage)
 Date: 2014-05-31 12:04:29
 Category: blog
 Status: draft
@@ -164,6 +164,8 @@ The app most likely uses individual databases to save device space and bandwith,
     :::rsplus
     library(RSQLite)
     library(sqldf)
+    
+    # the 'grep' is here since we don't want to process the 'metadata' file
     
     xfin <- ldply(grep("metadata.sqlite", 
                        resp$results$fileList$name, 
