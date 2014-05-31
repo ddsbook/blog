@@ -208,4 +208,7 @@ The function in the `ldply` combines each region's data frame into one. We can g
     ##  $ siteWebsite : chr  "" "" "" "" ...
     ##  $ sitePhone   : chr  "" "" "" "" ...
 
+Now, you don't need the smartphone app to see the hotspots. Xfinity has a [web-based hotspot finder](http://hotspots.wifi.comcast.com/) based on Google Maps:
+
+<img style="max-width:100%" src="http://datadrivensecurity.info/blog/images/2014/05/xfin-web.png"/>
 
