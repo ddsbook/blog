@@ -159,7 +159,7 @@ While the `metadata.sqlite` file is intersting, the data really isn't all that u
 
 >You can get an overview on how to use the SQLite command line tool in [the SQLite CLI documentation](http://www.sqlite.org/cli.html) if you're unfamiliar with SQL/SQLite.
 
-The app most likely uses to save device space and bandwith, but it would be helpful if we had all the hotspot data in one data frame. We can do this pretty easily in R since we can work with SQLite databases via the `RSQLite` package and use `ldply` to combine results for us:
+The app most likely uses individual databases to save device space and bandwith, but it would be helpful if we had all the hotspot data in one data frame. We can do this pretty easily in R since we can work with SQLite databases via the `RSQLite` package and use `ldply` to combine results for us:
 
     :::rsplus
     library(RSQLite)
@@ -210,7 +210,7 @@ The function in the `ldply` combines each region's data frame into one. We can g
 
 Now, you don't need the smartphone app to see the hotspots. Xfinity has a [web-based hotspot finder](http://hotspots.wifi.comcast.com/) based on Google Maps:
 
-<img style="max-width:100%" src="http://datadrivensecurity.info/blog/images/2014/05/xfin-web.png"/>
+<a class="mag" href="/blog/images/2014/05/xfin-web.png"><img style="max-width:100%" src="http://datadrivensecurity.info/blog/images/2014/05/xfin-web.png"/></a>
 
 Those dots are actually bitmap tiles (even as you zoom in). Xfinity either did that to "protect" the data, save bandwidth or speed up load-time (creating 260K+ points can take a few, noticeable seconds). We can reproduce this in R without Google Maps pretty easily:
 
@@ -249,7 +249,7 @@ Those dots are actually bitmap tiles (even as you zoom in). Xfinity either did t
     gg <- gg + theme(legend.position="none")
     gg
 
-<img style="max-width:100%" src="http://datadrivensecurity.info/blog/images/2014/05/xfin-ggplot-1.png"/>
+<a class="mag" href="/blog/images/2014/05/xfin-ggplot-1.png"><img style="max-width:100%" src="http://datadrivensecurity.info/blog/images/2014/05/xfin-ggplot-1.png"/></a>
 
 I made the dots a bit smaller and used a fairly reasonable alpha setting for them. However, the macro- (i.e. the view of the whole U.S.) plus dot-view really doesn't give a feel for just how pervasive the coverage (and, hence, tracking) is per area.
 
