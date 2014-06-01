@@ -257,18 +257,56 @@ I made the dots a bit smaller and used a fairly reasonable alpha setting for the
 
 There are many ways to generate/display density maps. Since we'll still want to display the individual hotspot points as well as get a feel for the area, we'll use one that outlines and gradient fills in the regions, then plot the individual points on top of them.
 
+    :::rstats
+    library(ggcounty)
+    
+    l_ply(grep("Idaho", unique(xfin$county), value=TRUE, invert=TRUE), function(state) {
+    
+      print(state) # lets us know progress as this takes a few seconds/state
+    
+      gg.c <- ggcounty(state, color="#737373", fill="#f0f0f0", size=0.175)
+    
+      gg <- gg.c$gg
+      gg <- gg %+% xfin[xfin$county==state,] + aes(x=longitude, y=latitude)
+      gg <- gg + stat_density2d(aes(fill=..level.., alpha=..level..), 
+                                size=0.01, bins=100, geom='polygon')
+      gg <- gg + scale_fill_gradient(low="#fddbc7", high="#67001f")
+      gg <- gg + scale_alpha_continuous(limits=c(100), 
+                                        breaks=seq(0, 100, by=1.0), guide=FALSE)
+      gg <- gg + geom_density2d(color="#d6604d", size=0.2, alpha=0.5, bins=100)
+      gg <- gg + geom_point(color="#1a1a1a", size=0.5, alpha=1/30)
+      gg <- gg + coord_map(projection="mercator")
+      gg <- gg + xlim(range(gg.c$map$long))
+      gg <- gg + ylim(range(gg.c$map$lat))
+      gg <- gg + labs(x="", y="")
+      gg <- gg + theme_bw()
+      gg <- gg + theme(panel.grid=element_blank())
+      gg <- gg + theme(panel.border=element_blank())
+      gg <- gg + theme(axis.ticks.x=element_blank())
+      gg <- gg + theme(axis.ticks.y=element_blank())
+      gg <- gg + theme(axis.text.x=element_blank())
+      gg <- gg + theme(axis.text.y=element_blank())
+      gg <- gg + theme(legend.position="none")
+    
+      ggsave(sprintf("output/%s.svg", gsub(" ", "", state)), gg, width=8, height=8, units="in", dpi=140)
+      ggsave(sprintf("output/%s.png", gsub(" ", "", state)), gg, width=6, height=6, units="in", dpi=140)
+    
+    })
+
+The preceeding code will produce a density map per state. Below is an abbreviated gallery of (IMO) the most interesting states. You can click on each for a larger (SVG) version.
+
 <center><div>
-<img src="California.svg" width=200 height=200/> 
-<img src="Florida.svg" width=200 height=200/> 
-<img src="NewJersey.svg" width=200 height=200/> 
+<a class="mag" href="http://datadrivensecurity.info//blog/images/2014/05/density/California.svg"><img src="http://datadrivensecurity.info//blog/images/2014/05/density/California.png" width=200 height=200/></a>
+<a class="mag" href="http://datadrivensecurity.info//blog/images/2014/05/density/Florida.svg"><img src="http://datadrivensecurity.info//blog/images/2014/05/density/Florida.png" width=200 height=200/></a>
+<a class="mag" href="http://datadrivensecurity.info//blog/images/2014/05/density/NewJersey.svg"><img src="http://datadrivensecurity.info//blog/images/2014/05/density/NewJersey.png" width=200 height=200/></a>
 <br/>
-<img src="Indiana.svg" width=200 height=200/>
-<img src="Connecticut.svg" width=200 height=200/>
-<img src="Mississippi.svg" width=200 height=200/>
+<a class="mag" href="http://datadrivensecurity.info//blog/images/2014/05/density/Indiana.svg"><img src="http://datadrivensecurity.info//blog/images/2014/05/density/Indiana.png" width=200 height=200/></a>
+<a class="mag" href="http://datadrivensecurity.info//blog/images/2014/05/density/Connecticut.svg"><img src="http://datadrivensecurity.info//blog/images/2014/05/density/Connecticut.png" width=200 height=200/></a>
+<a class="mag" href="http://datadrivensecurity.info//blog/images/2014/05/density/Mississippi.svg"><img src="http://datadrivensecurity.info//blog/images/2014/05/density/Mississippi.png" width=200 height=200/></a>
 <br/>
-<img src="DistrictofColumbia.svg" width=200 height=200/> 
-<img src="Massachusetts.svg" width=200 height=200/> 
-<img src="Pennsylvania.svg" width=200 height=200/> 
+<a class="mag" href="http://datadrivensecurity.info//blog/images/2014/05/density/DistrictofColumbia.svg"><img src="http://datadrivensecurity.info//blog/images/2014/05/density/DistrictofColumbia.png" width=200 height=200/></a>
+<a class="mag" href="http://datadrivensecurity.info//blog/images/2014/05/density/Massachusetts.svg"><img src="http://datadrivensecurity.info//blog/images/2014/05/density/Massachusetts.png" width=200 height=200/></a>
+<a class="mag" href="http://datadrivensecurity.info//blog/images/2014/05/density/Pennsylvania.svg"><img src="http://datadrivensecurity.info//blog/images/2014/05/density/Pennsylvania.png" width=200 height=200/></a>
 </div></center>
  
  
