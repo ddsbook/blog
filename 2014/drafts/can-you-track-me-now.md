@@ -6,15 +6,36 @@ Tags: rstats, r, datavis
 Slug: can-you-track-me-now
 Author: Bob Rudis (@hrbrmstr)
 
-Sam Harman developed the iOS app: http://samharman.com/2013/11/comcast-xfinity-wifi/
+Xfinity has a [Wi-Fi hotspot offering](http://wifi.comcast.com/) that they offer through a partnership with [BSG Wireless](http://bsgwireless.com/). Customers of Xfinity get access to the hotspots for "free" and you can pay for access to them if you aren't already a customer. I used the service a while back in near area where I live (which is just southwest of the middle of nowhere) when I needed internet access and 3G/4G connectivity was non-existent.
 
-BURP: http://portswigger.net/burp/proxy.html
+Since that time, I started noticing regular associations to Xfinity hotspots and also indicators saying it was available (i.e. when Wi-Fi was "off" on my phone but not *really* off). When driving, that caused some hiccups with streaming live audio since I wasn't in a particular roaming area long enough to associate and grab data, but was often in range **just* long enough to temporarily disrupt the stream.
 
-The BURP intercept shows that the app first retrieves data from some type of "discovery" API and gets a JSON response:
+On a recent family+school trip to D.C., I noticed nigh pervasive coverage of Xfinity Wi-Fi as we went around the sights (with varied levels of efficacy when connecting to them). That finally triggered a "Hrm. Somewhere in their vast database, they know I was in Maine a little while ago and now am in D.C.". There have been plenty of articles over the years on the privacy issues of hotspots, but this made me want to dig into just how pervasive the potential for tracking was on Xfinity Wi-Fi.
+
+>**DISCLAIMER** I have no proof&mdash;nor am I suggesting&mdash;that Xfinity or BSG Wireless **is** actually maintaining records of associations or probes from mobile devices. However, the ToS & privacy pages on each of their sites did not leave me with any tpye of warm/fuzzy feeling that this data is not&mdash;in fact&mdash;being used for tracking purposes.
+
+### Digging for data
+
+Since the Xfinity Wi-Fi site suggests using their mobible app to find hotspots, I decided to grab it for both my iPhone & Galaxy S3 and see what type of data might be available. I first zoomed out to the seacoast region to get a feel for the Xfinity Wi-Fi coverage:
+
+<center><a class="mag" href="http://datadrivensecurity/blog/images/2014/05/xfin-android.png"><img width=200 style="max-width:100%" src="http://datadrivensecurity.info/blog/images/2014/05/xfin-android.png"/></a></center>
+
+Yikes! If BSG (or any similar service) is, indeed, recording all associations & probes, it looks like there's almost nowhere to go in the seacoast area without being tracked.
+
+Not wanting to use a tiny screen to continue my investigations, I decided to poke around the app a bit to see if there might be any way to get the locations of the hotspots to work with in R. Sure enough, there was:
+
+<center>
+  <a class="mag" href="http://datadrivensecurity/blog/images/2014/05/xfin-database-1.png"><img width=200 style="max-width:50%" src="http://datadrivensecurity.info/blog/images/2014/05/xfin-database-1.png"/></a>
+  <a class="mag" href="http://datadrivensecurity/blog/images/2014/05/xfin-database-2.png"><img width=200 style="max-width:50%" src="http://datadrivensecurity.info/blog/images/2014/05/xfin-database-2.png"/></a>
+</center>
+
+I fired up [Burp Proxy](http://portswigger.net/burp/proxy.html), reconfigured my devices to use it and recorded session as I poked around the tool. There were "are you there?" checks before almost every API call, but I was able to see calls to a "discovery" service as well as the URLs for the region datasets.
+
+The following Burp Proxy intercept shows that the app retrieving data from the "discovery" API and receiving a JSON response:
 
 **REQUEST**
 
-    http://datafeed.bsgwireless.com
+    (Host: http://datafeed.bsgwireless.com)
 
     POST /ajax/finderDataService/discover.php HTTP/1.1
     Accept-Encoding: gzip,deflate
@@ -93,11 +114,11 @@ We can use R to make the same request and also turn the JSON into R objects we c
     ## $results$generated
     ## [1] 1401553861
 
-We can see that each region from the app screen capture has an entry in the `resp$results$fileList` data frame that obviously corresponds to a SQLite database for that region and each one also shows when it was last updated (which we can then use to determine if you need to re-download it). There's also a `metadata.sqlite` file that might be interesting to poke around at.
+We can see that each region from the app screen capture has an entry in the `resp$results$fileList` data frame that obviously corresponds to a SQLite database for that region. Furthermore, each one also shows when it was last updated (which you can then use to determine if you need to re-download it). There's also a `metadata.sqlite` file that might be interesting to poke around at as well.
 
-The API also gives us the base URL which matches the request from the BURP session (when retrieving an individal file). The following is the capture from the iOS app:
+The API also gives us the base URL which matches the request from the Burp Proxy session (when retrieving an individal dataset file). The following is the Burp Proxy request capture from the iOS app:
 
-    URL: http://comcast.datafeed.bsgwireless.com
+    (Host: http://comcast.datafeed.bsgwireless.com)
 
     GET /data/comcast/finder_comcast_nengland.sqlite HTTP/1.1
     Host: comcast.datafeed.bsgwireless.com
@@ -109,7 +130,7 @@ The API also gives us the base URL which matches the request from the BURP sessi
     Accept-Encoding: gzip
     Connection: keep-alive
 
-Interestingly enough, the Android version of the app sends somewhat different request headers, including an `Authorization` header that Base64 decodes to `csl:123456` (and isn't used by the API:
+The Android version of the app sends somewhat different request headers, including an `Authorization` header that Base64 decodes to `csl:123456` (and isn't used by the API):
 
     GET /data/comcast/finder_comcast_midwest.sqlite HTTP/1.1
     Accept-Encoding: gzip
@@ -130,9 +151,9 @@ Given that there are no special requirements for downloading the data files (eve
                     sprintf("data/%s",x))
     })
 
->NOTE: I'm storing all the data files in a `data` subdirectory of the project I started for this exaple.
+>NOTE: As you can see in the example, I'm storing all the data files in a `data` subdirectory of the project I started for this exaple.
 
-While the `metadata.sqlite` file is intersting, the data really isn't all that useful for this post since the Xfinity app doesn't use most of it (and is very US-centric). Therefore, we'll focus on taking a look at the hotspot data, specifically the `sites` table:
+While the `metadata.sqlite` file *is* interesting, the data really isn't all that useful for this post since the Xfinity app doesn't use most of it (and is very US-centric). I suspect that data is far more interesting in the full BSG hotspot data set (which we aren't using here). Therefore, we'll just focus on taking a look at the hotspot data, specifically the `sites` table:
 
     :::sql
     CREATE TABLE "sites" (
@@ -192,7 +213,7 @@ The app most likely uses individual databases to save device space and bandwith,
     
     })
 
->I had intended to use more than just `latitude` & `longitude` with this post, but ended up not using it. I left it in the query since a future post might use it and as an example for those unfamiliar with using `RSQLite`.
+>I had intended to use more than just `latitude` & `longitude` with this post, but ended up not using it. I left it in the query since a future post might use it and also as an example for those unfamiliar with using `SQLite`/`RSQLite`.
 
 The function in the `ldply` combines each region's data frame into one. We can get a quick overview of what it looks like:
 
@@ -210,11 +231,13 @@ The function in the `ldply` combines each region's data frame into one. We can g
     ##  $ siteWebsite : chr  "" "" "" "" ...
     ##  $ sitePhone   : chr  "" "" "" "" ...
 
+###Visualizing Hotspots
+
 Now, you don't need the smartphone app to see the hotspots. Xfinity has a [web-based hotspot finder](http://hotspots.wifi.comcast.com/) based on Google Maps:
 
 <a class="mag" href="/blog/images/2014/05/xfin-web.png"><img style="max-width:100%" src="http://datadrivensecurity.info/blog/images/2014/05/xfin-web.png"/></a>
 
-Those dots are actually bitmap tiles (even as you zoom in). Xfinity either did that to "protect" the data, save bandwidth or speed up load-time (creating 260K+ points can take a few, noticeable seconds). We can reproduce this in R without Google Maps pretty easily:
+Those "dots" are actually bitmap tiles (even as you zoom in). Xfinity either did that to "protect" the data, save bandwidth or speed up load-time (creating 260K+ points can take a few, noticeable seconds). We can reproduce this in R without (and with) Google Maps pretty easily:
 
     :::rsplus
     library(maptools)
@@ -252,6 +275,31 @@ Those dots are actually bitmap tiles (even as you zoom in). Xfinity either did t
     gg
 
 <a class="mag" href="/blog/images/2014/05/xfin-ggplot-1.png"><img style="max-width:100%" src="http://datadrivensecurity.info/blog/images/2014/05/xfin-ggplot-1.png"/></a>
+
+    :::rsplus
+    library(ggmap)
+    
+    x_map <- get_map(location = 'united states', zoom = 4, maptype="terrain", source = 'google')
+    xmap_gg <- ggmap(x_map)
+    
+    gg <- xmap_gg %+% xfin + aes(x=longitude, y=latitude)
+    gg <- gg %+% xfin + aes(x=longitude, y=latitude)
+    gg <- gg + geom_point(color="#c90318", size=1.5, alpha=1/50)
+    gg <- gg + coord_map(projection="mercator")
+    gg <- gg + xlim(range(us$map$long))
+    gg <- gg + ylim(range(us$map$lat))
+    gg <- gg + labs(x="", y="")
+    gg <- gg + theme_bw()
+    gg <- gg + theme(panel.grid=element_blank())
+    gg <- gg + theme(panel.border=element_blank())
+    gg <- gg + theme(axis.ticks.x=element_blank())
+    gg <- gg + theme(axis.ticks.y=element_blank())
+    gg <- gg + theme(axis.text.x=element_blank())
+    gg <- gg + theme(axis.text.y=element_blank())
+    gg <- gg + theme(legend.position="none")
+    gg
+
+<a class="mag" href="/blog/images/2014/05/xfin-ggplot-1.png"><img style="max-width:100%" src="http://datadrivensecurity.info/blog/images/2014/05/xfin-ggplot-2.png"/></a>
 
 I made the dots a bit smaller and used a fairly reasonable alpha setting for them. However, the macro- (i.e. the view of the whole U.S.) plus dot-view really doesn't give a good feel for the true scope of the coverage (or possible tracking). For that, we can turn to state-based density maps.
 
