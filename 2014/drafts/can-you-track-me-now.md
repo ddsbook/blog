@@ -253,6 +253,25 @@ Those dots are actually bitmap tiles (even as you zoom in). Xfinity either did t
 
 <a class="mag" href="/blog/images/2014/05/xfin-ggplot-1.png"><img style="max-width:100%" src="http://datadrivensecurity.info/blog/images/2014/05/xfin-ggplot-1.png"/></a>
 
-I made the dots a bit smaller and used a fairly reasonable alpha setting for them. However, the macro- (i.e. the view of the whole U.S.) plus dot-view really doesn't give a feel for the true scope of the coverage (or possible tracking) is per area.
+I made the dots a bit smaller and used a fairly reasonable alpha setting for them. However, the macro- (i.e. the view of the whole U.S.) plus dot-view really doesn't give a good feel for the true scope of the coverage (or possible tracking). For that, we can turn to state-based density maps.
 
+There are many ways to generate/display density maps. Since we'll still want to display the individual hotspot points as well as get a feel for the area, we'll use one that outlines and gradient fills in the regions, then plot the individual points on top of them.
+
+<center><div>
+<img src="California.svg" width=200 height=200/> 
+<img src="Florida.svg" width=200 height=200/> 
+<img src="NewJersey.svg" width=200 height=200/> 
+<br/>
+<img src="Indiana.svg" width=200 height=200/>
+<img src="Connecticut.svg" width=200 height=200/>
+<img src="Mississippi.svg" width=200 height=200/>
+<br/>
+<img src="DistrictofColumbia.svg" width=200 height=200/> 
+<img src="Massachusetts.svg" width=200 height=200/> 
+<img src="Pennsylvania.svg" width=200 height=200/> 
+</div></center>
+ 
+ 
+ 
+ 
  
