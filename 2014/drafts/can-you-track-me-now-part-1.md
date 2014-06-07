@@ -67,7 +67,7 @@ The following Burp Proxy intercept shows that the app requesting data from the "
 
 We can use R to make the same request and also turn the JSON into R objects that we can work with via the `jsonlite` library:
 
-    :::rsplus
+    :::r
     library(RCurl)
     library(jsonlite)
     
@@ -143,7 +143,7 @@ The Android version of the app sends somewhat different request headers, includi
 
 Given that there are no special requirements for downloading the data files (even the `User-Agent` isn't standardized between operating system versions), we can use plain ol' `download.file` from the "built-in" `utils` package to handle retrieval:
 
-    :::rsplus
+    :::r
     # plyr isn't truly necessary, but I like the syntax standardization it provides
     
     library(plyr)
@@ -184,7 +184,7 @@ While the `metadata.sqlite` file *is* interesting, the data really isn't all tha
 
 The app most likely uses individual databases to save device space and bandwith, but it would be helpful if we had all the hotspot data in one data frame. We can do this pretty easily in R since we can work with SQLite databases via the `RSQLite` package and use `ldply` to combine results for us:
 
-    :::rsplus
+    :::r
     library(RSQLite)
     library(sqldf)
     
@@ -221,7 +221,7 @@ The app most likely uses individual databases to save device space and bandwith,
 
 The function in the `ldply` combines each region's data frame into one. We can get a quick overview of what it looks like:
 
-    :::rsplus
+    :::r
     str(xfin) 
     ## 'data.frame':	261365 obs. of  10 variables:
     ##  $ siteCategory: int  2 2 2 2 2 2 2 2 3 2 ...
