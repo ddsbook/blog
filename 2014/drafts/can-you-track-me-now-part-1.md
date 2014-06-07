@@ -197,7 +197,9 @@ The app most likely uses individual databases to save device space and bandwith,
     
       db <- dbConnect(SQLite(), dbname=sprintf("data/%s", x))
     
-      query <- "SELECT siteCategory, siteName, address1, town, county, postcode, latitude, longitude, siteWebsite, sitePhone FROM sites"
+      query <- "SELECT siteCategory, siteName, address1,  town, county, 
+                       postcode, latitude, longitude, siteWebsite, sitePhone
+                FROM sites"
     
       results <- dbSendQuery(db, query)
       
