@@ -299,7 +299,7 @@ Those "dots" are actually bitmap tiles (even as you zoom in). Xfinity either did
     gg <- gg + theme(legend.position="none")
     gg
 
-<a class="mag" href="/blog/images/2014/05/xfin-ggplot-1.png"><img style="max-width:100%" src="http://datadrivensecurity.info/blog/images/2014/05/xfin-ggplot-2.png"/></a>
+<a class="mag" href="/blog/images/2014/05/xfin-ggplot-2.png"><img style="max-width:100%" src="http://datadrivensecurity.info/blog/images/2014/05/xfin-ggplot-2.png"/></a>
 
 I made the dots a bit smaller and used a fairly reasonable alpha setting for them. However, the macro- (i.e. the view of the whole U.S.) plus dot-view really doesn't give a good feel for the true scope of the coverage (or possible tracking). For that, we can turn to state-based density maps.
 
