@@ -1,8 +1,7 @@
 Title: Can You Track Me Now? (Visualizing Xfinity Wi-Fi Hotspot Coverage) [Part 1] 
 Date: 2014-06-06 21:00:00
 Category: blog
-Status: draft
-Tags: rstats, r, datavis, wifi, cartography, maps
+Tags: rstats, r, datavis, wifi, cartography, maps, RCurl
 Slug: can-you-track-me-now-part-1
 Author: Bob Rudis (@hrbrmstr)
 
@@ -208,7 +207,7 @@ The app most likely uses individual databases to save device space and bandwith,
     
       # the operation can take a little while, so this just shows progress
       # and also whether we retrieved all the results from thery for each call
-      # by using message() you can use suppressMessageS() to disable the
+      # by using message() you can use suppressMessages() to disable the
       # "debugging" messages
       
       message("Loading [", x, "]... ", ifelse(dbHasCompleted(results), "successful!", "unsuccessful :-("))
