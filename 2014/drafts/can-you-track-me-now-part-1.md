@@ -37,8 +37,9 @@ The following Burp Proxy intercept shows that the app requesting data from the "
 
 **REQUEST**
 
-    (Host: http://datafeed.bsgwireless.com)
+>(Host: http://datafeed.bsgwireless.com)
 
+    :::http
     POST /ajax/finderDataService/discover.php HTTP/1.1
     Accept-Encoding: gzip,deflate
     Content-Length: 40
@@ -50,6 +51,7 @@ The following Burp Proxy intercept shows that the app requesting data from the "
 
 **RESPONSE**
 
+    :::http
     HTTP/1.1 200 OK
     Date: Sat, 31 May 2014 16:20:41 GMT
     Server: Apache/2.2.22 (Debian)
@@ -120,8 +122,7 @@ We can see that each region (from the app screen capture) has an entry in the `r
 
 The API also gives us the base URL which matches the request from the Burp Proxy session (when retrieving an individal dataset file). The following is the Burp Proxy request capture from the iOS app:
 
-    (Host: http://comcast.datafeed.bsgwireless.com)
-
+    :::http
     GET /data/comcast/finder_comcast_nengland.sqlite HTTP/1.1
     Host: comcast.datafeed.bsgwireless.com
     Pragma: no-cache
@@ -134,6 +135,7 @@ The API also gives us the base URL which matches the request from the Burp Proxy
 
 The Android version of the app sends somewhat different request headers, including an `Authorization` header that Base64 decodes to `csl:123456` (and isn't used by the API):
 
+    :::http
     GET /data/comcast/finder_comcast_midwest.sqlite HTTP/1.1
     Accept-Encoding: gzip
     Host: comcast.datafeed.bsgwireless.com
