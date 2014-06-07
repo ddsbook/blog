@@ -208,7 +208,7 @@ The app most likely uses individual databases to save device space and bandwith,
       aps <- fetch(results, -1)
     
       # the operation can take a little while, so this just shows progress
-      # and also whether we retrieved all the results from thery for each call
+      # and also whether we retrieved all the results from the query for each call
       # by using message() you can use suppressMessages() to disable the
       # "debugging" messages
       
