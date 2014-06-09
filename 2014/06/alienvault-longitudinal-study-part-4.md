@@ -1,15 +1,15 @@
 Title: AlienVault Longitudinal Study Part 4
-Date: 2014-06-08 18:00
+Date: 2014-06-09 09:00
 Tags: datavis, dataviz, AlienVault, data analysis. data management, R
 Category: Analysis
 Author: Steve Patton (@spttnnh)
 Slug: alienvault-longitudinal-study-part-4
-status: draft
+Status: draft
 
-In [Part 1](/blog/2014/02/alienvault-longitudinal-study-part-1) we looked at
+In [Part 1](http://datadrivensecurity.info/blog/2014/02/alienvault-longitudinal-study-part-1) we looked at
 acquiring raw data, and wrangling it into a time series dataset. In
-[Part 2](/blog/2014/03/alienvault-longitudinal-study-part-2) we looked at
-types of threats in the time series. In [Part 3](/blog/2014/04/alienvault-longitudinal-study-part-3)
+[Part 2](http://datadrivensecurity.info/blog/2014/03/alienvault-longitudinal-study-part-2) we looked at
+types of threats in the time series. In [Part 3](http://datadrivensecurity.info/blog/2014/04/alienvault-longitudinal-study-part-3)
 we looked at countries. Now we will examine countries and types in
 combination in the [AlienVault](http://www.alienvault.com/) reputation database.
 
@@ -84,7 +84,7 @@ Here are scanning hosts by country:
 
 And what we see:
 
-<center><img src="/blog/images/2014/06/scancc.svg" width="630" style="max-width:100%"/></center>
+<center><img src="http://datadrivensecurity.info/blog/images/2014/06/scancc.svg" width="630" style="max-width:100%"/></center>
 
 Here are malware domains by country:
 
@@ -93,7 +93,7 @@ Here are malware domains by country:
 
 And what we see:
 
-<center><img src="/blog/images/2014/06/maldcc.svg" width="630" style="max-width:100%"/></center>
+<center><img src="http://datadrivensecurity.info/blog/images/2014/06/maldcc.svg" width="630" style="max-width:100%"/></center>
 
 You can see that each type of address could be investigated this way to determine country based
 patterns in the various address types. We can also see the various types for a particular country:
@@ -103,7 +103,7 @@ patterns in the various address types. We can also see the various types for a p
 
 And what we see:
 
-<center><img src="/blog/images/2014/06/cctypes.svg" width="630" style="max-width:100%"/></center>
+<center><img src="http://datadrivensecurity.info/blog/images/2014/06/cctypes.svg" width="630" style="max-width:100%"/></center>
 
 This graphic shows us the various types of addresses as facets for United States entries.
 
