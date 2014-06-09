@@ -1,10 +1,9 @@
 Title: AlienVault Longitudinal Study Part 4
 Date: 2014-06-09 09:00
-Tags: datavis, dataviz, AlienVault, data analysis. data management, R
+Tags: datavis, dataviz, AlienVault, data analysis. data management, r, rstats
 Category: Analysis
 Author: Steve Patton (@spttnnh)
 Slug: alienvault-longitudinal-study-part-4
-Status: draft
 
 In [Part 1](http://datadrivensecurity.info/blog/2014/02/alienvault-longitudinal-study-part-1) we looked at
 acquiring raw data, and wrangling it into a time series dataset. In
