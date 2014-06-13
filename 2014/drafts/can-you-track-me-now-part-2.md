@@ -7,6 +7,10 @@ Slug: can-you-track-me-now-part-2
 Author: Bob Rudis (@hrbrmstr)
 
 <meta property="og:image" content="http://datadrivensecurity.info/blog/images/2014/05/density/California.png" />
+<meta property="og:type" content="Article" />
+<meta property="og:title" content="Can You Track Me Now? (Visualizing Xfinity Wi-Fi Hotspot Coverage) [Part 2]" />
+<meta property="og:description" content="Discover and visualize Xfinity hotspot coverage"/>
+<meta property="og:site_name" content="Data Driven Security"/>
 
 >This is the second of a two-part series. Part 1 set up the story and goes into how to discover, digest & reformat the necessary data. This conclusing segment will show how to perform some basic visualizations and then how to build beautiful & informative density maps from the data and offer some suggestions as to how to prevent potential tracking.
 
@@ -29,6 +33,10 @@ Those "dots" are actually bitmap tiles (even as you zoom in). Xfinity either did
     library(maps)
     library(rgeos)
     library(ggcounty)
+    
+    # you can grab ggcounty via:
+    # install.packages("devtools")
+    # install_github("hrbrmstr/ggcounty") 
     
     # grab the US map with counties
     
