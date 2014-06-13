@@ -6,6 +6,8 @@ Tags: rstats, r, datavis, wifi, cartography, maps, RCurl
 Slug: can-you-track-me-now-part-2
 Author: Bob Rudis (@hrbrmstr)
 
+<meta property="og:image" content="Uhttp://datadrivensecurity.info/blog/images/2014/05/density/California.png" />
+
 >This is the second of a two-part series. Part 1 set up the story and goes into how to discover, digest & reformat the necessary data. This conclusing segment will show how to perform some basic visualizations and then how to build beautiful & informative density maps from the data and offer some suggestions as to how to prevent potential tracking.
 
 I'll start with the disclaimer from the previous article:
@@ -84,6 +86,8 @@ Those "dots" are actually bitmap tiles (even as you zoom in). Xfinity either did
 
 <a class="mag" href="/blog/images/2014/05/xfin-ggplot-2.png"><img style="max-width:100%" src="http://datadrivensecurity.info/blog/images/2014/05/xfin-ggplot-2.png"/></a>
 
+>It's a bit interesting that they claim over a million hotspots but the database has less then 300K entries.
+
 I made the dots a bit smaller and used a fairly reasonable alpha setting for them. However, the macro- (i.e. the view of the whole U.S.) plus dot-view really doesn't give a good feel for the true scope of the coverage (or possible tracking). For that, we can turn to state-based density maps.
 
 There are many ways to generate/display density maps. Since we'll still want to display the individual hotspot points as well as get a feel for the area, we'll use one that outlines and gradient fills in the regions, then plot the individual points on top of them.
@@ -126,6 +130,8 @@ There are many ways to generate/display density maps. Since we'll still want to 
 
 The preceeding code will produce a density map per state. Below is an abbreviated gallery of (IMO) the most interesting states. You can click on each for a larger (SVG) version.
 
+>Some of SVGs have a hefty file size, so they might take a few seconds to load.
+
 <center><div>
 <a class="mag" href="http://datadrivensecurity.info/blog/images/2014/05/density/California.svg"><img src="http://datadrivensecurity.info/blog/images/2014/05/density/California.png" width=200 height=200/></a>
 <a class="mag" href="http://datadrivensecurity.info/blog/images/2014/05/density/Florida.svg"><img src="http://datadrivensecurity.info/blog/images/2014/05/density/Florida.png" width=200 height=200/></a>
@@ -140,7 +146,7 @@ The preceeding code will produce a density map per state. Below is an abbreviate
 <a class="mag" href="http://datadrivensecurity.info/blog/images/2014/05/density/Pennsylvania.svg"><img src="http://datadrivensecurity.info/blog/images/2014/05/density/Pennsylvania.png" width=200 height=200/></a>
 </div></center>
  
-You can also examine your own state:
+You can also single out your own state for examination:
 
 <center><select id="items"></select></center>
 <center>
@@ -175,5 +181,7 @@ $(document).ready(function() {
 
 </script>
 
- 
+Now, these are just basic density maps. They don't take into account Wi-Fi range, so the areas are larger than actual signal coverage. The purpose was to show just how widespread (or minimal) the coverage is vs convey discrete tracking precision. 
+
+###What to do?
  
