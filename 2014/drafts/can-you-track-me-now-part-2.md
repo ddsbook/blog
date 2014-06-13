@@ -1,7 +1,6 @@
 Title: Can You Track Me Now? (Visualizing Xfinity Wi-Fi Hotspot Coverage) [Part 2]
-Date: 2014-06-13 10:0:00
+Date: 2014-06-13 10:00:00
 Category: blog
-Status: draft
 Tags: rstats, r, datavis, wifi, cartography, maps, RCurl
 Slug: can-you-track-me-now-part-2
 Author: Bob Rudis (@hrbrmstr)
