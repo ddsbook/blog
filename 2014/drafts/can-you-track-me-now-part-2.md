@@ -12,7 +12,7 @@ Author: Bob Rudis (@hrbrmstr)
 <meta property="og:description" content="Discover and visualize Xfinity hotspot coverage"/>
 <meta property="og:site_name" content="Data Driven Security"/>
 
->This is the second of a two-part series. Part 1 set up the story and goes into how to discover, digest & reformat the necessary data. This conclusing segment will show how to perform some basic visualizations and then how to build beautiful & informative density maps from the data and offer some suggestions as to how to prevent potential tracking.
+>This is the second of a two-part series. [Part 1](http://datadrivensecurity.info/blog/posts/2014/Jun/can-you-track-me-now-part-1/) set up the story and goes into how to discover, digest & reformat the necessary data. This conclusing segment will show how to perform some basic visualizations and then how to build beautiful & informative density maps from the data and offer some suggestions as to how to prevent potential tracking.
 
 I'll start with the disclaimer from the previous article:
 
