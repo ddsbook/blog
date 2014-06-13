@@ -12,7 +12,7 @@ Author: Bob Rudis (@hrbrmstr)
 <meta property="og:description" content="Discover and visualize Xfinity hotspot coverage"/>
 <meta property="og:site_name" content="Data Driven Security"/>
 
->This is the second of a two-part series. [Part 1](http://datadrivensecurity.info/blog/posts/2014/Jun/can-you-track-me-now-part-1/) set up the story and goes into how to discover, digest & reformat the necessary data. This conclusing segment will show how to perform some basic visualizations and then how to build beautiful & informative density maps from the data and offer some suggestions as to how to prevent potential tracking.
+>This is the second of a two-part series. [Part 1](http://datadrivensecurity.info/blog/posts/2014/Jun/can-you-track-me-now-part-1/) set up the story and goes into how to discover, digest & reformat the necessary data. This concluding segment will show how to perform some basic visualizations and then how to build beautiful & informative density maps from the data and offer some suggestions as to how to prevent potential tracking.
 
 I'll start with the disclaimer from the previous article:
 
@@ -191,5 +191,30 @@ $(document).ready(function() {
 
 Now, these are just basic density maps. They don't take into account Wi-Fi range, so the areas are larger than actual signal coverage. The purpose was to show just how widespread (or minimal) the coverage is vs convey discrete tracking precision. 
 
-###What to do?
+###Covering Your Tracks
+
+Comcast (Xfinity) and AT&amp;T aren't the only places where this tracking can occur. [CreepyDOL](http://arstechnica.com/security/2013/08/diy-stalker-boxes-spy-on-wi-fi-users-cheaply-and-with-maximum-creep-value/) was demoed at BlacHat in 2013 (making it pretty simple for almost anyone to setup tracking). Stores already [use your Wi-Fi associations](http://www.washingtonpost.com/blogs/the-switch/wp/2013/10/19/how-stores-use-your-phones-wifi-to-track-your-shopping-habits/) to [track you](http://www.ftc.gov/news-events/blogs/techftc/2014/02/my-phone-your-service).  
+
+Apple is trying to help with a [new  feature](http://9to5mac.com/2014/06/09/ios-8-randomizes-mac-address-while-scanning-wifi-blocks-marketers-tracking-you/) in iOS 8 that will randomize MAC addresses when probing for access points and [David Schuetz](http://twitter.com/darthnull) has advocated [deleteing preferred networks](http://darthnull.org/2013/06/19/istupid) from your iOS networks list.
+
+What can you do while you wait for iOS (and wait even longer for the framented Android world to catch up)? One of your only direct controls is to disable Wi-Fi, but that might not truly help if your mobile operating system does not deal well with passive Wi-Fi probes. Another option (as mentioned above) is to regularly delete the list of previously associated networks. You could even go so far as to [bundle up your phone](http://www.popsci.com/gadgets/article/2013-08/how-protect-yourself-your-phone) and stop all signales coming in and out, but that somewhat defeats the purpose of having your mobile with you.
+
+Remain aware that the tracking can happen invisibly anywhere and, perhaps more importantly, the dangers that open Wi-Fi networks pose in general. Use a VPN service like [Cloak](https://www.getcloak.com/) to at least ensure all your transmissions are free from local prying eyes.
+
+Finally, keep putting pressure on the FTC to [help with this privacy issue](http://www.privatewifi.com/5-ways-the-ftc-hopes-to-protect-your-privacy-on-mobile-devices/). While FTC/FCC efforts won't stop malicious actors, it might help reign in businesses and encourage more privacy innovation on the part of Apple/Android/Microsoft.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
