@@ -69,3 +69,5 @@ Author: Bob Rudis (@hrbrmstr)
 - [Coursera Specialization - Data Science](https://www.coursera.org/specialization/jhudatascience/1) : A collection of nine courses covering topics in data science for $49 each.  After completion of a capstone project attendees get a "Specialization Certificate".
 - [Carnegie Melon University](http://oli.cmu.edu/learn-with-oli/see-our-free-open-courses/) : CMU's Open Learning Initiative with courses in statistics and research methods.
 
+**Data Sources**
+- [List of 70 Large Data Repositories](http://www.bigdata-madesimple.com/70-websites-to-get-large-data-repositories-for-free/)
