@@ -12,8 +12,9 @@ Last time I just captured the source country and destination host.  This time I 
 <iframe width="560" height="315" src="//www.youtube.com/embed/GEjzCR1fN8Y" frameborder="0" allowfullscreen></iframe>
 
 Couple of things to note:
-*  I slowed down the time it takes a bubble to travel so the times don’t line up with the previous video.  In hindsight, I should have tried to keep these in sync. 
-*  The massive port scan from Vietnam (starting at 1:12) is really interesting, and since one frame is 5 minutes, this is a really slow port scan.  Best guess is, they are scanning way more than just these 9 hosts.
-*  The huge packet flood from Iran to Tokyo is also interesting in this one.  Looking at 4:27, we see a huge ball from Iran to UDP port 2193.  A liberal dose of searching turns up it is probably ”Dr.Web Enterprise Management”.  But who really know what’s going on.  Maybe just a configuration error. 
+
+* I slowed down the time it takes a bubble to travel so the times don’t line up with the previous video.  In hindsight, I should have tried to keep these in sync. 
+* The massive port scan from Vietnam (starting at 1:12) is really interesting, and since one frame is 5 minutes, this is a really slow port scan.  Best guess is, they are scanning way more than just these 9 hosts.
+* The huge packet flood from Iran to Tokyo is also interesting in this one.  Looking at 4:27, we see a huge ball from Iran to UDP port 2193.  A liberal dose of searching turns up it is probably ”Dr.Web Enterprise Management”.  But who really know what’s going on.  Maybe just a configuration error. 
 
 And finally the code to create this is in [this gist](https://gist.github.com/jayjacobs/b42ac3661d38f2b83350). 
