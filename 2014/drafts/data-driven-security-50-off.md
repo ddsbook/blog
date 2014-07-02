@@ -13,3 +13,5 @@ Author: Bob Rudis (@hrbrmstr)
 It looks like the sale applies to the print version and requires direct purchase from Wiley (via the link above or advert link on THN). I'm not entirely sure why the prices show up in pound sterling (£) and euro (€), but it may have something to do with THN being based out of New Delhi or the fact that the promotion is coming out of Wiley's UK community marketing arm.
 
 There was no word on how long the sale will last, but this is the best discount we've seen so far. If you grab a copy (or have already purchased a copy), hit me up on Twitter ([@hrbrmstr](http://twitter.com/hrbrmstr)) and we'll send you a signed [bookplate](http://en.wikipedia.org/wiki/Bookplate) once they're made.
+<div style="clear:both"></div>
+<img align="left" src="http://datadrivensecurity.info/blog/images/2014/06/jaycent.png">Jay, unfortunately, misinterpreted Wiley on the call we had, but does&mdash;indeed&mdash;look quite good in the "50 Cent" getup.
