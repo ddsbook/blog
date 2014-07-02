@@ -1,7 +1,6 @@
 Title: Data-Driven Security 50% Off!
-Date: 2014-07-02 07:00:18
+Date: 2014-07-02 07:30:18
 Category: book
-Status: draft
 Tags: book,sale
 Slug: data-driven-security-50-off
 Author: Bob Rudis (@hrbrmstr)
