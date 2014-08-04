@@ -103,7 +103,7 @@ Here are the two functions (also available via [this gist](https://gist.github.c
 
 We've covered some of the `Rcpp` basics in previous posts, but the:
 
-    `Function message("message");`
+    Function message("message");
  
 declration is new and enables us to call the R `message()` function from within our Rcpp program just as if it were a normal C/C++ function. We're using it here to provide [suppressable] feedback to the programs that will be calling these functions, since one cannot neither guarantee network connectivity nor the efficacy of local DNS resolvers.
 
@@ -145,4 +145,6 @@ That will make the `gethostbyname` and `gethostbyaddr` functions available to R 
     ##  [9] "74.125.226.2"             "74.125.226.1"            
     ## [11] "74.125.226.5"             "74.125.226.7" 
 
-Stay tuned for the package version and use with the `http:BL` API!
+There's no error checking for passed parameters and the responses for `gethostbyname` return both IPv4 & IPv6 `A` records, but handling both those conditions is relatively straightforward (and should be added for production code).
+
+Stay tuned for the `Rcpp` package version and the use of the new functions with the `http:BL` API!
