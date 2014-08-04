@@ -104,15 +104,15 @@ We've covered some of the `Rcpp` basics in previous posts, but the:
 
     Function message("message");
  
-declration is new and enables us to call the R `message()` function from within our Rcpp program just as if it were a normal C/C++ function. We're using it here to provide [suppressable] feedback to the programs that will be calling these functions, since one cannot neither guarantee network connectivity nor the efficacy of local DNS resolvers.
+declration is new and enables us to call the R `message()` function from within our Rcpp program just as if it were a normal C/C++ function. One can use that same functionality to call just about any R function from `Rcpp`. We're using it here to provide [suppressable] feedback to the programs that will be calling these functions, since one cannot neither guarantee network connectivity nor the efficacy of local DNS resolvers.
 
 Another new feature being used is the ability to use standard C++ data structures (e.g. `std::string`, `std::vector`) and letting R/`Rcpp` take care of the conversions.
 
 The basic flow for each function is the same:
 
-- take&mdash;as input&mdash;character string (_take note that these functions are not [vectorized](http://datadrivensecurity.info/blog/posts/2014/May/vectorizing-ipv4-address-conversions-part-2/))
+- take&mdash;as input&mdash;character string (<i>take note that these functions are not [vectorized](http://datadrivensecurity.info/blog/posts/2014/May/vectorizing-ipv4-address-conversions-part-2/)</i>)
 - initialize the Boost resolver functions
-- make a query (host->ip/ip->host)
+- make a query (host&#8594;ip/ip&#8594;host)
 - build a vector of the results (handls multiple `A` &amp; `PTR` records)
 - return the results
 
