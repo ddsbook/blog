@@ -1,8 +1,8 @@
 Title: Basic Forward and Reverse Lookups In R (with Rcpp)
 Date: 2014-08-03 22:51:07
-Category: blog
+Category: tools
 Status: draft
-Tags: blog
+Tags: r, rstats, rcpp, dns
 Slug: basic-forward-and-reverse-lookups-in-r-with-rcpp
 Author: Bob Rudis (@hrbrmstr)
 
