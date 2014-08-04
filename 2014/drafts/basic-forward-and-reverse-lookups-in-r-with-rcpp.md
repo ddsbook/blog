@@ -1,7 +1,6 @@
 Title: Basic Forward and Reverse Lookups In R (with Rcpp)
-Date: 2014-08-03 22:51:07
+Date: 2014-08-03 23:30:00
 Category: tools
-Status: draft
 Tags: r, rstats, rcpp, dns
 Slug: basic-forward-and-reverse-lookups-in-r-with-rcpp
 Author: Bob Rudis (@hrbrmstr)
@@ -123,7 +122,7 @@ As in previous cases, to use these new `Rcpp` functions, all you have to do is e
     library(Rcpp)
     library(inline)
 
-    sourceCpp("resolve.cpp")
+    sourceCpp("resolver.cpp")
 
 That will make the `gethostbyname` and `gethostbyaddr` functions available to R during the running session. Then, it's just a matter of using them:
 
