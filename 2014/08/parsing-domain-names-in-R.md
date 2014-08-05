@@ -42,6 +42,7 @@ offline.
 
 To install this package, use the devtools package:
 
+    :::r
     devtools::install_github("jayjacobs/tldextract")
 
 ### Usage
@@ -49,16 +50,17 @@ To install this package, use the devtools package:
 Using the package is fairly straight forward, it will return a data frame with the 
 original name and seperate columns for each parsed component.
 
+    :::r
     library(tldextract)
     # use the cached lookup data, simple call
     tldextract("www.google.com")
-
+    
     ##             host subdomain domain tld
     ## 1 www.google.com       www google com
-
+    
     # it can take multiple domains at the same time
     tldextract(c("www.google.com", "www.google.com.ar", "googlemaps.ca", "tbn0.google.cn"))
-
+    
     ##                host subdomain     domain    tld
     ## 1    www.google.com       www     google    com
     ## 2 www.google.com.ar       www     google com.ar
@@ -68,22 +70,24 @@ original name and seperate columns for each parsed component.
 The specification for the top-level domains is cached in the package and
 is viewable.
 
+    :::r
     # view and update the TLD domains list in the tldnames data
     data(tldnames)
     head(tldnames)
-
+    
     ## [1] "ac"     "com.ac" "edu.ac" "gov.ac" "net.ac" "mil.ac"
 
 If the cached version is out of data and the package isn't updated, the
 data can be manually loaded, and then passed into the function.
 
+    :::r
     # get most recent TLD listings
     tld <- getTLD() # optionally pass in a different URL than the default
     manyhosts <- c("pages.parts.marionautomotive.com", "www.embroiderypassion.com", 
                    "fsbusiness.co.uk", "www.vmm.adv.br", "ttfc.cn", "carole.co.il",
                    "visiontravail.qc.ca", "mail.space-hoppers.co.uk", "chilton.k12.pa.us")
     tldextract(manyhosts, tldnames=tld)
-
+    
     ##                               host   subdomain            domain       tld
     ## 1 pages.parts.marionautomotive.com pages.parts  marionautomotive       com
     ## 2        www.embroiderypassion.com         www embroiderypassion       com
