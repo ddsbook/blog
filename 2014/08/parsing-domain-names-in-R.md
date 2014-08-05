@@ -17,10 +17,10 @@ Conversions](http://datadrivensecurity.info/blog/posts/2014/May/speeding-up-ipv4
 I wanted to add to some of that work with a quick package for parsing
 domain names.
 
-While \_\*.com\_, \_\*.net\_ and \_\*.org\_ top-level domains are easy
+While _\*.com_, _\*.net_ and _\*.org_ top-level domains are easy
 to parse, the rest of the world gets messy rather quick. Just taking the
 entry after the last dot creates problems for top-level domains like
-anything in \_\*.com.uk\_. Or to make things even more complicated, the
+anything in _\*.com.uk_. Or to make things even more complicated, the
 name of "*us-west-1.compute.amazonaws.com*" is considered (for name
 parsing) to be a top-level domain and the domain name we'd want to
 process is the name that would appear before the *us-west-1* in that
@@ -28,7 +28,7 @@ name.
 
 ### Introducing TLD Extract (the R version)
 
-It's always better to imitate rather than reinvent, so I took some time
+It's always easier to imitate rather than reinvent, so I took some time
 to read through the
 [tldextract](https://github.com/john-kurkowski/tldextract) Python
 package, and used that to test my code was executing properly during
@@ -46,10 +46,10 @@ To install this package, use the devtools package:
 
 ### Usage
 
-    library(tldextract)
+Using the package is fairly straight forward, it will return a data frame with the 
+original name and seperate columns for each parsed component.
 
-    ## Loading required package: data.table
-    ## Loading required package: httr
+    library(tldextract)
 
     # use the cached lookup data, simple call
     tldextract("www.google.com")
