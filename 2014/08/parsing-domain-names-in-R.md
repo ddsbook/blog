@@ -50,7 +50,6 @@ Using the package is fairly straight forward, it will return a data frame with t
 original name and seperate columns for each parsed component.
 
     library(tldextract)
-
     # use the cached lookup data, simple call
     tldextract("www.google.com")
 
@@ -105,5 +104,6 @@ R](http://adv-r.had.co.nz/Philosophy.html) online book and exploring how
 other packages implement the
 [testthat](https://github.com/hadley/testthat) package, I implemented a
 few simple tests. If you are creating (or about to create) R packages,
-look at this package for the incredibly simple unit tests included with
+look at [the source for the tldextract package](https://github.com/jayjacobs/tldextract) 
+for the incredibly simple unit tests included with
 it!
