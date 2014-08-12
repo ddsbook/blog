@@ -1,9 +1,9 @@
-Title: New and Updates R Packages for Security Data Science
+Title: New and Updated R Packages for Security Data Science
 Date: 2014-08-12 16:30:26
 Category: tools
 Status: draft
 Tags: r, rstats, analysis
-Slug: new-and-updates-r-packages-for-security-data-science
+Slug: new-and-updated-r-packages-for-security-data-science
 Author: Bob Rudis (@hrbrmstr)
 
 We've got some new and updated R packages that are (hopefully) helpful to security folks who are endeavouring to use R in their quest to find and prevent malicious activity. All packages now incorporate a `testthat` workflow and are fully `roxygen`-ized and present some best practices in R package development (a post on that very topic is pending).
