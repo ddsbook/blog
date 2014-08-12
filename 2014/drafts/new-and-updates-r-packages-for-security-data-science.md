@@ -1,7 +1,6 @@
 Title: New and Updated R Packages for Security Data Science
 Date: 2014-08-12 16:30:26
 Category: tools
-Status: draft
 Tags: r, rstats, analysis
 Slug: new-and-updated-r-packages-for-security-data-science
 Author: Bob Rudis (@hrbrmstr)
@@ -151,4 +150,4 @@ The first person(s) to get this working under Windows/mingw + boost/Rcpp gets a 
 
 We'll give you an opportunity to play with `iptools` before covering some examples.
 
-You are also encouraged to drop a note in the comments here or on github. We've not quite worked out how we'll be handling public gitlab issues/comments yet, but it's on the `TODO` list.
+You are also encouraged to drop a note in the comments here or on github with any issues, suggestions or contributions. We've not quite worked out how we'll be handling public gitlab issues/comments yet, but it's on the `TODO` list.
