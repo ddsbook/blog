@@ -10,7 +10,7 @@ We've got some new and updated R packages that are (hopefully) helpful to securi
 
 We'll start with the old and work our way to the new&hellip;
 
-### `resolv`
+### Changes to the `resolv` package
 
 I've updated [resolv](https://github.com/hrbrmstr/resolv) for the newest `Rcpp` and for a better build on linux and OS X systems (still no Windows compatibiity). The package also includes vectorized versions of the core `resolv_` functions. Here's an example:
 
@@ -39,7 +39,7 @@ I've updated [resolv](https://github.com/hrbrmstr/resolv) for the newest `Rcpp` 
   
 Doing all 1M would take a short while, but it'd be an interesting experiment to run (then, analyze the records to see which services these sites trust with their mail sending).
 
-### `netintel`
+### Updates to the  `netintel` package
 
 The `netintel` package is back from the dead! (thanks to a helpful push by [David Severski](http://twitter.com/dseverski)).
 
