@@ -1,5 +1,5 @@
 Title: Update to resolv (0.1.2) + valgrind and R + Parallel DNS Requests with Revolution R's 'foreach' and `doParallel`
-Date: 2014-08-15 10:15:30
+Date: 2014-08-15 10:25:30
 Category: tools
 Tags: r, rstats, valgrind, rcpp, dns
 Slug: update-to-resolve-valgrind-and-r
@@ -7,7 +7,7 @@ Author: Bob Rudis (@hrbrmstr)
 
 Thanks to a blog comment by [@arj](http://twitter.com/arj), I finally ran at least one of the new `Rcpp`-based through [`valgrind`](http://valgrind.org/) ([`resolv`](https://github.com/hrbrmstr/resolv)) and, sure enough there were a few memory leaks which are now fixed. However, I first ran `valgind` with a simple test `R` script that just did `library(stats)` to get a baseline (and dust off some very rusty `valgrind` memories). After running that through:
 
-    R --vanilla -d "valgrind --tool=memcheck --track-origins=yes" --vanilla < valgrindtest.R
+    R --vanilla -d "valgrind --tool=memcheck --track-origins=yes" < valgrindtest.R
 
 these are the results from an Ubuntu system:
 
