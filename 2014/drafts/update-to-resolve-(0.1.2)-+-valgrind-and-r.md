@@ -1,8 +1,7 @@
 Title: Update to resolve (0.1.2) + valgrind and R + Parallelizing DNS Requests with Revolution R's 'foreach' and `doParallel`
 Date: 2014-08-15 10:15:30
 Category: tools
-Status: draft
-Tags: r, rstats
+Tags: r, rstats, valgrind, rcpp, dns
 Slug: update-to-resolve-valgrind-and-r
 Author: Bob Rudis (@hrbrmstr)
 
