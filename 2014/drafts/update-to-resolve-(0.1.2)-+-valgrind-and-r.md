@@ -1,4 +1,4 @@
-Title: Update to resolv (0.1.2) + valgrind and R + Parallelizing DNS Requests with Revolution R's 'foreach' and `doParallel`
+Title: Update to resolv (0.1.2) + valgrind and R + Parallel DNS Requests with Revolution R's 'foreach' and `doParallel`
 Date: 2014-08-15 10:15:30
 Category: tools
 Tags: r, rstats, valgrind, rcpp, dns
