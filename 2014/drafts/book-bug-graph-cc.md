@@ -1,7 +1,6 @@
 Title: Book Bug - graph.cc
-Date: 2014-08-25 07:55:32
+Date: 2014-08-25 07:57:32
 Category: book
-Status: draft
 Tags: book, bug
 Slug: book-bug-graph-cc
 Author: Bob Rudis (@hrbrmstr)
