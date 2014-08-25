@@ -1,5 +1,5 @@
 Title: Book Bug - graph.cc
-Date: 2014-08-25 07:57:32
+Date: 2014-08-25 08:30:32
 Category: book
 Tags: book, bug
 Slug: book-bug-graph-cc
@@ -14,4 +14,4 @@ Line 612 in `ch04.R` (the code from the downloads on the book's web site) should
 
 if you're playing along at home and tinkering, as Russ was.
 
-We (like almost everyone) dislike bugs, we truly appreciate and encourage bug reports (so keep'm coming *if* you find them).
+We (like almost everyone) dislike bugs, but we truly appreciate and encourage bug reports (so keep'm coming *if* you find them).
