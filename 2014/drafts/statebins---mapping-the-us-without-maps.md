@@ -1,7 +1,6 @@
 Title: statebins - U.S. State Cartogram Heatmaps in R
-Date: 2014-08-26 21:36:49
-Category: maps
-Status: draft
+Date: 2014-08-27 00:01:49
+Category: packages
 Tags: cartography, maps, mapping, heatmap, cartogram
 Slug: statebins-mapping-the-us-without-maps
 Author: Bob Rudis (@hrbrmstr)
@@ -18,7 +17,7 @@ As @[alexcpsec](http://twitter.com/alexcpsec) said in his talk at security summe
 <blockquote class="twitter-tweet" lang="en"><p>&quot;PLEASE STOP USING GLOBAL MAPS for visualizing IP-based threat data.&quot; - <a href="https://twitter.com/alexcpsec">@alexcpsec</a> <a href="https://twitter.com/hashtag/defcon?src=hash">#defcon</a></p>&mdash; Wendy Nather (@451wendy) <a href="https://twitter.com/451wendy/statuses/497808992039870466">August 8, 2014</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-Despite some posts here and even a few mentions in [our book](http://dds.ec/amzn), geographic maps have little value in information security. Bots are attracted to population centers as there are more people with computers (and, hence, more computers) those places; IP geolocation data is still far from precise (as our "[Potwin Effect](http://books.google.com/books?id=7DqwAgAAQBAJ&pg=PA113&lpg=PA113&dq=potwin+effect&source=bl&ots=CyYrKxlkCa&sig=Kk6bd9Mz2uJdNOVp2wj3Bn4AgSI&hl=en&sa=X&ei=mTj9U8WhBIvnoASOrYKwBQ&ved=0CCIQ6AEwAA#v=onepage&q=potwin%20effect&f=false)" has shown multiple times); and, the current state of attacker origin attribution involves far more shamanism than statistics.
+Despite some posts here and even a few mentions in [our book](http://dds.ec/amzn), geographic maps have little value in information security. Bots are attracted to population centers as there are more people with computers (and, hence, more computers) in those places; IP geolocation data is still far from precise (as our "[Potwin Effect](http://books.google.com/books?id=7DqwAgAAQBAJ&pg=PA113&lpg=PA113&dq=potwin+effect&source=bl&ots=CyYrKxlkCa&sig=Kk6bd9Mz2uJdNOVp2wj3Bn4AgSI&hl=en&sa=X&ei=mTj9U8WhBIvnoASOrYKwBQ&ved=0CCIQ6AEwAA#v=onepage&q=potwin%20effect&f=false)" has shown multiple times); and, the current state of attacker origin attribution involves far more shamanism than statistics.
 
 Yet, there can be some infosec use cases for looking at data through the lens of a map, especially since *"Even before you understand them, your brain is drawn to maps."*. To that end, while you could examine the WaPo javascript to create your own statebin visualizations, I put together a small [statebins package](http://github.com/hrbrmstr/statebins/) that lets you create these cartogram heatmaps in R with little-to-no effort. 
 
