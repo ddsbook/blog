@@ -1,9 +1,11 @@
 Title: statebins - U.S. State Cartogram Heatmaps in R
-Date: 2014-08-27 09:30:49
+Date: 2014-08-27 12:55:49
 Category: packages
 Tags: cartography, maps, mapping, heatmap, cartogram, r, rstats
 Slug: statebins-mapping-the-us-without-maps
 Author: Bob Rudis (@hrbrmstr)
+
+>**UPDATE** The `statebins` package is now available [on CRAN](http://cran.r-project.org/web/packages/statebins/index.html)
 
 I became enamored (OK, obsessed) with a recent visualization by the [WaPo team](http://bit.ly/statebins) which @[ryanpitts](https://twitter.com/ryanpitts/) tweeted and dubbed *statebins*:
 
