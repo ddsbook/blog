@@ -1,7 +1,7 @@
 Title: statebins - U.S. State Cartogram Heatmaps in R
-Date: 2014-08-27 00:01:49
+Date: 2014-08-27 09:30:49
 Category: packages
-Tags: cartography, maps, mapping, heatmap, cartogram
+Tags: cartography, maps, mapping, heatmap, cartogram, r, rstats
 Slug: statebins-mapping-the-us-without-maps
 Author: Bob Rudis (@hrbrmstr)
 
