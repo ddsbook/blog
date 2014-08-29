@@ -70,7 +70,7 @@ I saw [this](https://news.ycombinator.com/item?id=8241283) on Hacker News this m
       group_by(whichresolve) %>%       # group by IP
       tally() %>%                      # get a count
       select(IP=whichresolve, n) %>%   # rename & select columns
-      arrange(-n)                      # sort
+      arrange(desc(n))                      # sort
       
     ##                IP  n
     ## 1     127.0.53.53 14
