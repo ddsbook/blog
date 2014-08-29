@@ -1,7 +1,6 @@
 Title: How unusual is it for TLDs to resolve to an address at the top most level? (a.k.a. a sneaky, basic introduction to dplyr)
 Date: 2014-08-29 08:04:20
 Category: posit
-Status: draft
 Tags: dns, tlds, dplyr, r, rstats
 Slug: how-unusual-is-it-for-tlds-to-resolve-to-an-address-at-the-top-most-level
 Author: Bob Rudis (@hrbrmstr)
@@ -27,6 +26,9 @@ I saw [this](https://news.ycombinator.com/item?id=8241283) on Hacker News this m
     rownames(tlds) <- NULL
     
     # which ones weren't NA == they have an IP address
+    # dplyr lets us use "pipes" (similar to unix pipes)
+    # to pass data around and it's far more readable than 
+    # sticking conditionals in tons of nested brackets
     
     tlds %>% filter(!is.na(whichresolve))
     
@@ -61,6 +63,7 @@ I saw [this](https://news.ycombinator.com/item?id=8241283) on Hacker News this m
     ## 28                 .yachts    127.0.53.53
     
     # since we can eyeball one very common IP address, see how common it is
+    # and use a fairly common dplyr chain to get the results
     
     tlds %>% 
       filter(!is.na(whichresolve)) %>% # exclude some
@@ -101,7 +104,8 @@ and use the `dplyr` chain directly with `ggplot2` (and using Pantone's "[color o
 Out of 679 entries in the IANA TLDs, 28 resolve and, of those, 14 to the same IP address, which just *happens* to be the new "[Name Collission](https://www.icann.org/news/announcement-2-2014-08-01-en)" IP address. Excluding that address, there are just 13 unique IP addresses and only 14 domains that have an actual IPv4 address. For fun, we can see where those IPs "live":
 
     # using tbl_df() to make the output more compact
-    # feeding a dplyr chained column right into iptools' geoip()
+    # feeding a "dplyr chained" column right into iptools' geoip()
+    # which is probably making Jay cringe right about now
     
     tbl_df(geoip((tlds %>% 
       filter(!is.na(whichresolve) & whichresolve != "127.0.53.53") %>% 
