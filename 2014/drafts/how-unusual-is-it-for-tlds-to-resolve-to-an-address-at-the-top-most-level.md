@@ -7,6 +7,7 @@ Author: Bob Rudis (@hrbrmstr)
 
 I saw [this](https://news.ycombinator.com/item?id=8241283) on Hacker News this morning and it got me curious as to how many other TLDs (e.g. `.com`) resolve to an address (i.e. `http://uz./` displays a page in your browser since `uz.` resolves to `91.212.89.8`). This is quick work with R and the [resolv](http://github.com/hrbrmstr/resolv) &amp; [iptools](http://github.com/hrbrmstr/iptools) packages, plus I threw in a little `dplyr` for good measure:
 
+    :::r
     library(iptools)
     library(resolv)
     library(dplyr)
@@ -90,6 +91,7 @@ I saw [this](https://news.ycombinator.com/item?id=8241283) on Hacker News this m
     
 and use the `dplyr` chain directly with `ggplot2` (and using Pantone's "[color of the day](https://www.pantone.com/pages/colorstrology/colorstrology.aspx)" for August 29th, 2014 for fun):
 
+    :::r
     tlds %>% 
       filter(!is.na(whichresolve)) %>% 
       group_by(whichresolve) %>%
@@ -103,6 +105,7 @@ and use the `dplyr` chain directly with `ggplot2` (and using Pantone's "[color o
 
 Out of 679 entries in the IANA TLDs, 28 resolve and, of those, 14 to the same IP address, which just *happens* to be the new "[Name Collission](https://www.icann.org/news/announcement-2-2014-08-01-en)" IP address. Excluding that address, there are just 13 unique IP addresses and only 14 domains that have an actual IPv4 address. For fun, we can see where those IPs "live":
 
+    :::r
     # using tbl_df() to make the output more compact
     # feeding a "dplyr chained" column right into iptools' geoip()
     # which is probably making Jay cringe right about now
