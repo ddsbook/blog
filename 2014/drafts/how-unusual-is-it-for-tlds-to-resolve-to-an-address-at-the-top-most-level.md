@@ -88,7 +88,7 @@ I saw [this](https://news.ycombinator.com/item?id=8241283) on Hacker News this m
     ## 12    64.70.19.33  1
     ## 13   80.68.93.100  1
     ## 14    91.212.89.8  1
-    
+
 and use the `dplyr` chain directly with `ggplot2` (and using Pantone's "[color of the day](https://www.pantone.com/pages/colorstrology/colorstrology.aspx)" for August 29th, 2014 for fun):
 
     :::r
@@ -96,7 +96,7 @@ and use the `dplyr` chain directly with `ggplot2` (and using Pantone's "[color o
       filter(!is.na(whichresolve)) %>% 
       group_by(whichresolve) %>%
       tally() %>% 
-      select(IP=whichresolve, n) %>% # magrittr/dplyr pipe works nicely with ggplot
+      select(IP=whichresolve, n) %>%    # magrittr/dplyr pipe works nicely with ggplot
       ggplot(aes(x=reorder(IP, n), y=n)) + 
         geom_bar(stat="identity", fill="#ACB350") + 
         coord_flip() + labs(x="", y="", title="") + theme_bw()
