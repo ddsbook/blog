@@ -1,5 +1,5 @@
 Title: Book Reviews and Interviews
-Date: 2014-07-07 19:00:00
+Date: 2014-09-02 19:00:00
 Category: News
 Tags: book, reviews, interview
 Slug: musings
@@ -10,6 +10,7 @@ While the Internet has no shortage of opinions, every once in a while those opin
 
 **Reviews**
 
+- Russ McRee's *"Jay & Bob Strike Back"* [ISSA #toolsmith Review of DDSecBook](http://holisticinfosec.blogspot.com/2014/09/toolsmith-jay-and-bob-strike-back-data.html)
 - [Máirtín O'Sullivan's Book Review](http://mairtin.blogspot.com/2014/03/book-review-data-driven-security.html)
 - [Richard Austin provided a review for IEEE Cipher](http://www.ieee-security.org/Cipher/BookReviews/2014/JJacobs_by_austin.html)
 - [Ben Rothke wrote a review on the RSA Conference website](http://www.rsaconference.com/blogs/582/rothke/data-driven-security-analysis-visualization-and-dashboards)
