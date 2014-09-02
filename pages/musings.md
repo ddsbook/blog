@@ -13,6 +13,7 @@ While the Internet has no shortage of opinions, every once in a while those opin
 - [Máirtín O'Sullivan's Book Review](http://mairtin.blogspot.com/2014/03/book-review-data-driven-security.html)
 - [Richard Austin provided a review for IEEE Cipher](http://www.ieee-security.org/Cipher/BookReviews/2014/JJacobs_by_austin.html)
 - [Ben Rothke wrote a review on the RSA Conference website](http://www.rsaconference.com/blogs/582/rothke/data-driven-security-analysis-visualization-and-dashboards)
+- [Russ McRee wrote a book review for _toolsmith_, a monthly column in the ISSA Journal](http://holisticinfosec.blogspot.com/2014/09/toolsmith-jay-and-bob-strike-back-data.html)
 - [And of course, the Amazon book reviews](http://www.amazon.com/Data-Driven-Security-Analysis-Visualization-Dashboards/product-reviews/1118793722)
 
 **Interviews**
