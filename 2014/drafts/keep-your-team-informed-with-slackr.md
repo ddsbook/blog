@@ -1,16 +1,16 @@
 Title: Keep your team informed with "slackr"
-Date: 2014-09-05 07:07:52
+Date: 2014-09-05 08:30:52
 Category: blog
 Status: draft
 Tags: blog
 Slug: keep-your-team-informed-with-slackr
 Author: Bob Rudis (@hrbrmstr)
 
-[Karl Broman](http://twitter.com/kwbroman) did a spiffy job [summarizing a good number of the options](http://kbroman.wordpress.com/2014/09/03/notifications-from-r/) availble to R folk if they want to get notifications from R. You can also generate [OS X notifications](http://rud.is/b/2013/09/12/send-mac-os-notifications-from-r/) as well. If you're using [Slack](https://slack.com/r/02j411cy-02jchz0q) for team coordination and communications, you've got a new option - [slackr](http://github.com/hrbrmstr/slackr) that also enables you go a bit deeper than just notifications, letting you push R output to the service for sharing results or observations.
+[Karl Broman](http://twitter.com/kwbroman) did a spiffy job [summarizing a good number of the options](http://kbroman.wordpress.com/2014/09/03/notifications-from-r/) available to R folk if they want to get notifications from R. You can also generate [OS X notifications](http://rud.is/b/2013/09/12/send-mac-os-notifications-from-r/) as well. If you're using [Slack](https://slack.com/r/02j411cy-02jchz0q) for team coordination and communications, you've got a new option - [slackr](http://github.com/hrbrmstr/slackr) that also enables you go a bit deeper than just notifications, letting you push R output to the service for sharing results or observations.
 
 ### What is Slack?
 
-Slack (@[SlackHQ](http://titter.com/SlackHQ)) is a cloud-hosted, team messaging platform that lets you setup public & privte internal channels for various types of communications, incuding markdown, text, pictures, video, links and more. They also offer connectivity with many outside services (e.g. github, twitter, etc.). The service is super-simple to setup, and there are desktop and mobile applications for most platforms (as well as the web interface). It has the utility of e-mail, twitter and skype (and more) combined, and their [API](http://api.slack.com/) makes it possible to create your own integrations.
+Slack (@[SlackHQ](http://titter.com/SlackHQ)) is a cloud-hosted, team messaging platform that lets you setup public & private internal channels for various types of communications, incuding markdown, text, pictures, video, links and more. They also offer connectivity with many outside services (e.g. github, twitter, etc.). The service is painless to setup, and there are desktop and mobile applications for most platforms (as well as the web interface). It has the utility of e-mail, twitter and skype (and more) combined, and their [API](http://api.slack.com/) makes it possible to create your own integrations.
 
 While their full API affords more flexibility, they have simple "webhook"-type integrations that are more lightweight and make quick work out connecting to Slack. The `slackr` package takes advantage of the webook API to connect R with the service. To use it, you'll first need to [signup for the service](https://slack.com/r/02j411cy-02jchz0q) and get your teammates to join and then setup the webhook integration.
 
@@ -52,6 +52,7 @@ The `slackr()` function can also be setup to do trivial notifications (and the v
 
 With `slackrSetup()`, you can choose the default channel and username, as well as select the icon being used (overriding the default one during the initial webhook setup). The config file (mentioned earlier) is pretty straightforward:
 
+    :::control
     token: YOUR_SLACK_API_TOKEN
     channel: #general
     username: slackr
@@ -64,5 +65,5 @@ The webhook API is text/rich-text-only, but the full API lets you send anything.
 
 ### How to get `slackr`
 
-The `slackr` package is [up on github](http://github.com/hrbrmstr/slackr) and _may_ make it to CRAN next week. Over the coming weeks we'll probably add the ability to consume output _from_ slack channels and definitely welcome any issues, comments or feature requests.
+The `slackr` package is [up on github](http://github.com/hrbrmstr/slackr) and _may_ make it to CRAN next week. Over the coming weeks we'll probably add the ability to _consume_ output _from_ slack channels and definitely welcome any issues, comments or feature requests.
 
