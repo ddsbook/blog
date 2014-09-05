@@ -1,8 +1,7 @@
 Title: Keep your team informed with "slackr"
 Date: 2014-09-05 08:30:52
-Category: blog
-Status: draft
-Tags: blog
+Category: tools
+Tags: r, rstats, slack, notifications
 Slug: keep-your-team-informed-with-slackr
 Author: Bob Rudis (@hrbrmstr)
 
@@ -56,7 +55,7 @@ With `slackrSetup()`, you can choose the default channel and username, as well a
     token: YOUR_SLACK_API_TOKEN
     channel: #general
     username: slackr
-    icon_emoji:
+    icon_emoji: :information_source:
     incoming_webhook_url: https://YOURTEAM.slack.com/services/hooks/incoming-webhook?
 
 and definitely beats passing all those in as parameters (and, doesn't have to live in `~/.slackr` if you want to use an alternate location or have multiple profiles for multiple teams).
