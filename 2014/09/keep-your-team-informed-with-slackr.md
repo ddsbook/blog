@@ -7,9 +7,12 @@ Author: Bob Rudis (@hrbrmstr)
 
 [Karl Broman](http://twitter.com/kwbroman) did a spiffy job [summarizing a good number of the options](http://kbroman.wordpress.com/2014/09/03/notifications-from-r/) available to R folk if they want to get notifications from R. You can also generate [OS X notifications](http://rud.is/b/2013/09/12/send-mac-os-notifications-from-r/) as well. If you're using [Slack](https://slack.com/r/02j411cy-02jchz0q) for team coordination and communications, you've got a new option - [slackr](http://github.com/hrbrmstr/slackr) that also enables you go a bit deeper than just notifications, letting you push R output to the service for sharing results or observations.
 
+>**UPDATE** The package has added some significant new functionality since the blog post. Definitely hit up the [github repo](http://github.com/hrbrmstr/slackr) after taking a look here.
+
+
 ### What is Slack?
 
-Slack (@[SlackHQ](http://titter.com/SlackHQ)) is a cloud-hosted, team messaging platform that lets you setup public & private internal channels for various types of communications, incuding markdown, text, pictures, video, links and more. They also offer connectivity with many outside services (e.g. github, twitter, etc.). The service is painless to setup, and there are desktop and mobile applications for most platforms (as well as the web interface). It has the utility of e-mail, twitter and skype (and more) combined, and their [API](http://api.slack.com/) makes it possible to create your own integrations.
+Slack (@[SlackHQ](http://twitter.com/SlackHQ)) is a cloud-hosted, team messaging platform that lets you setup public & private internal channels for various types of communications, incuding markdown, text, pictures, video, links and more. They also offer connectivity with many outside services (e.g. github, twitter, etc.). The service is painless to setup, and there are desktop and mobile applications for most platforms (as well as the web interface). It has the utility of e-mail, twitter and skype (and more) combined, and their [API](http://api.slack.com/) makes it possible to create your own integrations.
 
 While their full API affords more flexibility, they have simple "webhook"-type integrations that are more lightweight and make quick work out connecting to Slack. The `slackr` package takes advantage of the webook API to connect R with the service. To use it, you'll first need to [signup for the service](https://slack.com/r/02j411cy-02jchz0q) and get your teammates to join and then setup the webhook integration.
 
