@@ -7,6 +7,8 @@ Author: Bob Rudis (@hrbrmstr)
 
 [Karl Broman](http://twitter.com/kwbroman) did a spiffy job [summarizing a good number of the options](http://kbroman.wordpress.com/2014/09/03/notifications-from-r/) available to R folk if they want to get notifications from R. You can also generate [OS X notifications](http://rud.is/b/2013/09/12/send-mac-os-notifications-from-r/) as well. If you're using [Slack](https://slack.com/r/02j411cy-02jchz0q) for team coordination and communications, you've got a new option - [slackr](http://github.com/hrbrmstr/slackr) that also enables you go a bit deeper than just notifications, letting you push R output to the service for sharing results or observations.
 
+>**UPDATE** Package is also now [on CRAN](http://cran.at.r-project.org/web/packages/slackr/index.html)
+
 >**UPDATE** The package has added some significant new functionality since the blog post. Definitely hit up the [github repo](http://github.com/hrbrmstr/slackr) after taking a look here.
 
 
