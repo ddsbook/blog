@@ -1,5 +1,5 @@
 Title: Mapping every IPv4 address
-Date: 2014-09-15 09:19:09
+Date: 2014-09-15 10:02:54
 Category: blog
 Status: draft
 Tags: blog, r, rstats
@@ -19,9 +19,6 @@ worldwide?" And at the end of July I put together a plot in about an
 hour and tossed it onto twitter. It is still getting retweets over a
 month later in spite of the redundancy in the title.
 
-The end result is a map that shows the population of geolocations that
-all IPv4 address lookups pull from:
-
 <img src="/blog/images/2014/09/origmap.png" title="plot of chunk origmap" alt="plot of chunk origmap" width="630px" />
 
 Bob and I have talked quite a bit before about the (questionable) value
@@ -34,10 +31,10 @@ map every IPv4 address in the world.
 ### Step 2: Get the data
 
 I already did step 1 by defining our goal and as a question it is,
-"Where do all the ipv4 addresses translate?" Step 2 then is getting data
-to support our research. When I created the original map I used data
-from a commercial geolocation service. Since most readers won't have a
-subscription, we can reference
+"*Where does the geo-location service think all the ipv4 addresses are
+worldwide?*" Step 2 then is getting data to support our research. When I
+created the original map I used data from a commercial geolocation
+service. Since most readers won't have a subscription, we can reference
 [Maxmind](https://www.maxmind.com/en/home) and their [free geolocation
 data](http://dev.maxmind.com/geoip/legacy/geolite/). Start by
 downloading the ["GeoLite City" database in
@@ -47,6 +44,8 @@ format (28meg download) and unzip it to get the
 copyright statement, you have to read it in and skip 1 line. Because
 this is quite a bit file, you should leverage the data.table command
 `fread()`
+
+    :::r
 
     library(data.table)
     geo <- fread("data/GeoLiteCity-Location.csv", header=T, skip=1)
@@ -66,6 +65,8 @@ You can jump right to a map here and plot the latitude/longitude in that
 file, but to save processing time, you can remove duplicate points with
 the unique function. Then load up a world map, and plot the points on
 it.
+
+    :::r
 
     geomap1 <- unique(geo, by=c("latitude", "longitude"))
 
@@ -100,7 +101,10 @@ that. In order to account for that you have to load up the other file in
 the zip file, the GeoLiteCity-Blocks file and merge it with the first
 file loaded.
 
+    :::r
+
     blocks <- fread("data/GeoLiteCity-Blocks.csv", header=T, skip=1)
+
     # these columns are read is as character for some reason
     # make them numeric
     blocks <- blocks[, lapply(.SD, as.numeric)]
@@ -141,6 +145,8 @@ FALSE for all. But this is interesting, because in our first plot we
 just took all the latitude and longitude and plotted them... how many
 don't have corresponding IP address blocks?
 
+    :::r
+
     sum(is.na(fullgeo$begin))
 
     ## [1] 430051
@@ -153,6 +159,8 @@ count the number of IP's in each block and 2) total up the number of
 IP's for each location. In order to do that efficiently from both a code
 and time perspective we'll leverage `dplyr`. Let's clean up the NA's
 while we are at it.
+
+    :::r
 
     library(dplyr)
 
@@ -194,6 +202,8 @@ there is a heavy skew to the data. To create a plot where you can see
 the distribution, you'll have to change the axis showing the
 distribution of addresses per lat/long pair to a logorithmic scale.
 
+    :::r
+
     library(scales)
     gg <- ggplot(finalgeo, aes(x=ipcount))
     gg <- gg + geom_density(fill="slateblue")
@@ -213,6 +223,8 @@ distribution of addresses per lat/long pair to a logorithmic scale.
 I would guess that the spikes are around and we can check by converting
 the count field to a factor and running `summary` against it.
 
+    :::r
+
     summary(factor(finalgeo$ipcount), maxsum=10)
 
     ##     256     512     128     768    1024     384    1280     640    1536 
@@ -227,7 +239,7 @@ longitude and count of addreses at the location. Lat and long are easy
 enough, those are points on a map. How do represent density at that
 point? I think there are three viable options: color (hue), size or
 opacity (color brightness). In my original plot, I leverage the alpha
-setting on the points. Trying to use hue may just get jumbled together
+setting on the points. Trying to use hue would just get jumbled together
 since at the world view many of the points overlap and individual colors
 would be impossible to see. with a hundred thousand+ points, size also
 will overlap and be indistinguishable.
@@ -243,6 +255,8 @@ should first take the log of the count and then scale it between 0 and
 of the values are less than 0.5. Since the points overlap, this should
 make a nice range of opacity for the points.
 
+    :::r
+
     temp <- log(log(finalgeo$ipcount+1)+1)
     finalgeo$alpha <- (max(temp)-temp)/max(temp)
     hist(finalgeo$alpha)
@@ -250,6 +264,8 @@ make a nice range of opacity for the points.
 <img src="/blog/images/2014/09/alphahist.png" title="plot of chunk alphahist" alt="plot of chunk alphahist" width="480px" />
 
 And now let's map those!
+
+    :::r
 
     world_map<-map_data("world")
     world_map <- subset(world_map, region != "Antarctica") # inteRcouRse AntaRctica
