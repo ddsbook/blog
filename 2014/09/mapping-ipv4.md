@@ -1,7 +1,6 @@
 Title: Mapping every IPv4 address
 Date: 2014-09-15 10:02:54
 Category: blog
-Status: draft
 Tags: blog, r, rstats
 Slug: mapping-ipv4
 Author: Jay Jacobs (@jayjacobs)
