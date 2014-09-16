@@ -140,7 +140,7 @@ We can take an initial look at this data by plotting the movies by rank over tim
       labs(x="", y="Rank", title="PiRate Movie Ranks over Time") +
       theme_bw() + theme(legend.position="none", panel.grid=element_blank())
 
-<center><a target=_blank href="http://datadrivensecurity.info/blog/images/2014/09/pirate/rank-over-time-lg.png"><img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/rank-over-time-sm.png"/></a></center>
+<center><a class="mag"  href="http://datadrivensecurity.info/blog/images/2014/09/pirate/rank-over-time-lg.png"><img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/rank-over-time-sm.png"/></a></center>
 
 Complete. Chaos. Even if we highlight certain movies and push others to the background it's still a bit of a mess (select the picture to see a larger/longer chart):
 
