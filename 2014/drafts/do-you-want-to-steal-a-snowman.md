@@ -128,7 +128,7 @@ In the spirit of Reproducible ReseaRch (and to avoid having to "remember" what o
 
 ### ExploRing the PiRate Data
 
-<img src="../../images/2014/09/pirate/wheel-icon.png" width=128 align="right"/> We can take an initial look at this data by plotting the movies by rank over time and using some `dplyr` idioms (select the picture to see a larger/longer chart):
+<img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/wheel-icon.png" width=128 align="right"/> We can take an initial look at this data by plotting the movies by rank over time and using some `dplyr` idioms (select the picture to see a larger/longer chart):
 
     :::r
     combined %>%
@@ -369,7 +369,7 @@ We now have quite a bit of data to try to find some reason for all this piRacy (
 
 ### Searching for Data TReasuRe
 
-<img src="../../images/2014/09/pirate/treasure-map-icon.png" width=128 align="right"/> We don't have a full movie corpus and we don't even have a full piRate movie corups, just the "top 10"'s. So, we'll take a bit more pragmatic approach to seeing what makes for fandom in the realm of the scurvy dogs and continue our treasure hunt with some additional exploratory data analysis (EDA). Let's see what the distributions look like for some of our new categorical and continuous variables:
+<img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/treasure-map-icon.png" width=128 align="right"/> We don't have a full movie corpus and we don't even have a full piRate movie corups, just the "top 10"'s. So, we'll take a bit more pragmatic approach to seeing what makes for fandom in the realm of the scurvy dogs and continue our treasure hunt with some additional exploratory data analysis (EDA). Let's see what the distributions look like for some of our new categorical and continuous variables:
 
     :::r
     # we'll be doing this again, so wrap it in a function
@@ -449,7 +449,7 @@ A look at movie genres does yeild some interesting findings as we see that top d
     gg1
     
 
-<center><img src="../../images/2014/09/pirate/genre-full.png"/></center>
+<center><img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/genre-full.png"/></center>
 
 If we breakdown the full, combined genre into component parts, however, a slightly different pattern emerges:
 
@@ -467,7 +467,7 @@ If we breakdown the full, combined genre into component parts, however, a slight
     gg1 <- gg1 + theme(panel.border=element_blank())
     gg1
 
-<center><img src="../../images/2014/09/pirate/single-genre.png"/></center>
+<center><img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/single-genre.png"/></center>
 
 But, there are some commonalities between the two lists and there are definitely some genres & genre-components that rank higher, so we've at least got one potential indicator as to what gets you on the list. The other text fields did not yield much insight (unsurprisingly the movies gravitate towards the English language and being made in the USA), but others might have more luck.
 
@@ -541,7 +541,7 @@ _**Now**_ we're getting somewhere. It seems that a movie hits the top charts rig
 
 _Pacific Rim_ was on the Top 10 PiRate ChaRts for 7 weeks past it's DVD release date and beat _Frozen_ `O_o`. Just by looking at the diversity of the titles, I'm skeptical of whether there are commonalities (beyond a desperate and cheapskate public) amongst these movies, but we'll compare their sub-genres components (the full genre's are almost evenly spread):
 
-<center><img src="../../images/2014/09/pirate/genre-weeks-past.png"/></a></center>
+<center><img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/genre-weeks-past.png"/></a></center>
 
 and their violin plots against the previous ones (select the plot for larger version):
 
@@ -556,7 +556,7 @@ Some ranges are tighter and we can see some movement in the MPAA ratings, but no
 
 ### Conclusion & Next Steps
 
-<img src="../../images/2014/09/pirate/treasure-icon.png" width=128 align="right"/> We didn't focus on all movies or even all piRated movies, just the ones in the TorrentFreak Top 10 list. I think adding in more diverse observations to the population would have helped identify some other key elements (besides bad taste & frugality) for both what is pirated and why it may or may not land in the top 10. We did see a pretty clear pattern to the duration on the charts and some genres folks gravitate towards (though this could be due more to the fact that studios produce more of one genre than another throughout the year). It would seem from the last facet plot that Hollywood might be able to make a few more benjamins if they found some way to capitalize on the consumer's desire to see movies in the comfort of their own abodes during the delay between theater & DVD release.
+<img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/treasure-icon.png" width=128 align="right"/> We didn't focus on all movies or even all piRated movies, just the ones in the TorrentFreak Top 10 list. I think adding in more diverse observations to the population would have helped identify some other key elements (besides bad taste & frugality) for both what is pirated and why it may or may not land in the top 10. We did see a pretty clear pattern to the duration on the charts and some genres folks gravitate towards (though this could be due more to the fact that studios produce more of one genre than another throughout the year). It would seem from the last facet plot that Hollywood might be able to make a few more benjamins if they found some way to capitalize on the consumer's desire to see movies in the comfort of their own abodes during the delay between theater & DVD release.
 
 You also now have a full data set of metadata about pirated movies with tons to process on your own and try to make more sense out of than I did. You can also run the script to update the data and see if anything changes with time.
 
