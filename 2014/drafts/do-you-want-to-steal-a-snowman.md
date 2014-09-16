@@ -8,9 +8,9 @@ Author: Bob Rudis (@hrbrmstr)
 
 ![img](http://datadrivensecurity.info/blog/images/2014/09/pirate/nosnowman.jpg)
 
-We leave the [Jolly Roger](http://rud.is/b/2013/09/19/animated-irl-pirate-attacks-in-r/) behind this year and turn our piRate spyglass towards the digital seas and take a look at the piRated movies as seen through the lens of [TorrentFreak](http://torrentfreak.com/top-10-most-pirated-movies-of-the-week-140915/). The seasoned seadogs over at TorrentFreak have been doing a weekly "Top 10 Pirated Movies of the Week" post since early 2013, and I thought it might be fun to gather, process, analyze and visualize the data for this year's annual [TLAPD](http://www.talklikeapirate.com/piratehome.html) post. So, let's weigh anchor and set sail!
+We leave the [Jolly Roger](http://rud.is/b/2013/09/19/animated-irl-pirate-attacks-in-r/) behind this year and turn our piRate spyglass towards the digital seas and take a look at piRated movies as seen through the lens of [TorrentFreak](http://torrentfreak.com/top-10-most-pirated-movies-of-the-week-140915/). The seasoned seadogs over at TorrentFreak have been doing a weekly "Top 10 Pirated Movies of the Week" post since early 2013, and I thought it might be fun to gather, process, analyze and visualize the data for this year's annual [TLAPD](http://www.talklikeapirate.com/piratehome.html) post. So, let's weigh anchor and set sail!
 
->NOTE: I'm leaving out some cruft from this post - such as all the `library()` calls - to help streamline the presentaiton. You can grab all the code+data over at it's [github repo](). It will be much easier to run the R project code from there.
+>NOTE: I'm leaving out some cruft from this post - such as all the `library()` calls - to help streamline the already quite long presentaiton. You can grab all the code+data over at it's [github repo](). It will be much easier to run the R project code from there.
 
 ### PlundeRing the PiRate Data
 
@@ -67,7 +67,7 @@ TorrentFreak records:
 - The IMDb Rating (if there is one) and a link to the IMDb page for the movie
 - A link to the trailer (which we won't be using)
 
-After the download step, we're left with a data frame that is still somewhat messy. Many of the titles have annotations (e.g. "`Captain America: The Winter Soldier (Cam/TS)`") indicating the source material type. Some posts have..._interesting_...encodings. There are leading and trailing blanks in some of the titles. The titles aren't capitalized consistently or use numbers instead of Roman numerals (it turns out this isn't too important to fix as we'll see later). The IMDb rating needs cleaning up, and there are other bits that need some twiddling. 
+After the download step, we're left with a data frame that is still far from shipshape. Many of the titles have annotations (e.g. "`Captain America: The Winter Soldier (Cam/TS)`") indicating the source material type. Some posts have..._interesting_...encodings. There are leading and trailing blanks in some of the titles. The titles aren't capitalized consistently or use numbers instead of Roman numerals (it turns out this isn't too important to fix as we'll see later). The IMDb rating needs cleaning up, and there are other bits that need some twiddling. 
 
 In the spirit of Reproducible ReseaRch (and to avoid having to "remember" what one did in a text editor to clean up a file)  a cleanup function like the one below is extrememly valuable. The data can be regenerated at any time (provided it's still scrapeable, though you could archive full pages as well) and the function can be modified when some new condition arises (in this case some new "rip types" appeared over the course of preparing this post).
 
@@ -128,7 +128,7 @@ In the spirit of Reproducible ReseaRch (and to avoid having to "remember" what o
 
 ### ExploRing the PiRate Data
 
-We can take an initial look at this data by plotting the movies by rank over time and using some `dplyr` idioms (select the picture to see a larger/longer chart):
+<img src="../../images/2014/09/pirate/wheel-icon.png" width=128 align="right"/> We can take an initial look at this data by plotting the movies by rank over time and using some `dplyr` idioms (select the picture to see a larger/longer chart):
 
     :::r
     combined %>%
@@ -171,7 +171,7 @@ Complete. Chaos. Even if we highlight certain movies and push others to the back
       scale_color_manual(values=c("#e7e7e7", brewer.pal(length(selected_titles), "Dark2")), name="Movie") +
       theme_bw() + theme(legend.position="bottom", legend.direction="vertical", panel.grid=element_blank())
 
-<center><a target=_blank href="http://datadrivensecurity.info/blog/images/2014/09/pirate/rank-over-time-hilight-lg.png"><img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/rank-over-time-hilight-sm.png"/></a></center>
+<center><a class="mag" href="http://datadrivensecurity.info/blog/images/2014/09/pirate/rank-over-time-hilight-lg.png"><img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/rank-over-time-hilight-sm.png"/></a></center>
 
 We'd have to do that interactively (via [Shiny](http://shiny.rstudio.com/) or perhaps an export to [D3](http://exposedata.com/parallel/)) to make much sense out of it. 
 
@@ -213,7 +213,7 @@ There are quite a few "one/two-hit-wonders/plunders" so we'll make the cutoff fo
     gg <- gg + theme(legend.position="top")
     gg
 
-<center><a target=_blank href="http://datadrivensecurity.info/blog/images/2014/09/pirate/facets-1-lg.png"><img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/facets-1-sm.png"/></a></center>
+<center><a  class="mag" href="http://datadrivensecurity.info/blog/images/2014/09/pirate/facets-1-lg.png"><img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/facets-1-sm.png"/></a></center>
 
 The title of the post should make a bit more sense now as _Frozen_ is the clear "winner" (can it be winning to be the one with the most unrealized revenue?). This visual inspection alone sheds some light on piRate habits, but we'll need more data to confirm any nascent hypotheses.
 
@@ -369,9 +369,10 @@ We now have quite a bit of data to try to find some reason for all this piRacy (
 
 ### Searching for Data TReasuRe
 
-To save some expository, I tried many attempts at finding correlations and/or clusters. I didn't use _every_ data field (e.g. I paid no attention to `Genre`, `Director`, `Write`, `Actors`, `Plot`, `Language`, `Country`, and other textual fieldS). You can see the ones I did choose to focus on in the following [violin plots](). I made a function for the plot since we'll be using it again in a bit:
+<img src="../../images/2014/09/pirate/treasure-map-icon.png" width=128 align="right"/> We don't have a full movie corpus and we don't even have a full piRate movie corups, just the "top 10"'s. So, we'll take a bit more pragmatic approach to seeing what makes for fandom in the realm of the scurvy dogs and continue our treasure hunt with some additional exploratory data analysis (EDA). Let's see what the distributions look like for some of our new categorical and continuous variables:
 
     :::r
+    # we'll be doing this again, so wrap it in a function
     movieRanges <- function(movies, title="") {
     
       comb <- movies %>%
@@ -417,9 +418,62 @@ To save some expository, I tried many attempts at finding correlations and/or cl
 
 <center><img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/violin-1.png"/></center>
 
-Violin plots are really just prettier version of boxplots and this view lets us compare each variable visually. This quick visual confirmation of my lack of success at computational inspection began to get me frustrated with this ventuRe. There *had* to be something that got and kept these movies on the PiRate Top 10 lists (and I didn't have time to go back and incorporate the other fields).
+Violin plots are mostly just prettier version of boxplots which encode the shape of the density mass function. This orchestral view lets us compare each variable visually. `IMDb votes` tracks with `Box Office` receipts, but there are no indicators there's anything truly common about these movies. It was still my belief that there *had* to be something that got and kept these movies on the PiRate Top 10 lists. 
 
-I went back to my facet plot and - on a lark - decided to take a look at the movie release dates and DVD release dates by superimposing the time frames for each onto the facet graph:
+A look at movie genres does yeild some interesting findings as we see that top downloads are heavily weighted towards `Comedy` and `Action, Adventure, Sci-Fi`:
+
+    :::r
+    genre_table %>% arrange(desc(Count)) %>% head(10)
+    
+    ##                           Genre Count
+    ## 1                        Comedy    18
+    ## 2     Action, Adventure, Sci-Fi    11
+    ## 3          Action, Crime, Drama     9
+    ## 4       Action, Crime, Thriller     9
+    ## 5  Animation, Adventure, Comedy     8
+    ## 6         Action, Comedy, Crime     7
+    ## 7        Crime, Drama, Thriller     6
+    ## 8    Action, Adventure, Fantasy     5
+    ## 9       Action, Drama, Thriller     5
+    ## 10                       Horror     5
+    
+    gg1 <- ggplot(genre_table, aes(xend=reorder(Genre, Count), yend=Count))
+    gg1 <- gg1 + geom_segment(aes(x=reorder(Genre, Count), y=0))
+    gg1 <- gg1 + geom_point(aes(x=reorder(Genre, Count), y=Count))
+    gg1 <- gg1 + scale_y_continuous(expand=c(0,0.5))
+    gg1 <- gg1 + labs(x="", y="", title="Movie counts by full genre classification")
+    gg1 <- gg1 + coord_flip()
+    gg1 <- gg1 + theme_bw()
+    gg1 <- gg1 + theme(panel.grid=element_blank())
+    gg1 <- gg1 + theme(panel.border=element_blank())
+    gg1
+    
+
+<center><img src="../../images/2014/09/pirate/genre-full.png"/></center>
+
+If we breakdown the full, combined genre into component parts, however, a slightly different pattern emerges:
+
+    :::r
+    single_genres <-  as.data.frame(table(unlist(strsplit(genre_table$Genre, ",\ *"))), stringsAsFactors=FALSE)
+    colnames(single_genres) <- c("Genre", "Count")
+    gg1 <- ggplot(single_genres, aes(xend=reorder(Genre, Count), yend=Count))
+    gg1 <- gg1 + geom_segment(aes(x=reorder(Genre, Count), y=0))
+    gg1 <- gg1 + geom_point(aes(x=reorder(Genre, Count), y=Count))
+    gg1 <- gg1 + scale_y_continuous(expand=c(0,0.5))
+    gg1 <- gg1 + labs(x="", y="")
+    gg1 <- gg1 + coord_flip()
+    gg1 <- gg1 + theme_bw()
+    gg1 <- gg1 + theme(panel.grid=element_blank())
+    gg1 <- gg1 + theme(panel.border=element_blank())
+    gg1
+
+<center><img src="../../images/2014/09/pirate/single-genre.png"/></center>
+
+But, there are some commonalities between the two lists and there are definitely some genres & genre-components that rank higher, so we've at least got one potential indicator as to what gets you on the list. The other text fields did not yield much insight (unsurprisingly the movies gravitate towards the English language and being made in the USA), but others might have more luck.
+
+### Staying PoweR
+
+If `genre` is one of the indicators that gets you on the list, what _keeps_ you there? The presence of all the `cam` rips in the movie titles gave me the idea to see if there was a pattern to these movies getting into the top 10 based on date. I went back to my facet plot and decided to take a look at the movie release dates and DVD release dates by superimposing the time frames for each onto the facet graph:
 
     :::r
     gg <- ggplot(data=combined %>% filter(as.numeric(freq)>=4, !is.na(DVD)), aes(x=date, y=rank, group=short.title))
@@ -442,12 +496,18 @@ I went back to my facet plot and - on a lark - decided to take a look at the mov
     gg <- gg + theme(legend.position="top")
     gg
 
-<center><a target=_blank href="http://datadrivensecurity.info/blog/images/2014/09/pirate/release-dates-facets-lg.png"><img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/release-dates-facets-sm.png"/></a></center>
+<center><a class="mag" href="http://datadrivensecurity.info/blog/images/2014/09/pirate/release-dates-facets-lg.png"><img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/release-dates-facets-sm.png"/></a></center>
 
 _**Now**_ we're getting somewhere. It seems that a movie hits the top charts right on opening day and continues on the charts (most of the time) until there's a DVD release. This isn't true for _all_ of the movies, so let's see which ones had longer runs than their DVD release dates (excluding ones that had only 1 extra week for post brevity):
 
     :::r
-    beyond.dvd <- combined %>% group_by(Title) %>% summarise(n=sum(date > DVD)) %>% arrange(desc(n)) %>% filter(!is.na(n) & n>1)
+    beyond.dvd <- combined %>% 
+      group_by(Title) %>% 
+      summarise(n=sum(date > DVD)) %>% 
+      arrange(desc(n)) %>% 
+      filter(!is.na(n) & n>1)
+    
+    beyond.dvd
     
     ## Source: local data frame [26 x 2]
     ## 
@@ -479,19 +539,25 @@ _**Now**_ we're getting somewhere. It seems that a movie hits the top charts rig
     ## 25              Thor: The Dark World 2
     ## 26                       World War Z 2
 
-_Pacific Rim_ was on the Top 10 PiRate ChaRts for 7 weeks past it's DVD release date and beat _Frozen_ `O_o`. Just by looking at the diversity of the titles, I'm skeptical of whether there are commonalities (beyond a desperate and cheapskate public) amongst these movies, but we'll compare their violin plots against the previous ones (select the plot for larger version):
+_Pacific Rim_ was on the Top 10 PiRate ChaRts for 7 weeks past it's DVD release date and beat _Frozen_ `O_o`. Just by looking at the diversity of the titles, I'm skeptical of whether there are commonalities (beyond a desperate and cheapskate public) amongst these movies, but we'll compare their sub-genres components (the full genre's are almost evenly spread):
+
+<center><img src="../../images/2014/09/pirate/genre-weeks-past.png"/></a></center>
+
+and their violin plots against the previous ones (select the plot for larger version):
 
     :::r
     combined.beyond <- combined %>% group_by(Title) %>% mutate(weeks.past=sum(date>DVD)) %>% filter(date > DVD) %>% ungroup
     grid.arrange(movieRanges(combined, "All Top 10 PiRate Movies"),
                  movieRanges(combined.beyond, "Still in Top 10 Charts After\nPiRated AfteR DVD Release"), ncol=2)
 
-<center><a target=_blank href="http://datadrivensecurity.info/blog/images/2014/09/pirate/violin-2.png"><img style="max-width:100%" src="http://datadrivensecurity.info/blog/images/2014/09/pirate/violin-2.png"/></a></center>
+<center><a class="mag" href="http://datadrivensecurity.info/blog/images/2014/09/pirate/violin-2.png"><img style="max-width:100%" src="http://datadrivensecurity.info/blog/images/2014/09/pirate/violin-2.png"/></a></center>
 
-Some ranges are tighter and we can see some movement in the MPAA ratings, but - even afer doing more correlations and clustering - I found no commonalities in the variables I plotted. 
+Some ranges are tighter and we can see some movement in the MPAA ratings, but no major drivers.
 
 ### Conclusion & Next Steps
 
-We didn't focus on all movies or even all piRated movies, just the ones in the TorrentFreak Top 10 list. I think adding in more elements to the population would have helped identify some other key elements (besides bad taste & frugality) for both what is pirated and why it may or may not land in the top 10. We did see a pretty clear pattern to the duration on the charts, though, and Hollywood might be able to make a few more benjamins if they found some way to capitalize on the consumer's desire to see movies in the comfort of their own abodes during the delay between theater & DVD relase.
+<img src="../../images/2014/09/pirate/treasure-icon.png" width=128 align="right"/> We didn't focus on all movies or even all piRated movies, just the ones in the TorrentFreak Top 10 list. I think adding in more diverse observations to the population would have helped identify some other key elements (besides bad taste & frugality) for both what is pirated and why it may or may not land in the top 10. We did see a pretty clear pattern to the duration on the charts and some genres folks gravitate towards (though this could be due more to the fact that studios produce more of one genre than another throughout the year). It would seem from the last facet plot that Hollywood might be able to make a few more benjamins if they found some way to capitalize on the consumer's desire to see movies in the comfort of their own abodes during the delay between theater & DVD release.
 
-You also now have a full data set of pirated movies with tons of metadata to process on your own and try to make more sense out of than I did. You can also run the script to update the data and see if anything changes with time.
+You also now have a full data set of metadata about pirated movies with tons to process on your own and try to make more sense out of than I did. You can also run the script to update the data and see if anything changes with time.
+
+We hope you had fun on this year's piRate journey with R!
