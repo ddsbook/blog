@@ -1,7 +1,6 @@
-Title: Migrating Web Scraping Code to rvest
-Date: 2014-09-17 12:00:35
+Title: Migrating Table-oriented Web Scraping Code to rvest w/XPath & CSS Selector Examples
+Date: 2014-09-17 12:30:35
 Category: tools
-Status: draft
 Tags: r, rstats, rvest
 Slug: migrating-to-rvest
 Author: Bob Rudis (@hrbrmstr)
@@ -11,11 +10,13 @@ I was offline much of the day Tuesday and completely missed Hadley Wickham's twe
 <blockquote class="twitter-tweet" lang="en"><p>Are you an <a href="https://twitter.com/hashtag/rstats?src=hash">#rstats</a> user who misses python&#39;s beautiful soup? Please try out rvest (<a href="http://t.co/PeiIHr3jDW">http://t.co/PeiIHr3jDW</a>) and let me know what you think.</p>&mdash; Hadley Wickham (@hadleywickham) <a href="https://twitter.com/hadleywickham/status/510494494819500032">September 12, 2014</a></blockquote>
 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-My intrepid colleague (@jayjacobs) informed me of this (and didn't gloat too much). I've got a "pirate day" post coming up this week that involves scraping content from the web and thought folks might benefit from another example that compares the "old way" and the "new way" (Hadley excels at making lots of "new ways" in R :-)
+My intrepid colleague (@jayjacobs) informed me of this (and didn't gloat too much). I've got a "pirate day" post coming up this week that involves scraping content from the web and thought folks might benefit from another example that compares the "old way" and the "new way" (Hadley excels at making lots of "new ways" in R :-) I've left the output in with the code to show that you get the same results.
 
-The following shows old/new methods for extracting a table from a web site. Due to the way this table is setup and the desire for certain components from the `<td>` blocks, a simple `readHTMLTable` would not suffice.
+The following shows old/new methods for extracting a table from a web site, including how to use either XPath selectors or CSS selectors in `rvest` calls. To stave of some potential comments: due to the way this table is setup and the need to extract only certain components from the `td` blocks and elements from tags within the `td` blocks, a simple `readHTMLTable` would not suffice.
 
-The old/new approaches are very similar, but I especially like the ability to chain output ala `magrittr`/`dplyr` and not having to deal with XPath if I'm doing other work in-browser (i.e. prepping data for D3). The code (sans output) is in [this gist](https://gist.github.com/hrbrmstr/94c2cacec9b2fe36f435).
+The old/new approaches are very similar, but I especially like the ability to chain output ala `magrittr`/`dplyr` and not having to mentally switch gears to XPath if I'm doing other work targeting the browser (i.e. prepping data for D3). 
+
+The code (sans output) is in [this gist](https://gist.github.com/hrbrmstr/94c2cacec9b2fe36f435), and IMO the `rvest` package is going to make working with web site data _so_ much easier.
 
     library(XML)
     library(httr)
