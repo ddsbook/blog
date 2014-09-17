@@ -8,13 +8,13 @@ Author: Bob Rudis (@hrbrmstr)
 
 ![img](http://datadrivensecurity.info/blog/images/2014/09/pirate/nosnowman.jpg)
 
-We leave the [Jolly Roger](http://rud.is/b/2013/09/19/animated-irl-pirate-attacks-in-r/) behind this year and turn our piRate spyglass towards the digital seas and take a look at piRated movies as seen through the lens of [TorrentFreak](http://torrentfreak.com/top-10-most-pirated-movies-of-the-week-140915/). The seasoned seadogs over at TorrentFreak have been doing a weekly "Top 10 Pirated Movies of the Week" post since early 2013, and I thought it might be fun to gather, process, analyze and visualize the data for this year's annual [TLAPD](http://www.talklikeapirate.com/piratehome.html) post. So, let's weigh anchor and set sail!
+We leave the [Jolly Roger](http://rud.is/b/2013/09/19/animated-irl-pirate-attacks-in-r/) behind this year and turn our piRate spyglass towards the digital seas and take a look at piRated movies as seen through the lens of [TorrentFreak](http://torrentfreak.com/top-10-most-pirated-movies-of-the-week-140915/). The seasoned seadogs who pilot that ship have been doing a weekly "Top 10 Pirated Movies of the Week" post since early 2013, and I thought it might be fun to gather, process, analyze and visualize the data for this year's annual [TLAPD](http://www.talklikeapirate.com/piratehome.html) post. So, let's weigh anchor and set sail!
 
->NOTE: I'm leaving out some cruft from this post - such as all the `library()` calls - to help streamline the already quite long presentaiton. You can grab all the code+data over at it's [github repo](). It will be much easier to run the R project code from there.
+>NOTE: I'm leaving out some cruft from this post - such as all the `library()` calls - and making use of commentsin code snippets to help streamline the already quite long presentaiton. You can grab all the code+data over at it's [github repo](). It will be much easier to run the R project code from there.
 
 ### PlundeRing the PiRate Data
 
-To do any kind of analysis & visualization you need data (`#CaptainObvious`). While TorrentFreak has an RSS feed for their "top 10", I haven't been a subscriber to it, so needed to do some piRating of my own to get some data to work with. After inspecting their top 10 posts, I discovered that they used plain ol' HTML `<table>`'s for markup (and, very uniform markup, too).
+To do any kind of analysis & visualization you need data (`#CaptainObvious`). While TorrentFreak has an RSS feed for their "top 10", I haven't been a subscriber to it, so needed to do some piRating of my own to get some data to work with. After inspecting their top 10 posts, I discovered that they used plain ol' HTML `<table>`'s for markup (which, thankfully, was very uniform markup).
 
 <center><img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/tfcap.png"/></center>
   
@@ -418,7 +418,7 @@ We now have quite a bit of data to try to find some reason for all this piRacy (
 
 <center><img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/violin-1.png"/></center>
 
-Violin plots are mostly just prettier version of boxplots which encode the shape of the density mass function. This orchestral view lets us compare each variable visually. `IMDb votes` tracks with `Box Office` receipts, but there are no indicators there's anything truly common about these movies. It was still my belief that there *had* to be something that got and kept these movies on the PiRate Top 10 lists. 
+Violin plots are mostly just prettier version of boxplots and which encode the shape of the density mass function. This orchestral view lets us compare each variable visually. `IMDb votes` tracks with `Box Office` receipts, but there are no indicators of anything truly common about these movies. It was still my belief, however, that there *had* to be something that got and kept these movies on the PiRate Top 10 lists. 
 
 A look at movie genres does yeild some interesting findings as we see that top downloads are heavily weighted towards `Comedy` and `Action, Adventure, Sci-Fi`:
 
@@ -552,7 +552,7 @@ and their violin plots against the previous ones (select the plot for larger ver
 
 <center><a class="mag" href="http://datadrivensecurity.info/blog/images/2014/09/pirate/violin-2.png"><img style="max-width:100%" src="http://datadrivensecurity.info/blog/images/2014/09/pirate/violin-2.png"/></a></center>
 
-Some ranges are tighter and we can see some movement in the MPAA ratings, but no major drivers.
+Some ranges are tighter and we can see some movement in the MPAA ratings, but no major drivers apart from `Action` & `Comedy`.
 
 ### Conclusion & Next Steps
 
