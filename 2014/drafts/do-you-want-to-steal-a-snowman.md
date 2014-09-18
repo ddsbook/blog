@@ -10,11 +10,11 @@ Author: Bob Rudis (@hrbrmstr)
 
 We leave the [Jolly Roger](http://rud.is/b/2013/09/19/animated-irl-pirate-attacks-in-r/) behind this year and turn our piRate spyglass towards the digital seas and take a look at piRated movies as seen through the lens of [TorrentFreak](http://torrentfreak.com/top-10-most-pirated-movies-of-the-week-140915/). The seasoned seadogs who pilot that ship have been doing a weekly "Top 10 Pirated Movies of the Week" post since early 2013, and I thought it might be fun to gather, process, analyze and visualize the data for this year's annual [TLAPD](http://www.talklikeapirate.com/piratehome.html) post. So, let's weigh anchor and set sail!
 
->NOTE: I'm leaving out some cruft from this post - such as all the `library()` calls - and making use of commentsin code snippets to help streamline the already quite long presentaiton. You can grab all the code+data over at it's [github repo](https://github.com/hrbrmstr/tlapd2014). It will be much easier to run the R project code from there.
+>NOTE: I'm leaving out some cruft from this post - such as all the `library()` calls - and making use of comments in code snippets to help streamline the already quite long presentaiton. You can grab all the code+data over at it's [github repo](https://github.com/hrbrmstr/tlapd2014). It will be much easier to run the R project code from there.
 
 ### PlundeRing the PiRate Data
 
-To do any kind of analysis & visualization you need data (`#CaptainObvious`). While TorrentFreak has an RSS feed for their "top 10", I haven't been a subscriber to it, so needed to do some piRating of my own to get some data to work with. After inspecting their top 10 posts, I discovered that they used plain ol' HTML `<table>`'s for markup (which, thankfully, was very uniform markup).
+To do any kind of analysis & visualization you need data (`#CaptainObvious`). While TorrentFreak has an RSS feed for their "top 10", I haven't been a subscriber to it, so needed to do some piRating of my own to get some data to work with. After inspecting their top 10 posts, I discovered that they used plain ol' HTML `<table>`'s for markup (which, thankfully, was very uniformly applied across the posts).
 
 <center><img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/tfcap.png"/></center>
   
@@ -49,7 +49,7 @@ R excels at scraping data from the web, and I was able to use the new `rvest` pa
     
     }
 
->If you're trying this from your Captain's quarters, you'll see the use of `pblapply` which is a great way to get a progress bar with almost no effort. A progress bar is somewhat necessary since it can take a little while to grab all this data. If you look at the entire R script, you'll see that it doesn't scrape this data every time it's run. It looks for an existing serialized RData file before kicking off the web requests. This saves TorrentFreak (and you) some bandwidth. This process can further be optimized to allow for future scraping of only new data (i.e. use an `rda` file as a cache.)
+>If you're trying this from your Captain's quarters, you'll see the use of `pblapply` which is a great way to get a progress bar with almost no effort. A progress bar is somewhat necessary since it can take a little while to grab all this data. If you look at the entire R script on github, you'll see that it doesn't scrape this data every time it's run. It looks for an existing serialized RData file before kicking off the web requests. This saves TorrentFreak (and you) some bandwidth. This process can further be optimized to allow for future scraping of only new data (i.e. use an `rda` file as a cache.)
 
 TorrentFreak records:
 
@@ -59,7 +59,7 @@ TorrentFreak records:
 - The IMDb Rating (if there is one) and a link to the IMDb page for the movie
 - A link to the trailer (which we won't be using)
 
-After the download step, we're left with a data frame that is still far from shipshape. Many of the titles have annotations (e.g. "`Captain America: The Winter Soldier (Cam/TS)`") indicating the source material type. Some posts have..._interesting_...encodings. There are leading and trailing blanks in some of the titles. The titles aren't capitalized consistently or use numbers instead of Roman numerals (it turns out this isn't too important to fix as we'll see later). The IMDb rating needs cleaning up, and there are other bits that need some twiddling. 
+After the download step, we're left with a data frame that is still far from shipshape. Many of the titles have annotations (e.g. "`Captain America: The Winter Soldier (Cam/TS)`") indicating the source material type. Some titles have..._interesting_...encodings. There are leading and trailing blanks in some of the titles. The titles aren't capitalized consistently or use numbers instead of Roman numerals (it turns out this isn't too important to fix as we'll see later). The IMDb rating needs cleaning up, and there are other bits that need some twiddling. 
 
 In the spirit of Reproducible ReseaRch (and to avoid having to "remember" what one did in a text editor to clean up a file)  a cleanup function like the one below is extrememly valuable. The data can be regenerated at any time (provided it's still scrapeable, though you could archive full pages as well) and the function can be modified when some new condition arises (in this case some new "rip types" appeared over the course of preparing this post).
 
@@ -346,7 +346,7 @@ We now have quite a bit of data to try to find some reason for all this piRacy (
 
 <center><img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/montage.png"/></center>
 
-For reference, hsere's what our data frame looks like so far:
+For reference, here's what our data frame looks like so far:
 
     :::r
     str(combined)
@@ -569,7 +569,7 @@ _Pacific Rim_ was on the Top 10 PiRate ChaRts for 7 weeks past it's DVD release 
 
 <center><img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/genre-weeks-past.png"/></a></center>
 
-and their violin plots against the previous ones (select the plot for larger version):
+and their distributions against the previous ones (select the plot for larger version):
 
     :::r
     combined.beyond <- combined %>% group_by(Title) %>% mutate(weeks.past=sum(date>DVD)) %>% filter(date > DVD) %>% ungroup
@@ -582,7 +582,7 @@ Some ranges are tighter and we can see some movement in the MPAA ratings, but no
 
 ### Conclusion & Next Steps
 
-<img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/treasure-icon.png" width=128 align="right"/> We didn't focus on all movies or even all piRated movies, just the ones in the TorrentFreak Top 10 list. I think adding in more diverse observations to the population would have helped identify some other key elements (besides bad taste & frugality) for both what is pirated and why it may or may not land in the top 10. We did see a pretty clear pattern to the duration on the charts and some genres folks gravitate towards (though this could be due more to the fact that studios produce more of one genre than another throughout the year). It would seem from the last facet plot that Hollywood might be able to make a few more benjamins if they found some way to capitalize on the consumer's desire to see movies in the comfort of their own abodes during the delay between theater & DVD release.
+<img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/treasure-icon.png" width=128 align="right"/> We didn't focus on all movies or even all piRated movies, just the ones in the TorrentFreak Top 10 list. I think adding in more diverse observations to the population would have helped identify some other key elements (besides questionalbe taste & frugality) for both what is pirated and why it may or may not land in the top 10. We did see a pretty clear pattern to the duration on the charts and some genres folks gravitate towards (though this could be due more to the fact that studios produce more of one genre than another throughout the year). It would seem from the last facet plot that Hollywood might be able to make a few more benjamins if they found some way to capitalize on the consumer's desire to see movies in the comfort of their own abodes during the delay between theater & DVD release.
 
 You also now have a full data set (including [CSV](https://raw.githubusercontent.com/hrbrmstr/tlapd2014/master/data/combined.csv)) of metadata about pirated movies to process on your own and try to make more sense out of than I did. You can also run the script to update the data and see if anything changes with time. With the movie poster download capability, you could even analyze popularity by colors used on the posters.
 
