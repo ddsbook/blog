@@ -10,15 +10,15 @@ Author: Bob Rudis (@hrbrmstr)
 
 We leave the [Jolly Roger](http://rud.is/b/2013/09/19/animated-irl-pirate-attacks-in-r/) behind this year and turn our piRate spyglass towards the digital seas and take a look at piRated movies as seen through the lens of [TorrentFreak](http://torrentfreak.com/top-10-most-pirated-movies-of-the-week-140915/). The seasoned seadogs who pilot that ship have been doing a weekly "Top 10 Pirated Movies of the Week" post since early 2013, and I thought it might be fun to gather, process, analyze and visualize the data for this year's annual [TLAPD](http://www.talklikeapirate.com/piratehome.html) post. So, let's weigh anchor and set sail!
 
->NOTE: I'm leaving out some cruft from this post - such as all the `library()` calls - and making use of commentsin code snippets to help streamline the already quite long presentaiton. You can grab all the code+data over at it's [github repo](). It will be much easier to run the R project code from there.
+>NOTE: I'm leaving out some cruft from this post - such as all the `library()` calls - and making use of comments in code snippets to help streamline the already quite long presentaiton. You can grab all the code+data over at it's [github repo](https://github.com/hrbrmstr/tlapd2014). It will be much easier to run the R project code from there.
 
 ### PlundeRing the PiRate Data
 
-To do any kind of analysis & visualization you need data (`#CaptainObvious`). While TorrentFreak has an RSS feed for their "top 10", I haven't been a subscriber to it, so needed to do some piRating of my own to get some data to work with. After inspecting their top 10 posts, I discovered that they used plain ol' HTML `<table>`'s for markup (which, thankfully, was very uniform markup).
+To do any kind of analysis & visualization you need data (`#CaptainObvious`). While TorrentFreak has an RSS feed for their "top 10", I haven't been a subscriber to it, so needed to do some piRating of my own to get some data to work with. After inspecting their top 10 posts, I discovered that they used plain ol' HTML `<table>`'s for markup (which, thankfully, was very uniformly applied across the posts).
 
 <center><img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/tfcap.png"/></center>
   
-R excels at scraping data from the web, and I was able to use the `httr` and `XML` packages to grab the pages and extract the table contents. The function below iterates over every week since March 3, 2013, grabs the table from the page and stores it in a data frame. Note that there are two different formats for the URLs (I suspect that indicates multiple authors with their own personal standards for article slugs) that need to be handled by the function:
+R excels at scraping data from the web, and I was able to use the new `rvest` package to grab the pages and extract the table contents. The function below iterates over every week since March 3, 2013, grabs the table from the page and stores it in a data frame. Note that there are two different formats for the URLs (I suspect that indicates multiple authors with their own personal standards for article slugs) that need to be handled by the function:
 
     :::r
     scrapeMovieData <- function() {
@@ -26,38 +26,30 @@ R excels at scraping data from the web, and I was able to use the `httr` and `XM
       # get all the Mondays (which is when torrentfreak does their top 10 post)
       # they seem to have started on March 3rd and the URL format varies slightly
     
-      dates <- seq.Date(as.Date("2013-03-03"), as.Date("2014-09-08"), by="1 day")
+      dates <- seq.Date(as.Date("2013-03-03"), as.Date("2014-09-17"), by="1 day")
       mondays <- format(dates[weekdays(dates)=="Monday"], "%y%m%d")
-      
-      # the Reduce/rbind saves us from having to rely on plyr or data.table operations
-      # I'm mostly using it to avoid plyr since it & dplyr have an unusual relationship
-      # these days
     
-      Reduce(rbind, pblapply(mondays, function(day) {
+      # pblapply gives us progress bars for free!
     
-        req <- GET(sprintf("http://torrentfreak.com/top-10-most-pirated-movies-of-the-week-%s/", day))
-      
-        # non-200 status code == wrong post title format, so try the other one
-      
-        if (req$status_code >= 400) {
-          req <- GET(sprintf("http://torrentfreak.com/top-10-pirated-movies-week-%s/", day))
+      do.call("rbind", pblapply(mondays, function(day) {
+    
+        freak <- html_session(sprintf("http://torrentfreak.com/top-10-most-pirated-movies-of-the-week-%s/", day))
+        if (freak$response$status_code >= 400) {
+          freak <- html_session(sprintf("http://torrentfreak.com/top-10-pirated-movies-week-%s/", day))
         }
     
-        mov <- htmlParse(content(req, as="text"))
-    
-        data.frame(date=as.Date(day, format="%y%m%d")-1, # the piRate week ends a day earlier
-                   movie=unlist(xpathSApply(mov, "//*/td[3]", xmlValue))[1:10], # grab the value in the third TD column
-                   rank=unlist(xpathSApply(mov, "//*/td[1]", xmlValue))[2:11], # this handles the 4colspan at end of the table
-                   rating=unlist(xpathSApply(mov, "//*/td[4]", xmlValue))[1:10],
-                   # this extracts the href from the imdb url in the 4th TD element
-                   imdb.url=unlist(getNodeSet(mov, "//*/td[4]/a[contains(@href,'imdb')]/@href"), use.names=FALSE)[1:10],
+        data.frame(date=as.Date(day, format="%y%m%d")-1,
+                   movie=freak %>% html_nodes("td:nth-child(3)") %>% html_text() %>% .[1:10],
+                   rank=freak %>% html_nodes("td:nth-child(1)") %>% html_text() %>% .[2:11],
+                   rating=freak %>% html_nodes("td:nth-child(4)") %>% html_text() %>% .[1:10],
+                   imdb.url=freak %>% html_nodes("td:nth-child(4) a[href*='imdb']") %>% html_attr("href") %>% .[1:10],
                    stringsAsFactors=FALSE)
     
       }))
     
     }
 
->If you're trying this from your Captain's quarters, you'll see the use of `pblapply` which is a great way to get a progress bar with almost no effort. A progress bar is somewhat necessary since it can take a little while to grab all this data. If you look at the entire R script, you'll see that it doesn't scrape this data every time it's run. It looks for an existing serialized RData file before kicking off the web requests. This saves TorrentFreak (and you) some bandwidth. This process can further be optimized to allow for future scraping of only new data (i.e. use an `rda` file as a cache.)
+>If you're trying this from your Captain's quarters, you'll see the use of `pblapply` which is a great way to get a progress bar with almost no effort. A progress bar is somewhat necessary since it can take a little while to grab all this data. If you look at the entire R script on github, you'll see that it doesn't scrape this data every time it's run. It looks for an existing serialized RData file before kicking off the web requests. This saves TorrentFreak (and you) some bandwidth. This process can further be optimized to allow for future scraping of only new data (i.e. use an `rda` file as a cache.)
 
 TorrentFreak records:
 
@@ -67,7 +59,7 @@ TorrentFreak records:
 - The IMDb Rating (if there is one) and a link to the IMDb page for the movie
 - A link to the trailer (which we won't be using)
 
-After the download step, we're left with a data frame that is still far from shipshape. Many of the titles have annotations (e.g. "`Captain America: The Winter Soldier (Cam/TS)`") indicating the source material type. Some posts have..._interesting_...encodings. There are leading and trailing blanks in some of the titles. The titles aren't capitalized consistently or use numbers instead of Roman numerals (it turns out this isn't too important to fix as we'll see later). The IMDb rating needs cleaning up, and there are other bits that need some twiddling. 
+After the download step, we're left with a data frame that is still far from shipshape. Many of the titles have annotations (e.g. "`Captain America: The Winter Soldier (Cam/TS)`") indicating the source material type. Some titles have..._interesting_...encodings. There are leading and trailing blanks in some of the titles. The titles aren't capitalized consistently or use numbers instead of Roman numerals (it turns out this isn't too important to fix as we'll see later). The IMDb rating needs cleaning up, and there are other bits that need some twiddling. 
 
 In the spirit of Reproducible ReseaRch (and to avoid having to "remember" what one did in a text editor to clean up a file)  a cleanup function like the one below is extrememly valuable. The data can be regenerated at any time (provided it's still scrapeable, though you could archive full pages as well) and the function can be modified when some new condition arises (in this case some new "rip types" appeared over the course of preparing this post).
 
@@ -213,7 +205,7 @@ There are quite a few "one/two-hit-wonders/plunders" so we'll make the cutoff fo
     gg <- gg + theme(legend.position="top")
     gg
 
-<center><a  class="mag" href="http://datadrivensecurity.info/blog/images/2014/09/pirate/facets-1-lg.png"><img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/facets-1-sm.png"/></a></center>
+<center><a class="mag" href="http://datadrivensecurity.info/blog/images/2014/09/pirate/facets-1-lg.png"><img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/facets-1-sm.png"/></a></center>
 
 The title of the post should make a bit more sense now as _Frozen_ is the clear "winner" (can it be winning to be the one with the most unrealized revenue?). This visual inspection alone sheds some light on piRate habits, but we'll need more data to confirm any nascent hypotheses.
 
@@ -225,7 +217,7 @@ So far, we know movie frequency (# weeks on the chaRts) and rank over time. We c
     # call out to the OMDB API for rotten tomatoes and other bits of info
     getOMDBInfo <- function(imdb.ids) {
     
-      Reduce(rbind, pblapply(unique(imdb.ids), function(imdb.id) {
+      do.call("rbind", pblapply(unique(imdb.ids), function(imdb.id) {
     
         dat <- GET(sprintf("http://www.omdbapi.com/?i=%s&tomatoes=TRUE", imdb.id))
         data.frame(fromJSON(content(dat, as="text")), stringsAsFactors=FALSE)
@@ -320,7 +312,76 @@ Even the OMDb data needs some cleanup and conversion to proper R data types. We 
     combined[combined$Rated=="Not Rated", "Rated"] <- "Unrated"
     combined$Rated <- factor(as.character(combined$Rated))
 
-We now have quite a bit of data to try to find some reason for all this piRacy (once more, use the [github repo]() to reproduce this R project and get results like below):
+We now have quite a bit of data to try to find some reason for all this piRacy (once more, a reminder to use the [github repo](https://github.com/hrbrmstr/tlapd2014) to reproduce this R project). We can have some fun, first, and use R (with some help from ImageMagick) to grab all the movie posters and make a montage out of them in decending order (based on # weeks on the pirate charts):
+
+    :::r
+    downloadPosters <- function(combined, .progress=TRUE) {
+    
+      posters <- combined %>% select(imdb.id, Poster) %>% unique
+    
+      invisible(mapply(function(id, img) {
+        dest_file <- sprintf("data/posters/%s.jpg", id)
+        if (!file.exists(dest_file)) {
+          if (.progress) {
+            message(img)
+            GET(img, write_disk(dest_file), progress("down"))
+          } else {
+            GET(img, write_disk(dest_file))
+          }
+        }
+      }, posters$imdb.id, posters$Poster))
+    
+    }
+    
+    downloadPosters(combined)
+    
+    descending_ids <- combined %>% arrange(desc(freq)) %>% select(imdb.id) %>% unique %>% .$imdb.id
+    
+    system(paste("montage ",
+                 paste(sprintf("data/posters/%s.jpg", descending_ids), collapse=" "),
+                 " -geometry +10+23 data/montage.png"))
+    
+    system("convert data/montage.png -resize 480 data/montage.png")
+    
+
+<center><img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/montage.png"/></center>
+
+Thirty-six movies made it to "#1" in the piRate top 10 charts, lets see if there was anything common across these posters for them. We'll plot the posters with their RGB histograms and order them by box office receipts (you'll definitely want to grab the larger version from the pop-up image, perhaps even download it):
+
+    # get all the #1 hits & sort them by box office receipts
+    number_one <- combined %>% group_by(Title) %>% filter(rank==1, rating==max(rating)) %>% select(Title, short.title, imdb.id, rank, rating, BoxOffice) %>% ungroup %>% unique
+    number_one <- number_one[complete.cases(number_one),] %>% arrange(desc(BoxOffice))
+    
+    # read in all their poster images
+    posters <- sapply(number_one$imdb.id, function(x) readJpeg(sprintf("data/posters/%s.jpg", x)))
+    
+    # calculate the max bin count so we can normalize the histograms across RGB plots & movies
+    hist_max <- max(sapply(number_one$imdb.id, function(x) {
+      max(hist(posters[[x]][,,1], plot=FALSE, breaks=seq(from=0, to=260, by=10))$counts,
+          hist(posters[[x]][,,2], plot=FALSE, breaks=seq(from=0, to=260, by=10))$counts,
+          hist(posters[[x]][,,3], plot=FALSE, breaks=seq(from=0, to=260, by=10))$counts)
+    }))
+    
+    # plot the histograms with the poster, labeling with short title and $
+    n<-nrow(dat)
+    png("data/posters/histograms.png", width=3600, height=1800)
+    plot.new()
+    par(mar=rep(2, 4))
+    par(mfrow=c(n/3, 12))
+    for (i in 1:12) {
+      for (j in 1:3) {
+        plot(posters[[i*j]])
+        hist(posters[[i*j]][,,1], col="red", xlab = "", ylab = "", main="", breaks=seq(from=0, to=260, by=10), ylim=c(0,hist_max))
+        hist(posters[[i*j]][,,2], col="green", xlab = "", ylab = "", main=sprintf("%s - %s", dat[i*j,]$short.title, dollar(dat[i*j,]$BoxOffice)), breaks=seq(from=0, to=260, by=10), ylim=c(0,hist_max))
+        hist(posters[[i*j]][,,3], col="blue", xlab = "", ylab = "", main="", breaks=seq(from=0, to=260, by=10), ylim=c(0,hist_max))
+      }
+    }
+    dev.off()
+
+<center><a class="mag" href="http://datadrivensecurity.info/blog/images/2014/09/pirate/histograms.png"><img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/histograms-sm.png"/></a></center>
+
+
+For reference, here's what our data frame looks like so far:
 
     :::r
     str(combined)
@@ -543,7 +604,7 @@ _Pacific Rim_ was on the Top 10 PiRate ChaRts for 7 weeks past it's DVD release 
 
 <center><img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/genre-weeks-past.png"/></a></center>
 
-and their violin plots against the previous ones (select the plot for larger version):
+and their distributions against the previous ones (select the plot for larger version):
 
     :::r
     combined.beyond <- combined %>% group_by(Title) %>% mutate(weeks.past=sum(date>DVD)) %>% filter(date > DVD) %>% ungroup
@@ -556,8 +617,8 @@ Some ranges are tighter and we can see some movement in the MPAA ratings, but no
 
 ### Conclusion & Next Steps
 
-<img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/treasure-icon.png" width=128 align="right"/> We didn't focus on all movies or even all piRated movies, just the ones in the TorrentFreak Top 10 list. I think adding in more diverse observations to the population would have helped identify some other key elements (besides bad taste & frugality) for both what is pirated and why it may or may not land in the top 10. We did see a pretty clear pattern to the duration on the charts and some genres folks gravitate towards (though this could be due more to the fact that studios produce more of one genre than another throughout the year). It would seem from the last facet plot that Hollywood might be able to make a few more benjamins if they found some way to capitalize on the consumer's desire to see movies in the comfort of their own abodes during the delay between theater & DVD release.
+<img src="http://datadrivensecurity.info/blog/images/2014/09/pirate/treasure-icon.png" width=128 align="right"/> We didn't focus on all movies or even all piRated movies, just the ones in the TorrentFreak Top 10 list. I think adding in more diverse observations to the population would have helped identify some other key elements (besides questionalbe taste & frugality) for both what is pirated and why it may or may not land in the top 10. We did see a pretty clear pattern to the duration on the charts and some genres folks gravitate towards (though this could be due more to the fact that studios produce more of one genre than another throughout the year). It would seem from the last facet plot that Hollywood might be able to make a few more benjamins if they found some way to capitalize on the consumer's desire to see movies in the comfort of their own abodes during the delay between theater & DVD release.
 
-You also now have a full data set of metadata about pirated movies with tons to process on your own and try to make more sense out of than I did. You can also run the script to update the data and see if anything changes with time.
+You also now have a full data set (including [CSV](https://raw.githubusercontent.com/hrbrmstr/tlapd2014/master/data/combined.csv)) of metadata about pirated movies to process on your own and try to make more sense out of than I did. You can also run the script to update the data and see if anything changes with time. With the movie poster download capability, you could even analyze popularity by colors used on the posters.
 
 We hope you had fun on this year's piRate journey with R!
