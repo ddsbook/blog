@@ -381,6 +381,9 @@ We now have quite a bit of data to try to find some reason for all this piRacy (
 
 Thirty-six movies made it to "#1" in the piRate top 10 charts, lets see if there was anything common across these posters for them. We'll plot the posters with their RGB histograms and order them by box office receipts (you'll definitely want to grab the larger version from the pop-up image, perhaps even download it):
 
+<button onclick="toggleCode()">Toggle Code</button>
+
+    :::r
     # get all the #1 hits & sort them by box office receipts
     number_one <- combined %>% group_by(Title) %>% filter(rank==1, rating==max(rating)) %>% select(Title, short.title, imdb.id, rank, rating, BoxOffice) %>% ungroup %>% unique
     number_one <- number_one[complete.cases(number_one),] %>% arrange(desc(BoxOffice))
