@@ -10,7 +10,7 @@ Author: Bob Rudis (@hrbrmstr)
 
 We leave the [Jolly Roger](http://rud.is/b/2013/09/19/animated-irl-pirate-attacks-in-r/) behind this year and turn our piRate spyglass towards the digital seas and take a look at piRated movies as seen through the lens of [TorrentFreak](http://torrentfreak.com/top-10-most-pirated-movies-of-the-week-140915/). The seasoned seadogs who pilot that ship have been doing a weekly "Top 10 Pirated Movies of the Week" post since early 2013, and I thought it might be fun to gather, process, analyze and visualize the data for this year's annual [TLAPD](http://www.talklikeapirate.com/piratehome.html) post. So, let's weigh anchor and set sail!
 
->NOTE: I'm leaving out some cruft from this post - such as all the `library()` calls - and making use of comments in code snippets to help streamline the already quite long presentaiton. You can grab all the code+data over at it's [github repo](https://github.com/hrbrmstr/tlapd2014). It will be much easier to run the R project code from there. 
+>NOTE: I'm leaving out some cruft from this post - such as all the `library()` calls - and making use of comments in code snippets to help streamline the already quite long presentation. You can grab all the code+data over at it's [github repo](https://github.com/hrbrmstr/tlapd2014). It will be much easier to run the R project code from there. 
 
 Since this is a code-heavy post, you've got the option to toggle the code segments for readability. Remember, too, that all lightbox-displayed images can be right-clicked/saved-as (or open tabbed) for full scale viewing.
 
