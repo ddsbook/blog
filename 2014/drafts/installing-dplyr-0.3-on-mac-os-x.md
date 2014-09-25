@@ -1,9 +1,11 @@
 Title: Installing dplyr 0.3 on Mac OS X (Mavericks)
-Date: 2014-09-25 18:00:36
+Date: 2014-09-25 18:10:36
 Category: tools
 Tags: r, rstats, dplyr
 Slug: installing-dplyr-0.3-on-mac-os-x
 Author: Bob Rudis (@hrbrmstr)
+
+>**UPDATE** Per the author, a `devtools::install_github("hadley/devtools")` should take care of everything you need prior to installing the latest `dplyr` (though I did not have postgres libs installed and suspect that might still be needed).
 
 The R [dplyr](http://github.com/hadley/dplyr) package just turned `0.3` and to get it working in my development environment (OS X Mavericks) I had to do the following:
 
