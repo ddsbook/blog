@@ -46,7 +46,7 @@ potentially generated and used by malware.
 
 My goal was to create a DGA classifier that was first and foremost easy
 to use. So I created a package that could be loaded and used in other
-code code without having to think about the machine learning behind the
+code without having to think about the machine learning behind the
 classifier. Hopefully it doesn't get any easier than this:
 
 Install the package:
