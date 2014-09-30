@@ -1,4 +1,4 @@
-Title: Building a DGA Classifer: Part 1, Data Preparation
+Title: Building a DGA Classifier: Part 1, Data Preparation
 Date: 2014-09-30 11:02:20
 Category: blog
 Tags: blog, r, rstats
