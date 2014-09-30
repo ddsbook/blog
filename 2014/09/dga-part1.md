@@ -1,7 +1,6 @@
 Title: Building a DGA Classifer: Part 1, Data Preparation
 Date: 2014-09-30 11:02:20
 Category: blog
-Status: draft
 Tags: blog, r, rstats
 Slug: dga-part1
 Author: “Jay Jacobs (@jayjacobs)"
