@@ -51,10 +51,9 @@ classifier. Hopefully it doesn't get any easier than this:
 
 Install the package:
 
-    devtools::install("jayjacobs/dga")
-
     :::r
-
+    devtools::install("jayjacobs/dga")
+    
     library(dga)
 
     # known good domains:
@@ -165,7 +164,6 @@ is a sample of the data in the `sampledga` data set available in the DGA
 package.
 
     :::r
-
     library(dga)
     data(sampledga)
     set.seed(2)
