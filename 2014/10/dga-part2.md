@@ -1,4 +1,4 @@
-Title: Building a DGA Classifer: Part 2, Feature Engineering
+Title: Building a DGA Classifier: Part 2, Feature Engineering
 Date: 2014-10-02 08:56:03
 Category: blog
 Tags: blog, r, rstats
@@ -65,6 +65,7 @@ can build the very best model you can, but there are many reasons to not
 do that. First, no model or algorithm is going to be perfect and the
 more robust solutions will employ a variety of solutions (not just a
 single algorithm). So striving for perfection has diminishing returns.  
+
 Second, adding too many features may cause you to
 overfit to your training data. That means you culd build a model that
 appears to be very accurate in your tests, but stinks with any new data
