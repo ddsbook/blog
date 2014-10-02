@@ -81,7 +81,8 @@ think you should try every feature (and combinations of features) so you
 can build the very best model you can, but there are many reasons to not
 do that. First, no model or algorithm is going to be perfect and the
 more robust solutions will employ a variety of solutions (not just a
-single algorithm). Second, adding too many features may cause you to
+single algorithm). So striving for perfection has diminishing returns.  
+Second, adding too many features may cause you to
 overfit to your training data. That means you culd build a model that
 appears to be very accurate in your tests, but stinks with any new data
 (or new domain generating algorithms in our case). Finally, every
@@ -96,7 +97,7 @@ notion that science is structured, clean and orderly right out of your
 head. Feature seelction will, at least at this state, rely heavily on
 domain expertise. As we get to the model selection, we will be weeding
 out variables that don't help, are too slow or contradict the model we
-are testing.
+are testing. 
 
 For now, think of what makes a domain name usable. For example, when
 people create a domain name the focus on readability so they may include
@@ -254,6 +255,11 @@ saved to generate the features that rely on them.
     sampledga$fivegram <- getngram(fivegood, sampledga$domain)
     sampledga$gram345 <- getngram(good345, sampledga$domain)
 
+Note that I am just tossing in every n-gram from 1 to 5 characters and 
+the merging of 3, 4, and 5 n-grams.  I doubt that all of these will be
+helpful and I fully expect that many of these will be dropped in the
+final model, which I will cover in part 3.
+
 ### Dictionary matching
 
 There is one last feature I want to add and that will try to answer the
@@ -265,7 +271,8 @@ distinct words. Therfore, I created the function `wmatch` in the DGA
 package to return the percentage of characters that are in the
 dictionary. I also am using the dictionary that was included in Click
 Security's code and it seems to be a little loose about what is a valid
-word. At some point that dictionary could be rebuilt and cleaned up.
+word. At some point that dictionary could be rebuilt and cleaned up.  But,
+for the sake of time, we can just go with it how it is.
 
     :::r
 
@@ -276,7 +283,7 @@ word. At some point that dictionary could be rebuilt and cleaned up.
     # calculate it for every word in the sample
     sampledga$dict <- wmatch(sampledga$domain)
 
-    # and let's look at a few randomly
+    # and let's look at a few randomly (3 legit, 3 dga)
     sampledga[c(sample(5000, 3), sample(5000, 3)+5000), c(6:14)]
 
     ##       entropy length onegram twogram threegram fourgram fivegram gram345
