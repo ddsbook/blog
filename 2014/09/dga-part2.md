@@ -1,7 +1,6 @@
 Title: Building a DGA Classifer: Part 2, Feature Engineering
-Date: 2014-09-30 14:56:03
+Date: 2014-10-02 08:56:03
 Category: blog
-Status: draft
 Tags: blog, r, rstats
 Slug: dga-part2
 Author: “Jay Jacobs (@jayjacobs)"
