@@ -66,8 +66,8 @@ they calculate the following features for each domain:
 There is an almost endless list of other features you could come up with
 beyond those:
 
--   ratio of numbers to (length|vowels|consonants|non-numbers)
--   ratio of vowels to (length|numbers|etc)
+-   ratio of numbers to (length/vowels|consonants/non-numbers)
+-   ratio of vowels to (length/numbers/etc)
 -   proportion matching dictionary words
 -   largest dictionary word match
 -   all the combinations of n-grams (mentioned above)
