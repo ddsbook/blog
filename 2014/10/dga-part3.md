@@ -1,7 +1,6 @@
 Title: Building a DGA Classifier: Part 3, Model Selection
-Date: 2014-10-05 13:15:26
+Date: 2014-10-06 08:15:26
 Category: blog
-Status: draft
 Tags: blog, r, rstats
 Slug: dga-part3
 Author: “Jay Jacobs (@jayjacobs)"
