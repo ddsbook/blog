@@ -56,7 +56,7 @@ doing.
 How we generate the "test" data and the "training" data can get a little
 tricky on real data. The sample data in this example is fairly well
 balanced with half being "legit" and the other half is "dga". But if you
-separate on the *subclass* you can see 4,948 samples are from alex and
+separate on the *subclass* you can see 4,948 samples are from alexa and
 only 52 are from the opendns list of domains. If you were to randomly
 separate the training from test data, you may get all the opendns
 samples in one set and none in the other. To make sure we good
