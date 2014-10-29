@@ -2,11 +2,13 @@ Title: Don't Worry Too Much About The 2014 Gallup Crime Poll
 Date: 2014-10-29 10:38:55
 Category: blog
 Status: draft
-Tags: survey, datavis
+Tags: survey, datavis, r, rstats, rstat
 Slug: don't-worry-too-much-about-the-gallup-crime-poll
 Author: Bob Rudis (@hrbrmstr)
 
 Gallup released the [results](http://www.gallup.com/poll/178856/hacking-tops-list-crimes-americans-worry.aspx) of their annual "Crime" poll in their Social Poll series this week and spent much time highlighting the fact that "cyber" was at the top of the list.
+
+<center><img src="http://dds.ec/blog/images/2014/10/summary.svg"  style="max-width:100%"/></center>
 
 It's a "worry" survey, meaning it's about personal perception &amp; feelings. Over 25% of the survey respondents were victims of cyber crime. As anyone in "cyber" knows, it's been a pretty rough year (the past few have been as well) and "cyber" has been in the news quite a bit:
 
@@ -20,7 +22,7 @@ However, this survey is given once a year, usually in the fall, and there's an i
 
 Looking at those year-paris, we see a similar pattern, where the most recent, top-of-mind, in-the-news item becomes the heavy hitter in the poll results.
 
-We can coerce these crimes into a "top 10" rank and plot them across time (i.e. a rank-order parallel coordinate graph). It's a little tricky to follow the lines in this non-interactive version (click for larger image):
+We can coerce these crimes into a "top 10" rank and plot them across time (i.e. a rank-order parallel coordinate graph), thogh it's a little tricky to follow the lines in this non-interactive version (click for larger image):
 
 <a class="mag" href="http://dds.ec/blog/images/2014/10/gallup-rank.png"><img style="max-width:100%" src="http://dds.ec/blog/images/2014/10/gallup-rank.png"></a>
 
