@@ -10,7 +10,7 @@ Gallup released the [results](http://www.gallup.com/poll/178856/hacking-tops-lis
 
 It's a "worry" survey, meaning it's about personal perception &amp; feelings. Over 25% of the survey respondents were victims of cyber crime. As anyone in "cyber" knows, it's been a pretty rough year (the past few have been as well) and "cyber" has been in the news quite a bit:
 
-<script type="text/javascript" src="//www.google.com/trends/embed.js?hl=en-US&q=%22data+breach%22&date=6/2014+5m&cmpt=q&content=1&cid=TIMESERIES_GRAPH_0&export=5&w=400&h=300"></script>
+<center><script type="text/javascript" src="//www.google.com/trends/embed.js?hl=en-US&q=%22data+breach%22&date=6/2014+5m&cmpt=q&content=1&cid=TIMESERIES_GRAPH_0&export=5&w=600&h=430"></script></center>
 
 so it makes sense that it might be on the top of the worry list. 
 
@@ -20,3 +20,4 @@ However, this survey is given once a year, usually in the fall, and there's an i
 
 We see a similar pattern, where the most recent, top-of-mind, in-the-news item becomes the heavy hitter in the poll results. 
 
+You can find CSV files for the published survey results (note, it's not all the data they collected, just what they released) and some R code to make the graphs [over on github](https://github.com/hrbrmstr/gallup-crime-2014).
