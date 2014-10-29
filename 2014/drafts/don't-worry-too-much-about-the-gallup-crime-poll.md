@@ -18,6 +18,10 @@ However, this survey is given once a year, usually in the fall, and there's an i
 
 <center><img src="http://dds.ec/blog/images/2014/10/gallup.svg"  style="max-width:100%"/></center>
 
-We see a similar pattern, where the most recent, top-of-mind, in-the-news item becomes the heavy hitter in the poll results. 
+Looking at those year-paris, we see a similar pattern, where the most recent, top-of-mind, in-the-news item becomes the heavy hitter in the poll results.
+
+We can coerce these crimes into a "top 10" rank and plot them across time (i.e. a rank-order parallel coordinate graph). It's a little tricky to follow the lines in this non-interactive version:
+
+<a class="mag" href="http://dds.ec/blog/images/2014/10/gallup-rank.png"><img style="max-width:100%" src="http://dds.ec/blog/images/2014/10/gallup-rank.png"></a>
 
 You can find CSV files for the published survey results (note, it's not all the data they collected, just what they released) and some R code to make the graphs [over on github](https://github.com/hrbrmstr/gallup-crime-2014).
