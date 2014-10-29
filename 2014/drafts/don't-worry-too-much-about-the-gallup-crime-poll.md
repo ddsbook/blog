@@ -20,8 +20,16 @@ However, this survey is given once a year, usually in the fall, and there's an i
 
 Looking at those year-paris, we see a similar pattern, where the most recent, top-of-mind, in-the-news item becomes the heavy hitter in the poll results.
 
-We can coerce these crimes into a "top 10" rank and plot them across time (i.e. a rank-order parallel coordinate graph). It's a little tricky to follow the lines in this non-interactive version:
+We can coerce these crimes into a "top 10" rank and plot them across time (i.e. a rank-order parallel coordinate graph). It's a little tricky to follow the lines in this non-interactive version (click for larger image):
 
 <a class="mag" href="http://dds.ec/blog/images/2014/10/gallup-rank.png"><img style="max-width:100%" src="http://dds.ec/blog/images/2014/10/gallup-rank.png"></a>
+
+Let's test the "in the news theory" with "Car stolen not present" since it has two peaks:
+
+<center><img src="http://dds.ec/blog/images/2014/10/car-stolen.png"  style="max-width:100%"/></center>
+
+which we can see mirrored in a Google Trends search:
+
+<code><script type="text/javascript" src="//www.google.com/trends/embed.js?hl=en-US&q=car+stolen,+auto+theft&cmpt=q&content=1&cid=TIMESERIES_GRAPH_0&export=5&w=600&h=430"></script></code>
 
 You can find CSV files for the published survey results (note, it's not all the data they collected, just what they released) and some R code to make the graphs [over on github](https://github.com/hrbrmstr/gallup-crime-2014).
