@@ -32,4 +32,6 @@ which we can see mirrored in a Google Trends search:
 
 <code><script type="text/javascript" src="//www.google.com/trends/embed.js?hl=en-US&q=car+stolen,+auto+theft&cmpt=q&content=1&cid=TIMESERIES_GRAPH_0&export=5&w=600&h=430"></script></code>
 
-You can find CSV files for the published survey results (note, it's not all the data they collected, just what they released) and some R code to make the graphs [over on github](https://github.com/hrbrmstr/gallup-crime-2014).
+I didn't poke to see if "home burglaries" were greater in 2013 than stolen cars, but the main point is that the "worries" of these survey respondents reflect what makes the news and that doesn't necessarily mean they need to be *your* worries, too. It also means you may be able to use Google Trends as a proxy for this survey in the future. Sadly, it doesn't go back beyond 2004, so it's difficult to look at the other "spikes" in the top-rankings.
+
+The secondary point is to always dig deeper if you can get the data. You can find CSV files for the published survey results (it's not _all_ the data they collected, just what they released) and some R code to make the graphs [over on github](https://github.com/hrbrmstr/gallup-crime-2014).
