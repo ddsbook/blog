@@ -10,7 +10,7 @@ Gallup released the [results](http://www.gallup.com/poll/178856/hacking-tops-lis
 
 It's a "worry" survey, meaning it's about personal perception &amp; feelings. Over 25% of the survey respondents were victims of cyber crime. As anyone in "cyber" knows, it's been a pretty rough year (the past few have been as well) and "cyber" has been in the news quite a bit:
 
-<center><script type="text/javascript" src="//www.google.com/trends/embed.js?hl=en-US&q=%22data+breach%22&date=6/2014+5m&cmpt=q&content=1&cid=TIMESERIES_GRAPH_0&export=5&w=600&h=330"></script></center>
+<center><script type="text/javascript" src="//www.google.com/trends/embed.js?hl=en-US&q=%22data+breach%22&date=6/2014+5m&cmpt=q&content=1&cid=TIMESERIES_GRAPH_0&export=5&w=600&h=360"></script></center>
 
 so it makes sense that it might be on the top of the worry list. 
 
@@ -30,7 +30,7 @@ Let's test the "in the news theory" with "Car stolen not present" since it has t
 
 which we can see mirrored in a Google Trends search:
 
-<code><script type="text/javascript" src="//www.google.com/trends/embed.js?hl=en-US&q=car+stolen,+auto+theft&cmpt=q&content=1&cid=TIMESERIES_GRAPH_0&export=5&w=600&h=330"></script></code>
+<code><script type="text/javascript" src="//www.google.com/trends/embed.js?hl=en-US&q=car+stolen,+auto+theft&cmpt=q&content=1&cid=TIMESERIES_GRAPH_0&export=5&w=600&h=360"></script></code>
 
 I didn't poke to see if "home burglaries" were greater in 2013 than stolen cars, but the main point is that the "worries" of these survey respondents reflect what makes the news and that doesn't necessarily mean they need to be *your* worries, too. It also means you may be able to use Google Trends as a proxy for this survey in the future. Sadly, it doesn't go back beyond 2004, so it's difficult to look at the other "spikes" in the top-rankings.
 
