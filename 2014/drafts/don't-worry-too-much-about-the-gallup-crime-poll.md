@@ -1,4 +1,4 @@
-Title: Don't Worry Too Much About The Gallup Crime Poll
+Title: Don't Worry Too Much About The 2014 Gallup Crime Poll
 Date: 2014-10-29 10:38:55
 Category: blog
 Status: draft
@@ -6,6 +6,17 @@ Tags: survey, datavis
 Slug: don't-worry-too-much-about-the-gallup-crime-poll
 Author: Bob Rudis (@hrbrmstr)
 
-<img src="//dds.ec/blog/images/2014/10/gallup.svg">
+Gallup released the [results](http://www.gallup.com/poll/178856/hacking-tops-list-crimes-americans-worry.aspx) of their annual "Crime" poll in their Social Poll series this week and spent much time highlighting the fact that "cyber" was at the top of the list.
+
+It's a "worry" survey, meaning it's about personal perception &amp; feelings. Over 25% of the survey respondents were victims of cyber crime. As anyone in "cyber" knows, it's been a pretty rough year (the past few have been as well) and "cyber" has been in the news quite a bit:
 
 <script type="text/javascript" src="//www.google.com/trends/embed.js?hl=en-US&q=%22data+breach%22&date=6/2014+5m&cmpt=q&content=1&cid=TIMESERIES_GRAPH_0&export=5&w=400&h=300"></script>
+
+so it makes sense that it might be on the top of the worry list. 
+
+However, this survey is given once a year, usually in the fall, and there's an interesting correlation between this year's addition of "cyber" to the question list and what happened in their 2001 survey when they added "terrorism" to the list. Everyone knows what happed on September 11, 2001 and the poll happend after that. You can compare 2000-2001 and 2013-2014 in the chart below:
+
+<center><img src="http://dds.ec/blog/images/2014/10/gallup.svg"  style="max-width:100%"/></center>
+
+We see a similar pattern, where the most recent, top-of-mind, in-the-news item becomes the heavy hitter in the poll results. 
+
