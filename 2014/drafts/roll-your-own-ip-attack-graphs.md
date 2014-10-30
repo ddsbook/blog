@@ -1,7 +1,6 @@
 Title: Roll Your Own IP Attack Graphs with IPew
-Date: 2014-10-29 10:05:50
+Date: 2014-10-30 14:50:50
 Category: blog
-Status: draft
 Tags: datavis, d3, security
 Slug: roll-your-own-ip-attack-graphs
 Author: Bob Rudis (@hrbrmstr)
@@ -11,7 +10,7 @@ Author: Bob Rudis (@hrbrmstr)
 Are you:
 
 - A security vendor feeling inadequate because you don't have your own "live attack graph"?
-- A SOC manager who needs to distract/impress visitors and/or executives with an "ooh, shiny!" display?
+- A SOC manager who needs to distract/impress visitors and/or executives with an *"ooh, shiny!"* display?
 - A researcher who wants to draw attention to your project but just don't have the time to dedicate to inane animated visualizations? 
 
 If so, then [IPew](http://ocularwarfare.com/ipew) is for you!
@@ -35,6 +34,6 @@ IPew is an open source "live attack map" simulation built with D3 ([Datamaps](ht
     * Point the finger at [everyone's favorite whipping country](http://ocularwarfare.com/ipew?china_mode=1&wargames=1)
     * Customize the display with your [org name](http://ocularwarfare.com/ipew?china_mode=1&allfx=1&org_name=Mandiant) (that one's my favorite config)
 
-Full configuration options are over at [github](https://github.com/hrbrmstr/pewpew) and feel free to clone, modify and use this to your heart's content. It's been released under a CC BY-SA license, so be sure to share your creation with the world!.
+Full configuration options are over at [github](https://github.com/hrbrmstr/pewpew) and feel free to clone/fork, modify and use this to your cyber-heart's content. It's been released under a CC BY-SA license, so be sure to share your creation with the world!
 
 Brought to you by [hrbrmstr](http://twitter.com/hrbrmstr) & [alexcpsec](http://twitter.com/alexcpsec).
