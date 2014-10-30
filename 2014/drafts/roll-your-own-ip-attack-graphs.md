@@ -29,10 +29,11 @@ IPew is an open source "live attack map" simulation built with D3 ([Datamaps](ht
 - **FULLY (mostly) RESPONSIVE**! From iPhones to 60" displays, IPew accomodates all screen sizes. Setup multiple ones in your SOC for *maximum impressiveness*.
 
 - **SELF-EFFACEMENT**!! While we use actual, generated probabilities for the source country attack frequencies we took some liberties with the attack types. Plus, we let you *go crazy* with configurations by including options to:
-  * [Randomize](http://ocularwarfare.com/ipew?random_mode=1) source/destination pairs
-  * Let the internet have a really [bad day](http://ocularwarfare.com/ipew?bad_day=1&nofx=1)
-  * Point the finger at [everyone's favorite whipping country](http://ocularwarfare.com/ipew?china_mode=1&wargames=1)
-  * Custmize the display with your [org name](http://ocularwarfare.com/ipew?china_mode=1&allfx=1&org_name=Mandiant) (that one's my favorite config)
+
+    * [Randomize](http://ocularwarfare.com/ipew?random_mode=1) source/destination pairs
+    * Let the internet have a really [bad day](http://ocularwarfare.com/ipew?bad_day=1&nofx=1)
+    * Point the finger at [everyone's favorite whipping country](http://ocularwarfare.com/ipew?china_mode=1&wargames=1)
+    * Customize the display with your [org name](http://ocularwarfare.com/ipew?china_mode=1&allfx=1&org_name=Mandiant) (that one's my favorite config)
 
 Full configuration options are over at [github](https://github.com/hrbrmstr/pewpew) and feel free to clone, modify and use this to your heart's content. It's been released under a CC BY-SA license, so be sure to share your creation with the world!.
 
