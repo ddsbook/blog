@@ -18,7 +18,7 @@ If so, then [IPew](http://ocularwarfare.com/ipew) is for you!
 
 ### What is IPew?
 
-IPew is an open source "live attack map" simulation built with D3 ([Datamaps](http://datamaps.github.io/)) that puts global cyberwar just a `git clone` away for anyone wanting to display these good-for-only-eye-candy maps on your site.
+IPew is an open source "live attack map" simulation built with D3 ([Datamaps](http://datamaps.github.io/)) that puts global cyberwar just a URL or `git clone` away for anyone wanting to display these good-for-only-eye-candy maps on your site.
 
 ### What makes IPew Different from The Others?
 
@@ -29,7 +29,6 @@ IPew is an open source "live attack map" simulation built with D3 ([Datamaps](ht
 - **FULLY (mostly) RESPONSIVE**! From iPhones to 60" displays, IPew accomodates all screen sizes. Setup multiple ones in your SOC for *maximum impressiveness*.
 
 - **SELF-EFFACEMENT**!! While we use actual, generated probabilities for the source country attack frequencies we took some liberties with the attack types. Plus, we let you *go crazy* with configurations by including options to:
-
   * [Randomize](http://ocularwarfare.com/ipew?random_mode=1) source/destination pairs
   * Let the internet have a really [bad day](http://ocularwarfare.com/ipew?bad_day=1&nofx=1)
   * Point the finger at [everyone's favorite whipping country](http://ocularwarfare.com/ipew?china_mode=1&wargames=1)
