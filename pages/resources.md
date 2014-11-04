@@ -6,6 +6,17 @@ Slug: resources
 Author: Bob Rudis (@hrbrmstr)
 
 
+**Online Books**
+
+- [The Element of Statistical Learning](http://statweb.stanford.edu/~tibs/ElemStatLearn/), Trevor Hastie, Robert Tibshirani, Jerome Friedman 
+- [Mining of Massive Datasets](http://www.mmds.org/#ver21), Jure Leskovec, Anand Rajaraman, Jeff Ullman
+- [Advanced R](http://adv-r.had.co.nz/), Hadley Wickham
+- [Introduction to Statistical Thought](http://people.math.umass.edu/~lavine/Book/book.html), Michael Lavine
+- [Introduction to Probability and Statistics Using R](http://www.lulu.com/items/volume_68/8123000/8123594/3/print/IPSUR.pdf), G. Jay Kerns
+- [Introduction to Graphs](http://en.wikipedia.org/wiki/Book:Introduction_to_Graphs), Wikipedia Book
+- [Elementary Linear Algebra](http://www.numbertheory.org/book/), K.R. Matthews
+- [Electronic Statistics Textbook](http://www.statsoft.com/Textbook), StatSoft, Inc. _(online only)_
+
 **Data Cleansing**
 
 - [OpenRefine](http://openrefine.org/) : an open source, locally-installed, cross-platform toolkit that makes it extremely easy to import, explore, clean, transform, and enrich messy data into something usable for analysis.
