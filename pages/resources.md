@@ -9,6 +9,7 @@ Author: Bob Rudis (@hrbrmstr)
 **Online Books**
 
 - [The Element of Statistical Learning](http://statweb.stanford.edu/~tibs/ElemStatLearn/), Trevor Hastie, Robert Tibshirani, Jerome Friedman 
+- [Foundations of Data Science](http://research.microsoft.com/en-US/people/kannan/book-no-solutions-aug-21-2014.pdf), John Hopcroft and Ravindran Kannan _(pdf)_
 - [Mining of Massive Datasets](http://www.mmds.org/#ver21), Jure Leskovec, Anand Rajaraman, Jeff Ullman
 - [Advanced R](http://adv-r.had.co.nz/), Hadley Wickham
 - [Introduction to Statistical Thought](http://people.math.umass.edu/~lavine/Book/book.html), Michael Lavine
