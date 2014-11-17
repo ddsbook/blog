@@ -1,7 +1,6 @@
 Title: Simulating the Rule of Five
 Date: 2014-11-16 20:45:55
 Category: blog
-Status: draft
 Tags: blog, r, rstats
 Slug: hubbard
 Author: “Jay Jacobs (@jayjacobs)"
