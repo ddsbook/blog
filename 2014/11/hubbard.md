@@ -37,7 +37,7 @@ working with the median, it doesn't matter.
     pop <- rnorm(1000)  # generate the "population"
     med <- median(pop) # calculate the median
 
-Next, we will want to repeatedly draw 5 random sample from the
+Next, we will want to repeatedly draw 5 random samples from the
 population and check if the median from the population is in the range
 (between the minimum and maximum) of the 5 samples. According to to
 setup, we should expect 93.75% of the samples to contain the median.
