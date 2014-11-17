@@ -101,17 +101,20 @@ mean works. Finally, this also hints at a concept underlying many
 machine learning algorithms: combining multiple 'weak predictors' is
 more accurate than one (or handful) of strong predictors. By taking the
 mean of all our outputs (even the samples that are *way* off) we are
-using all the sampled to derive a more accurate estimate of true value.
+using all the samples to derive a more accurate estimate of true value.
 
 ### Oh yeah, the math...
 
 The math here is so much simpler than all the stuff I did above (but so
 much less exciting). Since we talking about the median, 50% of the
 samples should be above and below the median value. This sets a
-coin-toss analogy. If we say heads is above the median and tails is
+coin-toss analogy: if we say heads is above the median and tails is
 below, what is the probability of flipping either 5 heads or 5 tails in
-a row? It's simply 50% to the power of 5 for both heads and tails and
-then we add those up (or multiply it by 2). Then we want to know what
+a row? It is the same thing, we want to know the probability that all 5 of 
+our samples will be above (or below) the median.  The math is simply 50% 
+to the power of 5 for getting either 5 tails or heads in row. 
+So we can calculate it once and double it (once for heads, twice for tails). 
+Then we want to know what
 the probability is of **not** getting heads, so we subtract it from 1.
 
     :::r
