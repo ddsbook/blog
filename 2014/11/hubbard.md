@@ -23,9 +23,8 @@ The "Rule of Five" states, "There is a 93.75% chance that the median of
 a population is between the smallest and largest values in any random
 sample of five from that population." And even though the math on it is
 fairly easy, I found it much more fun to think through how to simulate
-it. There may be times when creating a simulation (ya know, [like a
-Monte Carlo](http://en.wikipedia.org/wiki/Monte_Carlo_method)), and not
-only could it be helpful it's often rather fun.
+it. There may be times when the math is either too complex (relative 
+term, I know), but creating a simulation may be the only option.
 
 Let's think through this, first we will need a population and the median
 of that population. We will draw our population from a normal
@@ -90,37 +89,10 @@ Now we can create a loop to call the function over and over again.
 
 And we can visualize the variations in the samples:
 
-    :::r
-
-    library(ggplot2)
-    library(scales)
-    library(gridExtra)
-
-    plotdf <- data.frame(x=possible, y=output)
-    scatter <- ggplot(plotdf, aes(x, y)) + geom_point(size=2, alpha=0.5, color="red") +
-      scale_y_continuous("Estimated probability", limits=c(0.8, 1), labels=percent) +
-      ggtitle("Rule of Five (Scatter Plot)") + 
-      geom_smooth(method="lm", color="black") + 
-      xlab("Iteration") + theme_bw()
-
-    tlabel <- data.frame(x=mean(output), y=20, 
-                         label=paste0("Average = ", round(mean(output), 4)*100, "%"))
-    hist <- ggplot(plotdf, aes(y)) + 
-      geom_histogram(aes(y = ..density..), binwidth=0.002, 
-                     color="white", alpha=0.5, fill="red") + 
-      geom_density(fill="lightsteelblue", alpha=0.3, color="steelblue") + 
-      geom_vline(xintercept=mean(output)) +
-      geom_text(data=tlabel, aes(x, y, label=label), angle=90, vjust=-0.2) +
-      scale_x_continuous("Estimated Probability", labels=percent) + ylab("Frequency") +
-      ggtitle("Rule of Five (Histogram)") + theme_bw()
-
-    grid.arrange(scatter, hist, nrow=1)
-
 ![ruleof5 plot](/blog/images/2014/11/ruleof5.png)
 
-
-There are so many things going on here. First, this is a great example
-of the [Law of Large
+There are so many interesting concepts being touched on here. First, 
+this is a great example of the [Law of Large
 Numbers](http://en.wikipedia.org/wiki/Law_of_large_numbers) -- the more
 iterations we do, the closer to reality our estimation will be. Also,
 the results will form a normal distribution around the true answer, no
