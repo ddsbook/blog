@@ -8,6 +8,7 @@ Author: Bob Rudis (@hrbrmstr)
 
 **Online Books**
 
+- [An Introduction to Statistical Learning](http://www-bcf.usc.edu/~gareth/ISL/), Gareth James, Daniela Witten, Trevor Hastie and Robert Tibshirani
 - [The Element of Statistical Learning](http://statweb.stanford.edu/~tibs/ElemStatLearn/), Trevor Hastie, Robert Tibshirani, Jerome Friedman 
 - [Foundations of Data Science](http://research.microsoft.com/en-US/people/kannan/book-no-solutions-aug-21-2014.pdf), John Hopcroft and Ravindran Kannan _(pdf)_
 - [Mining of Massive Datasets](http://www.mmds.org/#ver21), Jure Leskovec, Anand Rajaraman, Jeff Ullman
