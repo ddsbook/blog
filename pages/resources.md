@@ -8,6 +8,7 @@ Author: Bob Rudis (@hrbrmstr)
 
 **Online Books**
 
+- [Multivariate data analysis using R](https://www.staff.ncl.ac.uk/d.j.wilkinson/teaching/mas8381/notes14.pdf), Darren J Wilkinson
 - [An Introduction to Statistical Learning](http://www-bcf.usc.edu/~gareth/ISL/), Gareth James, Daniela Witten, Trevor Hastie and Robert Tibshirani
 - [The Element of Statistical Learning](http://statweb.stanford.edu/~tibs/ElemStatLearn/), Trevor Hastie, Robert Tibshirani, Jerome Friedman 
 - [Foundations of Data Science](http://research.microsoft.com/en-US/people/kannan/book-no-solutions-aug-21-2014.pdf), John Hopcroft and Ravindran Kannan _(pdf)_
