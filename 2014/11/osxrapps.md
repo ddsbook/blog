@@ -1,5 +1,5 @@
-Title: Turn R (Shiny) Scripts Into Double-clickable OS X Applictions With One Line of Code
-Date: 2014-11-30 22:00:00
+Title: Turn R (Shiny) Scripts Into Double-clickable OS X Applications With One Line of Code
+Date: 2014-11-30 23:00:00
 Category: blog
 Tags: blog, r, rstats, os x, yosemite
 Slug: os-x-yosemite-r-apps
