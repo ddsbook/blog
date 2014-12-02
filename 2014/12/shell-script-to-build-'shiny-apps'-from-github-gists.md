@@ -1,4 +1,4 @@
-Title: Shell Script to Build 'Shiny Apps' from Github Gists
+Title: Shell Script to Build OS X 'Shiny Apps' from Github Gists
 Date: 2014-12-02 16:18:20
 Category: blog
 Tags: blog, R, rstats
@@ -9,6 +9,7 @@ Since the [previous post](http://datadrivensecurity.info/blog/posts/2014/Nov/os-
 
 After copying the script to a place you can run it from in your `PATH` and executing a "`chmod a+x shinyapp.sh`" (or whatever you named it), all you have to do is enter the GitHub Gist ID and the desired app name. In the case of my example "snowfall" app, one could do something like:
 
+    :::bash
     $ shinyapp 95ec24c1b0cb433a76a5 "Shiny Snowfall"
 
 which would then build the `Shiny Snowfall.app` executable.
@@ -21,6 +22,7 @@ The second (`-d`) lets you specify your Apple Mac OS Developer ID (if you have o
 
 To re-create the example "Shiny Snowfall" app just do:
 
+    :::bash
     $ shinyapp -i snowcloud.icns \
                -d 'Bob Rudis (CBY22P58G8)' \
                95ec24c1b0cb433a76a5 'Shiny Snowfall'
