@@ -10,6 +10,7 @@ While the Internet has no shortage of opinions, every once in a while those opin
 
 **Reviews**
 
+- [Kai Roer's Book Review](http://roer.com/2014/12/08/book-review-data-driven-security/)
 - [Máirtín O'Sullivan's Book Review](http://mairtin.blogspot.com/2014/03/book-review-data-driven-security.html)
 - [Richard Austin provided a review for IEEE Cipher](http://www.ieee-security.org/Cipher/BookReviews/2014/JJacobs_by_austin.html)
 - [Ben Rothke wrote a review on the RSA Conference website](http://www.rsaconference.com/blogs/582/rothke/data-driven-security-analysis-visualization-and-dashboards)
