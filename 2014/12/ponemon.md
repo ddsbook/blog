@@ -70,11 +70,11 @@ laid out like this.
 
 Before we look at how good the model is, let's look at how the model is
 derived. The 2013 CODB states, "the average per capita cost of data
-breach declined from \$194 to \$188", ("per capita cost of data breach"
+breach declined from $194 to $188", ("per capita cost of data breach"
 is the same as "cost per compromised record"). The 2014 report shows in
-Figure 2 that the U.S. cost per compromised record going from \$188 in
-2013 to \$201 in 2014. So in 2013 the cost of a data breach was \$188
-per record and it was \$201 in 2014. Where are these coming from? They
+Figure 2 that the U.S. cost per compromised record going from $188 in
+2013 to $201 in 2014. So in 2013 the cost of a data breach was $188
+per record and it was $201 in 2014. Where are these coming from? They
 simply total up the losses for the year and divide that by the total
 records lost in that year. Using their data we can confirm this:
 
@@ -94,8 +94,8 @@ value, which will give some indication of how well the model "fits" the
 data. The result will be between 0 and 1 with 1 representing a perfect
 fit of the data.
 
--   For 2013, at \$188 per record, the r-squared value is 0.1293
--   For 2014, at \$201 per record, the r-squared value is 0.0223
+-   For 2013, at $188 per record, the r-squared value is 0.1293
+-   For 2014, at $201 per record, the r-squared value is 0.0223
 
 This means that the Ponemon model describes about 13% of the variation
 in the data in 2013 and just over 2% of the variation in 2014.
@@ -147,10 +147,10 @@ linear regression is:
 `<Losses> = 2,330,000 + $107*<Records>`
 
 Which can be interpretted as, "Each breach has an average static loss of
-\$2.3 million plus an additional *\$107 of loss for each record
+$2.3 million plus an additional *$107 of loss for each record
 compromised*." I added emphasis to the rather important part of that
 statement. This regression model estimates the cost per record to be
-\$107, not the \$188 estimated by the Ponemon model. Also, if you notice
+$107, not the $188 estimated by the Ponemon model. Also, if you notice
 the (adjusted) R-squared value, it's now up to 29%. Still a rather low
 value, but certainly better than 13%. The only other thing to notice
 about the model is the variable of the number of records is significant
@@ -279,8 +279,8 @@ the associated (real) loss amount, we can compare the estimated
 see how far off each model is across all observations.
 
 For example, one event in 2013 lost 32,311 records and reported a loss
-of \$3,747,000. Using the Ponemon model estimates \$6,074,468, my first
-model estimated \$5,995,159 and the second model estimated \$5,689,385.
+of $3,747,000. Using the Ponemon model estimates $6,074,468, my first
+model estimated $5,995,159 and the second model estimated $5,689,385.
 If we simply add up the absolute differences across all the observations
 for each of the models, we can get a feel for their accuracy.
 
@@ -316,7 +316,7 @@ for each of the models, we can get a feel for their accuracy.
 </table>
 
 And this is across 115 observations across 2013 and 2014, meaning the
-average estimate for each of these is off the mark by \$2 million. And
+average estimate for each of these is off the mark by $2 million. And
 looking at the
 
 ### In Summary:
