@@ -1,7 +1,6 @@
 Title: Analyzing Ponemon Cost of Data Breach
 Date: 2014-12-11 08:53:31
 Category: blog
-Status: draft
 Tags: blog, r, rstats
 Slug: ponemon
 Author: Jay Jacobs (@jayjacobs)
