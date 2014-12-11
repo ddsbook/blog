@@ -8,7 +8,7 @@ Author: Jay Jacobs (@jayjacobs)
 
 
 I was recently presenting on the use of statistics for risk analysis at
-the SIRACon conference held in Minneapolos, October 9th and 10th. I was
+the SIRACon conference held in Minneapolos (Oct. 9th and 10th, 2014). I was
 explaining how models and algorithms work at a high level: given one or
 more observations and the outcomes, we build models or algorithms to
 learn how the observations can help predict the outcome. As examples I
@@ -38,13 +38,12 @@ The data I have is from both the 2013 and 2014 Cost of Data Breach
 (CODB) report. I was forwarded a version of these reports that have the
 data. As I search around the Internet, I struggle to find the versions
 with the data in the back. I used software to extract the figures from
-the PDF versions, and I have made the data available through this github
-repo in both CSV format and as an R data object. The data is only drawn
-from United States companies.
+the PDF versions.  The data is only drawn from United States companies.
 
 Finally, I make no statements about how the data was collected. This
 analysis makes the assumption, as the CODB reports do, that the data
-collection method is sound.
+collection method is sounli.d This focuses on the insight we can gain by
+analyzing the data itself. 
 
 ### Visualizing the Data
 
@@ -88,9 +87,8 @@ multiply the number of records in their system by a fixed dollar figure
 and get an estimate of loss. But as we'll see, this is a very poor model
 at describing this data and is quite misleading to the reader. In order
 to quantify how the model performs in describing the data we will
-calculate what's known as the [R
-Squared](http://en.wikipedia.org/wiki/Coefficient_of_determination)
-value, which will give some indication of how well the model "fits" the
+calculate what's known as the _R-Squared
+value_, which will give some indication of how well the model "fits" the
 data. The result will be between 0 and 1 with 1 representing a perfect
 fit of the data.
 
@@ -149,12 +147,12 @@ linear regression is:
 Which can be interpretted as, "Each breach has an average static loss of
 $2.3 million plus an additional *$107 of loss for each record
 compromised*." I added emphasis to the rather important part of that
-statement. This regression model estimates the cost per record to be
+statement. This regression model estimates the cost for each additional record to be
 $107, not the $188 estimated by the Ponemon model. Also, if you notice
 the (adjusted) R-squared value, it's now up to 29%. Still a rather low
 value, but certainly better than 13%. The only other thing to notice
 about the model is the variable of the number of records is significant
-(p-value of 0.00001) and the overal model is signification with the same
+(p-value of 0.00001) and the overall model is significant with a similar
 tiny p-value.
 
 And 2014:
@@ -315,9 +313,8 @@ for each of the models, we can get a feel for their accuracy.
 </tbody>
 </table>
 
-And this is across 115 observations across 2013 and 2014, meaning the
-average estimate for each of these is off the mark by $2 million. And
-looking at the
+And this is across 115 observations from 2013 and 2014, meaning the
+average estimate for each of these is off the mark by $2 million over 2 years. 
 
 ### In Summary:
 
