@@ -41,7 +41,7 @@ the PDF versions.  The data is only drawn from United States companies.
 
 Finally, I make no statements about how the data was collected. This
 analysis makes the assumption, as the CODB reports do, that the data
-collection method is sounli.d This focuses on the insight we can gain by
+collection method is not seriously flawed. This focuses on the insight we can gain by
 analyzing the data itself. 
 
 ### Visualizing the Data
