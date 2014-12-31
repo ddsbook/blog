@@ -1,8 +1,8 @@
 Title: Wishing You A Data-Driven 2015!
 Date: 2014-12-30 23:35:19
 Category: blog
-Status: draft
 Tags: blog
+Slug: wishing-you-a-data-driven-2015
 Author: Bob Rudis (@hrbrmstr)
 
 First we'd like to give a huge **thank you** to all our blog & book readers (and guest contributors) + podcast guests & listeners. You all made 2015 a supercalifragilisticexpialidocious year for Jay & I with your tweets, reviews, ideas, commentary, contributuons and in-person connections.
