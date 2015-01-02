@@ -6,7 +6,55 @@ Tags: blog
 Slug: mapping-ipv4-address-in-hilbert-space
 Author: Bob Rudis (@hrbrmstr)
 
-While there's an unholy affinity in the infosec commuinty with slapping IPv4 addresses onto a world map, that isn't the only way to spatially visualize IP addresses. 
+While there's an unholy affinity in the infosec commuinty with slapping IPv4 addresses onto a world map, 
+that isn't the only way to spatially visualize IP addresses. A better approach (when tabluation with bar 
+charts, tables or other standard visualization techniques won't do) is to map IPv4 addresses into 
+[Hilbert space-filling curve](http://en.wikipedia.org/wiki/Hilbert_curve). You can get a good feel for how 
+these work over at [The Measurement Factory](http://maps.measurement-factory.com/), which is where this 
+image comes from:
+
+<center>
+  
+![mfhil](http://maps.measurement-factory.com/gallery/Routeviews/20080301-s.png)
+
+</center>
+
+[This paper](http://www.iepg.org/2007-12-ietf70/3dheatmaps.pdf) [PDF] also is a good primer.
+
+While TMF's [ipv4heatmap](http://maps.measurement-factory.com/software/releases/) command-line software can crank out those visualizations really well, I wanted a way to generate them in R as we explore internet IP space at work. So, I adapted bits of their code to work in a `ggplot` context and took a stab at an [ipv4heatmap package](https://github.com/vz-risk/ipv4heatmap). 
+
+The functionality is pretty basic. Give `ipv4heatmap` a vector of IP addresses and you'll get a heatmap of them.
+
+
+    :::r
+    devtools::install_github("vz-risk/ipv4heatmap")
+    library(ipv4heatmap)
+    library(data.table)
+    
+    # read in cached copy of blocklist.de IPs - orig URL http://www.blocklist.de/en/export.html
+    hm <- ipv4heatmap(readLines("http://dds.ec/data/all.txt"))
+    
+    # read in CIDRs for China and North Korea
+    cn <- read.table("http://www.iwik.org/ipcountry/CN.cidr", skip=1)
+    kp <- read.table("http://www.iwik.org/ipcountry/KP.cidr", skip=1)
+    
+    # make bounding boxes for the CIDRs
+    
+    cn_boxes <- rbindlist(lapply(boundingBoxFromCIDR(cn$V1), data.frame))
+    kp_box <- data.frame(boundingBoxFromCIDR(kp$V1))
+    
+    # overlay the bounding boxes for China onto the IPv4 addresses we read in and Hilbertized
+    
+    gg <- hm$gg
+    gg <- gg + geom_rect(data=cn_boxes, 
+                         aes(xmin=xmin, ymin=ymin, xmax=xmax, ymax=ymax), 
+                         fill="white", alpha=0.2)
+    gg <- gg + geom_rect(data=kp_box, 
+                         aes(xmin=xmin, ymin=ymin, xmax=xmax, ymax=ymax), 
+                         fill="white", alpha=0.2)  
+    
+    gg
+
 
 
 <center><iframe style="max-width=100%" src="http://dds.ec/hilvis/iframe.html" width="514" height="900" scrolling="no" seamless="seamless" frameBorder="0"></iframe></center>
