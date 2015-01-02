@@ -8,4 +8,7 @@ Author: Bob Rudis (@hrbrmstr)
 
 While there's an unholy affinity in the infosec commuinty with slapping IPv4 addresses onto a world map, that isn't the only way to spatially visualize IP addresses. 
 
-<iframe style="max-width=100%" src="http://dds.ec/hilvis/iframe.html" width="514" height="800" scrolling="no" seamless="seamless" frameBorder="0"></iframe>
+
+<center><iframe style="max-width=100%" src="http://dds.ec/hilvis/iframe.html" width="514" height="900" scrolling="no" seamless="seamless" frameBorder="0"></iframe></center>
+
+
