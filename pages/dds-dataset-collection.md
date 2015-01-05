@@ -7,7 +7,7 @@ Author: Bob Rudis (@hrbrmstr)
 
 One of the reasons we wrote the book [Data Driven Security](http://amzn.to/ddsec) and started the DDS blog & podcast was to provide security-related analysis and visualization examples in a data world full of [flowers](http://en.wikipedia.org/wiki/Iris_flower_data_set) & [dead bodies](http://en.wikipedia.org/wiki/Reported_Road_Casualties_Great_Britain).
 
-When you're looking for risky data to play with, bookmark this page and check back often for updates. We'll be updating it regularly with data sets we feature on the blog and will provide pointers to other publicly-available  security-related data sets at other sites.
+When you're looking for risky data to play with, bookmark this page and check back often for updates. We'll be updating it with data sets we feature on the blog and will provide pointers to other publicly-available security-related data sets at other sites.
 
 
 **Honeypots**
