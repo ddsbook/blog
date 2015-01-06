@@ -3,7 +3,7 @@ Date: 2015-01-06 10:33:06
 Category: blog
 Tags: blog, veris, vcdb, humor
 Slug: you-say-you-want-an-attribution
-Author: Bob Rudis (@hrbrmstr)
+Author: @alexcpsec, @bfist, @hrbrmstr
 
 _Need an opinon about the Sony hack?_
 
