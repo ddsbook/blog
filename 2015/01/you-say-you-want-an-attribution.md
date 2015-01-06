@@ -1,5 +1,5 @@
 Title: You Say You Want an Attribution
-Date: 2015-01-06 010:33:06
+Date: 2015-01-06 10:33:06
 Category: blog
 Tags: blog, veris, vcdb, humor
 Slug: you-say-you-want-an-attribution
