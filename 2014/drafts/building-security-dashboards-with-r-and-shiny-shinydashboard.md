@@ -1,5 +1,5 @@
-Title: Building Dashboards w/R & Shiny ShinyDashboard
-Date: 2015-01-24 11:43:18
+Title: Building Dashboards w/R & Shiny shinydashboard
+Date: 2015-01-24 22:30:18
 Category: blog
 Status: draft
 Tags: blog, rstats, r, shiny, dashboard
@@ -34,7 +34,7 @@ We also make liberal use of the "hadleyverse" (the plethora of modern R packages
 
 ### The Basic shinydashboard Framework
 
-Shinydashboard runs on top of Shiny, and Shiny is an R package that presents a web front-end to back-end R processing. All Shiny apps define user-facing components (usually in a file called `ui.R`) and server-side processing components (usually in a file called `server.R`) use [reactive expressions](http://shiny.rstudio.com/tutorial/lesson6/) to tie user actions (or timed triggers) to server events (or have server-side events change the user-interface). Shiny applications present themselves in a [Bootstrap 3](http://getbootstrap.com/) template and the `shinydashboard` package adds a further layer of abstraction, making it fairly simple to embed complex controls and visualizations without knowing (virtually) any HTML.
+Shinydashboard runs on top of Shiny, and Shiny is an R package that presents a web front-end to back-end R processing. All Shiny apps define user-facing components (usually in a file called `ui.R`) and server-side processing components (usually in a file called `server.R`) and use [reactive expressions](http://shiny.rstudio.com/tutorial/lesson6/) to tie user actions (or timed triggers) to server events (or have server-side events change the user-interface). Shiny applications present themselves in a [Bootstrap 3](http://getbootstrap.com/) template and the `shinydashboard` package adds a further layer of abstraction, making it fairly simple to embed complex controls and visualizations without knowing (virtually) any HTML.
 
 When building `shinydashboard`s, you work with:
 
@@ -78,13 +78,13 @@ The following is the R version of that structure in a single-file `shinydashboar
     
     shinyApp(ui, server)
 
->If you're wondering what's up with the long "`# xyz ---`" comments, RStudio will use them to provide sections in the source code function navigation menu, making it really easy to find sections of code quite quickly.
+>If you're wondering what's up with the long "`# xyz ---`" comments, RStudio will use them to provide block entries in the source code function navigation menu, making it really easy to find sections of code quite quickly.
 
 Paste that into an RStudio file pane and source (run) it to see how it works (we'll cover using it in the context of a Shiny server environment in another post).
 
-### Building a a 'Con' Board
+### Building a 'Con' Board
 
-We infosec folk seem to really like "Con" boards. We've got the SANS ISC "Infocon", Symantec's "ThreatCon" and IBM X-Force's "AlertCon" (to name a few). Let's build a dashboard that grabs the current "con" status from each of those places and puts them all into one place.
+We infosec folk seem to really like "Con" ("current threat level") gauges. We've got the SANS ISC "Infocon", Symantec's "ThreatCon" and IBM X-Force's "AlertCon" (to name just a few). Let's build a dashboard that grabs the current "Con" status from each of those three places and puts them all into one place.
 
 It's always good to start with a wireframe layout for your dashboard (even though this is a pretty trivial one). Let's have one row of `shinydashboard` <a href="http://rstudio.github.io/shinydashboard/structure.html#valuebox">valueBox</a>es:
 
@@ -114,9 +114,12 @@ The initial setup code looks the same as the basic example above, but it adds so
     body <- dashboardBody(
       fluidPage(
         fluidRow(
-          uiOutput("infocon"),
-          uiOutput("threatcon"),
-          uiOutput("alertcon")
+          a(href="http://isc.sans.org/",
+            target="_blank", uiOutput("infocon")),
+          a(href="http://www.symantec.com/security_response/threatcon/",
+            target="_blank", uiOutput("threatcon")),
+          a(href="http://webapp.iss.net/gtoc/",
+            target="_blank", uiOutput("alertcon"))
         )
       )
     )
@@ -201,8 +204,8 @@ The result is a consistent themed set of internet situational awareness at a hig
 
 >OK, I snuck some extra elements in on that screen capture, mostly as a hint of things to come. The core elements - the three "con" status boxes are unchanged from the simple example presented here.
 
-You can find the code for the dashboard in [this gist](https://gist.github.com/hrbrmstr/e9e941ad4e3568f98faf) and you can even take a quick view of it (provided you've got the required packages installed) via `shiny::runGist("e9e941ad4e3568f98faf")`.
+You can find the code for the dashboard in [this gist](https://gist.github.com/hrbrmstr/e9e941ad4e3568f98faf) and you can even take a quick view of it (provided you've got the required packages installed) via `shiny::runGist("e9e941ad4e3568f98faf")`. As a general rule, I advise either running locally or carefully examining the code first before blindly running foreign URLs. This is the R equivalent of `curl http://example.com/script.sh | sh`, which is also a bad practice (unless it's your own code).
 
 ### Next Steps
 
-In the next post, we'll show you how to incorporate more data elements, add some dynamic updating capabilities and also add some other sections to the dashboard.
+The dashboard in this post loads all the data dynamically, but only once. In the next post, we'll show you how to incorporate more data elements, incorporate dynamic updating capabilities and also add some other sections to the dashboard, including sidebar menus and header notifications.
