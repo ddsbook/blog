@@ -1,7 +1,6 @@
-Title: Building Dashboards w/R & Shiny shinydashboard
+Title: Building [Security] Dashboards w/R & Shiny + shinydashboard
 Date: 2015-01-24 22:30:18
 Category: blog
-Status: draft
 Tags: blog, rstats, r, shiny, dashboard
 Slug: building-security-dashboards-with-r-and-shiny-shinydashboard
 Author: Bob Rudis (@hrbrmstr)
@@ -204,7 +203,7 @@ The result is a consistent themed set of internet situational awareness at a hig
 
 >OK, I snuck some extra elements in on that screen capture, mostly as a hint of things to come. The core elements - the three "con" status boxes are unchanged from the simple example presented here.
 
-You can find the code for the dashboard in [this gist](https://gist.github.com/hrbrmstr/e9e941ad4e3568f98faf) and you can even take a quick view of it (provided you've got the required packages installed) via `shiny::runGist("e9e941ad4e3568f98faf")`. As a general rule, I advise either running locally or carefully examining the code first before blindly running foreign URLs. This is the R equivalent of `curl http://example.com/script.sh | sh`, which is also a bad practice (unless it's your own code).
+You can find the code for the dashboard in [this gist](https://gist.github.com/hrbrmstr/e9e941ad4e3568f98faf) and you can even take a quick view of it (provided you've got the required packages installed) via `shiny::runGist("e9e941ad4e3568f98faf")`. As a general rule, I advise either running code locally (after inspection) or carefully examining the remote   code first before blindly running foreign URLs. This is the R equivalent of `curl http://example.com/script.sh | sh`, which is also a [bad practice](http://curlpipesh.tumblr.com/) (unless it's your own code).
 
 ### Next Steps
 
