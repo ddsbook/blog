@@ -80,7 +80,7 @@ The following is the R version of that structure in a single-file shinydashboard
 
 >If you're wondering what's up with the long "`# xyz ---`" comments, RStudio will use them to provide sections in the source code function navigation menu, making it really easy to find sections of code quite quickly.
 
-Paste that into an RStudio file pane and source (run) it to see how it works (we'll cover using it in the context of a Shiny server environment in another post). 
+Paste that into an RStudio file pane and source (run) it to see how it works (we'll cover using it in the context of a Shiny server environment in another post).
 
 ### Building a a 'Con' Board
 
@@ -109,7 +109,7 @@ The initial setup code looks the same as the basic example above, but it adds so
     :::r
     header <- dashboardHeader(title="CYBER Dashboard")
     
-    sidebar <- dashboardSidebar(disable=TRUE)
+    sidebar <- dashboardSidebar()
     
     body <- dashboardBody(
       fluidPage(
@@ -144,7 +144,7 @@ Now, in the server function, we have three sections, each performing data gather
 
 The `output$infocon` is tied to the `uiOutput("infocon")` in the `dashboardBody` and the setup code grabs the JSON from the DSheild API and ensures the right color and label is used for the `valueBox` (I'm not entirely thrilled with the built-in color choices, but they can be customzed through CSS settings and we'll cover that in a later post, too).
 
-The remaning two section require finding the right HTML tags and extracting the con status from it, then tying the level to the right color:
+The remaning two section require finding the right HTML tags and extracting the con status from it, then tying the level to the right color. I use both CSS & XPath selectors in the following examples just to show how flexible the `rvest` package is (and I am a recovering XML/XSLT/XPath user):
 
     :::r
       output$threatcon <- renderUI({
@@ -195,4 +195,12 @@ The remaning two section require finding the right HTML tags and extracting the 
     
     shinyApp(ui, server)
 
+The result is a consistent themed set of internet situational awareness at a high level:
 
+<center><img src="http://dds.ec/blog/images/2015/01/dashboard03.png"/></center>
+
+>OK, I snuck some extra elements in on that screen capture, mostly as a hint of things to come. The core elements - the three "con" status boxes are unchanged from the simple example presented here.
+
+### Next Steps
+
+In the next post, we'll show you how to incorporate more data elements, add some dynamic updating capabilities and also add some other sections to the dashboard.
