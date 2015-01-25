@@ -201,6 +201,8 @@ The result is a consistent themed set of internet situational awareness at a hig
 
 >OK, I snuck some extra elements in on that screen capture, mostly as a hint of things to come. The core elements - the three "con" status boxes are unchanged from the simple example presented here.
 
+You can find the code for the dashboard in [this gist](https://gist.github.com/hrbrmstr/e9e941ad4e3568f98faf) and you can even take a quick view of it (provided you've got the required packages installed) via `shiny::runGist("e9e941ad4e3568f98faf")`.
+
 ### Next Steps
 
 In the next post, we'll show you how to incorporate more data elements, add some dynamic updating capabilities and also add some other sections to the dashboard.
