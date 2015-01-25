@@ -10,7 +10,7 @@ Jay & I cover dashboards in Chapter 10 of [Data-Driven Security](http://dds.ec/a
 
 ### Why R/Shiny/shinydashboard?
 
-You can make dashboards in a cadre of programs: from Excel to PowerPoint, Tableau to MicroStrategy (a tool of choice for the "Godfather of Dashboards" - Stephen Few), Python to Ruby, plus many canned Saas tools. shinydashboards is compelling since it:
+You can make dashboards in a cadre of programs: from Excel to PowerPoint, Tableau to MicroStrategy (a tool of choice for the "Godfather of Dashboards" - Stephen Few), Python to Ruby, plus many canned Saas tools. `shinydashboard`s is compelling since it:
 
 - is completely _free_ (unless you need or are compelled to purchase [commerical support](http://www.rstudio.com/products/shiny-server-pro/) options)
 - provides substantial functionality and layout options out-of-the-box
@@ -18,7 +18,7 @@ You can make dashboards in a cadre of programs: from Excel to PowerPoint, Tablea
 
 It also enables the use of _every data gathering, data munging, statistical, computational, visualization & machine-learning package R has to offer_ to help make your dashboards as meaningful, accurate and appealing as possible.
 
-The shinydashboard framework is also pretty easy to wrap your head around once you dive into it. So, let's do so right now!
+The `shinydashboard` framework is also pretty easy to wrap your head around once you dive into it. So, let's do so right now!
 
 ### Prerequisites
 
@@ -34,9 +34,9 @@ We also make liberal use of the "hadleyverse" (the plethora of modern R packages
 
 ### The Basic shinydashboard Framework
 
-Shinydashboard runs on top of Shiny, and Shiny is an R package that presents a web front-end to back-end R processing. All Shiny apps define user-facing components (usually in a file called `ui.R`) and server-side processing components (usually in a file called `server.R`) use [reactive expressions](http://shiny.rstudio.com/tutorial/lesson6/) to tie user actions (or timed triggers) to server events (or have server-side events change the user-interface). Shiny applications present themselves in a [Bootstrap 3](http://getbootstrap.com/) template and the shinydashboard package adds a further layer of abstraction, making it fairly simple to embed complex controls and visualizations without knowing (virtually) any HTML.
+Shinydashboard runs on top of Shiny, and Shiny is an R package that presents a web front-end to back-end R processing. All Shiny apps define user-facing components (usually in a file called `ui.R`) and server-side processing components (usually in a file called `server.R`) use [reactive expressions](http://shiny.rstudio.com/tutorial/lesson6/) to tie user actions (or timed triggers) to server events (or have server-side events change the user-interface). Shiny applications present themselves in a [Bootstrap 3](http://getbootstrap.com/) template and the `shinydashboard` package adds a further layer of abstraction, making it fairly simple to embed complex controls and visualizations without knowing (virtually) any HTML.
 
-When building shinydashboards, you work with:
+When building `shinydashboard`s, you work with:
 
 - header components (titles, notificaitons, tasks & messages)
 - sidebar components (menus, links, input components)
@@ -44,7 +44,7 @@ When building shinydashboards, you work with:
 
 <center><img src="http://dds.ec/blog/images/2015/01/dashboard01.png"/></center>
 
-The following is the R version of that structure in a single-file shinydashboard app (`app.R`) without any extra components:
+The following is the R version of that structure in a single-file `shinydashboard` app (`app.R`) without any extra components:
 
     :::r
     library(shiny)
