@@ -1,10 +1,9 @@
 Title: Tales of Lifelong Learning: EconSec101x Economics of Cybersecurity
-Date: 2015-03-06 18:43:55
+Date: 2015-03-07 12:30:00
 Category: blog
-Status: draft
-Tags: blog
-Slug: fsmontenegro-draft
-Author: Fernando Montenegro
+Tags: blog, mooc, education
+Slug: review-edx-cybersecurity-mooc
+Author: Fernando Montenegro (@fsmontenegro)
 
 I'm thrilled to be invited to share my perspective after taking a rather unique MOOC offering - [Economics of CyberSecurity](https://www.edx.org/course/economics-cybersecurity-delftx-econsec101x), organized by TU Delft. This was a 5-week course covering several aspects of 'Information Security' from the perspective of 'security economics', which is the discipline that has been evolving since the early 2000's. As someone with quite some time in this industry and with a strong interest in economics, fraud, and data science, this was definitely a 'kid in the candy store' kind of opportunity...
 
