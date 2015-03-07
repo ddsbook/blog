@@ -21,16 +21,19 @@ Every week we had online quizzes to fill, optional readings, optional discussion
 
 So, how was it? I came to this course as a professional (I work for a security vendor as an SE) looking for content to support better discussions than 'my product is better than the other one because X'. I think we need to have a better understanding of the economics behind CyberSec so that non-security executives take us more seriously. The whole initiative behind Data Driven Security is, to me, just like EconSec: another aspect of coming to the table with more than 'you need security because FUD'.
 
-The Good:
+### The Good:
+
 * I was really happy to be able to tie content together between Economics and CyberSecurity. The content from this course is indeed "101", but it is a step in the right direction.
 * I like the reading lists provided and will follow up on many of them.
 * The course covered a broad spectrum, from the market failures of misaligned incentives for software developers, to the human failures in behavioural econ. Very nice overview of the field, with a consistent message of 'beware the incentives at play' throughout.
 
-The Bad:
+### The Bad:
+
 * I found the content of the quizzes often didn't quite line up well with the lectures during the week. Sure, it did require a bit more thinking than what I was used to on other MOOCs, but even then I felt they could have made the linkages a bit clearer. As a side note, one of the quizzes was actually coded wrong, so the 'correct' answer was the *inverse* of what you expected.
 * Also on the quizzes, clicking "show answer" should probably give a little background as to why the answer is right or wrong, not just show a green checkmark next to what you already know the answer to be...
 
-The Ugly:
+### The Ugly:
+
 * As for the MOOC platform, I have a preference for Coursera over edX. I find the edX UX inefficient, with poor use of screen real estate, horrible subtitle placement and unwieldy system of navigating course content. This course was no exception.
 
 Was it worth it? While I may be biased by the 'endowment effect', I think it was. I was looking for the conceptual bridge between economic theory and typical information/cyber security topics. While there's a ton more that could be covered, the course was able to do that very well.
