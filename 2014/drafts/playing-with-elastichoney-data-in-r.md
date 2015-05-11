@@ -1,12 +1,11 @@
 Title: Playing with elastichoney data in R
-Date: 2015-05-11 08:38:38
+Date: 2015-05-11 11:00:00
 Category: blog
-Status: draft
 Tags: blog, r, rstats, elasticsearch, ipv4heatmap, json
 Slug: playing-with-elastichoney-data-in-r
 Author: Bob Rudis (@hrbrmstr)
 
-Work has keep myself & @jayjacobs quite busy of late, but a small data set posted by @jw_sec this morning made for an opportunity for a quick blog post to show how to do some data maniupation and visualization in R. We sometimes aim a bit high in our posts and forget that many folks are really just starting to learn R. For those just getting started, here's what's in store for you:
+Work has keep myself & @jayjacobs quite busy of late, but a small data set posted by @jw_sec this morning made for an opportunity for a quick blog post to show how to do some data maniupation and visualization in R for both security and non-security folk (hey, this may even get more non-security folk looking at security data which is a definite "win" if so). We sometimes aim a bit high in our posts and forget that many folks are really just starting to learn R. For those just getting started, here's what's in store for you:
 
 - reading and processing JSON data
 - using `dplyr` and pipe idioms to do some data munging
@@ -113,7 +112,7 @@ There's an interesting spike on April 24th, but we don't have individual IDs for
     ## 11   219.235.4.22   1
     ## 12  61.176.223.77   1
 
-`218.4.169.146` was quite busy that day (missed previous days++ quota?).
+`218.4.169.146` was quite busy that day (missed previous days++ quota?). Again, we need more info to even try to discern "why", something to think about when designing an information collection system for furhter analysis.
 
 #### Contacts by request type
 
@@ -180,9 +179,11 @@ There's the standard "geoip" blathering in the data set and a map in the blog po
 
 <a target="_blank" href="http://datadrivensecurity.info/blog/images/2015/05/china.png"><img src="http://datadrivensecurity.info/blog/images/2015/05/china-small.png"/></a>
 
+China IP space is a major player, but the address blocks are not at all mostly contiguous and there definitely are other network (and geo) sources. You can use `dplyr` and the other CIDR blocks from Ivan to take a more detailed look.
+
 #### Wrapping up
 
-There are definitely some further areas to explore in the data set, and I hope this insipred some folks to fire up RStudio and explore the data a bit further. If you find anything interesing, drop a note in the comments.
+There are definitely some further areas to explore in the data set, and I hope this insipred some folks to fire up RStudio and explore the data a bit further. If you find anything interesing, drop a note in the comments. Remember, all the source for the above is [on github](https://github.com/hrbrmstr/elastichoney).
 
 
 
