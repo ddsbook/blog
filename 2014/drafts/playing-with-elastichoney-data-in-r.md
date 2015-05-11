@@ -5,7 +5,7 @@ Tags: blog, r, rstats, elasticsearch, ipv4heatmap, json
 Slug: playing-with-elastichoney-data-in-r
 Author: Bob Rudis (@hrbrmstr)
 
-Work has keep myself & @jayjacobs quite busy of late, but a small data set posted by @jw_sec this morning made for an opportunity for a quick blog post to show how to do some data maniupation and visualization in R for both security and non-security folk (hey, this may even get more non-security folk looking at security data which is a definite "win" if so). We sometimes aim a bit high in our posts and forget that many folks are really just starting to learn R. For those just getting started, here's what's in store for you:
+Work has kept myself & @jayjacobs quite busy of late, but a small data set posted by @jw_sec this morning made for an opportunity for a quick blog post to show how to do some data maniupation and visualization in R for both security and non-security folk (hey, this may even get more non-security folk looking at security data which is a definite "win" if so). We sometimes aim a bit high in our posts and forget that many folks are really just starting to learn R. For those just getting started, here's what's in store for you:
 
 - reading and processing JSON data
 - using `dplyr` and pipe idioms to do some data munging
