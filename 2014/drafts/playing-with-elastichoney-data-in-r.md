@@ -30,6 +30,7 @@ You can view Jordan's [blog post](http://jordan-wright.github.io/blog/2015/05/11
 - convert the timestamp text to an actual time format 
 - ensure the request method is uniform (all uppercase)
 
+&nbsp;
 
     :::r
     elas %>%
