@@ -20,5 +20,5 @@ The visual differences are not nearly as stark as the original chart would indic
 
 You can grab the [Excel workbook](http://dds.ec/blog/extra/2015-05-bars.xlsx) and have a look at the data and result. Note that I had to add the y-axis, change the range, then delete the y-axis to correct the default (and bad) Excel defaults. Alas, there is no nice script to post since you have to do all the time-consuming mouse-clicks, deletes and box-value-fills on your own to reproduce from scratch.
 
-Remember that your eyes and your mind are smarter than your tools. Don't rely on them to tell the story for you. Don't assume they are smarter than you. Ensure they're helping _you_ tell the messages that are in the data and are doing so truthfully and as clearly as possible.
+Remember that your eyes and your mind are smarter than your tools. Don't rely on them to tell the story for you. Don't assume they are smarter than you. Ensure they're helping _you_ tell the messages that you'v found in the data and are also helping you do so truthfully and as clearly as possible.
 
