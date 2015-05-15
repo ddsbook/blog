@@ -1,7 +1,6 @@
 Title: Truthier Bars in Excel
-Date: 2015-05-14 21:45:16
+Date: 2015-05-14 23:00:16
 Category: blog
-Status: draft
 Tags: blog, excel, datavis
 Slug: truthier-bars-in-excel
 Author: Bob Rudis (@hrbrmstr)
