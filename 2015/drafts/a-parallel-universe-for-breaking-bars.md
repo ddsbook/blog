@@ -1,18 +1,17 @@
 Title: A Parallel Universe for Breaking Bars
 Date: 2015-05-19 14:30:10
 Category: blog
-Status: draft
 Tags: blog
 Slug: a-parallel-universe-for-breaking-bars
 Author: Bob Rudis (@hrbrmstr)
 
-Akamai released it's [Q1 State of the Internet/Security Report](http://www.stateoftheinternet.com/resources-web-security-2015-q1-internet-security-report.html) today. They were an awesome partner for this and previous year's [DBIR](http://verizonenterprise.com/DBIR) and their report (along with [Arbor Networks Report](http://www.arbornetworks.com/resources/infrastructure-security-report)) provides a much more detailed look at denial of service attacks than we could ever have done for our report. They've also fully incporporated the data from Prolexic (a fairly recent Akamai acquisition) so it's also more comprehensive than ever.
+Akamai released it's [Q1 State of the Internet/Security Report](http://www.stateoftheinternet.com/resources-web-security-2015-q1-internet-security-report.html) today. They were an awesome partner for this and previous year's [DBIR](http://verizonenterprise.com/DBIR)s and their report (along with [Arbor Networks Report](http://www.arbornetworks.com/resources/infrastructure-security-report)) provides a much more detailed look at denial of service attacks than we could ever have done in ours. They've also fully incporporated the data from Prolexic (a fairly recent Akamai acquisition) so it's also more comprehensive than ever.
 
-After going through the report I became obsessed with Figure 1-4:
+After going through the pages I became obsessed with Figure 1-4:
 
 <img src="http://dds.ec/blog/images/2015/05/Fig1_4%20DDoS%20attack%20type%20distribution.jpg" style="max-width:100%"/>
 
-There's nothing technically wrong with this chart. If I have to use grouped bars, I try to limit the categories to three (which Akamai did) and the overall aesthetics are fine. But, I think it's hard to pick out a story from it, and I thought there were possibly stories one could tell just from the chart alone. So, I fired up RStudio and had a go at it.
+There's nothing technically wrong with this chart. If I have to use grouped bars, I try to limit the categories to three (which Akamai did) and the overall aesthetics are fine. But, I think it's hard to pick out a story from it, and I thought there _were_ possibly stories one could tell just from the chart alone. So, I fired up RStudio and had a go at it.
 
 ### Beating Bars Into Line-shares
 
@@ -37,30 +36,38 @@ To use the "wide" CSV file, we need to read it in and transform it, converting s
     # this will help us make vertical lines later 
     qtr <- data.frame(d=unique(dat$quarter))
 
-We'll build two `ggplot` objects, one for the Infrastructure bits and one for the Application ones. It's the same basic approach for both:
+We'll build two `ggplot` objects, one for the Infrastructure bits and one for the Application ones. It's the same basic approach for both (comments inline):
 
     :::r
     # separate out infra and plot it
     
     dat %>% filter(layer=="Infrastructure") -> infra
+    
     # this helps us order the legend by the last quarterly value
     infra %>% filter(quarter==qtr$d[3]) %>% arrange(desc(value)) %>% .$Vector -> infra_vec
     infra %>% mutate(Vector=factor(Vector, levels=infra_vec, ordered=TRUE)) -> infra
      
     gg <- ggplot(infra, aes(x=quarter, y=value, group=Vector))
+    # vertical dashed lines for the quarters
     gg <- gg + geom_vline(data=qtr, aes(xintercept=as.numeric(d)),
-                          linetype="dashed", color="#7f7f7f", alpha=3/4)
+                          linetype="dashed", color="#7f7f7f", alpha=3/4
+    # this draws the actual lines
     gg <- gg + geom_line(aes(color=Vector), size=1/3, alpha=3/4)
+    # remove spacing on x axis and format our labels
     gg <- gg + scale_x_date(expand=c(0, 0), label=date_format("%Y-%b"))
+    # format the labels on the y axis too
     gg <- gg + scale_y_continuous(label=percent)
+    # rename the legend
     gg <- gg + scale_color_discrete(name="Infra\nVector")
     gg <- gg + labs(x=NULL, y="DDoS Attack Vector Frequency", 
                     title="DDoS attack type distribution (Infrastructure)\n")
     gg <- gg + theme_bw()
+    # remove some chart junk
     gg <- gg + theme(panel.border=element_blank())
     gg <- gg + theme(panel.grid=element_blank())
     gg <- gg + theme(axis.ticks.x=element_blank())
     gg <- gg + theme(axis.ticks.y=element_blank())
+    # left justify and make the titles a bit bolder
     gg <- gg + theme(plot.title=element_text(hjust=0, size=14, face="bold"))
     infra_gg <- gg
     
@@ -106,7 +113,7 @@ The initial result is below:
 
 <img src="http://dds.ec/blog/images/2015/05/f14.png" style="max-width:100%"/>
 
-That's good, but we can do better if we take the chart and tweak it a bit in OmniGraffle (or Inkscape, or Illustrator or&hellip;). We can remove the need for a color legend map by putting the appropriate vector labels right next to the chart. Plus, we can highlight any of the ones that should be (i.e. if there's a story in them). I just highlighted three of the ones that had a "rising" effect, but there may be a story in the `DNS` vector that should have caused it to be highlighted. That would be up to the creator to decide. We can also remove some y-axis labeling duplication.
+That's good, but we can do better if we take the chart and tweak it a bit in OmniGraffle (or Inkscape, or Illustrator or&hellip;). We can remove the need for a color legend map by putting the appropriate vector labels right next to the chart. Plus, we can highlight any of the ones that should be highlighted (i.e. if there's a story in them). I just emphasized three of the ones that had a "rising" effect, but there may be a story in the `DNS` vector that should have caused it to be highlighted. We can also remove some y-axis labeling duplication.
 
 My "final" version is below (and it's an SVG, so if you're browser-challenged, either upgrade or drop a note in the comments and I'll gen a PNG):
 
@@ -116,4 +123,6 @@ I have "final" in quotes as I could have spent a bit more time on it (it needs s
 
 ### Fin
 
-Remember, visualizations can and should tell a story in their own right. Take a listen to [Episode 16](http://datadrivensecurity.info/podcast/data-driven-security-episode-16.html) of our podcast if you want to hear a visualization expert critique the 2015 DBIR and provide suggestions for how we can better communicate with our own graphs.
+Remember, visualizations can and should tell a story in their own right. Take a listen to [Episode 16](http://datadrivensecurity.info/podcast/data-driven-security-episode-16.html) of our podcast if you want to hear a visualization expert critique the 2015 DBIR and provide suggestions for how we could have communicated better with our own graphs.
+
+And, a huge "thank you" to Akamai for taking the time and resources to produce their report!
