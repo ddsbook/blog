@@ -1,7 +1,7 @@
 Title: Processing Punycode and IDNA Domain Names in R
 Date: 2015-06-03 21:30:00
 Category: blog
-Tags: blog
+Tags: blog, r, rstats
 Slug: processing-punycode-and-idna-domain-names-in-r
 Author: Bob Rudis (@hrbrmstr)
 
