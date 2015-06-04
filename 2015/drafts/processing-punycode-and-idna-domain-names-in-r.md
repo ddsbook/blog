@@ -107,3 +107,7 @@ be returned. Otherwise the function will return \code{TRUE}.
     puny_tld_check(for_valid)
 
     ## [1] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+
+#### Fin
+
+If you find any errors or need more functionality, post an issue on github and/or drop a note in the comments.
