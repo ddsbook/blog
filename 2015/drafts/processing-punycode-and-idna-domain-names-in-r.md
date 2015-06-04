@@ -38,13 +38,13 @@ protect themselves from future (backwards incompatible) changes in the
 IDN or Unicode specifications. Libidn (and, hence, this package) implements
 an infrastructure for defining and checking strings against such tables.
 
-### Working with punycode
+#### Working with punycode
 
 All three functions in the package are vectorized at the C-level. 
 
 For encoding and decoding operations, you pass in vectors of domain names and the functions return
 encoded or decoded character vectors. If there are any issues during the conversion
-of a particular domain name, the function will substitute \code{"Invalid"} for the
+of a particular domain name, the function will substitute `Invalid` for the
 domain name. 
 
 For the TLD validation function, any character set or conversion issue will cause `FALSE` to 
