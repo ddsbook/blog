@@ -1,7 +1,6 @@
 Title: Processing Punycode and IDNA Domain Names in R
-Date: 2015-06-03 20:42:02
+Date: 2015-06-03 21:30:00
 Category: blog
-Status: draft
 Tags: blog
 Slug: processing-punycode-and-idna-domain-names-in-r
 Author: Bob Rudis (@hrbrmstr)
@@ -48,8 +47,8 @@ encoded or decoded character vectors. If there are any issues during the convers
 of a particular domain name, the function will substitute \code{"Invalid"} for the
 domain name. 
 
-For the TLD validation function, any character set or conversion issue will cause \code{FALSE} to 
-be returned. Otherwise the function will return \code{TRUE}.
+For the TLD validation function, any character set or conversion issue will cause `FALSE` to 
+be returned. Otherwise the function will return `TRUE`.
 
 #### Usage
 
