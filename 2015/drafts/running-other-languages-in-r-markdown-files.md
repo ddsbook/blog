@@ -1,7 +1,6 @@
-Title: Running other languages in R Markdown (Rmd) files
-Date: 2015-06-08 09:20:15
+Title: Running Go language chunks in R Markdown (Rmd) files
+Date: 2015-06-08 10:00:00
 Category: blog
-Status: draft
 Tags: blog, r, rstats
 Slug: running-other-languages-in-r-markdown-files
 Author: Bob Rudis (@hrbrmstr)
