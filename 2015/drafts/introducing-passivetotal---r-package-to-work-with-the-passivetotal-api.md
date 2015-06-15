@@ -1,7 +1,6 @@
 Title: Introducing passivetotal - R Package To Work With the PassiveTotal API
-Date: 2015-06-14 20:44:19
+Date: 2015-06-14 21:30:19
 Category: blog
-Status: draft
 Tags: blog, r, rstats
 Slug: introducing-passivetotal
 Author: Bob Rudis (@hrbrmstr)
