@@ -23,6 +23,7 @@ All of the packages can be `install.packages` from CRAN, except for `webtools`. 
 
 Let's get package loading out of the way:
 
+    :::r
     library(webtools)
     library(dplyr)
     library(stringr)
@@ -31,10 +32,11 @@ Let's get package loading out of the way:
 
 Oliver made it super-easy to read in web logs. I use the "combined" common log format (CLF) on the blog's web server, which can be parsed in one line of R:
 
+    :::r
     log <- read_combined("web.log", has_header=FALSE)
-
+    
     glimpse(log)
-
+    
     ## Observations: 484
     ## Variables:
     ## $ ip_address        (chr) "198.11.246.195", "75.68.128.29", "36.80.104...
@@ -55,6 +57,7 @@ To get some short URLs to expand we only need focus the `referer` for this examp
 
 Here's the code:
 
+    :::r
     log %>%
       mutate(referer=str_replace(referer, "\\?.*$", "")) %>%
       distinct(referer) %>%
@@ -62,7 +65,7 @@ Here's the code:
       expand_urls(check=FALSE, warn=FALSE) -> referers
       
     glimpse(referers)
-
+    
     ## Observations: 61
     ## Variables:
     ## $ orig_url     (chr) "http://t.co/G4XiI9USB3", "http://t.co/j9RmmOY9Kr", "http:...
@@ -70,14 +73,16 @@ Here's the code:
 
 Now that we have a nice set of expanded URLs, we can parse them into their components: 
 
+    :::r
     parsed_refs <- url_parse(referers$expanded_url)
 
 We went from 484 potential URLs to shorten to 61 (after de-duping).
 
 **Please** be kind to the LongURL service and also note that parsing huge lists of URLs can take a while, especially if you turn on validity checking. You'll at least get a free progress bar when using an interactive session (unless you disable it).
 
+    :::r
     glimpse(parsed_refs)
-
+    
     ## Observations: 61
     ## Variables:
     ## $ scheme    (chr) "http", "http", "http", "http", "http", "http", "http", "http...
@@ -89,8 +94,9 @@ We went from 484 potential URLs to shorten to 61 (after de-duping).
 
 With parsed URLs in hand we can can proceed with any other bits of analysis, such as seeing the top domains (which is, unsurprisingly, this very blog):
 
+    :::r
     sort(table(parsed_refs$domain))
-
+    
     ##             de.buyvip.com iosappstar.blogspot.co.at        serv.adwingate.com 
     ##                         1                         1                         1 
     ##        sony.attributed.to           sports.bwin.com            www.amazon.com 
