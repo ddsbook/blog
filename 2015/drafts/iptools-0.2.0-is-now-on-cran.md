@@ -1,5 +1,5 @@
 Title: iptools 0.2.0 is now on CRAN
-Date: 2015-07-01 20:10:16
+Date: 2015-07-01 20:30:16
 Category: blog
 Tags: blog, r, rstats, ip
 Slug: iptools-0.2.0-is-now-on-cran
@@ -17,6 +17,6 @@ plus, ways to handle CIDR blocks and generate random (but valid) IPv4 addresses.
 
 We've also included some core [IANA](http://www.iana.org/) datasets and provided routines to refresh them.
 
-`iptools` pairs nicely with [urltools](http://cran.r-project.org/web/packages/urltools/index.html), [webtools](https://github.com/Ironholds/webtools) and [rgeolocate](https://github.com/Ironholds/rgeolocate), enabling many avenues of feature generation (for machine learning) and data analysis for cybersecurity and web analytics.
+`iptools` pairs nicely with [urltools](http://cran.r-project.org/web/packages/urltools/index.html), [webtools](https://github.com/Ironholds/webtools), [longurl](http://cran.r-project.org/web/packages/longurl/index.html) and [rgeolocate](https://github.com/Ironholds/rgeolocate), enabling many avenues of feature generation (for machine learning) and data analysis for cybersecurity and web analytics.
 
 If you manage to get it working well on Windows, drop us a note in the comments (you'll get a free copy of [Data-Driven Security](http://dds.ec/amzn)) and if you've use `iptools` in any cool projects hit us up here or on Twitter so we can get you on [the podcast](http://podcast.datadrivensecurity.info).
