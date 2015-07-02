@@ -1,5 +1,5 @@
 Title: Makeover: Fixing a survey response chart
-Date: 2015-07-01 23:59:45
+Date: 2015-07-02 09:00:45
 Category: blog
 Status: draft
 Tags: blog, r, rstats, survey, vis, datavis
@@ -127,7 +127,7 @@ Finally, we plot a stacked bar chart. One way to do this with ggplot is to use t
     gg <- gg + scale_fill_manual(values=c("#b2182b", "#4393c3", "#92c5de"),
                                  drop=FALSE)
     gg <- gg + scale_y_continuous(expand=c(0,0),
-                                  breaks=c(-0.75, -0.50, -0.25, 0, 0.25, 0.50),
+                                  breaks=seq(-0.75, 0.5, 0.25),
                                   limits=c(-0.75, 0.50),
                                   labels=percent_format())
     gg <- gg + coord_flip()
@@ -138,4 +138,6 @@ Finally, we plot a stacked bar chart. One way to do this with ggplot is to use t
     gg <- gg + theme(panel.grid=element_blank())
     gg
 
+<img src="http://dds.ec/blog/images/2015/07/unisysremake.png" style="width:100%/>
 
+You now have more data to incorporate into your view of the Unisys survey (for this question). Some things already stand out for me, but we'll leave this post as a makeover "how to" vs an "analysis of an analysis".
