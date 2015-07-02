@@ -1,31 +1,30 @@
-Title: Makeover: Fixing a survey response chart
-Date: 2015-07-02 09:00:45
+Title: Chart makeover - Unisys Security Insights Survey
+Date: 2015-07-02 08:00:45
 Category: blog
-Status: draft
 Tags: blog, r, rstats, survey, vis, datavis
 Slug: makeover-fixing-a-survey-response-chart
 Author: Bob Rudis (@hrbrmstr)
 
-It seems that not a day goes by without some information security vendor releasing a report based on a survey. Thankfully, this post is not about the efficacy of survey-based reports or findings. Today, we're doing a makeover for Unisys, who just released their [Findings from the 2015 Unisys Security Insights Survey](http://blogs.unisys.com/disruptiveittrends/2015/06/30/findings-from-the-2015-unisys-security-insights-survey/).
+It seems that not a day goes by without some information security vendor releasing a report based on a survey. Thankfully, this post is not about the efficacy of survey-based reports or their findings. Today, we're doing a makeover for Unisys, who just released their [Findings from the 2015 Unisys Security Insights Survey](http://blogs.unisys.com/disruptiveittrends/2015/06/30/findings-from-the-2015-unisys-security-insights-survey/).
 
-I started reading their [U.S. findings](http://assets.unisys.com/Documents/Microsites/UnisysSecurityInsights/USI_150227_USreport.pdf) [PDF] and&mdash;after reading their "Polling Methodology" section (you _do_ look for the methodology section first before trying to decide to even bother with the rest of the report, right?)&mdash;I started paging back up to the top when I was greeted with this:
+I started reading their [U.S. findings](http://assets.unisys.com/Documents/Microsites/UnisysSecurityInsights/USI_150227_USreport.pdf) [PDF] and&mdash;after reading their _"Polling Methodology"_ section (you _do_ look for the methodology section first before trying to decide to even bother with the rest of a report, right?)&mdash;I started paging back up to the top when I was greeted with this:
 
 <img src="http://dds.ec/blog/images/2015/07/unisyschart.png" style="width:100%"/>
 
 (you can see it on page 5 of the U.S. report)
 
-The goal of the chart seems to be to show which industry Americans believe will suffer a data breach involving their records. There are some obvious initial issues:
+The goal of the chart seems to be to show which industry Americans believe will suffer a data breach involving their records. There are two, quickly obvious initial issues:
 
 - 3D-ish bars
-- The singular-element legend (which is completely redundant)
+- a singular-element legend (which is completely redundant)
 
-Merely fixing those problems is, however, not enough.
+Merely fixing those problems is, however, not enough. So, we won't be showing an intermediate step (you can just picture a flat bar chart with no legend).
 
-The folks at the Liberman Research Group used what appears to be a 3-point Likert scale to gauge the responses. The other two values (besides "Likely") are "Not Llikely" and "Don't know/Do not hold my data". The values for those are in chart text annotations, making it nigh impossible to compare those two values across industries. Since there is obiously a bit of page real estate being used for the chart, why not show all the values and let readers do a broader comparison?
+Since this is a survey, the folks at the Liberman Research Group (Unisys used them for the poll/repot) used what appears to be a 3-point Likert scale ([which is fine](https://archive.ama.org/archive/ResourceLibrary/JournalofMarketingResearch(JMR)/documents/4997896.pdf)) to gauge the responses. The other two values (besides _"Likely"_) are _"Not Llikely"_ and _"Don't know/Do not hold my data"_. The values for those categories are in chart text annotations, making it nigh impossible to compare those two values across industries, which could easily add further insight. Adding these values to the visualization won't take up any more page real estate, so why not show all the values and let readers do a broader comparison?
 
 ### Makeover
 
-We'll use `ggplot2` in R to re-design the chart and incorporate all the answer levels. First, we need the data:
+We'll use `ggplot2` in R to re-design the chart and incorporate all the answer levels. First, we need some libraries and the data:
 
     :::r
     library(dplyr)
@@ -42,13 +41,13 @@ We'll use `ggplot2` in R to re-design the chart and incorporate all the answer l
     Bannking & Finance,.24,.44,.32
     Utilities,.21,.41,.38", sep=",", header=TRUE, stringsAsFactors=FALSE)
    
-Next, we need to reshape that something we can work with in ggplot, which is pretty straightforward with `tidyr`:
+Next, we need to reshape that into something we can work with in ggplot, which is pretty straightforward with `tidyr`:
 
     :::r
     unisys_breach_likelihood %>%
       gather(Response, percent, -Industry) -> lik
 
-That takes the three response columns and collapses it into one. So, it goes from:
+That takes the three response columns and collapses them into one (wide-to-long, as it were). So, it goes from:
 
                 Industry likely not_likely dont_know_or_hold
     1          Retailers   0.44       0.19              0.37
@@ -84,7 +83,7 @@ to:
     20 Bannking & Finance dont_know_or_hold    0.32
     21          Utilities dont_know_or_hold    0.38
 
-The ordering in the original Unisys chart was good, so lets ensure ggplot will plot the Industries in the right order:
+The bar ordering in the original chart was good, so lets ensure ggplot will also order the Industries properly:
 
     :::r
     lik %>%
@@ -92,9 +91,9 @@ The ordering in the original Unisys chart was good, so lets ensure ggplot will p
       arrange(desc(percent)) %>%
       .$Industry -> ind_order
 
-(we'll use `ind_order` in a bit)
+(We'll use `ind_order` in a bit.)
 
-We also want the responses ordered properly (primarily for the legend), so we tackle that next:
+We also want the responses ordered properly for the correct "Likert order" for interpreation, so we tackle that next and also give ggplot a way to make nicer legend labels from the column/response names:
 
     :::r
     lik %>%
@@ -106,11 +105,13 @@ We also want the responses ordered properly (primarily for the legend), so we ta
                                       "Don't know / \nDoes not hold"))) %>%
       mutate(percent=ifelse(Response!="Likely", -percent, percent)) -> lik
 
-We'll use a stacked area chart that's zero-centered between "Likely" and the rest of the answers and add a marker line at 0%, both to enable our brains to compare the length of the bars vs focusing on errantly calculating area (which can happen in 100% stacked bar charts).
+The last `mutate` gives us an easy way to make a diverging stacked bar chart (in ggplot) that's zero-centered between _"Likely"_. We'll also add a marker line at 0%. Both of these choices help  our brains compare the length of the bars vs focusing on mistakenly calculating area (which can happen in 100% stacked bar charts).
 
-Choosing colors wisely will also let our eyes group the non-"Likely" segments together but also easily enables us to separate them logically.
+Choosing colors wisely will also let our eyes more easily group the non-"Likely" segments together but also enable quick, logical separation.
 
-Finally, we plot a stacked bar chart. One way to do this with ggplot is to use two `geom_bar` calls, one to plot the positive/"Likely" components and another to handle the rest. There's quite a bit going on in this ggplot composition but it makes for a good, repeatable outcome in the heed.
+Finally, we plot the diverging stacked bar chart. One way to do this with ggplot is to use two `geom_bar` calls, one to plot the positive, _"Likely"_ components and another to handle the rest.
+
+There's quite a bit going on in this ggplot composition but it makes for a good, repeatable outcome in the end.
 
     question <- "How likely do you think it is that your personal information will be accessed by
     an unauthorized person either accidently or deliberately within the next 12 months?
@@ -141,4 +142,4 @@ Finally, we plot a stacked bar chart. One way to do this with ggplot is to use t
 
 <img src="http://dds.ec/blog/images/2015/07/unisysremake.png" style="width:100%"/>
 
-You now have more data to incorporate into your view of the Unisys survey (for this question). Some things already stand out for me, but we'll leave this post as a makeover "how to" vs an "analysis of an analysis".
+You now have more data to incorporate into your view of the Unisys survey (for this question). Some things already stand out for me, but we'll leave this post as a "makeover how to" vs an "analysis of their analysis".
