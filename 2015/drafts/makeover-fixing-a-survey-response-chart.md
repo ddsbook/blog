@@ -27,20 +27,20 @@ The folks at the Liberman Research Group used what appears to be a 3-point Liker
 
 We'll use `ggplot2` in R to re-design the chart and incorporate all the answer levels. First, we need the data:
 
-   :::r
-   library(dplyr)
-   library(tidyr)
-   library(ggplot2)
-   library(scales)
-   
-   unisys_breach_likelihood <- read.table(text="Industry,likely,not_likely,dont_know_or_hold
-   Retailers,.44,.19,.37
-   Government,.39,.29,.32
-   Telecom,.35,.25,.40
-   Healthcare,.28,.41,.31
-   Airlines,.25,.25,.50
-   Bannking & Finance,.24,.44,.32
-   Utilities,.21,.41,.38", sep=",", header=TRUE, stringsAsFactors=FALSE)
+    :::r
+    library(dplyr)
+    library(tidyr)
+    library(ggplot2)
+    library(scales)
+    
+    unisys_breach_likelihood <- read.table(text="Industry,likely,not_likely,dont_know_or_hold
+    Retailers,.44,.19,.37
+    Government,.39,.29,.32
+    Telecom,.35,.25,.40
+    Healthcare,.28,.41,.31
+    Airlines,.25,.25,.50
+    Bannking & Finance,.24,.44,.32
+    Utilities,.21,.41,.38", sep=",", header=TRUE, stringsAsFactors=FALSE)
    
 Next, we need to reshape that something we can work with in ggplot, which is pretty straightforward with `tidyr`:
 
@@ -96,6 +96,7 @@ The ordering in the original Unisys chart was good, so lets ensure ggplot will p
 
 We also want the resoonses ordered properly (primarily for the legend), so we tackle that next:
 
+    :::r
     lik %>%
       mutate(Industry=factor(Industry, levels=ind_order, ordered=TRUE)) %>%
       mutate(Response=factor(Response,
