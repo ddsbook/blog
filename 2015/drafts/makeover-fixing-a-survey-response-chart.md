@@ -129,8 +129,8 @@ There's quite a bit going on in this ggplot composition but it makes for a good,
     gg <- gg + scale_fill_manual(values=c("#b2182b", "#4393c3", "#92c5de"),
                                  drop=FALSE)
     gg <- gg + scale_y_continuous(expand=c(0,0),
-                                  breaks=seq(-0.75, 0.5, 0.25),
-                                  limits=c(-0.75, 0.50),
+                                  breaks=seq(-0.95, 0.5, 0.25),
+                                  limits=c(-0.95, 0.50),
                                   labels=percent_format())
     gg <- gg + coord_flip()
     gg <- gg + labs(x=NULL, y=NULL, title=question)
