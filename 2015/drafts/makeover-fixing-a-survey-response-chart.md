@@ -38,7 +38,7 @@ We'll use `ggplot2` in R to re-design the chart and incorporate all the answer l
     Telecom,.35,.25,.40
     Healthcare,.28,.41,.31
     Airlines,.25,.25,.50
-    Bannking & Finance,.24,.44,.32
+    Banking & Finance,.24,.44,.32
     Utilities,.21,.41,.38", sep=",", header=TRUE, stringsAsFactors=FALSE)
    
 Next, we need to reshape that into something we can work with in ggplot, which is pretty straightforward with `tidyr`:
@@ -49,39 +49,39 @@ Next, we need to reshape that into something we can work with in ggplot, which i
 
 That takes the three response columns and collapses them into one (wide-to-long, as it were). So, it goes from:
 
-                Industry likely not_likely dont_know_or_hold
-    1          Retailers   0.44       0.19              0.37
-    2         Government   0.39       0.29              0.32
-    3            Telecom   0.35       0.25              0.40
-    4         Healthcare   0.28       0.41              0.31
-    5           Airlines   0.25       0.25              0.50
-    6 Bannking & Finance   0.24       0.44              0.32
-    7          Utilities   0.21       0.41              0.38
+               Industry likely not_likely dont_know_or_hold
+    1         Retailers   0.44       0.19              0.37
+    2        Government   0.39       0.29              0.32
+    3           Telecom   0.35       0.25              0.40
+    4        Healthcare   0.28       0.41              0.31
+    5          Airlines   0.25       0.25              0.50
+    6 Banking & Finance   0.24       0.44              0.32
+    7         Utilities   0.21       0.41              0.38
 
 to:
 
-                 Industry          Response percent
-    1           Retailers            likely    0.44
-    2          Government            likely    0.39
-    3             Telecom            likely    0.35
-    4          Healthcare            likely    0.28
-    5            Airlines            likely    0.25
-    6  Bannking & Finance            likely    0.24
-    7           Utilities            likely    0.21
-    8           Retailers        not_likely    0.19
-    9          Government        not_likely    0.29
-    10            Telecom        not_likely    0.25
-    11         Healthcare        not_likely    0.41
-    12           Airlines        not_likely    0.25
-    13 Bannking & Finance        not_likely    0.44
-    14          Utilities        not_likely    0.41
-    15          Retailers dont_know_or_hold    0.37
-    16         Government dont_know_or_hold    0.32
-    17            Telecom dont_know_or_hold    0.40
-    18         Healthcare dont_know_or_hold    0.31
-    19           Airlines dont_know_or_hold    0.50
-    20 Bannking & Finance dont_know_or_hold    0.32
-    21          Utilities dont_know_or_hold    0.38
+               Industry          Response percent
+    1          Retailers            likely    0.44
+    2         Government            likely    0.39
+    3            Telecom            likely    0.35
+    4         Healthcare            likely    0.28
+    5           Airlines            likely    0.25
+    6  Banking & Finance            likely    0.24
+    7          Utilities            likely    0.21
+    8          Retailers        not_likely    0.19
+    9         Government        not_likely    0.29
+    10           Telecom        not_likely    0.25
+    11        Healthcare        not_likely    0.41
+    12          Airlines        not_likely    0.25
+    13 Banking & Finance        not_likely    0.44
+    14         Utilities        not_likely    0.41
+    15         Retailers dont_know_or_hold    0.37
+    16        Government dont_know_or_hold    0.32
+    17           Telecom dont_know_or_hold    0.40
+    18        Healthcare dont_know_or_hold    0.31
+    19          Airlines dont_know_or_hold    0.50
+    20 Banking & Finance dont_know_or_hold    0.32
+    21         Utilities dont_know_or_hold    0.38
 
 The bar ordering in the original chart was good, so lets ensure ggplot will also order the Industries properly:
 
