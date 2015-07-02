@@ -94,7 +94,7 @@ The ordering in the original Unisys chart was good, so lets ensure ggplot will p
 
 (we'll use `ind_order` in a bit)
 
-We also want the resoonses ordered properly (primarily for the legend), so we tackle that next:
+We also want the responses ordered properly (primarily for the legend), so we tackle that next:
 
     :::r
     lik %>%
@@ -106,7 +106,7 @@ We also want the resoonses ordered properly (primarily for the legend), so we ta
                                       "Don't know / \nDoes not hold"))) %>%
       mutate(percent=ifelse(Response!="Likely", -percent, percent)) -> lik
 
-We'll use a stacked area chart that's zero-centered between "Likely" and the rest of the answers and add a marker line at 0%. This will enable our brains to compare the length of the bars vs focusing on errantly calculating area (which can happen in 100% stacked bar charts).
+We'll use a stacked area chart that's zero-centered between "Likely" and the rest of the answers and add a marker line at 0%, both to enable our brains to compare the length of the bars vs focusing on errantly calculating area (which can happen in 100% stacked bar charts).
 
 Choosing colors wisely will also let our eyes group the non-"Likely" segments together but also easily enables us to separate them logically.
 
@@ -115,7 +115,7 @@ Finally, we plot a stacked bar chart. One way to do this with ggplot is to use t
     question <- "How likely do you think it is that your personal information will be accessed by
     an unauthorized person either accidently or deliberately within the next 12 months?
     "
-
+    
     gg <- ggplot()
     gg <- gg + geom_hline(yintercept=0)
     gg <- gg + geom_bar(data=filter(lik, percent<0), width=0.75,
@@ -139,6 +139,6 @@ Finally, we plot a stacked bar chart. One way to do this with ggplot is to use t
     gg <- gg + theme(panel.grid=element_blank())
     gg
 
-<img src="http://dds.ec/blog/images/2015/07/unisysremake.png" style="width:100%/>
+<img src="http://dds.ec/blog/images/2015/07/unisysremake.png" style="width:100%"/>
 
 You now have more data to incorporate into your view of the Unisys survey (for this question). Some things already stand out for me, but we'll leave this post as a makeover "how to" vs an "analysis of an analysis".
