@@ -1,5 +1,5 @@
-Title: Hiring a Data Scientist
-Date: 2015-07-06 22:13:23
+Title: Five Critical Points To Consider When Hiring a Data Scientist
+Date: 2015-07-07 08:13:23
 Category: blog
 Tags: blog
 Slug: hiring-data-scientist
