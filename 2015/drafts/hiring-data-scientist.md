@@ -1,7 +1,6 @@
 Title: Hiring a Data Scientist
 Date: 2015-07-06 22:13:23
 Category: blog
-Status: draft
 Tags: blog
 Slug: hiring-data-scientist
 Author: Jay Jacobs (@jayjacobs)
@@ -16,7 +15,7 @@ You are looking for three very critical skills.  First, you should expect them t
 
 ### Don't be afraid to look dumb. 
 
-I'm sorry to say that I've seen a whole lot of bad research being accepted at face value because people were too afraid say something thinking they would look dumb.  If something doesn't make sense, or doesn't quite smell right, ask for clarification or speak up about what doesn't sit right.  The worst you can do is to just assume they must be right since it seems like they know what they are talking about.  I'm serious about this.  I've seen entire rooms of people nodding their heads to someone saying the equivalent of 2 + 2 = 5.   Speak up and ask for clarification.  It's okay if you don't get something, this is why you want to hire a data scientist anyway.  You won't discover what's really going on under the surface until you dig a little and unfortunately it can be tricky.  What you want to know is that they can talk you like an equal and explain things to a satisfactory level.  Remember if they can't explain the simple things in an interview, how will they explain more complex topics on the job?
+I'm sorry to say that I've seen a whole lot of bad research being accepted at face value because people were too afraid say something thinking they would look dumb.  If something doesn't make sense, or doesn't quite smell right, speak up and ask for clarification on whatever doesn't sit right.  The worst you can do is to just assume they must be right since it seems like they know what they are talking about.  I'm serious about this.  I've seen entire rooms of people nodding their heads to someone saying the equivalent of 2 + 2 = 5.   Speak up and ask for clarification.  It's okay if you don't get something, this is why you want to hire a data scientist anyway.  You won't discover what's really going on under the surface until you dig a little and unfortunately it can be tricky.  What you want to know is that they can talk you like an equal and explain things to a satisfactory level.  Remember if they can't explain the simple things in an interview, how will they explain more complex topics on the job?
 
 ### Don't try to stump candidates 
 
@@ -24,7 +23,7 @@ The flip side to asking for explanations is a bit of a personal pet peeve.  Some
 
 ### Find out what they have done.
 
-Ask about projects they have done and I like to follow the [STAR format: situation, task, actions and results](http://www.rightattitudes.com/2008/07/15/star-technique-answer-interview-questions/).  First have then describe a situation, problem or challenge, then have them talk about the tasks or what they needed to achieve (build a classifier, perform regression, etc).  Then find out exactly what they contributed and what their actions were.  Be sure to hone in on their role, especially if the project is done in academia where teams of research are more common.  Finally how did it turn out?  How did they evaluate their work and did the results meet expectations?    Having them talk through a project like that should help you get to know them a little more.  
+Ask about projects they have done and I like to follow the [STAR format: situation, task, actions and results](http://www.rightattitudes.com/2008/07/15/star-technique-answer-interview-questions/).  First have then describe a situation, problem or challenge, then have them talk about the tasks or what they needed to achieve in order to resolve the situation (build a classifier, perform regression, etc).  Then find out exactly what they contributed and what their actions were.  Be sure to hone in on their role, especially if the project is done in academia where teams of research are more common.  Finally how did it turn out (the results)?  How did they evaluate their work and did the results meet expectations?    Having them talk through a project like that should help you get to know them a little more.  
 
 ### Don't hold out for a full-stack data scientist
 
@@ -39,6 +38,6 @@ Ideally, a good “full stack” data scientist will have the following skills:
 
 But don't hold out for the full stack of skills.  Every candidate will be stronger in one or two of these than the rest, so identify what skills are critical to the role and what may not be as important.  Than hire for those strengths. 
 
-Hope those are helpful, if you ahve more, leave a comment with your ideas and tips!
+Hope those are helpful, if you have more, leave a comment with your ideas and tips!
 
 
