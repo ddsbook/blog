@@ -15,7 +15,7 @@ The github page for the package has installation instructions (you'll need to be
 
 ### Using XSLT in Data Analyis Workflows
 
-At [work](verizonenterprise.com/DBIR/2015/), we maintain an ever-increasing list of public breaches knowns as the Veris Community Database - [VCDB](https://github.com/vz-risk/vcdb). Each breach is a [github issue](https://github.com/vz-risk/vcdb/issues) and we store links to news stories (et al) that document or report the breach in each issue. Coding breaches is pretty labor-intensive work and we have not really received a ton of volunteers (the "C" in "VCDB" stands for "Community"), so we've been looking at ways to at least auto-classify the breaches and get some details from them programmatically. This means that getting just the salient text from these news stories/reports is critical.
+At [work](verizonenterprise.com/DBIR/2015/), we maintain an ever-increasing list of public breaches known as the Veris Community Database - [VCDB](https://github.com/vz-risk/vcdb). Each breach is a [github issue](https://github.com/vz-risk/vcdb/issues) and we store links to news stories (et al) that document or report the breach in each issue. Coding breaches is pretty labor-intensive work and we have not really received a ton of volunteers (the "C" in "VCDB" stands for "Community"), so we've been looking at ways to at least auto-classify the breaches and get some details from them programmatically. This means that getting just the salient text from these news stories/reports is critical.
 
 With the `xslt` package, we can use [an XSLT tranformation](http://dds.ec/dl/justthetext.xslt) (that XSLT file is a bit big, mostly due to my XSLT being rusty) in an `rvest`/`xml2` pipeline to extract just the text.
 
