@@ -1,7 +1,6 @@
 Title: "Just the text ma'am" - Web Site Content Extraction with XSLT & R
-Date: 2015-07-08 12:12:42
+Date: 2015-07-08 13:00:42
 Category: blog
-Status: draft
 Tags: blog, r, rstats, xml, xslt, webscraping
 Slug: just-the-text-maam
 Author: Bob Rudis (@hrbrmstr)
