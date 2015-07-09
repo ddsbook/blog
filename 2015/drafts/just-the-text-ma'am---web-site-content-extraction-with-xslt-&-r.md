@@ -1,5 +1,5 @@
 Title: "Just the text ma'am" - Web Site Content Extraction with XSLT & R
-Date: 2015-07-08 13:00:42
+Date: 2015-07-09 16:30:42
 Category: blog
 Tags: blog, r, rstats, xml, xslt, webscraping
 Slug: just-the-text-maam
@@ -24,8 +24,8 @@ Here's a sample of it in action with apologies for the somewhat large text chunk
     :::R
     library(xslt)
     library(stringr)
-    library(xml2)
-    library(rvest)
+    library(xml2)    # this requires a "devtools" install of "xml2" : devtools::install_github("hadley/xml2")
+    library(rvest)   # this requires a "devtools" install of "rvest" : devtools::install_github("hadley/rvest")
 
     just_the_text_maam <- function(doc, sheet) {
       xslt_transform(doc, sheet, is_html = TRUE, fix_ns = TRUE) %>%
