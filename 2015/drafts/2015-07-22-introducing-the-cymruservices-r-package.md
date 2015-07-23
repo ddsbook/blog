@@ -1,5 +1,6 @@
 Title: Introducing the cymruservices R Package
 Date: 2015-07-22 17:19
+status: draft
 Slug: introducing-the-cymruservices-r-package
 Tags: blog, r, rstats, graph, bots
 Category: blog
@@ -9,7 +10,7 @@ The R world has come a long way since Jay & I wrote [Data-Driven Security](http:
 
 In Chapter 4, we showed some very basic exploratory data analysis and visualization. One of those examples showed how to do a basic network visualization of the ZeuS botnet nodes, clustered by country of origin.
 
-We turned some of the functions that collected metadata on the ZeuS IP addresses into a new R package - [cymruservices](https://github.com/hrbrmstr/cymruservices) which will be on CRAN soon. If you're new to installing from github, you'll need to install and load the `devtools` package then do a `devtools::install_github("hrbrmstr/cymruservices")` to work with that package until it gets on CRAN.
+We turned some of the functions that collected metadata on the ZeuS IP addresses into a new R package - [cymruservices](https://github.com/hrbrmstr/cymruservices) which will be on CRAN soon. If you're new to installing from github, you'll need to install and load the `devtools` package then do a `devtools::install_github("hrbrmstr/cymruservices")` to work with that package until it gets on CRAN. (UPDATE: It's [on CRAN](http://cran.r-project.org/web/packages/cymruservices/index.html).)
 
 We'll re-create the first network visualization from listing 4-12 (page 94) using this package and also modify the code to use `dplyr` functions and visualize the graph with `networkD3`, a super-spiffy `htmlwidget` package. You'll be able to pan & zoom the visualization and hopefully get some inspiration to "Try This At Home".
 
