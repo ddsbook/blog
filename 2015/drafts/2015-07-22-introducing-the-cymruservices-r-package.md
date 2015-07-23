@@ -1,6 +1,5 @@
 Title: Introducing the cymruservices R Package
 Date: 2015-07-22 17:19
-status: draft
 Slug: introducing-the-cymruservices-r-package
 Tags: blog, r, rstats, graph, bots
 Category: blog
