@@ -59,6 +59,6 @@ We've placed the ZeuS botnet data used in the book on our website to make it eas
 
 If you have the book, take a look at some of the subtle changes and also see how easy it is to make existing, static R visualizations dynamic.
 
-<center><iframe height=600 width=600 style="width:600;height=600" seamless src="http://dds.ec/frames/201507cymru.html"/></center>
+<center><iframe height=600 width=600 style="width:600;height=600" frameborder=0 seamless src="http://dds.ec/frames/201507cymru.html"/></center>
 
 There are a few more interesting functions in that package that will get you tons of useful metadata for your security data science projects. The package should be helpful when creating features for classification or just building relationships between objects that you may never know have exists. Plus, you now have a new visualization toy to play with!
