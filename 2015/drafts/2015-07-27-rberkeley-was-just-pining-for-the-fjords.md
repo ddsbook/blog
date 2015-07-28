@@ -1,7 +1,7 @@
 Title: RBerkeley Was Just Pining For The Fjords
 Date: 2015-07-27 11:13
 Slug: rberkeley-was-just-pining-for-the-fjords
-Tags: blog
+Tags: blog, r, rstats
 Category: blog, r, rstats
 Author: Bob Rudis (@hrbrmstr)
 
