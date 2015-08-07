@@ -55,7 +55,7 @@ I'll violate my own rule about mapping IP addresses just to show you Shodan also
     library(leaflet)
     library(htmltools)
 
-    for_map <- cbind.data.frame(loc, 
+    for_map <- cbind.data.frame(loc=maine_iis$matches$location, 
                             ip=maine_iis$matches$ip,
                             isp=maine_iis$matches$isp,
                             title=maine_iis$matches$title,
