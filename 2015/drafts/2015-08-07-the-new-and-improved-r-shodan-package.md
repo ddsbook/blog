@@ -1,8 +1,7 @@
 Title: The New and Improved R Shodan Package
-Date: 2015-08-07 10:15
+Date: 2015-08-07 11:30:00
 Slug: the-new-and-improved-r-shodan-package
 Tags: blog, r, rstats
-status: draft
 Category: blog
 Author: Bob Rudis (@hrbrmstr)
 
@@ -29,6 +28,7 @@ The package is brand-new, but it has basic, full coverage of the [Shodan API](ht
     # devtools::install_github("hrbrmstr/shodan")
     library(shodan)
 
+    # perform the query for IIS servers in Maine
     maine_iis <- shodan_search("iis state:me")
 
     # get the total number of IIS servers in Maine that Shodan found
@@ -47,14 +47,13 @@ The package is brand-new, but it has basic, full coverage of the [Shodan API](ht
     ## [13] "timestamp" "domains"   "ip_str"    "os"        "_shodan"   "location" 
     ## [19] "ssl"       "link"  
 
-Now, the `data.frame` in `maine_iis$matches` is somewhat ugly for the moment. Some columns have lists and data frames since the Shodan REST API returns (like many APIs do) nested JSON. I'm actually looking for collaboration on what would be the most useful format for the returned data structures so hit me up if you have ideas that would benefit your use of it.
+Now, the data frame in `maine_iis$matches` is somewhat ugly for the moment. Some columns have lists and data frames since the Shodan REST API returns (like many APIs do) nested JSON. I'm actually looking for collaboration on what would be the most useful format for the returned data structures so hit me up if you have ideas that would benefit your use of it.
 
 I'll violate my own rule about mapping IP addresses just to show you Shodan also does geolocation for you (and, hey, y'all seem to like maps). We'll make it a _bit_ more useful and add some metadata about what it found to the location popups:
 
     :::r
     library(leaflet)
     library(htmltools)
-    library(htmlwidgets)
 
     for_map <- cbind.data.frame(loc, 
                             ip=maine_iis$matches$ip,
