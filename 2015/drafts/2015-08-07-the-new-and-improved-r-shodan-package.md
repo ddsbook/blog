@@ -1,7 +1,7 @@
 Title: The New and Improved R Shodan Package
 Date: 2015-08-07 10:15
 Slug: the-new-and-improved-r-shodan-package
-Tags: blog
+Tags: blog, r, rstats
 status: draft
 Category: blog
 Author: Bob Rudis (@hrbrmstr)
@@ -26,12 +26,18 @@ While you can have fun with Shodan, it does have real value to security folk and
 The package is brand-new, but it has basic, full coverage of the [Shodan API](https://developer.shodan.io/api) _except_ for the streaming functions. But, a line of code is worth a thousand blatherings, so let's find all the IIS servers in Maine.
 
     :::r
+    # devtools::install_github("hrbrmstr/shodan")
     library(shodan)
+
     maine_iis <- shodan_search("iis state:me")
 
     # get the total number of IIS servers in Maine that Shodan found
     print(maine_iis$total) 
     ## [1] 2948
+
+    # how many did it return in this page of the query?
+    print(nrow(maine_iis$matches))
+    ## [1] 100
 
     # what else does it know about these servers?
     print(colnames(maine_iis$matches))
@@ -68,7 +74,7 @@ I'll violate my own rule about mapping IP addresses just to show you Shodan also
 
 
 <center>
-<b>IIS Servers in MAine</b>
+<b>IIS Servers in Maine</b>
 <iframe style="max-width=100%" 
         src="/widgets/2015-08-08-shodan-01.html" 
         sandbox="allow-same-origin 
@@ -78,3 +84,32 @@ I'll violate my own rule about mapping IP addresses just to show you Shodan also
         seamless="seamless" 
         frameBorder="0"></iframe>
 </center>
+
+Remember that's only 100 of ~3,000 servers, but it should give you an idea of the types of data Shodan can return.
+
+The pacakge is [up on github](https://github.com/hrbrmstr/shodan) for now, and here's a list of functions it makes available:
+
+-   `account_profile`: Account Profile
+-   `api_info`: API Plan Information
+-   `host_count`: Search Shodan without Results
+-   `host_info`: Host Information
+-   `my_ip`: My IP Address
+-   `query_tags`: List the most popular tags
+-   `resolve`: DNS Lookup
+-   `reverse`: Reverse DNS Lookup
+-   `shodan_api_key`: Get or set SHODAN\_API\_KEY value
+-   `shodan_exploit_search`: Search for Exploits
+-   `shodan_exploit_search_count`: Search for Exploits without Results
+-   `shodan_ports`: List all ports that Shodan is crawling on the Internet.
+-   `shodan_protocols`: List all protocols that can be used when performing on-demand Internet scans via Shodan.
+-   `shodan_query_list`: List the saved search queries
+-   `shodan_query_search`: Search the directory of saved search queries.
+-   `shodan_scan`: Request Shodan to crawl an IP/ netblock
+-   `shodan_scan_internet`: Crawl the Internet for a specific port and protocol using Shodan
+-   `shodan_search`: Search Shodan
+-   `shodan_search_tokens`: Break the search query into tokens
+-   `shodan_services`: List all services that Shodan crawls
+
+Each of those maps to the [API endpoints](https://developer.shodan.io/api) described on the official Shodan site.
+
+You are invited to tag along on this package as much or as little as you like. Drop a note in the comments if you find it useful or have suggestions! Please file all feature requests or problems on github. Have fun exporing the API in R!.
