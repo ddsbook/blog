@@ -10,7 +10,7 @@ This was (initially) going to be a blog post announcing the new [mhn R package](
 
 ### Episode 0 : The Quest!
 
-We find our <strike>intrepid heroes</strike> data scientists finally getting around to playing with the Modern Honey Network (MHN) software that they promised [Jason Trost](https://twitter.com/jason_trost) they'd do _ages_ ago. MHN makes it easy to [freely] centrally setup, control, monitor and collect data from one or more [honeypots](https://en.wikipedia.org/wiki/Honeypot_(computing)). Once you have this data you can generate threat indicator feeds from it and also do analysis on it (which is what we're interested in eventually doing and what [ThreatStream](https://www.threatstream.com/) does do with their gloal network of MHN paricipants).
+We find our <strike>intrepid heroes</strike> data scientists finally getting around to playing with the Modern Honey Network (MHN) software that they promised [Jason Trost](https://twitter.com/jason_trost) they'd do _ages_ ago. MHN makes it easy to [freely] centrally setup, control, monitor and collect data from one or more [honeypots](https://en.wikipedia.org/wiki/Honeypot_(computing)). Once you have this data you can generate threat indicator feeds from it and also do analysis on it (which is what we're interested in eventually doing and what [ThreatStream](https://www.threatstream.com/) _does do_ with their global network of MHN contributors).
 
 Jason has a [Vagrant](https://www.vagrantup.com/) [quickstart](https://github.com/threatstream/mhn/wiki/Getting-up-and-running-using-Vagrant) version of MHN which lets you kick the tyres locally, safely and securely before venturing out into the enterprise (or internet). You stand up the server (mostly Python-y things), then tell it what type of honeypot you want to deploy. You get a handy cut-and-paste-able string which you paste-and-execute on a system that will become an actual honeypot (which can be a "real" box, a VM or even a RaspberryPi!). When the honeypot is finished installing the necessary components it registers with your MHN server and you're ready to start catching cyber bad guys.
 
@@ -22,7 +22,7 @@ We decided to deploy a test MHN server and series of honeypots on [Digital Ocean
 
 While it's great to peruse the incoming attacks:
 
-<center><a href="attacks.png"><img style="max-width:100%" src="attacks.png"/></a></center>
+<center><a href="attacks.png"><img style="max-width:100%" src="http://dds.ec/blog/images/2015/08/attacks.png"/></a></center>
 
 we wanted programmatic access to the data, so we took a look at all the [routes in their API](https://github.com/threatstream/mhn/blob/master/server/mhn/api/views.py) and threw together an [R package](https://github.com/hrbrmstr/mhn) to let us work with it.
 
@@ -83,7 +83,7 @@ The package makes it really easy (OK, we're probably a _bit_ biased) to grab gia
 
 While cranking out the API package we noticed that there were no endpoints for the MHN HoneyMap. _Yes_, they do the "attacks on a map" thing but don't think too badly of them since most of you seem to want them.
 
-<center><a href="map.png"><img style="max-width:100%" src="map.png"/></a></center>
+<center><a href="map.png"><img style="max-width:100%" src="http://dds.ec/blog/images/2015/08/map.png"/></a></center>
 
 After poking around the MHN source a bit more (and navigating the `view-source` of the map page) we discovered that they use a [Go-based websocket server](https://github.com/threatstream/mhn/blob/master/scripts/install_honeymap.sh) to push the honeypot hits out to the map. (You can probably see where this is going, but it takes that turn first).
 
