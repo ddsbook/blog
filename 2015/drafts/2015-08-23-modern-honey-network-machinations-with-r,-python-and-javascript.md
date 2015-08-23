@@ -196,31 +196,17 @@ GNU parallel to speed up the image captures as well.
 
 Sifting through ~140 images manually to see if any had "hits" would not have been _too_ bad, bit a glance at the directory listing showed that many had the exact same size, meaning those were probably showing a default/blank map. We `uniq`'d them by MD5 hash and made an image gallery of them:
 
-<style>.wmuGallery .wmuGalleryImage,.wmuSlider .wmuSliderWrapper article{position:relative;text-align:center}.wmuGallery .wmuGalleryImage img,.wmuSlider .wmuSliderWrapper article img{max-width:100%;width:auto;height:auto}.wmuGallery,.wmuSlider{margin-bottom:20px}.wmuSlider{position:relative;overflow:hidden}.wmuSlider .wmuSliderWrapper{display:none}.wmuGallery .wmuGalleryImage{margin-bottom:10px}.wmuSliderNext,.wmuSliderPrev{position:absolute;width:40px;height:80px;text-indent:-9999px;background:url(http://dds.ec/images/sprites.png) no-repeat;top:50%;margin-top:-40px;z-index:2}.wmuSliderPrev{background-position:100% 0;left:20px}.wmuSliderNext{right:20px}.wmuSliderPagination{z-index:2;position:absolute;left:20px;bottom:10px}.wmuSliderPagination li{float:left;margin:0 5px 0 0;list-style-type:none}.wmuSliderPagination a{display:block;text-indent:-9999px;width:10px;height:10px;background:url(http://dds.ec/images/sprites.png) 0 -80px no-repeat}.wmuSliderPagination a.wmuActive{background-position:-10px -80px}</style>
-<div style="width:630;height:600"><div class="wmuSlider"><div class="wmuSliderWrapper">
-<article><img width="800" height="600" src="http://dds.ec/galleries/hp/146.83.210.9.png"/></article>
-<article><img width="800" height="600" src="http://dds.ec/galleries/hp/187.174.195.77.png"/></article>
-<article><img width="800" height="600" src="http://dds.ec/galleries/hp/12.45.132.78.png"/></article>
-<article><img width="800" height="600" src="http://dds.ec/galleries/hp/54.148.80.241.png"/></article>
-<article><img width="800" height="600" src="http://dds.ec/galleries/hp/188.122.73.245.png"/></article>
-<article><img width="800" height="600" src="http://dds.ec/galleries/hp/202.12.103.108.png"/></article>
-<article><img width="800" height="600" src="http://dds.ec/galleries/hp/45.55.195.250.png"/></article>
-<article><img width="800" height="600" src="http://dds.ec/galleries/hp/174.140.165.250.png"/></article>
-<article><img width="800" height="600" src="http://dds.ec/galleries/hp/54.183.152.115.png"/></article>
-<article><img width="800" height="600" src="http://dds.ec/galleries/hp/81.167.148.253.png"/></article>
-<article><img width="800" height="600" src="http://dds.ec/galleries/hp/128.199.121.95.png"/></article>
-<article><img width="800" height="600" src="http://dds.ec/galleries/hp/192.169.69.20.png"/></article>
-<article><img width="800" height="600" src="http://dds.ec/galleries/hp/192.169.69.25.png"/></article>
-<article><img width="800" height="600" src="http://dds.ec/galleries/hp/192.167.251.4.png"/></article>
-<article><img width="800" height="600" src="http://dds.ec/galleries/hp/192.210.204.20.png"/></article>
-<article><img width="800" height="600" src="http://dds.ec/galleries/hp/46.101.24.221.png"/></article>
-<article><img width="800" height="600" src="http://dds.ec/galleries/hp/46.101.19.232.png"/></article></div></div></div>
-<script type="text/javascript" charset="utf8" src="http://dds.ec/js/modernizr.custom.min.js"></script>
-<script type="text/javascript" charset="utf8" src="http://dds.ec/js/vendor/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" charset="utf8" src="http://dds.ec/js/jquery.touchSwipe.min.js"></script>
-<script type="text/javascript" charset="utf8" src="http://dds.ec/js/jquery.wmuGallery.min.js"></script>
-<script type="text/javascript" charset="utf8" src="http://dds.ec/js/jquery.wmuSlider.min.js"></script>
-<script>$('.wmuSlider').wmuSlider({animation: 'slide',animationDuration: 600,slideshow: true,slideshowSpeed: 7000,slideToStart: 0,navigationControl: true,paginationControl: false,previousText: 'Previous',nextText: 'Next',touch: Modernizr.touch,slide: 'article',items: 1});</script>
+
+<center>
+<iframe style="max-width=100%" 
+        src="/iframes/mhn.html" 
+        sandbox="allow-same-origin 
+        allow-scripts" width="100%" 
+        height="500" 
+        scrolling="no" 
+        seamless="seamless" 
+        frameBorder="0"></iframe>
+</center>
 
 It was interesting to see Mexico CERT and OpenDNS in the mix.
 
