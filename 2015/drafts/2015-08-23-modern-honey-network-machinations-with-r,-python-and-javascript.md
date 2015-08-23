@@ -223,9 +223,7 @@ Sifting through ~140 images manually to see if any had "hits" would not have bee
 <script type="text/javascript" charset="utf8" src="http://dds.ec/js/jquery.touchSwipe.min.js"></script>
 <script type="text/javascript" charset="utf8" src="http://dds.ec/js/jquery.wmuGallery.min.js"></script>
 <script type="text/javascript" charset="utf8" src="http://dds.ec/js/jquery.wmuSlider.min.js"></script>
-<script>$('.wmuSlider').wmuSlider({animation: 'slide',animationDuration: 600,slideshow: true,slideshowSpeed: 7000,slideToStart: 0,navigationControl: true,paginationControl: false,previousText: 'Previous',nextText: 'Next',touch: Modernizr.touch,slide: 'article',items: 1});</script>
-
-It was interesting to see Mexico CERT and OpenDNS in the mix.
+<script>$('.wmuSlider').wmuSlider({animation: 'slide',animationDuration: 600,slideshow: true,slideshowSpeed: 7000,slideToStart: 0,navigationControl: true,paginationControl: false,previousText: 'Previous',nextText: 'Next',touch: Modernizr.touch,slide: 'article',items: 1});</script>It was interesting to see Mexico CERT and OpenDNS in the mix.
 
 Most of the 141 were active/live MHN HoneyMap sites. We can only imagine what a full Shodan search for HoneyMaps on other ports would come back with (mostly since we only have the basic API access and don't want to burn the credits).
 
