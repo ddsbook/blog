@@ -199,7 +199,7 @@ Sifting through ~140 images manually to see if any had "hits" would not have bee
 <style>
 .wmuGallery .wmuGalleryImage,.wmuSlider .wmuSliderWrapper article{position:relative;text-align:center}.wmuGallery .wmuGalleryImage img,.wmuSlider .wmuSliderWrapper article img{max-width:100%;width:auto;height:auto}.wmuGallery,.wmuSlider{margin-bottom:20px}.wmuSlider{position:relative;overflow:hidden}.wmuSlider .wmuSliderWrapper{display:none}.wmuGallery .wmuGalleryImage{margin-bottom:10px}.wmuSliderNext,.wmuSliderPrev{position:absolute;width:40px;height:80px;text-indent:-9999px;background:url(http://dds.ec/images/sprites.png) no-repeat;top:50%;margin-top:-40px;z-index:2}.wmuSliderPrev{background-position:100% 0;left:20px}.wmuSliderNext{right:20px}.wmuSliderPagination{z-index:2;position:absolute;left:20px;bottom:10px}.wmuSliderPagination li{float:left;margin:0 5px 0 0;list-style-type:none}.wmuSliderPagination a{display:block;text-indent:-9999px;width:10px;height:10px;background:url(http://dds.ec/images/sprites.png) 0 -80px no-repeat}.wmuSliderPagination a.wmuActive{background-position:-10px -80px}
 </style>
-<div style="width:630;height:600;max-width:100%"><div class="wmuSlider"><div class="wmuSliderWrapper">
+<div style="width:630;height:600"><div class="wmuSlider"><div class="wmuSliderWrapper">
 <article><img width="800" height="600" src="http://dds.ec/galleries/hp/146.83.210.9.png"/></article>
 <article><img width="800" height="600" src="http://dds.ec/galleries/hp/187.174.195.77.png"/></article>
 <article><img width="800" height="600" src="http://dds.ec/galleries/hp/12.45.132.78.png"/></article>
