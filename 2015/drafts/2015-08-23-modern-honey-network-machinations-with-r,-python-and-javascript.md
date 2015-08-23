@@ -116,7 +116,7 @@ Still, this got us wondering if we could find other MHN servers out there in the
     ## 1                                                   HoneyMap
     ## 2                                  hb.c2hosting.com HoneyMap
     ## 3                                                   HoneyMap
-    ## 4                                          fuck.you HoneyMap
+    ## 4                                          fxxx.you HoneyMap
     ## 5            ip-192-169-234-171.ip.secureserver.net HoneyMap
     ## 6 ec2-54-148-80-241.us-west-2.compute.amazonaws.com HoneyMap
     ##                    timestamp                isp transport
@@ -169,7 +169,7 @@ Still, this got us wondering if we could find other MHN servers out there in the
     ## 5 3232361131 AS26496 <NA>     NA
     ## 6  915689713    <NA> <NA>     NA
 
-Yikes! 141 servers just on the default port (3000) alone! While these systems might be in Shodan, we really needed to confirm that they were, indeed, live MHN HoneyMap [websocket] servers. 
+Yikes! 141 servers just on the default port (3000) alone! While these systems may be shown as existing in Shodan, we really needed to confirm that they were, indeed, live MHN HoneyMap [websocket] servers. 
 
 ### Episode 3 : Picture [Im]Perfect
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
@@ -198,82 +198,7 @@ GNU parallel to speed up the image captures as well.
 Sifting through ~140 images manually to see if any had "hits" would not have been _too_ bad, bit a glance at the directory listing showed that many had the exact same size, meaning those were probably showing a default/blank map. We `uniq`'d them by MD5 hash and made an image gallery of them:
 
 <style>
-.wmuSlider,
-.wmuGallery {
-    margin-bottom: 20px;
-}
-
-/* mwuSlider */
-.wmuSlider {
-    position: relative;
-    overflow: hidden;
-}
-.wmuSlider .wmuSliderWrapper {
-    display: none;
-}
-.wmuSlider .wmuSliderWrapper article {
-    position: relative;
-    text-align: center;
-}
-.wmuSlider .wmuSliderWrapper article img {
-    max-width: 100%;
-    width: auto;
-    height: auto;
-}
-
-/* mwuGallery */
-.wmuGallery .wmuGalleryImage {
-    position: relative;
-    text-align: center;
-}
-.wmuGallery .wmuGalleryImage img {
-    max-width: 100%;
-    width: auto;
-    height: auto;
-}
-
-/* Default Skin */
-.wmuGallery .wmuGalleryImage {
-    margin-bottom: 10px;
-}
-.wmuSliderPrev, .wmuSliderNext {
-    position: absolute;
-    width: 40px;
-    height: 80px;
-    text-indent: -9999px;
-    background: url(http://dds.ec/images/sprites.png) no-repeat 0 0;
-    top: 50%;
-    margin-top: -40px;
-    z-index: 2;
-}
-.wmuSliderPrev {
-    background-position: 100% 0;
-    left: 20px;
-}
-.wmuSliderNext {
-    right: 20px;
-}
-.wmuSliderPagination {
-    z-index: 2;
-    position: absolute;
-    left: 20px;
-    bottom: 10px;
-}
-.wmuSliderPagination li {
-    float: left;
-    margin: 0 5px 0 0;
-    list-style-type: none;
-}
-.wmuSliderPagination a {
-    display: block;
-    text-indent: -9999px;
-    width: 10px;
-    height: 10px;
-    background: url(http://dds.ec/images/sprites.png) no-repeat 0 -80px;
-}
-.wmuSliderPagination a.wmuActive {
-    background-position: -10px -80px;
-}
+.wmuGallery .wmuGalleryImage,.wmuSlider .wmuSliderWrapper article{position:relative;text-align:center}.wmuGallery .wmuGalleryImage img,.wmuSlider .wmuSliderWrapper article img{max-width:100%;width:auto;height:auto}.wmuGallery,.wmuSlider{margin-bottom:20px}.wmuSlider{position:relative;overflow:hidden}.wmuSlider .wmuSliderWrapper{display:none}.wmuGallery .wmuGalleryImage{margin-bottom:10px}.wmuSliderNext,.wmuSliderPrev{position:absolute;width:40px;height:80px;text-indent:-9999px;background:url(http://dds.ec/images/sprites.png) no-repeat;top:50%;margin-top:-40px;z-index:2}.wmuSliderPrev{background-position:100% 0;left:20px}.wmuSliderNext{right:20px}.wmuSliderPagination{z-index:2;position:absolute;left:20px;bottom:10px}.wmuSliderPagination li{float:left;margin:0 5px 0 0;list-style-type:none}.wmuSliderPagination a{display:block;text-indent:-9999px;width:10px;height:10px;background:url(http://dds.ec/images/sprites.png) 0 -80px no-repeat}.wmuSliderPagination a.wmuActive{background-position:-10px -80px}
 </style>
 
 <div style="width:630;height:600;">
@@ -307,7 +232,7 @@ Sifting through ~140 images manually to see if any had "hits" would not have bee
 <script type="text/javascript" charset="utf8" src="http://dds.ec/js/jquery.wmuSlider.min.js"></script>
 
 <script>$('.wmuSlider').wmuSlider({
-  animation: 'slide',
+animation: 'slide',
 animationDuration: 600,
 slideshow: true,
 slideshowSpeed: 7000,
