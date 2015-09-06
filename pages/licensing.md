@@ -2,7 +2,7 @@ Title: License/Use
 Date: 2014-01-10 11:00:00
 Category: News
 Tags: book, blog, podcast
-Slug: topic-request
+Slug: license
 Author: Bob Rudis (@hrbrmstr)
 
 Unless explicitly overriden in a post or required by a library, packaged or included code used by in a post, all Data-Driven Security content has the following license:
