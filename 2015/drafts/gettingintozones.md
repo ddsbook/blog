@@ -4,7 +4,6 @@ Tags: blog, r, rstats
 Category: blog, r, rstats
 Author: Bob Rudis (@hrbrmstr)
 Slug: getting-into-the-zones-with-r-jsonlite
-Status: draft
 
 We have some *strange* data in cybersecurity. One of the (IMO) stranger data files is a Domain Name System (DNS) [zone file](https://en.wikipedia.org/wiki/Zone_file). This file contains mappings between domain names and IP addresses (and other things) represented by "resource records".
 
