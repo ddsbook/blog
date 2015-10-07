@@ -10,6 +10,7 @@ We have some *strange* data in cybersecurity. One of the (IMO) stranger data fil
 
 Here's an example for the dummy/example domain `example.com`:
 
+    :::text
     $ORIGIN example.com.     ; designates the start of this zone file in the namespace
     $TTL 1h                  ; default expiration time of all resource records without their own TTL value
     example.com.  IN  SOA   ns.example.com. username.example.com. ( 2007120710 1d 2h 4w 1h )
@@ -62,7 +63,7 @@ parse_zone <- function(path) {
 }
 ```
 
-Those are the only two function in the package. The `.onAttach` sets up a V8 JavaScript context for `parse_zone` to use and loads the slightly modified `zoneparser.js` `[browserified](https://cran.rstudio.org/web/packages/V8/vignettes/npm.html) JavaScript file which makes the function`zonefile.parse()\` available to the context.
+Those are the only two functions in the package. The `.onAttach` sets up a V8 JavaScript context for `parse_zone` to use and loads the slightly modified `zoneparser.js` [browserified](https://cran.rstudio.org/web/packages/V8/vignettes/npm.html) JavaScript file which makes the function `zonefile.parse()` available to the context.
 
 The `parse_zone` function takes in a file path to a zone file and returns a parsed structure. And, it's as easy to use as:
 
