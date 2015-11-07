@@ -69,7 +69,7 @@ flips and got 18 heads, we could still only say the range is still only
 the number of flips does to the confidence we have in the estimate (with
 90% probably of heads).
 
-![Sample size and confidence interval for an unfair coin](images/2015/11/confidence-sample-size.png)
+![Sample size and confidence interval for an unfair coin](/blog/images/2015/11/confidence-sample-size.png)
 
 Look at the left side of that plot, look how our confidence increases
 rapidly as we add a few more samples. Then look at the rate of
