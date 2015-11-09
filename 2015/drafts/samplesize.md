@@ -1,7 +1,6 @@
 Title: The Fallacy of Sample Size
 Date: 2015-11-07 15:26:52
 Category: blog
-Status: draft
 Tags: blog, statistics
 Slug: samplesize
 Author: Jay Jacobs (@jayjacobs)
