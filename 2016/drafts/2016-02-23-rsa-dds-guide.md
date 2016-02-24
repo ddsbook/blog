@@ -1,8 +1,7 @@
-Title: Data-Driven Guide To 2016 RSA Conference (U.S. Edition)
+Title: Your Data-Driven Guide To 2016 RSA Conference (U.S. Edition)
 Date: 2016-01-23 23:00
 Slug: rsac-2016-guide
 Tags: blog, podcast
-Status: draft
 Category: blog
 Author: Bob Rudis (@hrbrmstr)
 
