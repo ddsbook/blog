@@ -1,9 +1,8 @@
 Title: Mike Sconzo's Ten Commandments of Python Data Science
-Date: 2016-03-08 23:00
+Date: 2016-03-08 17:00
 Slug: sconzo-ten-commandments
-Tags: blog, podcast
+Tags: blog
 Category: blog
-Status: draft
 Author: Mike Sconzo (@sooshie)
 
 Straight from the Book of PEP
