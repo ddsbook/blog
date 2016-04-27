@@ -5,7 +5,7 @@ Tags: book, blog
 Slug: resources
 Author: Bob Rudis (@hrbrmstr)
 
-** Miscellaneous**
+**Miscellaneous**
 
 - [An open source Data Science repository to learn and apply towards solving real world problems](https://github.com/okulbilisim/awesome-datascience#bloggers) by OkulBilişim
 
